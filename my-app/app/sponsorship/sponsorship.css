@@ -1,0 +1,36 @@
+.tempNavBar {
+  border: 2px solid pink;
+}
+
+.tempHeader {
+  border: 2px solid purple;
+}
+
+.tempFooter {
+  border: 2px solid green;
+}
+
+.tiersList {
+  border: 2px solid crimson;
+}
+
+.tier {
+  width: 20%;
+  text-align: center;
+  border: 2px solid red;
+  margin: 1em;
+}
+
+.tier-table {
+  border: 2px solid blue;
+}
+
+.tier-cell {
+  border: 2px solid blue;
+  text-align: center;
+  margin: 1em;
+}
+
+.benefits {
+  border: 2px solid orange;
+}
