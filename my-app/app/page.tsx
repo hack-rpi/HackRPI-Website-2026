@@ -1,25 +1,30 @@
 'use client'
 
 import Image from "next/image";
-import FAQPage from "@/app/components/faq/faq"
 import Sponsors from "@/app/components/sponsors/sponsors"
+/* Only use desktop nav-bar for now for simplicity */
+import NavBar from "@/app/components/nav-bar/nav-bar"
+import Footer from "@/app/components/footer/footer"
+import TitleComponent from "@/app/components/title-components/title"
+import AboutUs from "@/app/components/about-us"
+import FAQPage from "@/app/components/faq/faq"
+import TeamComponent from "@/app/components/team/team"
 
 export default function Home() {
   return (
 		<>
-			{/* <NavBar showOnScroll={true} /> */}
-			<div className="flex flex-col items-start desktop:items-center justify-start w-full">
-				{/*<SearchBar />  Search bar component */}
-				<div className="w-full desktop:mx-8">
-					{/* <TitleComponent /> */}
-					{/* <AboutSection /> */}
-					{/* <FAQPage /> */}
-					<Sponsors />
-					{/* <TeamComponent /> */}
-				</div>
-				{/* <Footer /> */}
-				{/* Other components and elements */}
+		<NavBar />
+		<div className="w-full">
+			{/* Main page content*/}
+			{ <TitleComponent /> }
+			{ <AboutUs /> }
+			{ <FAQPage /> }
+			{ <Sponsors />}
+			{ <TeamComponent /> }
+			<div className="p-5">
+				{ <Footer /> }
 			</div>
+		</div>
 		</>
 	);
 }
