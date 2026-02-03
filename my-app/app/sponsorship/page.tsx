@@ -11,44 +11,44 @@ export default function Test() {
 
       <div className="tempHeader">
         Sponsor Us!
-        HEADER COMPONENT
+        HEADER COMPONENT - should probably be like a function, where the title
+        is modifiable
       </div>
 
-      <div className="flex flex-row justify-center tiersList">
-        PRICE LEVELS
+      <div className="flex items-center gap-4 justify-center tiersList">
         <div className="tier bronze">
-          Bronze 750
+          Bronze $750
         </div>
         <div className="tier silver">
-          Silver 1000
+          Silver $1000
         </div>
         <div className="tier gold">
-          Gold 2500
+          Gold $2500
         </div>
         <div className="tier obsidian">
-          Obsidian 5000
+          Obsidian $5000
         </div>
       </div>
-      
-      <div className="flex flex-row justify-center tier-table">
-        TABLE FOR COMPARISON BETWEEN UNITS
+
+      <div className="flex items-center gap-4 justify-center tier-table">
         <div className="tier-cell bronze">
-          Bronze 750
+          Benefits in Bronze
         </div>
         <div className="tier-cell silver">
-          Silver 1000
+          Benefits in Silver
         </div>
         <div className="tier-cell gold">
-          Gold 2500
+          Benefits in Gold
         </div>
         <div className="tier-cell obsidian">
-          Obsidian 5000
+          Benefits in Obsidian
         </div>
       </div>
 
       {/* list of existing benefits */}
       <div className="benefits">
-        Benefits section, probably unordered list
+        Benefits section
+        SUGGESTION: Have a table instead of a list
       </div>
 
       <div className="tempFooter">

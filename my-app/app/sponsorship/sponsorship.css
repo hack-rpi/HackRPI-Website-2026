@@ -19,6 +19,7 @@
   text-align: center;
   border: 2px solid red;
   margin: 1em;
+  height: 10em; /* change later */
 }
 
 .tier-table {
@@ -26,9 +27,11 @@
 }
 
 .tier-cell {
+  width: 20%;
   border: 2px solid blue;
   text-align: center;
   margin: 1em;
+  height: 10em; /* change later */
 }
 
 .benefits {
