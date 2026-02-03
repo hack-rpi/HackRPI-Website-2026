@@ -28,12 +28,13 @@
 
 .tier-cell {
   width: 20%;
+  padding: 1em;
   border: 2px solid blue;
-  text-align: center;
   margin: 1em;
   height: 10em; /* change later */
 }
 
 .benefits {
   border: 2px solid orange;
+  padding: 1em;
 }
