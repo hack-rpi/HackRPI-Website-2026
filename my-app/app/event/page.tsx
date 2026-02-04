@@ -16,20 +16,36 @@ export default function Test() {
           is modifiable
         </div>
 
-        <div className="locationInfo">
-
+        CSS obviously not done
+        <div className="border-2 border-red-500 flex p-[1em] justify-around locationInfo">
+          <div className="border-2 border-orange-500 flex flex-col p-[1em]">
+            <div className="border-2 border-cyan-500 p-[1em]">
+              Event top left
+            </div>
+            <div className="border-2 border-cyan-500 p-[1em]">
+              Event bottom left
+            </div>
+          </div>
+          <div className="border-2 border-pink-500 flex flex-col p-[1em]">
+            <div className="border-2 border-cyan-500 p-[1em]">
+              Buttons
+            </div>
+            <div className="border-2 border-cyan-500 p-[1em]">
+              Map
+            </div>
+          </div>
         </div>
 
-        <div className="mentorInfo">
-
+        <div className="border-2 border-green-500 mentorInfo">
+          NEED HELP? section. idk how to format this one now
         </div>
 
-        <div className="judgingInfo">
-
+        <div className="border-2 border-blue-500 judgingInfo">
+          JUDGING INFO
         </div>
 
-        <div className="submissionInfo">
-          
+        <div className="border-2 border-cyan-500 submissionInfo">
+          SUBMISSION INFO
         </div>
         
 
