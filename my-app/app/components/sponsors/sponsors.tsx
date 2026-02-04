@@ -1,11 +1,8 @@
 
-
-const Sponsors = () => {
+export default function Sponsors() {
 	return (
-		<div className="bg-gray-600 h-screen">
+		<div className="bg-gray-400 h-screen p-5">
 			Sponsors section
 		</div>
 	);
 };
-
-export default Sponsors;
