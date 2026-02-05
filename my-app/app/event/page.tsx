@@ -1,7 +1,13 @@
-'use client'
 
+import { Metadata } from 'next';
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
+
+export const metadata: Metadata = {
+  title: 'Event Information - HackRPI 2026',
+  description:
+    'Event information for HackRPI 2026',
+};
 
 export default function Test() {
   return (

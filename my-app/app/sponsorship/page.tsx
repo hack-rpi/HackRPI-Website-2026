@@ -1,102 +1,88 @@
-'use client'
 
-import "./sponsorship.css"
+import { Metadata } from 'next';
+import Footer from "@/app/components/footer/footer";
+import NavBar from "@/app/components/nav-bar/nav-bar";
+
+export const metadata: Metadata = {
+  title: 'Sponsor Us! - HackRPI 2026',
+  description:
+    'This is the sponsorship page for HackRPI 2026. Please consider doing so!',
+};
 
 export default function Test() {
   return (
-		<>
-      <main className = "flex flex-col gap-3 h-screen">
-        <div className = "tempNavBar">
-          NAVBAR COMPONENT
-        </div>
-
-        <div className="tempHeader">
+		<>  
+      <NavBar />
+      <main className = "flex flex-col w-full">
+        <div className="w-full h-[50vh] bg-gray-500 p-5">
           Sponsor Us!
-          HEADER COMPONENT - should probably be like a function, where the title
-          is modifiable
-        </div>
-
-        <div className="flex items-center gap-4 justify-center tiersList">
-          <div className="tier bronze">
-            Bronze $750
-          </div>
-          <div className="tier silver">
-            Silver $1000
-          </div>
-          <div className="tier gold">
-            Gold $2500
-          </div>
-          <div className="tier obsidian">
-            Obsidian $5000
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 justify-center tier-table">
-          <div className="tier-cell bronze">
-            Benefits in Bronze
-            <ul>
-              <li>One</li>
-              <li>Two</li>
-              <li>Three</li>
-            </ul>
-          </div>
-          <div className="tier-cell silver">
-            Benefits in Silver
-            <ul>
-              <li>One</li>
-              <li>Two</li>
-              <li>Three</li>
-            </ul>
-          </div>
-          <div className="tier-cell gold">
-            Benefits in Gold
-            <ul>
-              <li>One</li>
-              <li>Two</li>
-              <li>Three</li>
-            </ul>
-          </div>
-          <div className="tier-cell obsidian">
-            Benefits in Obsidian
-            <ul>
-              <li>One</li>
-              <li>Two</li>
-              <li>Three</li>
-            </ul>
+          <div className = "h-[90%] flex p-[1em] justify-around">
+            <div className="w-[20%] text-center border-2 border-red-500 bronze">
+              Bronze $750
+              <ul className="text-left p-5">
+                Benefits:
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+              </ul>
+            </div>
+            <div className="w-[20%] text-center border-2 border-red-500 bronze">
+              Silver $1000
+              <ul className="text-left p-5">
+                Benefits:
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+              </ul>
+            </div>
+            <div className="w-[20%] text-center border-2 border-red-500 bronze">
+              Gold $2500
+              <ul className="text-left p-5">
+                Benefits:
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+              </ul>
+            </div>
+            <div className="w-[20%] text-center border-2 border-red-500 bronze">
+              Obsidian $5000
+              <ul className="text-left p-5">
+                Benefits:
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="disclaimer border-solid border-2">
-          tailored package dislaimer
+        <div className="w-full h-[25vh] bg-yellow-100 text-black p-5">
+          tailored package disclaimer
         </div>
 
-        <div className="flex items-center gap-4 justify-center benefits">
-          <table>
-            <thead>
-              <tr>
-                <td>Benefits</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+        <div className="w-full h-[50vh] bg-blue-400 text-black p-5">
+          Benefits Explained
+          <table className="w-full border-2 border-blue-500">
+            <tbody className="h-[25vh] border-2 border-blue-500">
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
@@ -105,11 +91,8 @@ export default function Test() {
             </tbody>
           </table>
         </div>
-
-        <div className="tempFooter">
-          FOOTER COMPONENT
-        </div>
       </main>
+      <Footer />
 		</>
 	);
 }

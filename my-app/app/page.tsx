@@ -1,4 +1,5 @@
-'use client'
+
+import { Metadata } from 'next';
 
 import Image from "next/image";
 import Sponsors from "@/app/components/sponsors/sponsors"
@@ -9,6 +10,12 @@ import TitleComponent from "@/app/components/title-components/title"
 import AboutUs from "@/app/components/about-us"
 import FAQPage from "@/app/components/faq/faq"
 import TeamComponent from "@/app/components/team/team"
+
+export const metadata: Metadata = {
+  title: 'HackRPI 2026',
+  description:
+    'Official website for HackRPI 2026',
+};
 
 export default function Home() {
   return (
