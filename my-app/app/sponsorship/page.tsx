@@ -1,8 +1,14 @@
-'use client'
 
+import { Metadata } from 'next';
 import "./sponsorship.css"
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
+
+export const metadata: Metadata = {
+  title: 'Sponsor Us! - HackRPI 2026',
+  description:
+    'This is the sponsorship page for HackRPI 2026. Please consider doing so!',
+};
 
 export default function Test() {
   return (
@@ -52,36 +58,32 @@ export default function Test() {
         </div>
 
         <div className="w-full h-[25vh] bg-yellow-100 text-black p-5">
-          tailored package dislaimer
+          tailored package disclaimer
         </div>
 
-        <div className="flex items-center gap-4 justify-center benefits">
-          <table>
-            <thead>
-              <tr>
-                <td>Benefits - unformatted so far</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+        <div className="w-full h-[50vh] bg-blue-400 text-black p-5">
+          Benefits Explained
+          <table className="w-full border-2 border-blue-500">
+            <tbody className="h-[25vh] border-2 border-blue-500">
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
                 <td>Test d</td>
               </tr>
-              <tr>
+              <tr className="border-2 border-blue-500">
                 <td>Test a</td>
                 <td>Test b</td>
                 <td>Test c</td>
@@ -90,11 +92,8 @@ export default function Test() {
             </tbody>
           </table>
         </div>
-
-        <div className="tempFooter">
-          FOOTER COMPONENT
-        </div>
       </main>
+      <Footer />
 		</>
 	);
 }
