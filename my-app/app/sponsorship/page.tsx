@@ -1,6 +1,5 @@
 
 import { Metadata } from 'next';
-import "./sponsorship.css"
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 
