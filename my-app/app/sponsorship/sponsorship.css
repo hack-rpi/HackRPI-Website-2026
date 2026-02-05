@@ -1,27 +1,3 @@
-.tempNavBar {
-  border: 2px solid pink;
-}
-
-.tempHeader {
-  border: 2px solid purple;
-}
-
-.tempFooter {
-  border: 2px solid green;
-}
-
-.tiersList {
-  border: 2px solid crimson;
-}
-
-.tier {
-  width: 20%;
-  text-align: center;
-  border: 2px solid red;
-  margin: 1em;
-  height: 10em; /* change later */
-}
-
 .tier-table {
   border: 2px solid blue;
 }
