@@ -1,0 +1,53 @@
+#navBar{
+    display: flex;
+    background-color: green; 
+    justify-content: center;
+}
+#calendarLink{
+    height: 50px;
+    width: 150px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+.scheduleSection{
+    display: flex;
+    flex-direction: column;
+}
+#title{
+    font-size: 30px;
+    border-bottom: 2px solid white;
+}
+.calendar{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+}
+#calDay1{
+    background-color: purple;
+    width: 50vh;
+    height: 150vh;
+    color: black;
+}
+#calDay2{
+    background-color: pink;
+    width: 50vh;
+    height: 150vh;
+    color:black
+}
+#footer{
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    height: 30vh; 
+    padding-bottom: 20vh;
+}
