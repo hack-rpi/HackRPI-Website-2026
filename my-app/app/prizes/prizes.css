@@ -25,6 +25,9 @@
     height : 50vh;
     width: 20vh;
     color: black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 #secondPrize{
     background-color: silver;
@@ -32,6 +35,10 @@
     width: 20vh;
     color: black;
     margin: 10vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .PrizeTracks{
     justify-content: center;
