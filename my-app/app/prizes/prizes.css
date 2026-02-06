@@ -60,26 +60,31 @@
     justify-content: center;
     height: 7vh;
 }
+.PrizeTracks2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+    gap: 3vh;
+
+}
 #minor{
     background-color: orange;
     display:flex;
-    flex-direction: row;
     height: 50vh;
     width: 50vh;
-    margin-left: 45vh;
     justify-content: center;
-    align-items:"center";
+    align-items:center;
 
 }
 #mlh{
     background-color: gray;
     display:flex;
-    flex-direction: row;
     height: 50vh;
     width: 50vh;
-    margin-left: 45vh;
     justify-content: center;
-    align-items:"center";
+    align-items: center;
 }
 #footer{
 

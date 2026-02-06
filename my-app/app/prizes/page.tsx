@@ -31,6 +31,8 @@ export default function Test() {
 				<div id = "track3">
 					Track3
 				</div>
+			</div>
+			<div className = "PrizeTracks2">
 				<div id = "minor">
 					For minor prize tracks
 				</div>
