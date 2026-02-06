@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Event information for HackRPI 2026',
 };
 
-export default function Test() {
+export default function Event() {
   return (
 		<>
       <NavBar />
