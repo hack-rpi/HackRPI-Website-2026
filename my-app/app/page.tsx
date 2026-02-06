@@ -21,7 +21,7 @@ export default function Home() {
 			{ <FAQPage /> }
 			{ <Sponsors />}
 			{ <TeamComponent /> }
-			<div className="p-5">
+			<div className="p-5 bg-white">
 				{ <Footer /> }
 			</div>
 		</div>
