@@ -1,3 +1,6 @@
+import Lenis from 'lenis'
+
+// https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
 
 export default function Team() {
 	return (
