@@ -1,13 +1,6 @@
-.NavBar{
-    background-color: green;
-    height: 4vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
 .TitleSection{
     background-color: blue;
-    height: 10vh;
+    height: 20vh;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +11,7 @@
     flex-direction: row;
     gap: 10vh;
     justify-content: center;
-    margin-left: 10vh;
+    margin: 5vh 0 0 10vh;
 }
 #firstPrize{
     background-color: gold;
@@ -92,15 +85,4 @@
     width: 50vh;
     justify-content: center;
     align-items: center;
-}
-#footer{
-
-    background-color: green;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100%;
-    margin-bottom: 30vh;
-    padding-bottom: 10vh;
 }

@@ -14,8 +14,10 @@ export default function Test() {
 		<>  
       <NavBar />
       <main className = "flex flex-col w-full">
+        <div className="w-full h-[9vh] p-5 text-center">
+          Sponsor us!
+        </div>
         <div className="w-full h-[50vh] bg-gray-500 p-5">
-          Sponsor Us!
           <div className = "h-[90%] flex p-[1em] justify-around">
             <div className="w-[20%] text-center border-2 border-red-500 bronze">
               Bronze $750
