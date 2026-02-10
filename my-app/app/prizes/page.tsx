@@ -9,7 +9,7 @@ export default function Test() {
 		<>
 		<NavBar />
 		<main className = "w-full gap-3 h-screen">
-			<div className = "h-[9vh] bg-blue-500 p-5 text-center text-2xl">
+			<div className = "TitleSection">
 				Prizes!
 			</div>
 			<div className = "prizeSection">
