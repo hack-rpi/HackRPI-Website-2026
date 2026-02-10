@@ -1,6 +1,6 @@
 export default function AboutUs() {
 	return (
-		<div className="w-full h-auto bg-gray-500 p-5 flex flex-col bg-gradient-to-b from-black to-cyan-500 to-33%">
+		<div className="w-full h-auto bg-gray-500 p-5 flex flex-col bg-gradient-to-b from-black to-sky-500 to-33%">
 			<div className="w-full mt-[75vh]"></div>
 			<div className="w-[75vh] h-[9vh] p-5 text-center text-2xl bg-white text-blue-400 mx-auto">
 				About Us
