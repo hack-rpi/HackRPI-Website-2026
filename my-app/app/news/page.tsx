@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Article, { ArticleData } from './article';
 import articlesData from './data.json';
 import './news.css';
+import NavBar from '../components/nav-bar/nav-bar';
+import Footer from "@/app/components/footer/footer";
 
 const Page: React.FC = () => {
   // Import article data from JSON file
@@ -77,12 +79,14 @@ const Page: React.FC = () => {
   return (
     <div className="main-container">
       {/* Header */}
-      <header className="header">
+      {/* <header className="header">
         <div className="header-content">
           <h1 className="logo">TechVista</h1>
           <p className="tagline">The Future, Today</p>
         </div>
       </header>
+      keeping header for reference for our header? - Steven */}
+      <NavBar />
 
       {/* Hero Section */}
       <section className="hero-section">
@@ -149,6 +153,10 @@ const Page: React.FC = () => {
       {/* 
       <Article data={featuredArticle} variant="full" />
       */}
+
+      <div className="p-5 bg-white">
+        <Footer />
+      </div>
     </div>
   );
 };

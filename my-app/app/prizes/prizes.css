@@ -1,10 +1,3 @@
-.NavBar{
-    background-color: green;
-    height: 4vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
 .TitleSection{
     background-color: blue;
     height: 10vh;
@@ -13,16 +6,17 @@
     align-items: center;
 }
 .prizeSection{
-    height: 20vh;
+    height: 50vh;
     display:flex;
     flex-direction: row;
     gap: 10vh;
     justify-content: center;
-    margin-left: 10vh;
+    margin: 5vh;
+    border: 2px solid red;
 }
 #firstPrize{
     background-color: gold;
-    height : 50vh;
+    height: 50vh;
     width: 20vh;
     color: black;
     display:flex;
@@ -31,10 +25,10 @@
 }
 #secondPrize{
     background-color: silver;
-    height : 40vh;
+    height: 40vh;
     width: 20vh;
     color: black;
-    margin: 10vh;
+    margin-top: 10vh;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -45,9 +39,9 @@
     display: flex;
     flex-direction: column;
     gap: 2vh;
-    margin-top: 30vh;
+    margin: 5vh;
     text-align: center;
-    
+    border: 2px solid blue;
 }
 #track1{
     background-color: blue;
@@ -74,7 +68,8 @@
     align-items: center; 
     height: 100vh;
     gap: 3vh;
-
+    border: 2px solid green;
+    margin: 5vh;
 }
 #minor{
     background-color: orange;
@@ -92,15 +87,4 @@
     width: 50vh;
     justify-content: center;
     align-items: center;
-}
-#footer{
-
-    background-color: green;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100%;
-    margin-bottom: 30vh;
-    padding-bottom: 10vh;
 }

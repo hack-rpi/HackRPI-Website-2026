@@ -1,16 +1,16 @@
 'use client'
 
 import "./prizes.css";
+import NavBar from "@/app/components/nav-bar/nav-bar";
+import Footer from "@/app/components/footer/footer";
 
 export default function Test() {
   return (
 		<>
-		<main className = "flex flex-col gap-3 h-screen">
-        	<div className = "NavBar">
-         		NAVBAR
-        	</div>
+		<NavBar />
+		<main className = "w-full gap-3 h-screen">
 			<div className = "TitleSection">
-				Title
+				Prizes!
 			</div>
 			<div className = "prizeSection">
 				<div id = "firstPrize">
@@ -40,8 +40,8 @@ export default function Test() {
 					For MLH prize tracks
 				</div>
 			</div>
-			<div id = "footer">
-				footer
+			<div className="p-5 bg-white">
+				<Footer />
 			</div>
 		</main>
 		</>
