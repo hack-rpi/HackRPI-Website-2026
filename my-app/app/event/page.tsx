@@ -49,7 +49,9 @@ export default function Event() {
           </div>
         </div>
       </main>
-      <Footer/>
+      <div className="p-5 bg-white">
+        <Footer />
+      </div>
 		</>
 	);
 }

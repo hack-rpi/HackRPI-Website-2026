@@ -92,7 +92,9 @@ export default function Test() {
           </table>
         </div>
       </main>
-      <Footer />
+      <div className="p-5 bg-white">
+        <Footer />
+      </div>
 		</>
 	);
 }
