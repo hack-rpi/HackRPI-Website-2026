@@ -1,28 +1,28 @@
 export default function Footer() {
 	return (
-		<div className="rounded-lg w-full h-[50vh] mt-10 mb-0 relative bg-white">
+		<div className="rounded-lg w-full h-[50vh] mt-100 mb-0 relative bg-white">
 			{/* Right Notch Top */}
-			<div className="rounded-lg w-full h-full bg-[#111111] absolute "
+			<div className="rounded-lg w-full h-full bg-black absolute "
 				style={{ clipPath: "inset(0% 10% 0% 70% round 15px)" }}>
 			</div>
 
 			{/* Left Notch Top */}
-			<div className="rounded-lg w-full h-full bg-[#111111] absolute "
+			<div className="rounded-lg w-full h-full bg-black absolute "
 					style={{ clipPath: "inset(0% 70% 0% 10% round 15px)" }}>
 			</div>
 
 			{/* Main Middle */}
-			<div className="rounded-lg w-full h-full bg-[#111111] absolute "
+			<div className="rounded-lg w-full h-full bg-black absolute "
 					style={{ clipPath: "inset(3% 0% 0% 0% round 30px)" }}>
 			</div>
 
 			{/* Main Right */}
-			<div className="rounded-lg w-full h-full bg-[#111111] absolute "
+			<div className="rounded-lg w-full h-full bg-black absolute "
 					style={{ clipPath: "inset(0% 0% 0% 70% round 30px)" }}>
 			</div>
 
 			{/* Main Left */}
-			<div className="rounded-lg w-full h-full bg-[#111111] absolute "
+			<div className="rounded-lg w-full h-full bg-black absolute "
 					style={{ clipPath: "inset(0% 70% 0% 0% round 30px)" }}>
 			</div>
 
