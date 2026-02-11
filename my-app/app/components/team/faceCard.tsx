@@ -4,7 +4,7 @@ import Lenis from 'lenis'
 
 export default function FaceCard({size, left, top, img}:any) {
 	return (
-			<div style={{ height: `${size * 45}vh`, width: `${size * 36}vh`, marginLeft: `${left}%`, marginTop: `${top}vh` }} className="bg-black absolute">
+			<div style={{ height: `${size * 45}vh`, width: `${size * 36}vh`, marginLeft: `${left}vw`, marginTop: `${top}vh` }} className="bg-black absolute">
 				<img className="h-full w-full object-fill" src={`${img}`}>
 				</img>
 			</div>
