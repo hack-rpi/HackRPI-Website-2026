@@ -1,5 +1,5 @@
 
-import QnA from "./qna";
+import QnA from "@/app/components/faq/qna";
 import faqs from "@/public/faqData";
 
 
