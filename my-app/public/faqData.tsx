@@ -7,7 +7,7 @@ type FAQ = {
 
 const faqs: FAQ[] = [
 	{
-		title: "What/when/where is HackRPI?",
+		title: "What, when, and where is HackRPI?",
 		content:
 			<p>
 				HackRPI takes place on __month__ _day_ and __day+1__, 2026, in the Darrin Communication Center
