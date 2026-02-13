@@ -1,5 +1,7 @@
 
 import SponsorCard from './sponsorCard';
+import shinyCard from '../shinyCard';
+import ShinyCard from '../shinyCard';
 
 export default function Sponsors() {
 	return (
@@ -13,6 +15,7 @@ export default function Sponsors() {
 			<SponsorCard name="silver" tier="silver" />
 			<SponsorCard name="bronze" tier="bronze" />
 			<SponsorCard name="error" tier="invalid"/>
+			<ShinyCard image="" theme=""/>
 		</div>
 	);
 };
