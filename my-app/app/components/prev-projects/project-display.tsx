@@ -25,8 +25,8 @@ function DesktopProjectDisplay(props: ProjectDisplayProps) {
 			className={`hidden xl:flex  ${props.imageOnLeft ? "flex-row-reverse" : "flex-row"} items-center justify-between`}
 		>
 			<div className="w-1/2">
-				<h1 className="font-modern text-orange-400 text-left text-4xl text-shadow-md pb-4 ">{props.prizeCategory}</h1>
-				<h2 className="font-modern collapse-title font-medium text-2xl text-retro-orange">{props.title}</h2>
+				<h1 className="font-modern text-white text-left text-4xl text-shadow-md pb-4 ">{props.prizeCategory}</h1>
+				<h2 className="font-modern collapse-title font-medium text-2xl text-white">{props.title}</h2>
 				<hr />
 				<p className="font-neutral2">{props.authors.join(", ")}</p>
 				<hr />
@@ -46,8 +46,8 @@ function MobileProjectDisplay(props: ProjectDisplayProps) {
 				<Image src={props.imageUrl} alt={props.title} height={500} width={500} className="previousWinnersImages" />
 			</div>
 			<div>
-				<h1 className="font-modern text-retro-orange text-left text-4xl text-shadow-md pb-4">{props.prizeCategory}</h1>
-				<h2 className="font-modern collapse-title font-medium text-2xl text-retro-orange">{props.title}</h2>
+				<h1 className="font-modern text-white text-left text-4xl text-shadow-md pb-4">{props.prizeCategory}</h1>
+				<h2 className="font-modern collapse-title font-medium text-2xl text-white">{props.title}</h2>
 				<hr />
 				<p className="font-sans font-white text-lg">{props.authors.join(", ")}</p>
 				<hr />

@@ -1,5 +1,5 @@
-import type { ProjectDisplayProps } from "@/components/prev-projects/project-display";
-import type { ProjectCarouselProps } from "@/components/prev-projects/project-carousel";
+import type { ProjectDisplayProps } from "@/app/components/prev-projects/project-display";
+import type { ProjectCarouselProps } from "@/app/components/prev-projects/project-carousel";
 
 export const podiumPrizes: ProjectDisplayProps[] = [
 	{
