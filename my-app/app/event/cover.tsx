@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react';
+import React from 'react';
 import "./event.css"
 
 export default function Cover(){
