@@ -15,7 +15,7 @@ export default function Sponsors() {
 			<SponsorCard name="silver" tier="silver" />
 			<SponsorCard name="bronze" tier="bronze" />
 			<SponsorCard name="error" tier="invalid"/>
-			<ShinyCard image="" theme=""/>
+			<ShinyCard image="public/sponsors/Photon.png" theme=""/>
 		</div>
 	);
 };

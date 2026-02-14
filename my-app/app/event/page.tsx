@@ -1,7 +1,9 @@
-
 import { Metadata } from 'next';
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
+
+import "./event.css"
+import Cover from './cover';
 
 export const metadata: Metadata = {
   title: 'Event Information - HackRPI 2026',
@@ -10,11 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function Event() {
+  
+
   return (
 		<>
-      <NavBar />
+        <Cover/>
+
       <main className = "flex flex-col w-full">
-        <div className="w-full h-[75vh] bg-gray-500 p-5">
+        {/* <div className="w-full h-[75vh] bg-gray-500 p-5">
           Event Information
           <div className = "h-[90%] flex p-[1em] justify-around locationInfo">
             <div className="w-[40%] border-2 border-orange-500 flex flex-col justify-around p-[1em]">
@@ -34,7 +39,7 @@ export default function Event() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="w-full h-[30vh] bg-gray-400 p-5">
           "Need help" section
@@ -48,6 +53,7 @@ export default function Event() {
             SUBMISSION INFO
           </div>
         </div>
+        
       </main>
       <div className="p-5 bg-white">
         <Footer />
