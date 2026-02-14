@@ -21,7 +21,7 @@ interface ArticleProps {
 
 const Article: React.FC<ArticleProps> = ({ data, variant = 'card', onClick }) => {
   const { title, excerpt, content, category, author, date, imageUrl, featured } = data;
-  const heroRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement | any>(null);
 
   // Add scroll effect for full article page
   useEffect(() => {
