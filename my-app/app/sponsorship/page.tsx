@@ -66,79 +66,79 @@ export default function Test() {
         </div>
 
         <div className="w-full h-auto bg-blue-400 text-black p-5">
-          <table className="w-full border-2 border-blue-500">
-            <tbody className="h-[25vh] border-2 border-blue-500">
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+          <table className="w-full my-10">
+            <tbody>
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Logo on T-Shirt</h3>
                   <p>Your company logo will be printed on the free shirts we give out.</p>
                   <p>Higher tiers increase the size of the logo.</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Logo on Website</h3>
                   <p>Your company logo will be included on our website.</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Distribute Company Swag</h3>
                   <p>Bring merchandise to your booth.</p>
                   <p>Alternatively we can have some at the check in desk to hand out.</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Company Flier in Event Folder</h3>
                   <p>We'll include your flier in the event folder handed out to all participants at check in.</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Social Media Advertising</h3>
                   <p>Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn).</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Company Judges</h3>
                   <p>Opportunity to send a company representative to serve as a judge for the main hackathon event (in-person).</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Resume Book</h3>
                   <p>Your company will be included on the list we send out participant resumes to (after the event in mid-November).</p>
                   <p>In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September).</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Host Fireside Chat</h3>
                   <p>Company informational session during the main event hackathon.</p>
                   <p>Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings.</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Host a Workshop</h3>
                   <p>Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer.</p>
                   <p>This can occur before as a separate HackRPI event or during the main hackathon.</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Promotional Mail to Hackers</h3>
                   <p>Your company will be featured on the mail we send out to all hackers signed up before the main event.</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Priority Booth Placement</h3>
                   <p>Your booth/table will be closer to the entrance and area where the majority of participants are.</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Opening Ceremony Demo</h3>
                   <p>During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI.</p>
                 </td>
               </tr>
-              <tr className="border-2 border-blue-500">
-                <td className = "p-5">
+              <tr>
+                <td className = "border-2 border-blue-500 p-5">
                   <h3>Optional Table Upgrade</h3>
                   <p>We provide a table but will accomodate if you want to bring a custom booth/multiple table setup.</p>
                 </td>
-                <td className = "p-5">
+                <td className = "border-2 border-blue-500 p-5">
                 </td>
               </tr>
             </tbody>
