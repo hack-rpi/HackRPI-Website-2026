@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Article, { ArticleData } from './article';
 import articlesData from './data.json';
-import './news.css';
 import NavBar from '../components/nav-bar/nav-bar';
-import Footer from "@/app/components/footer/footer";
+import './news.css';
 
 const Page: React.FC = () => {
   // Import article data from JSON file
@@ -21,32 +20,47 @@ const Page: React.FC = () => {
     article => !article.featured && article.category !== 'Hackathon'
   );
 
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state?.articleId) {
+        const article = articles.find(a => a.id === event.state.articleId);
+        setSelectedArticle(article || null);
+      } else {
+        setSelectedArticle(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [articles]);
+
   // Function to handle article click
   const handleArticleClick = (article: ArticleData) => {
     setSelectedArticle(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Add to browser history
+    window.history.pushState(
+      { articleId: article.id },
+      '',
+      `#article/${article.id}`
+    );
   };
 
   // Function to go back to the main page
   const handleBackToHome = () => {
     setSelectedArticle(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Update browser history
+    window.history.pushState({}, '', '#');
   };
 
   // If an article is selected, show the full article view
   if (selectedArticle) {
     return (
-      <div className="main-container">
-        {/* Header with back button */}
-        <header className="header">
-          <div className="header-content">
-            <h1 className="logo" onClick={handleBackToHome} style={{ cursor: 'pointer' }}>
-              TechVista
-            </h1>
-            <p className="tagline">The Future, Today</p>
-          </div>
-        </header>
-
+      <div className="main-container article-view">
         {/* Full Article View */}
         <Article data={selectedArticle} variant="full" />
         
@@ -78,27 +92,9 @@ const Page: React.FC = () => {
   // Otherwise, show the main page with article grid
   return (
     <div className="main-container">
-      {/* Header */}
-      {/* <header className="header">
-        <div className="header-content">
-          <h1 className="logo">TechVista</h1>
-          <p className="tagline">The Future, Today</p>
-        </div>
-      </header>
-      keeping header for reference for our header? - Steven */}
       <NavBar />
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <h2 className="hero-title">
-          Discover Tomorrow's Technology
-        </h2>
-        <p className="hero-subtitle">
-          In-depth coverage of the innovations shaping our digital future
-        </p>
-      </section>
-
-      {/* Featured Article */}
+      {/* Featured Article - Compact */}
       <section className="featured-grid">
         <Article 
           data={featuredArticle} 
@@ -111,8 +107,7 @@ const Page: React.FC = () => {
       {hackathonArticles.length > 0 && (
         <>
           <div className="section-header">
-            <h2 className="section-title">Hackathon News</h2>
-            <p className="section-subtitle">Everything you need to know about our upcoming events</p>
+            <h2 className="section-title">Hackathon</h2>
           </div>
           
           <section className="horizontal-scroll-section">
@@ -134,7 +129,6 @@ const Page: React.FC = () => {
       {/* Section Header for Latest Stories */}
       <div className="section-header">
         <h2 className="section-title">Latest Stories</h2>
-        <p className="section-subtitle">Stay ahead with cutting-edge tech insights</p>
       </div>
 
       {/* Articles Grid */}
@@ -153,10 +147,6 @@ const Page: React.FC = () => {
       {/* 
       <Article data={featuredArticle} variant="full" />
       */}
-
-      <div className="p-5 bg-white">
-        <Footer />
-      </div>
     </div>
   );
 };
