@@ -406,7 +406,7 @@ function SponsorUsPage() {
 
 	return (
 		<>
-		<NavBar />
+		<NavBar showOnScroll={true}/>
 		<div style={{minHeight: 'calc(100vh - 16px)', width: '100%'}}>	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
 			<div className="container bg-sky-500">
