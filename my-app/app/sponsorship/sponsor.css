@@ -18,9 +18,6 @@
 }
 
 *{
-  margin:0;
-  padding:0;
-
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 
@@ -76,6 +73,7 @@ span.title {
 .neumorphic {
   background-color: var(--bg);
   border-radius: 15px;
+  margin: 0 5vh;
 }
 
 .glassmorphic {
@@ -109,7 +107,7 @@ span.title {
 
 .container{
   box-sizing: border-box;
-  padding: 30px;
+  padding: 15px 30px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -128,6 +126,7 @@ span.title {
 
 .clickable{
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 .clickable:active {
   transition: transform 0.1s ease;
@@ -137,6 +136,8 @@ span.title {
 .benefit{
   transition: 0.3s ease, transform 0.3s ease;
   white-space: nowrap;
+  padding: 3px;
+  cursor: pointer;
 }
 .benefit:hover{
   transform: scale(1.05);
@@ -148,7 +149,7 @@ span.title {
 }
 
 .currentBenefit{
-
+  
 }
 .availableBenefit{
   opacity: 0.5;
@@ -165,7 +166,6 @@ span.title {
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   align-items: center; /* Vertically centers items */
-  margin: 3px 0;
 }
 
 .benefitContainer:nth-child(1) {

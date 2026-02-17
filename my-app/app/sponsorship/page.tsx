@@ -409,28 +409,28 @@ function SponsorUsPage() {
 		<NavBar />
 		<div style={{minHeight: 'calc(100vh - 16px)', width: '100%'}}>	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
-			<div id='container1' className='flex flex-col bg-sky-500'>
-        <div className="p-5 h-[5vh] flex justify-center items-center">
-          Click to see the benefits!
+			<div className="container bg-sky-500">
+				<div className="p-5 text-center neumorphic">
+          Click the buttons to see the benefits!
         </div>
-        <div className="container">
-          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('bronze')}} style={{}}>
-            <h1>Bronze</h1>
-            <h2>750</h2>
-          </div>
-          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('silver')}} style={{}}>
-            <h1>Silver</h1>
-            <h2>1500</h2>
-          </div>
-          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('gold')}} style={{}}>
-            <h1>Gold</h1>
-            <h2>2500</h2>
-          </div>
-          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('obsidian')}} style={{}}>
-            <h1>Obsidian</h1>
-            <h2>5000</h2>
-          </div>
-        </div>
+			</div>
+			<div id='container1' className='container bg-sky-500'>
+				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('bronze')}} style={{}}>
+					<h1>Bronze</h1>
+					<h2>750</h2>
+				</div>
+				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('silver')}} style={{}}>
+					<h1>Silver</h1>
+					<h2>1500</h2>
+				</div>
+				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('gold')}} style={{}}>
+					<h1>Gold</h1>
+					<h2>2500</h2>
+				</div>
+				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('obsidian')}} style={{}}>
+					<h1>Obsidian</h1>
+					<h2>5000</h2>
+				</div>
 			</div>
 
 			<div className='container bg-sky-500'>
