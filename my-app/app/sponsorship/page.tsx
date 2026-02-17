@@ -1,7 +1,7 @@
 "use client";
 
 import React, { use, useEffect } from "react";
-// import "./sponsor.css";
+import "./sponsor.css";
 import useMouseLogic from "./mouse";
 import next from "next";
 import NavBar from "../components/nav-bar/nav-bar";
@@ -175,8 +175,8 @@ function SponsorUsPage() {
 			// ${-offX}px ${-offY}px ${scale * 2}px rgba(255,255,255,0.9)
 
 			element.style.boxShadow = `
-				${offX}px ${offY}px ${scale * 2}px var(--shadow),
-				${-offX}px ${-offY}px ${scale * 2}px var(--light)
+				${offX}px ${offY}px ${scale}px var(--shadow),
+				${-offX}px ${-offY}px ${scale}px var(--light)
 			`;
 		});
 	}
@@ -269,6 +269,7 @@ function SponsorUsPage() {
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
 
 			let arrow = document.createElement('span');
+      arrow.style.fontSize = "2em";
 			arrow.innerHTML = '&rarr;';
 
 			let secondTier = document.createElement('h3');
@@ -391,7 +392,7 @@ function SponsorUsPage() {
 		document.getElementById('container3')!.style.width = size1 + 'px';
 		document.getElementById('container4')!.style.width = size1 + 'px';
 		mobileLayout();
-		calculateShadows();
+		// calculateShadows();
 		updateBenefits(viewingCurrentTier);
 	}
 
@@ -399,45 +400,50 @@ function SponsorUsPage() {
 		load();
 		window.addEventListener('resize', load);
 		
-		window.addEventListener('mousemove', calculateShadows);
-		window.addEventListener('scroll', calculateShadows);
+		// window.addEventListener('mousemove', calculateShadows);
+		// window.addEventListener('scroll', calculateShadows);
 	}, []);
 
 	return (
 		<>
 		<NavBar />
-		<div style={{minHeight: 'calc( 100vh - 16px)', width: '100%'}}>	
+		<div style={{minHeight: 'calc(100vh - 16px)', width: '100%'}}>	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
-			<div id='container1' className='container bg-sky-500 flex justify-center items-center gap-10 p-5'>
-				<div className="clickable neumorphic w-[30vh] h-[50vh] text-center bg-orange-700 text-yellow-200 cursor-pointer p-5" onClick={function(){updateBenefits('bronze')}} style={{}}>
-					<h1>Bronze</h1>
-					<h2>750</h2>
-				</div>
-				<div className="clickable neumorphic w-[30vh] h-[50vh] text-center bg-slate-500 text-gray-200 cursor-pointer p-5" onClick={function(){updateBenefits('silver')}} style={{}}>
-					<h1>Silver</h1>
-					<h2>1500</h2>
-				</div>
-				<div className="clickable neumorphic w-[30vh] h-[50vh] text-center bg-yellow-300 text-orange-500 cursor-pointer p-5" onClick={function(){updateBenefits('gold')}} style={{}}>
-					<h1>Gold</h1>
-					<h2>2500</h2>
-				</div>
-				<div className="clickable neumorphic w-[30vh] h-[50vh] text-center bg-slate-800 text-red-500 cursor-pointer p-5" onClick={function(){updateBenefits('obsidian')}} style={{}}>
-					<h1>Obsidian</h1>
-					<h2>5000</h2>
-				</div>
+			<div id='container1' className='flex flex-col bg-sky-500'>
+        <div className="p-5 h-[5vh] flex justify-center items-center">
+          Click to see the benefits!
+        </div>
+        <div className="container">
+          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('bronze')}} style={{}}>
+            <h1>Bronze</h1>
+            <h2>750</h2>
+          </div>
+          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('silver')}} style={{}}>
+            <h1>Silver</h1>
+            <h2>1500</h2>
+          </div>
+          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('gold')}} style={{}}>
+            <h1>Gold</h1>
+            <h2>2500</h2>
+          </div>
+          <div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('obsidian')}} style={{}}>
+            <h1>Obsidian</h1>
+            <h2>5000</h2>
+          </div>
+        </div>
 			</div>
 
-			<div className='container'>
-				<div id='container2' className="neumorphic container" style={{}}>
+			<div className='container bg-sky-500'>
+				<div id='container2' className="neumorphic container centerText" style={{}}>
 					<div id='benefits' className='stackText' style={{}}>
 						<h3>Bronze</h3>
 					</div>
 				</div>
 			</div>
 
-			<div className='container'>
-				<div id='container3' className="clickable neumorphic container" style={{}}>
-					<div className='stackText' style={{}}>
+			<div className='container bg-sky-500'>
+				<div id='container3' className="clickable neumorphic container centerText" style={{}}>
+					<div className='stackText text-lg' style={{}}>
 						<h4>We understand that standard sponsorship tiers may not suit all organizations.</h4>
 						<h4>Please contact &nbsp;
 							<a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>&nbsp;
@@ -446,7 +452,7 @@ function SponsorUsPage() {
 				</div>
 			</div>
 
-			<div className='container'>
+			<div className='container bg-sky-500'>
 				<div id='container4' className="neumorphic container" style={{}}>
 					<div id='docText' className='stackText' style={{}}>
 						<h3>Logo on T-Shirt</h3>
