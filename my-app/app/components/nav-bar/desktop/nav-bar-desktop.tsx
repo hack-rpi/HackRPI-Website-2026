@@ -9,9 +9,9 @@ import Link from "next/link";
 export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 	return (
 		/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
-		<div className="bg-hackrpi-dark-blue w-full h-16">
+		<div className="bg-slate-500 w-full h-16">
 			<div
-				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-hackrpi-yellow z-50"
+				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-black z-50"
 				role="navigation"
 			>
 				<div className="flex items-center justify-center mr-4">
@@ -21,7 +21,7 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 				</div>
 				{/* Uncomment when ready to add registration button back */}
 				{/* <div className="min-w-fit lg:w-8/12 flex items-center justify-start"> */}
-				<div className="min-w-fit  flex items-center justify-start">
+				<div className="min-w-fit flex items-center justify-start">
 					{links.map((link) => (
 						<NavGroupComponent key={link.name} name={link.name} links={link.links} />
 					))}

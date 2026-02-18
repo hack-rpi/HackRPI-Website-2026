@@ -90,13 +90,13 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 		return (
 			<>
 				<MobileNavBar links={links} />
-				<MlhBanner />
+				{/* <MlhBanner /> */}
 			</>
 		);
 	return (
 		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
 			<DesktopNavBar links={links} />
-			<MlhBanner />
+			{/* <MlhBanner /> */}
 		</div>
 	);
 }

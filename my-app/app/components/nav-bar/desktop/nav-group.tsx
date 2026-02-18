@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { Link as lin } from "@/data/nav-bar-links";
+import { Link as lin } from "../nav-bar-links";
 import Link from "next/link";
 
 export default function NavGroup({ name, links }: { name: string; links: lin[] }) {

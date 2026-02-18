@@ -1,7 +1,7 @@
-import { NavGroup } from "@/data/nav-bar-links";
+import { NavGroup } from "../nav-bar-links";
 import { useState, useEffect } from "react";
 import NextImg from "next/image";
-import hackrpi_logo from "@/public/Retro_HackRPI_Logo.png";
+// import hackrpi_logo from "@/public/Retro_HackRPI_Logo.png";
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 				</div>
 				<div className="flex items-center justify-center w-1/3">
 					<Link href="/" className="w-fit whitespace-nowrap">
-						<NextImg alt="HackRPI Logo" src={hackrpi_logo} className="w-14 image-full" priority={true} />
+						{/* <NextImg alt="HackRPI Logo" src={hackrpi_logo} className="w-14 image-full" priority={true} /> */}
 					</Link>
 				</div>
 				<div className="flex items-center justify-center w-1/3"></div>
