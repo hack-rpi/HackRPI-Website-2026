@@ -174,8 +174,7 @@ export default function Home() {
 
   return (
     <>
-      <NavBar />
-
+      <NavBar showOnScroll={true}/>
       <div className="w-full overflow-hidden">
         <TitleComponent />
         <AboutUs />
