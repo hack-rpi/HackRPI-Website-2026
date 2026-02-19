@@ -4,19 +4,26 @@ import Link from "next/link";
 
 export default function NavGroup({ name, links }: { name: string; links: lin[] }) {
 	return (
-		/*<div className="dropdown dropdown-hover mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]">*/
-		<div className="dropdown dropdown-hover mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]">
+		<div className="relative group mx-2 whitespace-nowrap text-lg xl:text-xl">
+			{/* Trigger button */}
 			<div
 				tabIndex={0}
 				role="button"
-				className="text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px] focus:bg-[length:100%_4px]"
+				className="text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-slate-500 hover:bg-[length:100%_2px] focus:bg-[length:100%_4px]"
 			>
 				<Link href={links[0].href}>{name}</Link>
 			</div>
+
+			{/* Dropdown menu — hidden by default, shown on group hover */}
 			<ul
 				tabIndex={0}
-				className="dropdown-content p-2 w-52 bg-hackrpi-dark-blue h-fit box border-r-2 border-b-2 border-l-2 border-hackrpi-yellow translate-y-3"
-				style={{ zIndex: -1 }}
+				className="
+					absolute top-full left-0
+					hidden group-hover:block
+					p-2 w-52 bg-slate-500 h-fit
+					border-2 border-black
+					translate-y-4 z-50
+				"
 			>
 				{links.map((link) => (
 					<li key={link.href} className="my-1">
