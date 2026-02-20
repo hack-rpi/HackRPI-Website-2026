@@ -5,7 +5,7 @@ import ShinyCard from '../shinyCard';
 
 export default function Sponsors() {
 	return (
-		<div className="bg-black-500 h-auto p-5">
+		<div className="bg-blue-500 h-auto p-5">
 			idk what bg color this will be yet, so it's just black for now
 			<div className="w-full h-[9vh] p-5 text-center text-2xl">
 				This would not be possible without our sponsors; thank you all for your support!
