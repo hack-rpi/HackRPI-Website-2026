@@ -20,7 +20,7 @@ export default function SponsorCard({ name, tier }: any) {
       "bg-slate-300/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-white";
     hover =
-      "hover:shadow-xl hover:shadow-blue-900/50 hover:transition-colors duration-300";
+      "hover:shadow-xl hover:shadow-slate-900/50 hover:transition-colors duration-300";
   } else if (tier === "bronze") {
     bg_color =
       "bg-orange-700/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
