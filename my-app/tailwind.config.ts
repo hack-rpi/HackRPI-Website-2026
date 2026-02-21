@@ -86,6 +86,21 @@ const config: Config = {
 			},
 		},
 	},
+	plugins: [
+		require("daisyui"),
+		plugin(function ({ addUtilities }) {
+			const newUtilities = {
+				".description-box": {
+					overflow: "hidden",
+					display: "-webkit-box",
+					"-webkit-box-orient": "vertical",
+					"-webkit-line-clamp": "2",
+					"text-overflow": "ellipsis",
+				},
+			};
+			addUtilities(newUtilities);
+		}),
+	],
 	// daisyui: {
 	// 	themes: [
 	// 		{
@@ -99,23 +114,7 @@ const config: Config = {
 	// 			},
 	// 		},
 	// 	],
-	// },
-	// plugins: [
-	// 	require("daisyui"),
-	// 	plugin(function ({ addUtilities }) {
-	// 		const newUtilities = {
-	// 			".description-box": {
-	// 				overflow: "hidden",
-	// 				display: "-webkit-box",
-	// 				"-webkit-box-orient": "vertical",
-	// 				"-webkit-line-clamp": "2",
-	// 				"text-overflow": "ellipsis",
-	// 			},
-	// 		};
-	// 		addUtilities(newUtilities);
-	// 	}),
-	// ],
-	
+	// },	
 };
 
 export default config;

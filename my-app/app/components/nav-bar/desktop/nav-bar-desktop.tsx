@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 	return (
 		/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
-		<div className="bg-slate-500 w-full h-16">
+		<div className="w-full h-16 bg-gradient-to-r from-sky-200 via-white to-sky-200 text-slate-800">
 			<div
 				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-black z-50"
 				role="navigation"
@@ -26,8 +26,12 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 						<NavGroupComponent key={link.name} name={link.name} links={link.links} />
 					))}
 					<Link
-						href="/sponsor-us"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
+						href="/sponsorship"
+						className="
+							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
+							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
+							hover:bg-[length:100%_2px] my-4 mx-2
+						"
 					>
 						Sponsor Us
 					</Link>
@@ -64,7 +68,11 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 
 					<Link
 						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
+						className="
+							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
+							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
+							hover:bg-[length:100%_2px]
+						"
 						target="_blank"
 					>
 						Code of Conduct
@@ -72,7 +80,11 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 
 					<Link
 						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
+						className="
+							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
+							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
+							hover:bg-[length:100%_2px]
+						"
 						target="_blank"
 					>
 						Give Now
