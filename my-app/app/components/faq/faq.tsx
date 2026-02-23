@@ -1,6 +1,6 @@
 
 import QnA from "@/app/components/faq/qna";
-import faqs from "@/public/faqData";
+import faqs from "@/app/data/faqData";
 
 
 export default function FAQPage() {

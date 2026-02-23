@@ -6,8 +6,7 @@ export default function NavGroup({ name, links }: { name: string; links: lin[] }
 	return (
 		<div className="dropdown dropdown-hover">
 			<div
-				tabIndex={0}
-				role="button"
+				role="link"
 				className="
 					text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
 					transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
@@ -26,7 +25,7 @@ export default function NavGroup({ name, links }: { name: string; links: lin[] }
 				"
 			>
 				{links.map((link) => (
-					<li key={link.href} className="my-1">
+					<li key={link.href} className="my-1" role="link">
 						<NavLink href={link.href}>{link.children}</NavLink>
 					</li>
 				))}
@@ -35,11 +34,7 @@ export default function NavGroup({ name, links }: { name: string; links: lin[] }
 	);
 }
 
-export function NavLink({
-	href,
-	children,
-	onClick,
-}: {
+export function NavLink({href, children, onClick}: {
 	href: string;
 	children: React.ReactNode;
 	onClick?: () => void;
