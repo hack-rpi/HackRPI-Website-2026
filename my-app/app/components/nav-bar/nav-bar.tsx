@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from "react";
 import { NavGroup } from "./nav-bar-links";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
