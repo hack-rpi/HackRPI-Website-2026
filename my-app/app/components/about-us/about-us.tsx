@@ -12,19 +12,19 @@ export default function AboutUs() {
 	useGSAP(() => {
 		gsap.to('#cloud1', {
 			scrollTrigger: "#aboutUs",
-			x: 100,
+			x: 75,
 			duration: 1,
 		});
 
 		gsap.to('#cloud2', {
 			scrollTrigger: "#aboutUs",
-			x: -100,
+			x: -75,
 			duration: 1,
 		});
 
 		gsap.to('#cloud3', {
 			scrollTrigger: "#aboutUs",
-			x: 125,
+			x: 100,
 			duration: 1,
 		});
 	});
@@ -35,7 +35,7 @@ export default function AboutUs() {
 			<div id="aboutUs" className="w-[75vh] h-[9vh] p-5 text-center text-2xl bg-white text-sky-500 mx-auto">
 				About Us
 			</div>
-			<div id="cloud1" className="w-[75vh] bg-white text-sky-500 p-5 mt-10">
+			<div id="cloud1" className="w-[75vh] bg-white text-sky-500 p-5 mt-10 -translate-x-50">
 				HackRPI 2026 is Rensselaer Polytechnic Institute's 13th annual intercollegiate hackathon
 				hosted by students for students.
 				Starting at noon on Saturday, November 7th, teams of 1-4 people have 24 hours to build
@@ -44,7 +44,7 @@ export default function AboutUs() {
 				in front of a panel of professors, industry professionals, and fellow students.
 			</div>
 			{/* TODO: Update below */}
-			<div id="cloud2" className="w-[75vh] bg-white text-sky-500 p-5 m-5 float-right clear-right ml-auto mr-10">
+			<div id="cloud2" className="w-[75vh] bg-white text-sky-500 p-5 m-5 float-right clear-right ml-auto mr-10 translate-x-25">
 				In the Clouds: [PLACEHOLDER TEXT FROM HACKRPI 2025 AFTER]
 				In a world where nostalgia meets innovation, our 12th annual hackathon, Retro vs Modern,
 				invites creators to explore the contrasts and possibilities between the past and the future.
