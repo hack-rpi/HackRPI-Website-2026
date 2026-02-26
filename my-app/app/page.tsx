@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
-import AboutUs from "@/app/components/about-us";
+import AboutUs from "@/app/components/about-us/about-us";
 import FAQPage from "@/app/components/faq/faq";
 import Sponsors from "@/app/components/sponsors/sponsors";
 import TeamComponent from "@/app/components/team/team";
