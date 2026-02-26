@@ -1,7 +1,7 @@
 
 import QnA from "@/app/components/faq/qna";
 import faqs from "@/app/data/faqData";
-
+// import RegistrationButton from "@/components/themed-components/registration-link"; // FIXME
 
 export default function FAQPage() {
   return (
@@ -53,7 +53,7 @@ export default function FAQPage() {
 
       <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5">
         <h2 className="text-2xl">General Format</h2>
-        <p>Arrival and check-in takes place from 9-10 AM.</p>
+        <p>Arrival and check-in takes place from 9-10 AM Saturday.</p>
         <p>Our opening ceremony starts at 10 AM, and hacking begins at 11am.</p>
         <p>During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.</p>
         <p>Teams will then present their projects, and the best projects win prizes!</p>
@@ -61,44 +61,15 @@ export default function FAQPage() {
         <p>The event will end around 4 PM on Sunday.</p>
       </div>  
 
-      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5">
+      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5 float-right clear-right">
         <h2 className="text-2xl">Participation</h2>
         <p>Everyone is welcome to participate in HackRPI!</p>
         <p>Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.</p>
         <p>You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.</p>
         <p>Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.
           Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.</p> 
-      </div>
-
-      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5">
-        <h2 className="text-2xl">Logistics</h2>
-        <p>Materials you should bring include:</p>
-        <ul className="list-disc pl-5">
-          <li>A laptop and chargers</li>
-          <li>Any hardware required for your planned project</li>
-          <li>More stuff needs to be added here.</li>
-        </ul>
-        <p>Note that we cannot provide travel reimbursements at this time.</p>
-        <p>
-          We have sleep rooms on campus for students 18 and older, and we are more than happy to recommend
-          local accommodations if you email us
-          at{" "}
-          <a href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue underline">
-            hackrpi@rpi.edu
-          </a>.
-        </p>
-      </div>
-
-      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5">
-        <h2 className="text-2xl">Timing Information</h2>
-        <p>You can arrive at any time during the event, but we recommend arriving before 11 AM on Saturday.</p>
-				<p>Remember, the later you are, the less time you have to work on your project!</p>
-        <p>All projects must be submitted to Devpost by 10 AM on Sunday.</p>
-				<p>You will be able to modify your submission until 11am. After 11an, no coding or changes to your project are allowed.</p>
-        <p>For instructions to submit your project on Devpost, please see our Event Information and Resources pages.</p>
-        <p>Prizes are announced at the closing ceremony, which will take place around 4 PM on Sunday.</p>
-        <p>Physical prizes will be distributed during the closing ceremony.</p>
-        <p>Winners of cash prizes will be contacted by our team after the event.</p>
+        <p>To register, click here to register with Major League Hacking.</p>
+        {/* <RegistrationButton /> */}
       </div>
 
       <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-gradient-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
