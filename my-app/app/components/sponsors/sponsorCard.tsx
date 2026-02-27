@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { text } from "stream/consumers";
 
-export default function SponsorCard({ name, tier }: any) {
+
+export default function SponsorCard({ name, tier, image }: any) {
   let bg_color, text_color;
   let shadowColor = "0,0,0"; // default RGB
 
@@ -69,25 +71,42 @@ export default function SponsorCard({ name, tier }: any) {
   }
 
   let style =
-    "w-[10vh] h-[7.5vh] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[300px] h-[300px] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
-    " transition-transform duration-200 text-center flex items-center justify-center";
+    " transition-transform duration-200 text-center flex items-center justify-center ";
 
+  let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
-    <div className="m-5 [perspective:1000px]">
-      <div
-        className={style}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-          boxShadow: shadow
-        }}
-      >
-        {name || "Content"}
+  <div className="m-6 flex flex-col items-center group">
+    <div
+      className={style + " relative overflow-hidden"}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{
+        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        boxShadow: shadow
+      }}
+    >
+      <div className="flex flex-col items-center justify-center gap-2">
+        {image && (
+          <img
+            src={image}
+            alt={name}
+            className="absolute inset-0 w-full h-full object-contain"
+          />
+        )}
       </div>
     </div>
-  );
+
+    {/* 👇 Hover Tier Label */}
+    <span
+      className={style2}
+        
+    >
+      {tier}
+    </span>
+  </div>
+);
 }
