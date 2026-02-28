@@ -10,22 +10,22 @@ export default function SponsorCard({ name, tier, image }: any) {
     bg_color =
       "bg-slate-900/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-purple-300";
-    shadowColor = "147,51,234"; // purple
+    shadowColor = "147,51,234"; 
   } else if (tier === "gold") {
     bg_color =
       "bg-yellow-400/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-yellow-100";
-    shadowColor = "234,179,8"; // gold/yellow
+    shadowColor = "234,179,8"; 
   } else if (tier === "silver") {
     bg_color =
       "bg-slate-300/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-white";
-    shadowColor = "59,130,246"; // blue glow
+    shadowColor = "59,130,246";
   } else if (tier === "bronze") {
     bg_color =
       "bg-orange-700/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-orange-100";
-    shadowColor = "239,68,68"; // red/orange glow
+    shadowColor = "239,68,68"; 
   } else {
     bg_color =
       "bg-white/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
@@ -51,7 +51,7 @@ export default function SponsorCard({ name, tier, image }: any) {
     setRotateY(percentX * 25);
     setRotateX(-percentY * 25);
 
-    // ⭐ dynamic colored glow
+    // dynamic colored glow
     const shadowX = -percentX * 30;
     const shadowY = -percentY * 30;
 
@@ -100,7 +100,7 @@ export default function SponsorCard({ name, tier, image }: any) {
       </div>
     </div>
 
-    {/* 👇 Hover Tier Label */}
+   
     <span
       className={style2}
         
