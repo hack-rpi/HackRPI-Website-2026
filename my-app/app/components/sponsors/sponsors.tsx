@@ -1,6 +1,5 @@
 
 import SponsorCard from './sponsorCard';
-import shinyCard from '../shinyCard';
 import ShinyCard from '../shinyCard';
 
 export default function Sponsors() {
