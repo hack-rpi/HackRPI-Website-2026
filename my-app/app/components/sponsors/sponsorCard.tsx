@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { text } from "stream/consumers";
+import { useRef } from "react";
 
 
 export default function SponsorCard({ name, tier, image }: any) {
@@ -38,75 +38,84 @@ export default function SponsorCard({ name, tier, image }: any) {
     `0px 20px 40px rgba(${shadowColor},0.35)`
   );
 
-  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    const percentX = (x / rect.width - 0.5) * 2;
-    const percentY = (y / rect.height - 0.5) * 2;
+const cardRef = useRef<HTMLDivElement>(null);
+let frame: number | null = null;
 
-    // 3D tilt
-    setRotateY(percentX * 25);
-    setRotateX(-percentY * 25);
+function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+  if (!cardRef.current) return;
 
-    // dynamic colored glow
-    const shadowX = -percentX * 30;
-    const shadowY = -percentY * 30;
+  const rect = cardRef.current.getBoundingClientRect();
 
-    const distance = Math.sqrt(percentX * percentX + percentY * percentY);
-    const blur = 30 + distance * 40;
-    const opacity = 0.25 + distance * 0.4;
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    setShadow(
-      `${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`
-    );
-  }
+  const percentX = (x / rect.width - 0.5) * 2;
+  const percentY = (y / rect.height - 0.5) * 2;
 
-  function handleLeave() {
-    setRotateX(0);
-    setRotateY(0);
-    setShadow(`0px 20px 40px rgba(${shadowColor},0.35)`);
-  }
+  const rotateX = -percentY * 25;
+  const rotateY = percentX * 25;
+
+  const shadowX = -percentX * 30;
+  const shadowY = -percentY * 30;
+
+  const distance = Math.sqrt(percentX * percentX + percentY * percentY);
+  const blur = 30 + distance * 40;
+  const opacity = 0.25 + distance * 0.4;
+
+  if (frame) cancelAnimationFrame(frame);
+
+  frame = requestAnimationFrame(() => {
+    if (!cardRef.current) return;
+
+    cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    cardRef.current.style.boxShadow = `${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`;
+  });
+}
+
+function handleLeave() {
+  if (!cardRef.current) return;
+
+  cardRef.current.style.transform = `rotateX(0deg) rotateY(0deg)`;
+  cardRef.current.style.boxShadow = `0px 20px 40px rgba(${shadowColor},0.35)`;
+}
 
   let style =
     "w-[300px] h-[300px] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
-    " transition-transform duration-200 text-center flex items-center justify-center ";
+    " transition-transform duration-50 text-center flex items-center justify-center ";
 
-  let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
+  let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
+   
   return (
   <div className="m-6 flex flex-col items-center group">
-    <div
-      className={style + " relative overflow-hidden"}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{
-        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        boxShadow: shadow
-      }}
-    >
-      <div className="flex flex-col items-center justify-center gap-2">
-        {image && (
-          <img
-            src={image}
-            alt={name}
-            className="absolute inset-0 w-full h-full object-contain"
-          />
-        )}
-      </div>
+  <div
+    ref={cardRef}
+    className={style + " relative overflow-hidden relative overflow-hidden will-change-transform"}
+    onMouseMove={handleMove}
+    onMouseLeave={handleLeave}
+  >
+    <div className="flex flex-col items-center justify-center gap-2">
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+      )}
     </div>
-
-   
-    <span
+  </div>
+   <span
       className={style2}
         
     >
       {tier}
     </span>
-  </div>
+
+</div>
+   
 );
 }
