@@ -27,11 +27,10 @@ export default function Home() {
 
     const elements = document.querySelectorAll(`[id="${arguments[0]}"]`);
     const tl = gsap.timeline();
-    console.log(elements)
+    // console.log(elements)
 
     // For each element, add animations for it to the timeline (queue) and then play them with offsets to make a nice cascading effect
     elements.forEach((element) => {
-      console.log(element.firstElementChild?.tagName)
       const offset = Array.from(elements).indexOf(element) * (0.2 + delay);
       if (element.firstElementChild?.tagName == "B") {
         tl.to(element.children[1], { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
@@ -40,13 +39,28 @@ export default function Home() {
         
       } else {
         tl.to(element.firstElementChild, { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
-        tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
+        tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
         tl.to(element.firstElementChild, { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
       }
     });
   }
 
   useEffect(() => {
+
+    // run on page load
+    // just keeps checking until the div for mobile or desktop is loaded
+    requestAnimationFrame(() => {
+      let retries = 0;
+      const checkAndAnimate = () => {
+        if (document.querySelector("#title-animate")) {
+          textAnimation("title-animate", 0.9, 0.0);
+        } else if (retries < 50) {
+          retries++;
+          requestAnimationFrame(checkAndAnimate);
+        }
+      };
+      checkAndAnimate();
+    });
 
     // lenis scrolling
     const lenis = new Lenis({
