@@ -72,7 +72,7 @@ export default function AboutUs() {
 						HackRPI 2026 is Rensselaer Polytechnic Institute's 13th annual intercollegiate hackathon
 						hosted by students for students.
 						Starting at noon on Saturday, November 7th, teams of 1-4 people have 24 hours to build
-						and submit projects relating to our theme, <b className="text-blue-600">In the Clouds</b>. 
+						and submit projects relating to our theme, <b className="text-blue-500">In the Clouds</b>. 
 						After submitting their projects, participants demonstrate their projects
 						in front of a panel of professors, industry professionals, and fellow students.
 					</div>
