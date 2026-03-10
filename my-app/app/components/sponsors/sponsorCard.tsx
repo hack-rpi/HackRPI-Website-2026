@@ -75,7 +75,7 @@ export default function SponsorCard({ name, tier, image }: any) {
     bg_color +
     " " +
     text_color +
-    " transition-transform duration-200 text-center flex items-center justify-center ";
+    " transition-transform duration-50 text-center flex items-center justify-center ";
 
   let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
