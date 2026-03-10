@@ -1,0 +1,200 @@
+:root {
+  /* --bg: #D58936;
+  --light: #ffad44;
+  --shadow: #9e6528; */
+
+  --bg: #ffffff;
+  --light: #ffffd9;
+  --shadow: #fff5ff;
+
+  --text: #04151F;
+  --accent: #368F8B;
+  /* --accent: #183A37; */
+
+  --text2: #8A716A;
+  /* --text3: #725752; */
+
+  --sky-bg: oklch(68.5% 0.169 237.323)
+}
+
+*{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+a:link, a:visited, a:focus, a:hover, a:active{
+  color: var(--accent);
+  text-decoration: none;
+}
+
+body{
+  /* background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
+  background-position: center; */
+}
+
+h1{
+  font-size: 1.5em;
+}
+h2{
+  font-size: 1em;
+}
+h3{
+  font-size: 2em;
+  margin: 10px 0px;
+}
+h4{
+  font-size: 1em;
+  line-height:130%;
+}
+p{
+  font-size: 1em;
+  line-height: 140%;
+  color: var(--text2);
+}
+span{
+  font-size: 1em;
+  line-height: 140%;
+}
+span.title {
+  font-size: 2em;
+}
+
+.neumorphic {
+  background-color: var(--bg);
+  border-radius: 15px;
+  margin: 0 5vh;
+}
+
+.glassmorphic {
+  background-color: var(--bg);
+  backdrop-filter: blur(9px) saturate(169%);
+  -webkit-backdrop-filter: blur(9px) saturate(169%);
+  opacity: 0.5;
+  border-radius: 15px;
+  transition: opacity 0.3s ease;
+}
+.glassmorphic:hover{
+  opacity:0.85;   
+}
+
+.sponsorCard {
+  width: 20vw;
+  height: 60vh;
+  margin: 20px;
+
+  box-sizing: border-box;
+  display: flex;
+}
+
+.centerText {
+  text-align:center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container{
+  box-sizing: border-box;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.stackText{
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+
+.clickable{
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.clickable:active {
+  transition: transform 0.1s ease;
+  transform: scale(0.98);
+}
+
+.benefit{
+  transition: 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  padding: 3px;
+  cursor: pointer;
+}
+.benefit:hover{
+  transform: scale(1.05);
+  transition: 0.3s ease, transform 0.1s ease;;
+}
+.benefit:active{
+  transform: scale(0.98);
+  transition: 0.1s ease, transform 0.1s ease;
+}
+
+.currentBenefit{
+  
+}
+.availableBenefit{
+  opacity: 0.5;
+}
+
+.benefitContainer{
+  /* display: flex;
+  flex-direction: row;
+  gap: 10px; */
+}
+
+.benefitContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  align-items: center; /* Vertically centers items */
+}
+
+.benefitContainer:nth-child(1) {
+  justify-self: start; /* Align to the left */
+}
+
+.benefitContainer:nth-child(2) {
+  justify-self: center; /* Align to the middle */
+}
+
+.benefitContainer:nth-child(3) {
+  justify-self: end; /* Align to the right */
+}
+
+#container4 h3 {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+#container4 p{
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+
+@keyframes tempBlur {
+    0% {filter: blur(0px);}
+    10% {filter: blur(5px);}
+    80% {filter: blur(0px);}
+    100% {filter: blur(0px);}
+}

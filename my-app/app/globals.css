@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 :root {
   --background: #ffffff;
@@ -11,6 +12,8 @@
   --color-gBlack: #111112;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-hackrpi-clouds-green: #00ff7f,
+  --color-hackrpi-clouds-blue: #87CEEB,
 }
 
 @media (prefers-color-scheme: dark) {
