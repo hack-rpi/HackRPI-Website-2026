@@ -1,90 +1,88 @@
-.TitleSection{
-    background-color: blue;
-    height: 10vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.TitleSection {
+  background-color: blue;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.prizeSection{
-    height: 50vh;
-    display:flex;
-    flex-direction: row;
-    gap: 10vh;
-    justify-content: center;
-    margin: 5vh;
-    border: 2px solid red;
+.prizeSection {
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  gap: 10vh;
+  justify-content: center;
+  margin: 5vh;
+  border: 2px solid red;
 }
-#firstPrize{
-    background-color: gold;
-    height: 50vh;
-    width: 20vh;
-    color: black;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+#firstPrize {
+  background-color: gold;
+  height: 50vh;
+  width: 20vh;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#secondPrize{
-    background-color: silver;
-    height: 40vh;
-    width: 20vh;
-    color: black;
-    margin-top: 10vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
+#secondPrize {
+  background-color: silver;
+  height: 40vh;
+  width: 20vh;
+  color: black;
+  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.PrizeTracks{
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    margin: 5vh;
-    text-align: center;
-    border: 2px solid blue;
+.PrizeTracks {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  margin: 5vh;
+  text-align: center;
+  border: 2px solid blue;
 }
-#track1{
-    background-color: blue;
-    display: flex;
-    justify-content: center;
-    height: 7vh;
+#track1 {
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  height: 7vh;
 }
-#track2{
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    height: 7vh;
+#track2 {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  height: 7vh;
 }
-#track3{
-    background-color: purple;
-    display: flex;
-    justify-content: center;
-    height: 7vh;
+#track3 {
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  height: 7vh;
 }
-.PrizeTracks2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    height: 100vh;
-    gap: 3vh;
-    border: 2px solid green;
-    margin: 5vh;
+.PrizeTracks2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 3vh;
+  border: 2px solid green;
+  margin: 5vh;
 }
-#minor{
-    background-color: orange;
-    display:flex;
-    height: 50vh;
-    width: 50vh;
-    justify-content: center;
-    align-items:center;
-
+#minor {
+  background-color: orange;
+  display: flex;
+  height: 50vh;
+  width: 50vh;
+  justify-content: center;
+  align-items: center;
 }
-#mlh{
-    background-color: gray;
-    display:flex;
-    height: 50vh;
-    width: 50vh;
-    justify-content: center;
-    align-items: center;
+#mlh {
+  background-color: gray;
+  display: flex;
+  height: 50vh;
+  width: 50vh;
+  justify-content: center;
+  align-items: center;
 }

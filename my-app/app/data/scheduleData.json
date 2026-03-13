@@ -47,7 +47,7 @@
       "column": 1,
       "startMinutesFromDayStart": 180,
       "durationMinutes": 60
-    },    
+    },
     {
       "id": "sat-food2",
       "title": "Dinner",
@@ -314,7 +314,7 @@
       "startMinutesFromDayStart": 0,
       "durationMinutes": 120
     },
-        {
+    {
       "id": "sun-food2",
       "title": "Breakfast",
       "description": "",

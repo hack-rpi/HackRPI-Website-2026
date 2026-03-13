@@ -20,174 +20,175 @@ import hardware_prize from "@/public/prizes/hardwareTrack.webp";
 import golf_prize from "@/public/prizes/golf.jpg";
 import machine_learning_prize from "@/public/prizes/machine_learning_track.png";
 import healthcare_prize from "@/public/prizes/stethoscope.png";
-import photon_prize from "@/public/sponsors/sponsor_logos/Photon.png"
-import reach_capital from "@/public/prizes/reach-capital-logo.webp"
-import digital_ocean_gradient from "@/public/prizes/digitalocean.jpg"
-import eleven_labs from "@/public/prizes/elevenlabs.png"
-import google_gemini from "@/public/prizes/google-gemini.svg"
-import solana from "@/public/prizes/solana-logo.png"
-import vultr from "@/public/prizes/vultr.jpg"
+import photon_prize from "@/public/sponsors/sponsor_logos/Photon.png";
+import reach_capital from "@/public/prizes/reach-capital-logo.webp";
+import digital_ocean_gradient from "@/public/prizes/digitalocean.jpg";
+import eleven_labs from "@/public/prizes/elevenlabs.png";
+import google_gemini from "@/public/prizes/google-gemini.svg";
+import solana from "@/public/prizes/solana-logo.png";
+import vultr from "@/public/prizes/vultr.jpg";
 
 import { StaticImageData } from "next/image";
 
 export interface Prize {
-	name: string;
-	amount: string;
-	description: string;
-	imagePath?: StaticImageData;
+  name: string;
+  amount: string;
+  description: string;
+  imagePath?: StaticImageData;
 }
 
 export const podiumPrizes: Prize[] = [
-	{
-		name: "1st",
-		amount: "$1000",
-		description: "",
-	},
-	{
-		name: "2nd",
-		amount: "$750",
-		description: "",
-	},
+  {
+    name: "1st",
+    amount: "$1000",
+    description: "",
+  },
+  {
+    name: "2nd",
+    amount: "$750",
+    description: "",
+  },
 ];
 
 export const majorPrizes: Prize[] = [
-	{
-		name: "Best Machine Learning Hack",
-		amount: "$400 Cash Prize",
-		description: "Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
-		imagePath: machine_learning_prize,
-	},
-	{
-		name: "Best Healthcare Hack",
-		amount: "$400 Cash Prize",
-		description:
-			"Does an apple a day really keep the doctor away? With your project, we're sure it will! This prize goes those who have demonstrated exceptional creativity, technical skill, and a dedication to making a meaningful impact on global health through thoughtful analysis and implementation of data-driven solutions.",
-		imagePath: healthcare_prize,
-	},
-	{
-		name: "Best Sustainability Hack",
-		amount: "$400 Cash Prize",
-		description:
-			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges with a retro or modern spin.",
-		imagePath: sustainability_prize,
-	},
+  {
+    name: "Best Machine Learning Hack",
+    amount: "$400 Cash Prize",
+    description: "Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
+    imagePath: machine_learning_prize,
+  },
+  {
+    name: "Best Healthcare Hack",
+    amount: "$400 Cash Prize",
+    description:
+      "Does an apple a day really keep the doctor away? With your project, we're sure it will! This prize goes those who have demonstrated exceptional creativity, technical skill, and a dedication to making a meaningful impact on global health through thoughtful analysis and implementation of data-driven solutions.",
+    imagePath: healthcare_prize,
+  },
+  {
+    name: "Best Sustainability Hack",
+    amount: "$400 Cash Prize",
+    description:
+      "Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges with a retro or modern spin.",
+    imagePath: sustainability_prize,
+  },
   {
     name: "Best Use of Photon",
     amount: "$250 Cash Prize and API Keys/Tokens",
-    description: "Given to the team who makes best use of Photon. 'We're inviting teams who believe AI isn't a utility tool but a being that lives with us - present in our conversations, attuned to context, and trusted to act with taste. Build agents that don't merely assist, but participate. Shape a future where human intention and machine intuition compound' - Photon",
-    imagePath: photon_prize
-  }
+    description:
+      "Given to the team who makes best use of Photon. 'We're inviting teams who believe AI isn't a utility tool but a being that lives with us - present in our conversations, attuned to context, and trusted to act with taste. Build agents that don't merely assist, but participate. Shape a future where human intention and machine intuition compound' - Photon",
+    imagePath: photon_prize,
+  },
 ];
 
 export const minorPrizes: Prize[] = [
-	{
-		name: "Best Use of AI",
-		amount: "Air Fryers",
-		description:
-			"Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
-		imagePath: ai_prize,
-	},
-	{
-		name: "Best Data Science Hack",
-		amount: "Amazon Echo Dots",
-		description:
-			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of a retro v. modern world, driving decisions with insightful analytics.",
-		imagePath: data_science_prize,
-	},
-	{
-		name: "Best First Time Hack",
-		amount: "Lego Sets",
-		description:
-			"Newbies unite! Awarded to the top project by first-time hackers that addresses retro (or modern!) challenges, showing off their fresh creativity and hard work.",
-		imagePath: beginner_prize,
-	},
-	{
-		name: "Best Mobile Hack",
-		amount: "Portable Chargers",
-		description:
-			"Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
-		imagePath: mobile_prize,
-	},
-	{
-		name: "Best Hardware Hack",
-		amount: "Amazon Fire sticks",
-		description:
-			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
-		imagePath: hardware_prize,
-	},
-	{
-		name: "Best Quantum Computing Hack",
-		amount: "JBL Speakers",
-		description:
-			"Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve a retro/modern problem, proving that the future really is now (and at RPI!).",
-		imagePath: quantum_prize,
-	},
-	{
-		name: "Ugliest Code Competition",
-		amount: "$50 Cash Prize",
-		description:
-			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in tech. All code is retro code, given enough time.",
-		imagePath: ugly_code_prize,
-	},
-	{
-		name: "Code Golf",
-		amount: "$50 Cash Prize",
-		description:
-			"Code Golf! No, not coding the game golf. Come to the workshop and maybe win some money along the way!",
-		imagePath: golf_prize,
-	},
+  {
+    name: "Best Use of AI",
+    amount: "Air Fryers",
+    description:
+      "Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
+    imagePath: ai_prize,
+  },
+  {
+    name: "Best Data Science Hack",
+    amount: "Amazon Echo Dots",
+    description:
+      "Crunch those numbers! Given to the project that uses data science to unravel the mysteries of a retro v. modern world, driving decisions with insightful analytics.",
+    imagePath: data_science_prize,
+  },
+  {
+    name: "Best First Time Hack",
+    amount: "Lego Sets",
+    description:
+      "Newbies unite! Awarded to the top project by first-time hackers that addresses retro (or modern!) challenges, showing off their fresh creativity and hard work.",
+    imagePath: beginner_prize,
+  },
+  {
+    name: "Best Mobile Hack",
+    amount: "Portable Chargers",
+    description:
+      "Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
+    imagePath: mobile_prize,
+  },
+  {
+    name: "Best Hardware Hack",
+    amount: "Amazon Fire sticks",
+    description:
+      "Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
+    imagePath: hardware_prize,
+  },
+  {
+    name: "Best Quantum Computing Hack",
+    amount: "JBL Speakers",
+    description:
+      "Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve a retro/modern problem, proving that the future really is now (and at RPI!).",
+    imagePath: quantum_prize,
+  },
+  {
+    name: "Ugliest Code Competition",
+    amount: "$50 Cash Prize",
+    description:
+      "Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in tech. All code is retro code, given enough time.",
+    imagePath: ugly_code_prize,
+  },
+  {
+    name: "Code Golf",
+    amount: "$50 Cash Prize",
+    description:
+      "Code Golf! No, not coding the game golf. Come to the workshop and maybe win some money along the way!",
+    imagePath: golf_prize,
+  },
 ];
 
 export const mlhPrizes: Prize[] = [
-	{
-		name: "Best Use of AI powered by Reach Capital",
-		amount: "Logitech Webcam & Meeting with the Reach Capital Investors",
-		description:
-			"AI has upended what we can accomplish with technology. Reach Capital invests in the next generation of founders and technical talent, and they want you to use AI to transform the future of learning, health, and work. Build a project that impacts one (or all!) of these areas for a chance to win a Logitech webcam for each member of your team and the exclusive opportunity to discuss your creation with Reach Capital’s team of expert investors. Interested in working at world-changing startups? Reach's 130+ portfolio companies — including Replit, Brilliant, ClassDojo, GPTZero, and Desmos — are always looking for the next wave of talent. Share what you’re studying, building, or exploring, and Reach will connect you to career-defining opportunities. Add your profile and join the hackers already in the Reach talent network.",
-		imagePath: reach_capital,
-	},
-	{
-		name: "Best .Tech Domain Name",
-		amount: "Blue Snowball Microphone & a Free .Tech Domain Name for up to 10 years!",
-		description:
-			"Make your Team's Achievements timeless: Win a .Tech Domain Name for up to 10 years to Showcase and Expand Your Project, Plus Blue Snowball Mics for Effortless Collaboration on Zoom, empowering you to build even more cool things together!",
-		imagePath: tech,
-	},
-	{
-		name: "Best Use of Gemini API",
-		amount: "Google Swag Kits",
-		description:
-			"It’s time to push the boundaries of what's possible with AI using Google Gemini. Check out the Gemini API to build AI-powered apps that make your friends say WHOA. So, what can Gemini do for your hackathon project? 1. Understand language like a human and build a chatbot that gives personalized advice, 2. Analyze info like a supercomputer and create an app that summarizes complex research papers, and 3. Generate creative content like code, scripts, music, and more. Think of the possibilities… what will you build with the Google Gemini API this weekend?",
-		imagePath: google_gemini,
-	},
-	{
-		name: "Best Use of ElevenLabs",
-		amount: "Wireless Earbuds",
-		description:
-			"Deploy natural, human-sounding audio with ElevenLabs. Create realistic, dynamic, and emotionally expressive voices for any project, from interactive AI companions to narrated stories and voice-enabled apps. ElevenLabs will empower you to build rich, immersive experiences without the need for actors or complex audio production, using simply the power of AI. Integrate fully autonomous audio experiences into your hack with ElevenLabs and give your project a voice, along with giving your team the chance to win some wireless earbuds!",
-		imagePath: eleven_labs,
-	},
-	{
-		name: "Best Use of DigitalOcean Gradient™ AI",
-		amount: "Retro Wireless Mouse",
-		description:
-			"DigitalOcean GradientTM AI is a unified AI cloud for building, training, and deploying machine learning models and AI agents. Get access to GPU infrastructure like DigitalOcean GPU Droplets and Bare Metal servers, along with serverless inference and 1-Click Models for instant deployment of your favorite LLMs! Sign up for DigitalOcean today and get $200 worth of free credits that you can use towards building your next Gradient-powered hack. Enable your next project with DigitalOcean GradientTM AI for a chance to win some great prizes for you and each of your teammates!",
-		imagePath: digital_ocean_gradient,
-	},
-	{
-		name: "Best Use of Vultr",
-		amount: "Portable Screens",
-		description:
-			"Vultr empowers hackers to bring their high-performance projects to life instantly; providing everything from the speed of one-click deployment and scalable cloud compute, to specialized Vultr Cloud GPUs that can power AI-driven applications. We want you to push the limits of what can be built when infrastructure is no longer the bottleneck! Sign up for a Vultr account today and claim your free cloud credits! Take your next hack to the cloud with Vultr for a chance to win some awesome portable screens for you and your team!",
-		imagePath: vultr,
-	},
-	{
-		name: "Best Use of Solana",
-		amount: "SenseCAP Card Tracker",
-		description:
-			"The world of development is evolving fast and Solana is leading the charge with a network built to handle all of your infrastructure needs. Forget high fees and slow confirmations, it’s time to build applications that are fast, efficient, and scalable. Harness Solana's core advantages like blazing fast execution and near-zero transaction costs to make your hackathon ideas become real world projects. With Solana, the possibilities are endless. Show us how you can innovate with Solana for a chance to win some cool prizes for you and each member of your team!",
-		imagePath: solana,
-	}
+  {
+    name: "Best Use of AI powered by Reach Capital",
+    amount: "Logitech Webcam & Meeting with the Reach Capital Investors",
+    description:
+      "AI has upended what we can accomplish with technology. Reach Capital invests in the next generation of founders and technical talent, and they want you to use AI to transform the future of learning, health, and work. Build a project that impacts one (or all!) of these areas for a chance to win a Logitech webcam for each member of your team and the exclusive opportunity to discuss your creation with Reach Capital’s team of expert investors. Interested in working at world-changing startups? Reach's 130+ portfolio companies — including Replit, Brilliant, ClassDojo, GPTZero, and Desmos — are always looking for the next wave of talent. Share what you’re studying, building, or exploring, and Reach will connect you to career-defining opportunities. Add your profile and join the hackers already in the Reach talent network.",
+    imagePath: reach_capital,
+  },
+  {
+    name: "Best .Tech Domain Name",
+    amount: "Blue Snowball Microphone & a Free .Tech Domain Name for up to 10 years!",
+    description:
+      "Make your Team's Achievements timeless: Win a .Tech Domain Name for up to 10 years to Showcase and Expand Your Project, Plus Blue Snowball Mics for Effortless Collaboration on Zoom, empowering you to build even more cool things together!",
+    imagePath: tech,
+  },
+  {
+    name: "Best Use of Gemini API",
+    amount: "Google Swag Kits",
+    description:
+      "It’s time to push the boundaries of what's possible with AI using Google Gemini. Check out the Gemini API to build AI-powered apps that make your friends say WHOA. So, what can Gemini do for your hackathon project? 1. Understand language like a human and build a chatbot that gives personalized advice, 2. Analyze info like a supercomputer and create an app that summarizes complex research papers, and 3. Generate creative content like code, scripts, music, and more. Think of the possibilities… what will you build with the Google Gemini API this weekend?",
+    imagePath: google_gemini,
+  },
+  {
+    name: "Best Use of ElevenLabs",
+    amount: "Wireless Earbuds",
+    description:
+      "Deploy natural, human-sounding audio with ElevenLabs. Create realistic, dynamic, and emotionally expressive voices for any project, from interactive AI companions to narrated stories and voice-enabled apps. ElevenLabs will empower you to build rich, immersive experiences without the need for actors or complex audio production, using simply the power of AI. Integrate fully autonomous audio experiences into your hack with ElevenLabs and give your project a voice, along with giving your team the chance to win some wireless earbuds!",
+    imagePath: eleven_labs,
+  },
+  {
+    name: "Best Use of DigitalOcean Gradient™ AI",
+    amount: "Retro Wireless Mouse",
+    description:
+      "DigitalOcean GradientTM AI is a unified AI cloud for building, training, and deploying machine learning models and AI agents. Get access to GPU infrastructure like DigitalOcean GPU Droplets and Bare Metal servers, along with serverless inference and 1-Click Models for instant deployment of your favorite LLMs! Sign up for DigitalOcean today and get $200 worth of free credits that you can use towards building your next Gradient-powered hack. Enable your next project with DigitalOcean GradientTM AI for a chance to win some great prizes for you and each of your teammates!",
+    imagePath: digital_ocean_gradient,
+  },
+  {
+    name: "Best Use of Vultr",
+    amount: "Portable Screens",
+    description:
+      "Vultr empowers hackers to bring their high-performance projects to life instantly; providing everything from the speed of one-click deployment and scalable cloud compute, to specialized Vultr Cloud GPUs that can power AI-driven applications. We want you to push the limits of what can be built when infrastructure is no longer the bottleneck! Sign up for a Vultr account today and claim your free cloud credits! Take your next hack to the cloud with Vultr for a chance to win some awesome portable screens for you and your team!",
+    imagePath: vultr,
+  },
+  {
+    name: "Best Use of Solana",
+    amount: "SenseCAP Card Tracker",
+    description:
+      "The world of development is evolving fast and Solana is leading the charge with a network built to handle all of your infrastructure needs. Forget high fees and slow confirmations, it’s time to build applications that are fast, efficient, and scalable. Harness Solana's core advantages like blazing fast execution and near-zero transaction costs to make your hackathon ideas become real world projects. With Solana, the possibilities are endless. Show us how you can innovate with Solana for a chance to win some cool prizes for you and each member of your team!",
+    imagePath: solana,
+  },
 ];
 
 /*export const majorPrizes: Prize[] = [

@@ -1,22 +1,10 @@
-
-
 import { useEffect } from "react";
 import "./shinyCard.css";
 
-export default function({image, theme}: any){
-
-    
-
-    return (
-        <>
-
-            <div className="shinyCard">
-                Hello
-               ({image && <img src={image} alt="placeholder" />})
-                
-                
-            </div>
-
-        </>
-    );
+export default function ({ image, theme }: any) {
+  return (
+    <>
+      <div className="shinyCard">Hello ({image && <img src={image} alt="placeholder" />})</div>
+    </>
+  );
 }

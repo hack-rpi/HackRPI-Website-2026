@@ -1,9 +1,9 @@
 export interface Link {
-	href: string;
-	children: React.ReactNode;
+  href: string;
+  children: React.ReactNode;
 }
 
 export interface NavGroup {
-	name: string;
-	links: Link[];
+  name: string;
+  links: Link[];
 }
