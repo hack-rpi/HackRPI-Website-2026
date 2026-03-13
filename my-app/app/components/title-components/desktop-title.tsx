@@ -16,11 +16,11 @@ export default function DesktopTitleComponent() {
   return (
     <div className="relative w-full h-screen bg-blue-4000 p-5 overflow-hidden">
       <div className="absolute inset-0">
-        <Canvas
+        {/* <Canvas
           worker={worker}
           fallback={<Scene />}
           camera={{ position: [0, 0, 6], fov: 55 }}
-        />
+        /> */}
       </div>
 
       <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-30 pl-20">

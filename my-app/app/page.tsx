@@ -120,7 +120,7 @@ export default function Home() {
     tl.call(() => { if (!HA1) { textAnimation("team-title", 0.6); HA1 = true; } }, [], 0.1);
 
     let HA2 = false;
-    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.4); HA2 = true; } }, [], 0.0);
+    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.3); HA2 = true; } }, [], 0.0);
 
     // 0 -> 1 is normal animation time, then 1 -> 1.2 is the pause at the end
     tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: (1 * speed), force3D: true }, 0);
@@ -142,12 +142,12 @@ export default function Home() {
     // animate mentions text 
     ScrollTrigger.create({
       trigger: mentions,
-      start: "top bottom",
+      start: "20% bottom",
       end: () => "+=" + ((scrollWidth)),
       onEnter: () => {
         let HA2 = false;
         if (!HA2) {
-          textAnimation("mentions-animate", 0.3);
+          textAnimation("mentions-animate", 0.6);
           HA2 = true;
         }
       },
@@ -163,7 +163,7 @@ export default function Home() {
     });
 
     console.log(window.innerWidth)
-    trophytl.fromTo(document.querySelector("#trophy-canvas"), { x: "0vw", y: 0, transform: "scale(1)" }, { x: 500, y: 1000, transform: "scale(0.2)", duration: 1.0, ease: "none" });
+    //trophytl.fromTo(document.querySelector("#trophy-canvas"), { x: "0vw", y: 0, transform: "scale(1)" }, { x: 500, y: 1000, transform: "scale(0.2)", duration: 1.0, ease: "none" });
 
 
     // animate speach text
@@ -174,7 +174,7 @@ export default function Home() {
       onEnter: () => {
         let HA2 = false;
         if (!HA2) {
-          textAnimation("winner-animate", 0.5);
+          textAnimation("winner-animate", 1.5, 0.05);
           HA2 = true;
         }
       },
