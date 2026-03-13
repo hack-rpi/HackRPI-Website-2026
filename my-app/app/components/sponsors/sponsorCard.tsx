@@ -37,15 +37,18 @@ export default function SponsorCard({ name, tier, image }: any) {
   const [shadow, setShadow] = useState(
     `0px 20px 40px rgba(${shadowColor},0.35)`
   );
-
+  
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const percentX = (x / rect.width - 0.5) * 2;
-    const percentY = (y / rect.height - 0.5) * 2;
+    let percentX = (x / rect.width - 0.5) * 2;
+    let percentY = (y / rect.height - 0.5) * 2;
+
+if (Math.abs(percentX) < 0.05) percentX = 0;
+if (Math.abs(percentY) < 0.05) percentY = 0;
 
     // 3D tilt
     setRotateY(percentX * 25);
@@ -75,18 +78,19 @@ export default function SponsorCard({ name, tier, image }: any) {
     bg_color +
     " " +
     text_color +
-    " transition-transform duration-50 text-center flex items-center justify-center ";
+    " transition-transform duration-100 ease-in-out text-center flex items-center justify-center transition-all duration-300 ease-out";
 
   let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
-  <div className="m-6 flex flex-col items-center group">
+  <div className="m-6 flex flex-col items-center group perspective-[1000px]">
     <div
-      className={style + " relative overflow-hidden"}
+      className={style + " relative overflow-hidden border border-3 transform-gpu [transform-style:preserve-3d]"}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
-        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scalez(100)`,
         boxShadow: shadow
+        
       }}
     >
       <div className="flex flex-col items-center justify-center gap-2">
