@@ -19,7 +19,7 @@ export default function QnA({title, content, defaultOpen = false }: FAQ) {
         aria-expanded={open}
         aria-controls={contentId}
         className="faq-button w-full flex justify-between items-center
-        bg-gradient-to-b from-white to-sky-200 text-sky-500 border-none p-5 cursor-pointer text-left text-lg">
+        bg-linear-to-b from-white to-sky-200 text-sky-500 border-none p-5 cursor-pointer text-left text-lg">
         <span>{title}</span>
         <span aria-hidden="true" className="text-18 text-[1]">
           {open ? "-" : "+"}
@@ -37,7 +37,7 @@ export default function QnA({title, content, defaultOpen = false }: FAQ) {
           transition: "max-height 200ms ease",
         }}
       >
-        <div className="p-5 text-white text-[1.6]">
+        <div className="p-5 text-white">
           {content}
         </div>
       </div>

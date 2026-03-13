@@ -19,9 +19,9 @@ export default function NavGroup({
 			onClick={() => setClicked((prev) => !prev)}
 		>
 			<div
-				className={`relative w-11/12 flex items-center justify-between h-12 text-2xl bg-base-100 z-[5] rounded-t pl-2 collapse-arrow ${
-					clicked ? "bg-[length:100%_4px] hackrpi-dark-blue" : "bg-base-100 bg-[length:0%_4px]"
-				} bg-gradient-to-r  bg-no-repeat from-hackrpi-light-purple to-hackrpi-pink bg-left-bottom motion-safe:hover:bg-[length:100%_4px] transition-all duration-200`}
+				className={`relative w-11/12 flex items-center justify-between h-12 text-2xl bg-base-100 z-5 rounded-t pl-2 collapse-arrow ${
+					clicked ? "bg-size-[100%_4px] hackrpi-dark-blue" : "bg-base-100 bg-size-[0%_4px]"
+				} bg-linear-to-r  bg-no-repeat from-hackrpi-light-purple to-hackrpi-pink bg-bottom-left motion-safe:hover:bg-size-[100%_4px] transition-all duration-200`}
 			>
 				{name}
 				<svg
@@ -37,7 +37,7 @@ export default function NavGroup({
 			</div>
 			<div
 				className={`bg-base-200 flex flex-col w-11/12 overflow-hidden  ${
-					clicked ? "-translate-y-0 h-fit " : "-translate-y-full h-0 "
+					clicked ? "translate-y-0 h-fit " : "-translate-y-full h-0 "
 				} transition-all duration-200 rounded-b`}
 			>
 				{links.map((link) => (

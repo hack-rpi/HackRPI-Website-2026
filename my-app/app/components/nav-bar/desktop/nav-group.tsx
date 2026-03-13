@@ -8,9 +8,9 @@ export default function NavGroup({ name, links }: { name: string; links: lin[] }
 			<div
 				role="link"
 				className="
-					text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
-					transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
-					hover:bg-[length:100%_2px] focus:bg-[length:100%_4px] my-4 mx-2 whitespace-nowrap
+					text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
+					transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+					hover:bg-size-[100%_2px] focus:bg-size-[100%_4px] my-4 mx-2 whitespace-nowrap
 				"
 			>
 				<Link href={links[0].href}>{name}</Link>
@@ -20,7 +20,7 @@ export default function NavGroup({ name, links }: { name: string; links: lin[] }
 				tabIndex={-1}
 				className="
 					dropdown-content menu p-2 w-52
-					bg-gradient-to-r from-white from-50% to-sky-200
+					bg-linear-to-r from-white from-50% to-sky-200
 					border-2 border-black z-50
 				"
 			>
@@ -42,9 +42,9 @@ export function NavLink({href, children, onClick}: {
 	return (
 		<NextLink
 			className="
-				w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-[length:0%_2px] bg-no-repeat
-				bg-left-bottom transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
-				hover:bg-[length:100%_2px] focus:bg-[length:100%_4px]
+				w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-size-[0%_2px] bg-no-repeat
+				bg-bottom-left transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+				hover:bg-size-[100%_2px] focus:bg-size-[100%_4px]
 			"
 			href={href}
 			onClick={onClick}

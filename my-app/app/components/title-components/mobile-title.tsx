@@ -7,7 +7,7 @@ export default function MobileTitleComponent() {
 	return (
 		<div className="w-full flex flex-col items-center justify-start space-y-6 p-4">
 			{/* Skyline box / main title */}
-			<div className="w-full max-w-[700px]">
+			<div className="w-full max-w-175">
 				<TitleText />
 			</div>
 

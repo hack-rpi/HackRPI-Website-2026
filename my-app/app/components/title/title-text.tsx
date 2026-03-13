@@ -59,7 +59,7 @@ export default function TitleText() {
 	return (
 		<div className="relative w-full h-full flex justify-start items-start font-sans">
 			{/* Box with skyline image */}
-			<div className="relative z-10 w-[900px] h-[600px] bg-black p-0 rounded-2xl shadow-lg overflow-hidden">
+			<div className="relative z-10 w-225 h-150 bg-black p-0 rounded-2xl shadow-lg overflow-hidden">
 				<Image
 					src="/cityscape_background_retro_modern.png"
 					alt="Cityscape Retro Modern"
@@ -104,7 +104,7 @@ export default function TitleText() {
 			</div>
 
 			{/* Sidebar */}
-			<div className="absolute top-0 left-[800px] z-20 w-[500px]">
+			<div className="absolute top-0 left-200 z-20 w-125">
 				<PixelSideBar />
 			</div>
 		</div>

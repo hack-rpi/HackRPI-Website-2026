@@ -8,12 +8,12 @@ export default function Mentions() {
 					id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
 					3d Trophy model placeholder
 				</div>
-				<div className="flex-1 h-[100vh] w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
+				<div className="flex-1 h-screen w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
 					<span className="text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 						Honorable Mentions
 						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 					</span>
-					<hr className='border-1 my-1 mx-[10vw]'></hr>
+					<hr className='border my-1 mx-[10vw]'></hr>
 
 					{Array.from({ length: 10 }).map((_, i) => (
 						<span key={i} className="text-xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
@@ -23,7 +23,7 @@ export default function Mentions() {
 					))}
 				</div>
 			</div>
-			<div className='font-sans text-[90px] flex-1 h-[100vh] w-full text-center content-center grid gap-10 bg-gBlack'>
+			<div className='font-sans text-[90px] flex-1 h-screen w-full text-center content-center grid gap-10 bg-gBlack'>
 				<span className=" relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 					<b>In the Clouds</b> something something
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
