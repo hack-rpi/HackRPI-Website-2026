@@ -47,8 +47,8 @@ export default function SponsorCard({ name, tier, image }: any) {
     let percentX = (x / rect.width - 0.5) * 2;
     let percentY = (y / rect.height - 0.5) * 2;
 
-if (Math.abs(percentX) < 0.05) percentX = 0;
-if (Math.abs(percentY) < 0.05) percentY = 0;
+    if (Math.abs(percentX) < 0.05) percentX = 0;
+    if (Math.abs(percentY) < 0.05) percentY = 0;
 
     // 3D tilt
     setRotateY(percentX * 25);
@@ -57,6 +57,7 @@ if (Math.abs(percentY) < 0.05) percentY = 0;
     // dynamic colored glow
     const shadowX = -percentX * 30;
     const shadowY = -percentY * 30;
+
 
     const distance = Math.sqrt(percentX * percentX + percentY * percentY);
     const blur = 30 + distance * 40;
@@ -78,7 +79,7 @@ if (Math.abs(percentY) < 0.05) percentY = 0;
     bg_color +
     " " +
     text_color +
-    " transition-transform duration-100 ease-in-out text-center flex items-center justify-center transition-all duration-300 ease-out";
+    " transition-transform duration-100 ease-in-out text-center flex items-center justify-center transition-all duration-1000 ease-out";
 
   let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
@@ -88,7 +89,7 @@ if (Math.abs(percentY) < 0.05) percentY = 0;
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
-        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scalez(100)`,
+        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         boxShadow: shadow
         
       }}
