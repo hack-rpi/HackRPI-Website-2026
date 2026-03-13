@@ -44,7 +44,7 @@ export default function SponsorCard({ name, tier, image }: any) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  const margin = 8;
+  const margin = 10;
 
   // Prevent jitter near edges
   if (
@@ -90,7 +90,7 @@ export default function SponsorCard({ name, tier, image }: any) {
     bg_color +
     " " +
     text_color +
-    " transition-transform text-center flex items-center justify-center transition-all duration-450 ease-out";
+    " transition-transform text-center flex items-center justify-center transition-all duration-400 ease-out";
 
   let style2 = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
