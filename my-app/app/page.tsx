@@ -17,7 +17,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-
   function textAnimation(id: string, speed: number = 1.0, delay: number = 0.0, effect: number = 0) {
     // Pass an id for it to iterate though. It must have a child element like this:
     // <div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
@@ -35,29 +34,56 @@ export default function Home() {
         const offset = Array.from(elements).indexOf(element) * (0.2 + delay);
         if (element.firstElementChild?.tagName == "B") {
           tl.to(element.children[1], { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
-          tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
-          tl.to(element.children[1], { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
-
+          tl.to(
+            element,
+            { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" },
+            offset + 0.2 * speed,
+          );
+          tl.to(
+            element.children[1],
+            { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" },
+            offset + 0.8 * speed,
+          );
         } else {
           tl.to(element.firstElementChild, { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
-          tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
-          tl.to(element.firstElementChild, { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
+          tl.to(
+            element,
+            { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" },
+            offset + 0.2 * speed,
+          );
+          tl.to(
+            element.firstElementChild,
+            { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" },
+            offset + 0.8 * speed,
+          );
         }
       });
     } else if (effect == 1) {
       elements.forEach((element) => {
         // animation
         // transform: translateY(50%); clip-path: inset(0px 0% 50% 0px);
-        Array.from(element.children).reverse().forEach((child) => {
-          const offset = Array.from(element.children).indexOf(child) * (0.2 + delay);
-          tl.fromTo(child, { transform: "translateY(100%)", clipPath: "inset(0px 0% 100% 0px)" }, { transform: "translateY(0%)", clipPath: "inset(0px 0% 0% 0px)", ease: "none", duration: 0.7 * speed, force3D: true }, offset);
-        });
+        Array.from(element.children)
+          .reverse()
+          .forEach((child) => {
+            const offset = Array.from(element.children).indexOf(child) * (0.2 + delay);
+            tl.fromTo(
+              child,
+              { transform: "translateY(100%)", clipPath: "inset(0px 0% 100% 0px)" },
+              {
+                transform: "translateY(0%)",
+                clipPath: "inset(0px 0% 0% 0px)",
+                ease: "none",
+                duration: 0.7 * speed,
+                force3D: true,
+              },
+              offset,
+            );
+          });
       });
     }
   }
 
   useEffect(() => {
-
     // run on page load
     // just keeps checking until the div for mobile or desktop is loaded
     requestAnimationFrame(() => {
@@ -127,7 +153,16 @@ export default function Home() {
     );
 
     let HA2 = false;
-    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.3); HA2 = true; } }, [], 0.0);
+    tl.call(
+      () => {
+        if (!HA2) {
+          textAnimation("name-animate", 1.0, 0.3);
+          HA2 = true;
+        }
+      },
+      [],
+      0.0,
+    );
 
     // 0 -> 1 is normal animation time, then 1 -> 1.2 is the pause at the end
     tl.fromTo(
@@ -154,7 +189,7 @@ export default function Home() {
     ScrollTrigger.create({
       trigger: mentions,
       start: "20% bottom",
-      end: () => "+=" + ((scrollWidth)),
+      end: () => "+=" + scrollWidth,
       onEnter: () => {
         let HA2 = false;
         if (!HA2) {
@@ -173,9 +208,8 @@ export default function Home() {
       },
     });
 
-    console.log(window.innerWidth)
+    console.log(window.innerWidth);
     //trophytl.fromTo(document.querySelector("#trophy-canvas"), { x: "0vw", y: 0, transform: "scale(1)" }, { x: 500, y: 1000, transform: "scale(0.2)", duration: 1.0, ease: "none" });
-
 
     // animate speach text
     ScrollTrigger.create({

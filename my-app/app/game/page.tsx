@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
 import NavBar from "@/app/components/nav-bar/nav-bar";
 
-
 export default function Game() {
-  return (<>
-
-    <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", backgroundColor: "black" }}>
-      <h1>Game to be inserted here later</h1>
-    </div>
-    
-  
-  </>);
+  return (
+    <>
+      <div
+        style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", backgroundColor: "black" }}
+      >
+        <h1>Game to be inserted here later</h1>
+      </div>
+    </>
+  );
 }

@@ -12,19 +12,12 @@ function Model() {
   useFrame((state) => {
     if (modelRef.current) {
       modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.5;
-      modelRef.current.rotation.z =
-        -Math.PI / Math.abs(Math.sin(state.clock.elapsedTime) + 10);
+      modelRef.current.rotation.z = -Math.PI / Math.abs(Math.sin(state.clock.elapsedTime) + 10);
     }
   });
 
   return (
-    <primitive
-      ref={modelRef}
-      object={scene}
-      position={[4, -1, -5]}
-      rotation={[0, -Math.PI / 4, 0]}
-      scale={0.15}
-    />
+    <primitive ref={modelRef} object={scene} position={[4, -1, -5]} rotation={[0, -Math.PI / 4, 0]} scale={0.15} />
   );
 }
 

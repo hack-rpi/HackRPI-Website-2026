@@ -10,7 +10,7 @@ export default function DesktopTitleComponent() {
       new Worker(new URL("@/app/components/title-components/three/worker.tsx", import.meta.url), {
         type: "module",
       }),
-    []
+    [],
   );
 
   return (
