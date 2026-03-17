@@ -12,7 +12,9 @@ export default function({image, theme}: any){
 
             <div className="shinyCard">
                 Hello
-                <img src={image}></img>
+               ({image && <img src={image} alt="placeholder" />})
+                
+                
             </div>
 
         </>
