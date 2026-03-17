@@ -1,14 +1,44 @@
 
 import QnA from "@/app/components/faq/qna";
 import faqs from "@/app/data/faqData";
+import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 // import RegistrationButton from "@/components/themed-components/registration-link"; // FIXME
 
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
 export default function FAQPage() {
+
+  useGSAP(() => {
+		const sectionPin = document.querySelector("#faq");
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: sectionPin,
+				scrub: 0.5,
+				start: "top 60%",
+				end: "bottom 0%",
+			},
+		})
+		.fromTo('#cloud1_faq', {
+      x: 0,
+    }, {
+			x: innerWidth/5 + 20,
+		}, 0)
+		.fromTo('#cloud2_faq', {
+      x: 0,
+    }, {
+			x: innerWidth/5,
+		}, 0);
+  });
+
   return (
-    <div id="faq" className="w-[full] h-auto bg-gray-500 p-5 flex flex-col bg-sky-500">
-      <div className="w-full mt-[10vh]"/>
+    <div id="faq" className="w-[full] h-auto p-5 flex flex-col bg-sky-500">
+      <div className="w-full mt-[5vh]"/>
       
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center mt-5">
         <div className="w-[100vh] flex flex-col items-center lg:items-startlg:mt-0 h-full lg:ml-4 p-2 bg-yellow-500 bg-opacity-100 m-2 hover:bg-opacity-100 rounded-xl">
           {/* Registration Banner */}
           <div
@@ -51,28 +81,52 @@ export default function FAQPage() {
         </div>
       </div>
 
-      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5">
-        <h2 className="text-2xl">General Format</h2>
-        <p>Arrival and check-in takes place from 9-10 AM Saturday.</p>
-        <p>Our opening ceremony starts at 10 AM, and hacking begins at 11am.</p>
-        <p>During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.</p>
-        <p>Teams will then present their projects, and the best projects win prizes!</p>
-        <p>Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday.</p> 
-        <p>The event will end around 4 PM on Sunday.</p>
-      </div>  
+      <div id="cloud1_faq" className="relative h-[50vh] w-[120vh] content-center m-5 p-5">
+        {/* Temporary until a better cloud image is found */}
+        <Image
+          src="/cloud.png"
+          fill
+          alt="Cloud image"
+          objectFit="cover"
+          preload={true}
+          className="bg-white rounded-full"
+        />
 
-      <div className="w-[120vh] bg-white text-sky-500 h-auto p-5 m-5 float-right clear-right">
-        <h2 className="text-2xl">Participation</h2>
-        <p>Everyone is welcome to participate in HackRPI!</p>
-        <p>Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.</p>
-        <p>You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.</p>
-        <p>Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.
-          Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.</p> 
-        <p>To register, click here to register with Major League Hacking.</p>
-        {/* <RegistrationButton /> */}
+        <div id="text1" className="text-purple-500 absolute top-[38%] left-[15%] bg-white">
+          <h2 className="text-2xl">General Format</h2>
+          <p>Arrival and check-in takes place from 9-10 AM Saturday.</p>
+          <p>Our opening ceremony starts at 10 AM, and hacking begins at 11am.</p>
+          <p>During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.</p>
+          <p>Teams will then present their projects, and the best projects win prizes!</p>
+          <p>Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday.</p> 
+          <p>The event will end around 4 PM on Sunday.</p>
+        </div>
       </div>
 
-      <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-gradient-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
+      <div id="cloud2_faq" className="relative h-[50vh] w-[120vh] content-center m-5 p-5">
+        {/* Temporary until a better cloud image is found */}
+        <Image
+          src="/cloud.png"
+          fill
+          alt="Cloud image"
+          objectFit="cover"
+          preload={true}
+          className="bg-white rounded-full"
+        />
+
+        <div id="text2" className="text-purple-500 w-[80%] absolute top-[38%] left-[15%] bg-white">
+          <h2 className="text-2xl">Participation</h2>
+          <p>Everyone is welcome to participate in HackRPI!</p>
+          <p>Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.</p>
+          <p>You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.</p>
+          <p>Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.
+            Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.</p> 
+          <p>To register, click here to register with Major League Hacking.</p>
+          {/* <RegistrationButton /> */}
+        </div>
+      </div>
+
+      <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-linear-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
 
       <section className="w-[125vh] p-5" aria-label="Frequently asked questions">
         {faqs.map((f) => (
