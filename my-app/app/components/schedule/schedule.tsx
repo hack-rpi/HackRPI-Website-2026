@@ -1,5 +1,5 @@
-import type { Event } from "@/data/schedule";
-import { arrangeEvents } from "@/utils/schedule";
+import type { Event } from "@/app/data/schedule";
+import { arrangeEvents } from "./utils";
 import { useState } from "react";
 
 export type TimelineLabel = {
@@ -24,9 +24,9 @@ export default function Schedule(props: ScheduleProps) {
 					<TimelineElement time={time} currentTime={props.currentTime} key={time.str} />
 				))}
 			</div>
-			<div className="absolute top-0 right-0 flex-grow flex-shrink basis-auto w-full h-full pl-24 sm:pl-28 flex items-start justify-start">
+			<div className="absolute top-0 right-0 grow shrink basis-auto w-full h-full pl-24 sm:pl-28 flex items-start justify-start">
 				{eventsInColumns.map((column, index) => (
-					<div key={index} className="relative flex flex-col flex-grow flex-shrink basis-auto h-full mx-0.5 sm:mx-1">
+					<div key={index} className="relative flex flex-col grow shrink basis-auto h-full mx-0.5 sm:mx-1">
 						{column.map((event) => {
 							const { top, height } = calculateTopAndHeightOfEvent(event, props.times);
 							let color = "bg-hackrpi-primary-blue text-black border-black";
@@ -40,7 +40,7 @@ export default function Schedule(props: ScheduleProps) {
 								color = "bg-red-400 text-black border-black";
 							} else if (event.eventType === "food") {
 								color = "bg-hackrpi-secondary-light-green text-black border-black";
-							} else if (event.eventType === "activity") {
+							} else if (event.eventType === "important") {
 								color = "bg-hackrpi-primary-dark-green text-gray-300 border-gray-300";
 							}
 
@@ -91,10 +91,10 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 					{props.time.str}
 				</p>
 				<div className="bg-white w-2 h-2 rounded-full mr-4 "></div>
-				<hr className="flex-grow flex-shrink basis-auto border border-gray-400" id={`${props.time.unix}`} />
+				<hr className="grow shrink basis-auto border border-gray-400" id={`${props.time.unix}`} />
 			</div>
 			<div
-				className={`w-2 h-20 rounded-full ml-[72px] sm:ml-[88px] ${
+				className={`w-2 h-20 rounded-full ml-18 sm:ml-22 ${
 					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-hackrpi-secondary-yellow" : "bg-white"
 				}`}
 			></div>

@@ -1,4 +1,4 @@
-import type { Event } from "@/types/schedule";
+import type { Event } from "@/app/data/schedule";
 
 type HappeningNowProps = {
 	events: Event[];
@@ -39,7 +39,7 @@ function HappeningNowCard(props: { event: Event }) {
 					{props.event.location} {props.event.speaker != "" ? `• ${props.event.speaker}` : ""}{" "}
 				</p>
 			</div>
-			<div className="flex-grow flex-shrink basis-auto hidden sm:flex">
+			<div className="grow shrink basis-auto hidden sm:flex">
 				<p className="description-box">{props.event.description}</p>
 			</div>
 		</div>

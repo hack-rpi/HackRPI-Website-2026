@@ -1,49 +1,50 @@
 "use client";
 
 import NavBar from "@/app/components/nav-bar/nav-bar";
-import "@/app/globals.css";
 import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
-import type { Event } from "@/types/schedule";
-import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/types/schedule";
+import type { Event } from "@/app/data/schedule";
+import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/app/data/schedule";
 
 import HappeningNow from "@/app/components/schedule/happening-now";
 import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
-async function fetchEvents(): Promise<{
-	status: number;
-	message: string;
-	events: Event[];
-}> {
-	let groups = undefined;
-	try {
-		const session = await Auth.fetchAuthSession();
-		groups = session.tokens?.accessToken.payload["cognito:groups"];
-	} catch (e) {
-		console.error(e);
-		groups = undefined;
-	}
+import data from "@/app/data/scheduleData.json" assert {type: 'json'};
 
-	const { data, errors } = await client.models.event.list({
-		authMode: groups ? "userPool" : "identityPool",
-		limit: 200,
-		filter: {
-			visible: { eq: true },
-		},
-	});
+// async function fetchEvents(): Promise<{
+// 	status: number;
+// 	message: string;
+// 	events: Event[];
+// }> {
+// 	let groups = undefined;
+// 	try {
+// 		const session = await Auth.fetchAuthSession();
+// 		groups = session.tokens?.accessToken.payload["cognito:groups"];
+// 	} catch (e) {
+// 		console.error(e);
+// 		groups = undefined;
+// 	}
 
-	if (errors) {
-		console.error(errors);
-		return { status: 500, message: "Failed to fetch events.", events: [] };
-	}
+// 	const { data, errors } = await client.models.event.list({
+// 		authMode: groups ? "userPool" : "identityPool",
+// 		limit: 200,
+// 		filter: {
+// 			visible: { eq: true },
+// 		},
+// 	});
 
-	return {
-		status: 200,
-		message: "Success",
-		events: data.map((event) => event as Event),
-	};
-}
+// 	if (errors) {
+// 		console.error(errors);
+// 		return { status: 500, message: "Failed to fetch events.", events: [] };
+// 	}
+
+// 	return {
+// 		status: 200,
+// 		message: "Success",
+// 		events: data.map((event: any) => event as Event),
+// 	};
+// }
 
 export default function Page() {
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -54,14 +55,22 @@ export default function Page() {
 	const [happeningNow, setHappeningNow] = useState<Event[]>([]);
 	const [modalEvent, setModalEvent] = useState<Event | null>(null);
 
-	useEffect(() => {
-		fetchEvents().then((resp) => {
-			if (resp.status !== 200) {
-				setState("error");
-				return;
-			}
+	// useEffect(() => {
+	// 	fetchEvents().then((resp) => {
+	// 		if (resp.status !== 200) {
+	// 			setState("error");
+	// 			return;
+	// 		}
 
-			const saturdayEvents = resp.events
+	const fetchData = async () => {
+		try {
+			const resp = await fetch("/data/scheduleData.json");
+			if (!resp.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const jsonData: Event[] = await resp.json();
+
+			const saturdayEvents = jsonData
 				.slice()
 				.map((event) => {
 					if (event.startTime >= SATURDAY_START && event.startTime < SATURDAY_END) {
@@ -77,7 +86,7 @@ export default function Page() {
 				.filter((event) => event !== null && event.endTime > event.startTime)
 				.sort((a, b) => a!.startTime - b!.startTime) as Event[];
 
-			const sundayEvents = resp.events
+			const sundayEvents = jsonData
 				.slice()
 				.map((event) => {
 					if (
@@ -101,11 +110,13 @@ export default function Page() {
 
 			setSaturdayEvents(saturdayEvents);
 			setSundayEvents(sundayEvents);
-			setAllEvents(resp.events);
+			setAllEvents(jsonData);
 
-			setHappeningNow(determineHappeningNow(resp.events));
+			setHappeningNow(determineHappeningNow(jsonData));
 			setState("loaded");
-		});
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		};
 
 		const interval = setInterval(() => {
 			setCurrentDateTime(new Date());
@@ -118,12 +129,14 @@ export default function Page() {
 		});
 
 		return () => clearInterval(interval);
-	}, []);
+	};
+
+	fetchData();
 
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
 			<NavBar showOnScroll={false} />
-			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16 ">
+			<div className="w-11/12 desktop:w-2/3 grow shrink basis-auto mt-28 desktop:mt-16 ">
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
