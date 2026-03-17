@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "day": 1,
+    "column": 1,
+    "title": "Opening Keynote",
+    "speaker": "Jane Smith",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "description": "Welcome and introduction to the conference."
+  },
+  {
+    "id": "2",
+    "day": 1,
+    "column": 2,
+    "title": "Workshop: Intro to TypeScript",
+    "speaker": "Bob Lee",
+    "startTime": "09:00",
+    "endTime": "10:30",
+    "description": "Hands-on TypeScript fundamentals."
+  },
+  {
+    "id": "3",
+    "day": 1,
+    "column": 1,
+    "title": "React Performance",
+    "speaker": "Alice Chen",
+    "startTime": "10:15",
+    "endTime": "11:15",
+    "description": "Techniques for optimizing React apps."
+  },
+  {
+    "id": "4",
+    "day": 1,
+    "column": 2,
+    "title": "CSS Architecture",
+    "speaker": "Carlos Ruiz",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "description": "Scalable CSS patterns and methodologies."
+  },
+  {
+    "id": "5",
+    "day": 1,
+    "column": 1,
+    "title": "Lunch Break",
+    "speaker": "",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "description": "Networking lunch."
+  },
+  {
+    "id": "6",
+    "day": 1,
+    "column": 2,
+    "title": "Lunch Break",
+    "speaker": "",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "description": "Networking lunch."
+  },
+  {
+    "id": "7",
+    "day": 1,
+    "column": 1,
+    "title": "Next.js Deep Dive",
+    "speaker": "Diana Park",
+    "startTime": "13:00",
+    "endTime": "14:30",
+    "description": "Advanced patterns in Next.js App Router."
+  },
+  {
+    "id": "8",
+    "day": 1,
+    "column": 2,
+    "title": "Testing Strategies",
+    "speaker": "Ethan Moore",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "description": "Unit, integration, and e2e testing."
+  },
+  {
+    "id": "9",
+    "day": 1,
+    "column": 1,
+    "title": "Panel: Future of Web",
+    "speaker": "Various",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "description": "Industry leaders discuss upcoming trends."
+  },
+  {
+    "id": "10",
+    "day": 1,
+    "column": 2,
+    "title": "GraphQL vs REST",
+    "speaker": "Fiona Walsh",
+    "startTime": "14:30",
+    "endTime": "15:30",
+    "description": "Comparing API design approaches."
+  },
+  {
+    "id": "11",
+    "day": 2,
+    "column": 1,
+    "title": "Day 2 Kickoff",
+    "speaker": "Jane Smith",
+    "startTime": "09:00",
+    "endTime": "09:30",
+    "description": "Recap and agenda for day two."
+  },
+  {
+    "id": "12",
+    "day": 2,
+    "column": 2,
+    "title": "Accessibility 101",
+    "speaker": "Grace Kim",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "description": "Building inclusive web experiences."
+  },
+  {
+    "id": "13",
+    "day": 2,
+    "column": 1,
+    "title": "State Management",
+    "speaker": "Henry Liu",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "description": "Redux, Zustand, and Jotai compared."
+  },
+  {
+    "id": "14",
+    "day": 2,
+    "column": 2,
+    "title": "Web Performance",
+    "speaker": "Isla Brown",
+    "startTime": "10:30",
+    "endTime": "11:30",
+    "description": "Core Web Vitals and optimization tips."
+  },
+  {
+    "id": "15",
+    "day": 2,
+    "column": 1,
+    "title": "Lunch Break",
+    "speaker": "",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "description": "Networking lunch."
+  },
+  {
+    "id": "16",
+    "day": 2,
+    "column": 2,
+    "title": "Lunch Break",
+    "speaker": "",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "description": "Networking lunch."
+  },
+  {
+    "id": "17",
+    "day": 2,
+    "column": 1,
+    "title": "Serverless Functions",
+    "speaker": "Jack Turner",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "description": "Edge and serverless deployment patterns."
+  },
+  {
+    "id": "18",
+    "day": 2,
+    "column": 2,
+    "title": "Design Systems",
+    "speaker": "Karen Patel",
+    "startTime": "13:00",
+    "endTime": "14:30",
+    "description": "Building and maintaining component libraries."
+  },
+  {
+    "id": "19",
+    "day": 2,
+    "column": 1,
+    "title": "Closing Remarks",
+    "speaker": "Jane Smith",
+    "startTime": "15:30",
+    "endTime": "16:00",
+    "description": "Thank you and wrap-up."
+  },
+  {
+    "id": "20",
+    "day": 2,
+    "column": 2,
+    "title": "Networking Social",
+    "speaker": "",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "description": "Informal networking session."
+  }
+]
