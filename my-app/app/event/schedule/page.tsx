@@ -1,116 +1,231 @@
+"use client";
 
 import NavBar from "@/app/components/nav-bar/nav-bar";
-import EventBlock from "./eventblock";
-import eventsData from "@/public/events.json";
+import "@/app/globals.css";
 import Footer from "@/app/components/footer/footer";
+import { useEffect, useState } from "react";
+import type { Event } from "@/types/schedule";
+import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/types/schedule";
 
-export interface Event {
-  id: string;
-  day: number;
-  column: number;
-  title: string;
-  speaker: string;
-  startTime: string; // "HH:MM"
-  endTime: string;   // "HH:MM"
-  description: string;
+import HappeningNow from "@/app/components/schedule/happening-now";
+import Schedule from "@/app/components/schedule/schedule";
+import HackRPILink from "@/app/components/themed-components/hackrpi-link";
+
+async function fetchEvents(): Promise<{
+	status: number;
+	message: string;
+	events: Event[];
+}> {
+	let groups = undefined;
+	try {
+		const session = await Auth.fetchAuthSession();
+		groups = session.tokens?.accessToken.payload["cognito:groups"];
+	} catch (e) {
+		console.error(e);
+		groups = undefined;
+	}
+
+	const { data, errors } = await client.models.event.list({
+		authMode: groups ? "userPool" : "identityPool",
+		limit: 200,
+		filter: {
+			visible: { eq: true },
+		},
+	});
+
+	if (errors) {
+		console.error(errors);
+		return { status: 500, message: "Failed to fetch events.", events: [] };
+	}
+
+	return {
+		status: 200,
+		message: "Success",
+		events: data.map((event) => event as Event),
+	};
 }
 
-// Convert "HH:MM" to minutes since midnight
-export function timeToMinutes(time: string): number {
-  const [h, m] = time.split(":").map(Number);
-  return h * 60 + m;
+export default function Page() {
+	const [currentDateTime, setCurrentDateTime] = useState(new Date());
+	const [allEvents, setAllEvents] = useState<Event[]>([]);
+	const [saturdayEvents, setSaturdayEvents] = useState<Event[]>([]);
+	const [sundayEvents, setSundayEvents] = useState<Event[]>([]);
+	const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
+	const [happeningNow, setHappeningNow] = useState<Event[]>([]);
+	const [modalEvent, setModalEvent] = useState<Event | null>(null);
+
+	useEffect(() => {
+		fetchEvents().then((resp) => {
+			if (resp.status !== 200) {
+				setState("error");
+				return;
+			}
+
+			const saturdayEvents = resp.events
+				.slice()
+				.map((event) => {
+					if (event.startTime >= SATURDAY_START && event.startTime < SATURDAY_END) {
+						// Saturday
+						return {
+							...event,
+							startTime: Math.max(event.startTime, saturdayTimes[0].unix),
+							endTime: Math.min(event.endTime, SATURDAY_END),
+						};
+					}
+					return null;
+				})
+				.filter((event) => event !== null && event.endTime > event.startTime)
+				.sort((a, b) => a!.startTime - b!.startTime) as Event[];
+
+			const sundayEvents = resp.events
+				.slice()
+				.map((event) => {
+					if (
+						event.endTime > event.startTime &&
+						((event.startTime >= SUNDAY_START && event.startTime < SUNDAY_END) ||
+							(event.endTime > SUNDAY_START && event.endTime <= SUNDAY_END))
+					) {
+						// Sunday
+						const ret = {
+							...event,
+							startTime: Math.max(event.startTime, SUNDAY_START),
+							endTime: Math.min(event.endTime, SUNDAY_END),
+						};
+
+						return ret;
+					}
+					return null;
+				})
+				.filter((event) => event !== null && event.endTime > event.startTime)
+				.sort((a, b) => a!.startTime - b!.startTime) as Event[];
+
+			setSaturdayEvents(saturdayEvents);
+			setSundayEvents(sundayEvents);
+			setAllEvents(resp.events);
+
+			setHappeningNow(determineHappeningNow(resp.events));
+			setState("loaded");
+		});
+
+		const interval = setInterval(() => {
+			setCurrentDateTime(new Date());
+		}, 1000);
+
+		addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				setModalEvent(null);
+			}
+		});
+
+		return () => clearInterval(interval);
+	}, []);
+
+	return (
+		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
+			<NavBar showOnScroll={false} />
+			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16 ">
+				<div className="flex w-full items-center justify-center">
+					<HackRPILink
+						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+						className="text-primary text-xl lg:text-2xl px-5 py-2"
+					>
+						Google Calendar
+					</HackRPILink>
+				</div>
+				<div className="flex w-full items-center justify-between">
+					<h1 className="text-3xl xs:text-4xl font-bold text-center">Schedule</h1>
+					<p className="text-center font-bold text-xl  xs:text-3xl">
+						{currentDateTime.toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}
+					</p>
+				</div>
+				<hr className="w-full border-primary border-2 my-4" />
+				{state === "loading" && (
+					<div className="flex h-fit items-center justify-center w-full">
+						<h2 className="text-xl">Loading the schedule: </h2>
+						<div className="loading loading-infinity loading-lg text-primary"></div>
+					</div>
+				)}
+
+				{state === "error" && (
+					<div className="badge bg-primary flex items-center justify-center h-fit my-4 ">
+						<p className="text-error-content text-xl p-2">
+							Oops! Looks like we ran into an issue loading the events. Please check your internet and refresh to try
+							again, if the problem persists, please let us know at <a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>
+							. Thank you!
+						</p>
+					</div>
+				)}
+
+				{state === "loaded" && happeningNow.length > 0 && <HappeningNow events={happeningNow} />}
+
+				{state === "loaded" && (
+					<div className="flex flex-col items-start w-full h-fit mb-8">
+						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Saturday, November 9, 2024</h1>
+						<p>Click / Tap any event for more info!</p>
+						<hr className="w-full border-grey my-4" />
+
+						<Schedule
+							events={saturdayEvents}
+							times={saturdayTimes}
+							currentTime={currentDateTime}
+							onEventClick={(event) => {
+								setModalEvent(allEvents.find((e) => e.id === event.id)!);
+							}}
+						/>
+						<div className="h-4"></div>
+						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Sunday, November 10, 2024</h1>
+						<p>Click / Tap any event for more info!</p>
+						<hr className="w-full border-grey my-4" />
+
+						<Schedule
+							events={sundayEvents}
+							times={sundayTimes}
+							currentTime={currentDateTime}
+							onEventClick={(event) => {
+								setModalEvent(allEvents.find((e) => e.id === event.id)!);
+							}}
+						/>
+					</div>
+				)}
+
+				{modalEvent && (
+					<div
+						className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-20"
+						onClick={() => {
+							setModalEvent(null);
+						}}
+					>
+						<div className="w-11/12 desktop:w-2/3 h-5/6 bg-hackrpi-secondary-light-blue rounded-lg p-4 overflow-y-auto z-30">
+							<div className="flex items-center justify-between mb-4 border-b-2 border-b-gray-400 h-24">
+								<h1 className=" text-3xl xs:text-4xl md:text-5xl font-bold">{modalEvent.title}</h1>
+								<button
+									className="text-4xl font-bold text-black mr-4 hover:text-primary focus:text-primary"
+									onClick={() => {
+										setModalEvent(null);
+									}}
+								>
+									&times;
+								</button>
+							</div>
+							<p className="text-2xl md:text-4xl mb-4">
+								{modalEvent.location} {modalEvent.speaker ? `• ${modalEvent.speaker}` : ""}
+							</p>
+							<p className="text-3xl mb-4">
+								{new Date(modalEvent.startTime).toLocaleString()} - {new Date(modalEvent.endTime).toLocaleString()}
+							</p>
+							<p className="text-2xl">{modalEvent.description}</p>
+						</div>
+					</div>
+				)}
+			</div>
+			<Footer />
+		</div>
+	);
 }
 
-// Get the earliest start and latest end across all events for a given day
-export function getDayBounds(events: Event[]): { start: number; end: number } {
-  const starts = events.map((e) => timeToMinutes(e.startTime));
-  const ends = events.map((e) => timeToMinutes(e.endTime));
-  return {
-    start: Math.min(...starts),
-    end: Math.max(...ends),
-  };
+function determineHappeningNow(events: Event[]): Event[] {
+	const currentDateTime = new Date();
+	return events.filter(
+		(event) => event.startTime < currentDateTime.getTime() && event.endTime > currentDateTime.getTime(),
+	);
 }
-
-// Get all unique column names for a day, preserving insertion order
-export function getColumns(events: Event[]): number[] {
-  return Array.from(new Set(events.map((e) => e.column)));
-}
-
-interface Props {
-  day: number;
-  events: Event[];
-  pixelsPerMinute?: number;
-}
-
-const PIXELS_PER_MINUTE = 2;
-const TIME_GUTTER_WIDTH = 52; // px
-
-function Schedule({ day, events, pixelsPerMinute = PIXELS_PER_MINUTE }: Props) {
-  const { start, end } = getDayBounds(events);
-  const columns = getColumns(events);
-  const totalHeight = (end - start) * pixelsPerMinute;
- 
-  // Build hour tick marks
-  const startHour = Math.floor(start / 60);
-  const endHour = Math.ceil(end / 60);
-  const hours: number[] = [];
-  for (let h = startHour; h <= endHour; h++) hours.push(h);
- 
-  return (
-    <section className="relative pb-250">
-      <h2 className="border-2 border-red-500 p-5">Day {day}</h2>
-      <div className="relative w-[20%] mx-5">
-        {hours.map((h) => {
-          const top = (h * 60 - start) * pixelsPerMinute;
-          return (
-            <div key={h} className="border-2 border-yellow-500 p-5">
-              {String(h).padStart(2, "0")}:00
-            </div>
-          );
-        })}
-      </div>
-      {columns.map((col) => {
-        const colEvents = events.filter((e) => e.column === col);
-        return (
-          <div
-            key={col}
-            className="absolute top-11 left-1 border-2 border-green-500 my-5"
-            style={{height: totalHeight, left: `${(col / 4) * 100}%`}}
-          >
-            {colEvents.map((event) => (
-              <EventBlock
-                key={event.id}
-                event={event}
-                dayStart={start}
-                pixelsPerMinute={pixelsPerMinute}
-              />
-            ))}
-          </div>
-        );
-      })}
-    </section>
-  );
-}
-
-export default function Home() {
-  const events = eventsData as Event[];
-  const days = Array.from(new Set(events.map((e) => e.day))).sort((a, b) => a - b);
- 
-  return (
-    <>
-      <NavBar showOnScroll={false}/>
-      <main className="p-5 pt-20">
-        <h1 className="p-5">Event Schedule</h1>
-        {days.map((day) => (
-          <Schedule
-            key={day}
-            day={day}
-            events={events.filter((e) => e.day === day)}
-          />
-        ))}
-      </main>
-      <Footer/>
-    </>
-  );
-}
- 
