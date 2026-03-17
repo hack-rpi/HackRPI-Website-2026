@@ -25,7 +25,7 @@ export default function Mentions() {
 				</div>
 			</div>
 			<div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
-			<div className='font-mono text-[60px] flex-1 h-[100vh] w-[100vw] text-center content-center grid gap-10 bg-white p-35 text-gBlack'>
+			<div className='font-mono text-[50px] flex-1 h-[100vh] w-[100vw] text-center content-center grid gap-10 bg-white p-35 text-gBlack'>
 				<span className=" relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 					Hack RPI <b>In the Clouds</b> something
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
