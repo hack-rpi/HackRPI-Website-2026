@@ -191,7 +191,7 @@ export default function Home() {
         onReady={(variant) => {
           // Runs once the chosen title variant is mounted/rendered
           textAnimation("title-animate", 0.9, 0.0, 0);
-          textAnimation("links-animate", 0.7, 0.0, 1);
+          textAnimation("links-animate", 0.5, 0.0, 0);
         }}
       />
         <AboutUs />

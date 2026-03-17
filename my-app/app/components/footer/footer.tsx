@@ -31,7 +31,7 @@ export default function Footer() {
 							</div>
 						</div>
 					</div>
-					<div className="relative z-10 mt-7 w-1/2 h-full font-mono flex flex-col items-center justify-center text-center p-30">
+					<div className="relative z-10 mt-7 w-1/2 h-full font-mono flex flex-col items-center justify-center text-center p-30 px-20">
 						<span className="">Darrin Communications Center</span>
 						<span className="">@ Rensselaer Polytechnic Institute</span>
 						<span className="">110 8th St, Troy, NY 12180</span>
