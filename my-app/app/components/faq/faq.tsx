@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import Cloud from "./cloud";
 // import RegistrationButton from "@/components/themed-components/registration-link"; // FIXME
 
 gsap.registerPlugin(useGSAP);
@@ -81,50 +82,23 @@ export default function FAQPage() {
         </div>
       </div>
 
-      <div id="cloud1_faq" className="relative h-[50vh] w-[120vh] content-center m-5 p-5">
-        {/* Temporary until a better cloud image is found */}
-        <Image
-          src="/cloud.png"
-          fill
-          alt="Cloud image"
-          objectFit="cover"
-          preload={true}
-          className="bg-white rounded-full"
-        />
+      <Cloud id="cloud1_faq" text={[
+        "Arrival and check-in takes place from 9-10 AM Saturday.",
+        "Our opening ceremony starts at 10 AM, and hacking begins at 11am.",
+        "During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.",
+        "Teams will then present their projects, and the best projects win prizes!",
+        "Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday.",
+        "The event will end around 4 PM on Sunday."
+      ]}/>
 
-        <div id="text1" className="text-purple-500 absolute top-[38%] left-[15%] bg-white">
-          <h2 className="text-2xl">General Format</h2>
-          <p>Arrival and check-in takes place from 9-10 AM Saturday.</p>
-          <p>Our opening ceremony starts at 10 AM, and hacking begins at 11am.</p>
-          <p>During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.</p>
-          <p>Teams will then present their projects, and the best projects win prizes!</p>
-          <p>Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday.</p> 
-          <p>The event will end around 4 PM on Sunday.</p>
-        </div>
-      </div>
-
-      <div id="cloud2_faq" className="relative h-[50vh] w-[120vh] content-center m-5 p-5">
-        {/* Temporary until a better cloud image is found */}
-        <Image
-          src="/cloud.png"
-          fill
-          alt="Cloud image"
-          objectFit="cover"
-          preload={true}
-          className="bg-white rounded-full"
-        />
-
-        <div id="text2" className="text-purple-500 w-[80%] absolute top-[38%] left-[15%] bg-white">
-          <h2 className="text-2xl">Participation</h2>
-          <p>Everyone is welcome to participate in HackRPI!</p>
-          <p>Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.</p>
-          <p>You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.</p>
-          <p>Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.
-            Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.</p> 
-          <p>To register, click here to register with Major League Hacking.</p>
-          {/* <RegistrationButton /> */}
-        </div>
-      </div>
+      <Cloud id="cloud2_faq" text={[
+          "Everyone is welcome to participate in HackRPI!",
+          "Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.",
+          "You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.",
+          "Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.",
+          "Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.",
+          "To register, click here to register with Major League Hacking."
+        ]}/>
 
       <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-linear-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
 
