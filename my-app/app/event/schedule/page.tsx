@@ -3,14 +3,12 @@
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
-import type { Event } from "@/app/data/schedule";
+import type { Event, ScheduleData } from "@/app/data/schedule";
 import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/app/data/schedule";
 
 import HappeningNow from "@/app/components/schedule/happening-now";
 import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
-
-import data from "@/app/data/scheduleData.json" assert {type: 'json'};
 
 // async function fetchEvents(): Promise<{
 // 	status: number;
@@ -68,10 +66,9 @@ export default function Page() {
 			if (!resp.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const jsonData: Event[] = await resp.json();
+			const jsonData: ScheduleData = await resp.json();
 
-			const saturdayEvents = jsonData
-				.slice()
+			const saturdayEvents = jsonData.saturdayEvents
 				.map((event) => {
 					if (event.startTime >= SATURDAY_START && event.startTime < SATURDAY_END) {
 						// Saturday
@@ -86,8 +83,7 @@ export default function Page() {
 				.filter((event) => event !== null && event.endTime > event.startTime)
 				.sort((a, b) => a!.startTime - b!.startTime) as Event[];
 
-			const sundayEvents = jsonData
-				.slice()
+			const sundayEvents = jsonData.sundayEvents
 				.map((event) => {
 					if (
 						event.endTime > event.startTime &&
@@ -107,12 +103,16 @@ export default function Page() {
 				})
 				.filter((event) => event !== null && event.endTime > event.startTime)
 				.sort((a, b) => a!.startTime - b!.startTime) as Event[];
-
+				
+			const allEvents = [
+				...saturdayEvents,
+				...sundayEvents,
+			];
 			setSaturdayEvents(saturdayEvents);
 			setSundayEvents(sundayEvents);
-			setAllEvents(jsonData);
+			setAllEvents(allEvents);
 
-			setHappeningNow(determineHappeningNow(jsonData));
+			setHappeningNow(determineHappeningNow(allEvents));
 			setState("loaded");
 		} catch (error) {
 			console.error('Error fetching data:', error);
@@ -131,7 +131,10 @@ export default function Page() {
 		return () => clearInterval(interval);
 	};
 
-	fetchData();
+	useEffect(() => {
+		fetchData();
+	}, []);
+	
 
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
@@ -173,7 +176,7 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Saturday, November 9, 2024</h1>
+						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
@@ -186,7 +189,7 @@ export default function Page() {
 							}}
 						/>
 						<div className="h-4"></div>
-						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Sunday, November 10, 2024</h1>
+						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Sunday, November 8, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 

@@ -14,23 +14,20 @@ export type Event = {
   width: number;
 };
 
-// ─────────────────────────────────────────────
-// IMPORTANT: all math in the app keys off these
-// ─────────────────────────────────────────────
+export type ScheduleData = {
+  saturdayEvents: Event[];
+  sundayEvents: Event[];
+};
 
-// Saturday = SAT 11/15/2025 starting at 9:00 AM local
-export const SATURDAY_START = new Date("2025-11-15T09:00:00-05:00").getTime();
+export const SATURDAY_START = new Date("2026-11-07T09:00:00-05:00").getTime();
 
 // Saturday ends ~11 PM same night (we just need this for display ranges)
-export const SATURDAY_END = new Date("2025-11-16T00:00:00-05:00").getTime() - 1;
+export const SATURDAY_END = new Date("2026-11-07T00:00:00-05:00").getTime() - 1;
 
-// Sunday = SUN 11/16/2025 starting at 12:00 AM local (midnight)
-export const SUNDAY_START = new Date("2025-11-16T00:00:00-05:00").getTime();
+export const SUNDAY_START = new Date("2026-11-08T00:00:00-05:00").getTime();
 
-// Sunday ends 8:00 PM Sunday
-export const SUNDAY_END = new Date("2025-11-16T20:00:00-05:00").getTime();
+export const SUNDAY_END = new Date("2026-11-08T20:00:00-05:00").getTime();
 
-// timeline labels for Saturday (9 AM → 11 PM)
 export const saturdayTimes = [
 	{ str: "9:00 AM",  unix: SATURDAY_START + 0 * 3600000 },
 	{ str: "10:00 AM", unix: SATURDAY_START + 1 * 3600000 },
@@ -49,7 +46,6 @@ export const saturdayTimes = [
 	{ str: "11:00 PM", unix: SATURDAY_START + 14 * 3600000 }
 ];
 
-// timeline labels for Sunday (12 AM → 8 PM)
 export const sundayTimes = [
 	{ str: "12:00 AM", unix: SUNDAY_START + 0 * 3600000 },
 	{ str: "1:00 AM",  unix: SUNDAY_START + 1 * 3600000 },
