@@ -58,21 +58,6 @@ export default function Home() {
 
   useEffect(() => {
 
-    // run on page load
-    // just keeps checking until the div for mobile or desktop is loaded
-    requestAnimationFrame(() => {
-      let retries = 0;
-      const checkAndAnimate = () => {
-        if (document.querySelector("#title-animate")) {
-          textAnimation("title-animate", 0.9, 0.0, 0);
-          textAnimation("links-animate", 0.9, 0.0, 1);
-        } else if (retries < 50) {
-          retries++;
-          requestAnimationFrame(checkAndAnimate);
-        }
-      };
-      checkAndAnimate();
-    });
 
     // lenis scrolling
     const lenis = new Lenis({
@@ -202,7 +187,13 @@ export default function Home() {
     <>
       <NavBar showOnScroll={true} />
       <div className="w-full overflow-hidden">
-        <TitleComponent />
+      <TitleComponent
+        onReady={(variant) => {
+          // Runs once the chosen title variant is mounted/rendered
+          textAnimation("title-animate", 0.9, 0.0, 0);
+          textAnimation("links-animate", 0.5, 0.0, 0);
+        }}
+      />
         <AboutUs />
         <FAQPage />
         <Sponsors />

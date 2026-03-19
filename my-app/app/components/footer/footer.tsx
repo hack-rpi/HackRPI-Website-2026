@@ -3,8 +3,8 @@ export default function Footer() {
 		<div className="h-screen w-full bg-transparent" id="footer">
 			<div className="h-[50vh]" />
 			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border-1 text-2xl mx-5 bottom-5 h-[50vh] relative flex flex-col text-center bg-gBlack">
-				<div className="relative w-full h-full flex flex-row">
-					<div className="relative z-10 w-1/2 h-[90%] p-0 flex flex-col p-30 items-center">
+				<div className="relative w-full h-[90%] flex flex-row">
+					<div className="relative z-10 w-1/2 h-full p-0 flex flex-col p-30 items-center">
 						<div className="relative z-10 w-fit h-full p-0 flex flex-col pt-0 pl-0">
 						<div
 							className="text-blue-200 text-[1.75rem] leading-none ml-3 mr-auto"
@@ -24,17 +24,17 @@ export default function Footer() {
 
 							<div
 								className="text-blue-200 text-[2.3rem] font-mono leading-none ml-auto mr-5"
-								style={{ clipPath: "inset(0px 100% 0px 0px)" }}
+								style={{ clipPath: "inset(0px 0% 0px 0px)" }}
 								id="title-animate"
 							>
 								IN THE CLOUDS
 							</div>
 						</div>
 					</div>
-					<div className="relative z-10 mt-7 w-1/2 h-[90%] font-mono flex flex-col items-center justify-center text-center p-30">
-						<span className="">Darrin Communications Center</span>
-						<span className="">@ Rensselaer Polytechnic Institute</span>
-						<span className="">110 8th St, Troy, NY 12180</span>
+					<div className="relative z-10 mt-7 w-1/2 h-full font-mono flex flex-col items-center justify-center text-center p-30 px-20">
+						<span className="text-white">Darrin Communications Center</span>
+						<span className="text-white">@ Rensselaer Polytechnic Institute</span>
+						<span className="text-white">110 8th St, Troy, NY 12180</span>
 						<div className="mt-6 flex items-center justify-center gap-4 text-blue-200">
 							<a
 								href="https://discord.com/invite/BkDVUmrufa"
