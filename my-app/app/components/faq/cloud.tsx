@@ -20,8 +20,8 @@ export default function Cloud({ id, text }: CloudProps) {
       <div className="absolute bottom-[15%] left-170 h-[60%] w-52 rounded-full bg-white" />
 
       <div className="absolute inset-0 z-10 flex flex-col left-10 justify-center px-8">
-        {text.map((line) => (
-          <p key={line} className="p-1 max-w-[150vh] text-purple-700 text-nowrap hover:text-blue-800 hover:font-semibold">
+        {text.map((line, index) => (
+          <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap hover:text-blue-800 hover:font-semibold">
             {line}
           </p>
         ))}
