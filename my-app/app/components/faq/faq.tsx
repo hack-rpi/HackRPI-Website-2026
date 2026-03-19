@@ -26,7 +26,7 @@ export default function FAQPage() {
 		.fromTo('#cloud1_faq', {
       x: 0,
     }, {
-			x: innerWidth/5 + 20,
+			x: innerWidth/4,
 		}, 0)
 		.fromTo('#cloud2_faq', {
       x: 0,
