@@ -3,23 +3,26 @@ import type { ProjectCarouselProps } from "@/app/components/prev-projects/projec
 
 export const podiumPrizes: ProjectDisplayProps[] = [
 	{
-		title: "WALKR",
-		authors: ["Ryan Dong", "Oliver Adams", "Jordyn Young"],
+		title: "TrashCam",
+		authors: ["ajitesh bankula", "Connor Kuemerle", "Samson Kempiak", "Matthew Durcan"],
 		description:
-			"WALKR combines GPS coordinates with advanced geospatial mapping to instantly pinpoint the user’s location and provide guidance based on nearby landmarks. Our approach integrates real-time positioning with the angle and orientation of the user’s phone to project an accurate walking route displayed in a mixed-reality headset. Users can simply say their destination aloud, and WALKR’s hands-free voice recognition sets up a precise route without needing a glance at the screen. Notably, WALKR also offers a fully integrated wheelchair-accessible route option, ensuring that users with mobility challenges receive optimal path guidance.",
-		imageUrl: "/projectImages/Walkr.png",
+			"We wanted to build something that mixes AI, hardware, and environmental impact in a way that's actually useful. Everyone throws trash away, but very few people sort it correctly—and most campuses or public places have no idea how full their bins are or how much contamination they get. trashCam was born from the idea of turning an ordinary trash can into a smart, reactive, AI-powered system that could see what's being thrown away and help facilities track sustainability metrics.",
+		imageUrl: "/projectImages/firstPlace.png",
 		prizeCategory: "First Place",
 		imageOnLeft: false,
 	},
 	{
-		title: "Shelfie",
-		authors: ["yasemin-et Turkoglu", "phanl2", "Rumeysa Kara", "drchubbington"],
+		title: "RetroBrainScan",
+		authors: ["Drew Bhavsar", "Sage JPC", "Rafi Khan"],
 		description:
-			"In today's fast-paced urban environment, traditional libraries and bookstores are facing challenges in engaging with the digital-native population. Our team was inspired to bridge this gap by creating Shelfie, a modern solution that makes literary discovery accessible. With many city residents facing time constraints and information overload, we wanted to create a tool that makes finding the right book as easy as using social media, thereby promoting literacy and cultural engagement in urban communities.",
-		imageUrl: "/projectImages/Shelfie.png",
+			"Our inspiration came from personal experiences watching family members live with, and sometimes lose their lives to, dementia. We wanted to build a tool that helps families understand what’s coming, prepare earlier, and feel less alone in the process.",
+		imageUrl: "/projectImages/secondPlace.png",
 		imageOnLeft: true,
 		prizeCategory: "Second Place",
 	},
+];
+
+export const carouselPrizes: ProjectCarouselProps[] = [
 	{
 		title: "Green",
 		authors: ["Mami Ravaloarison"],
@@ -27,11 +30,7 @@ export const podiumPrizes: ProjectDisplayProps[] = [
 			'"Green" is an app built to reduce traffic emissions by helping drivers find routes with minimal stops as possible. It analyzes current traffic for a route and dynamically recommends routes that avoid traffic hotspots, ensuring drivers spend less time in traffic even though, now the travel time has increased. Every time a user completes a route with fewer emissions, they earn points. These points can then be redeemed for discounts or rewards offered by environmentally conscious companies, such as WWF, National Geographic, and others dedicated to environmental causes.',
 		imageUrl: "/projectImages/GreenWinner.png",
 		prizeCategory: "Best Sustainability Hack",
-		imageOnLeft: false,
 	},
-];
-
-export const carouselPrizes: ProjectCarouselProps[] = [
 	{
 		title: "EcoVision",
 		authors: ["Nikul Patel", "Robert Acebedo", "Timothy Liakh", "Matteo Rathgeber"],
