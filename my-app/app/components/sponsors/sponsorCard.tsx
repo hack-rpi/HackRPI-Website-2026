@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { text } from "stream/consumers";
 
 
-export default function SponsorCard({ name, tier, image }: any) {
+export default function SponsorCard({ name, tier, image, link }: any) {
   let bg_color, text_color;
   let shadowColor = "0,0,0"; // default RGB
 
@@ -13,22 +13,22 @@ export default function SponsorCard({ name, tier, image }: any) {
     shadowColor = "147,51,234"; 
   } else if (tier === "gold") {
     bg_color =
-      "bg-yellow-400/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "bg-slate-200/30 bg-gradient-to-br from-white/40 to-transparent border border-white/20";
     text_color = "text-yellow-100";
     shadowColor = "234,179,8"; 
   } else if (tier === "silver") {
     bg_color =
-      "bg-slate-300/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "bg-slate-300/30 bg-gradient-to-br from-white/75 to-transparent border border-white/20";
     text_color = "text-white";
     shadowColor = "59,130,246";
   } else if (tier === "bronze") {
     bg_color =
-      "bg-orange-700/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "bg-slate-300/30 bg-gradient-to-br from-white/100 to-transparent border border-white/20";
     text_color = "text-orange-100";
     shadowColor = "239,68,68"; 
   } else {
     bg_color =
-      "bg-white/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "bg-white/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
     text_color = "text-red-500";
   }
 
@@ -37,14 +37,13 @@ export default function SponsorCard({ name, tier, image }: any) {
   const [shadow, setShadow] = useState(
     `0px 20px 40px rgba(${shadowColor},0.35)`
   );
-  
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
   const rect = e.currentTarget.getBoundingClientRect();
 
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  const margin = 10;
+  const margin = 20;
 
   // Prevent jitter near edges
   if (
@@ -105,15 +104,17 @@ export default function SponsorCard({ name, tier, image }: any) {
         
       }}
     >
+      <a href = {link} target="_blank" rel="noopener noreferrer">
       <div className="flex flex-col items-center justify-center gap-2">
         {image && (
           <img
             src={image}
             alt={name}
-            className="absolute inset-0 w-full h-full object-contain"
+            className="absolute inset-0 w-full h-full object-contain p-3"
           />
         )}
       </div>
+      </a>
     </div>
 
    
