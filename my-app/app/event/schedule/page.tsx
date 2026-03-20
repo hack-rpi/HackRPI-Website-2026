@@ -3,7 +3,7 @@
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
-import type { Event, ScheduleData } from "@/app/data/schedule";
+import type { Event, ScheduleData, ScheduleEventData } from "@/app/data/schedule";
 import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/app/data/schedule";
 
 import HappeningNow from "@/app/components/schedule/happening-now";
@@ -70,12 +70,17 @@ export default function Page() {
 
 			const saturdayEvents = jsonData.saturdayEvents
 				.map((event) => {
-					if (event.startTime >= SATURDAY_START && event.startTime < SATURDAY_END) {
+					const normalizedEvent = normalizeEventTimes(event, "2026-11-07");
+					if (
+						normalizedEvent.endTime > normalizedEvent.startTime &&
+						normalizedEvent.startTime >= SATURDAY_START &&
+						normalizedEvent.startTime < SATURDAY_END
+					) {
 						// Saturday
 						return {
-							...event,
-							startTime: Math.max(event.startTime, saturdayTimes[0].unix),
-							endTime: Math.min(event.endTime, SATURDAY_END),
+							...normalizedEvent,
+							startTime: Math.max(normalizedEvent.startTime, saturdayTimes[0].unix),
+							endTime: Math.min(normalizedEvent.endTime, SATURDAY_END),
 						};
 					}
 					return null;
@@ -85,16 +90,17 @@ export default function Page() {
 
 			const sundayEvents = jsonData.sundayEvents
 				.map((event) => {
+					const normalizedEvent = normalizeEventTimes(event, "2026-11-08");
 					if (
-						event.endTime > event.startTime &&
-						((event.startTime >= SUNDAY_START && event.startTime < SUNDAY_END) ||
-							(event.endTime > SUNDAY_START && event.endTime <= SUNDAY_END))
+						normalizedEvent.endTime > normalizedEvent.startTime &&
+						((normalizedEvent.startTime >= SUNDAY_START && normalizedEvent.startTime < SUNDAY_END) ||
+							(normalizedEvent.endTime > SUNDAY_START && normalizedEvent.endTime <= SUNDAY_END))
 					) {
 						// Sunday
 						const ret = {
-							...event,
-							startTime: Math.max(event.startTime, SUNDAY_START),
-							endTime: Math.min(event.endTime, SUNDAY_END),
+							...normalizedEvent,
+							startTime: Math.max(normalizedEvent.startTime, SUNDAY_START),
+							endTime: Math.min(normalizedEvent.endTime, SUNDAY_END),
 						};
 
 						return ret;
@@ -244,4 +250,23 @@ function determineHappeningNow(events: Event[]): Event[] {
 	return events.filter(
 		(event) => event.startTime < currentDateTime.getTime() && event.endTime > currentDateTime.getTime(),
 	);
+}
+
+function normalizeEventTimes(event: ScheduleEventData, date: string): Event {
+	const startTime = toTimestamp(date, event.startTime);
+	let endTime = toTimestamp(date, event.endTime);
+
+	if (endTime <= startTime) {
+		endTime += 24 * 60 * 60 * 1000;
+	}
+
+	return {
+		...event,
+		startTime,
+		endTime,
+	};
+}
+
+function toTimestamp(date: string, time: string): number {
+	return new Date(`${date}T${time}-05:00`).getTime();
 }

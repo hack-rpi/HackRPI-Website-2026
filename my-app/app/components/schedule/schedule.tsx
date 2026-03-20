@@ -29,26 +29,26 @@ export default function Schedule(props: ScheduleProps) {
 					<div key={index} className="relative flex flex-col grow shrink basis-auto h-full mx-0.5 sm:mx-1">
 						{column.map((event) => {
 							const { top, height } = calculateTopAndHeightOfEvent(event, props.times);
-							let color = "bg-hackrpi-primary-blue text-black border-black";
+							let color = "bg-gray-500 text-black border-black";
 
 							const eventPassed = props.currentTime.getTime() > event.endTime;
 							const eventStarted = props.currentTime.getTime() > event.startTime;
 
 							if (event.eventType === "workshop") {
-								color = "bg-hackrpi-primary-light-green text-black border-black";
+								color = "bg-red-500 text-black border-black";
 							} else if (event.eventType === "deadline") {
-								color = "bg-red-400 text-black border-black";
+								color = "bg-blue-500 text-black border-black";
 							} else if (event.eventType === "food") {
-								color = "bg-hackrpi-secondary-light-green text-black border-black";
+								color = "bg-green-500 text-black border-black";
 							} else if (event.eventType === "important") {
-								color = "bg-hackrpi-primary-dark-green text-gray-300 border-gray-300";
+								color = "bg-orange-500 text-gray-300 border-gray-300";
 							}
 
 							if (eventStarted) {
-								color = "bg-hackrpi-secondary-yellow text-black border-black";
+								color = "bg-yellow-500 text-black border-black";
 							}
 							if (eventPassed) {
-								color = "bg-hackrpi-secondary-light-blue text-gray-300 border-gray-300";
+								color = "bg-slate-500 text-gray-300 border-gray-300";
 							}
 
 							return (
@@ -104,16 +104,8 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 
 function calculateTopAndHeightOfEvent(event: Event, times: TimelineLabel[]): { top: number; height: number } {
 	const HOUR_HEIGHT = 96; // 96px in height for each hour
-	let nearestStartTime = times[0];
-	for (let i = 0; i < times.length; i++) {
-		if (times[i].unix <= event.startTime) {
-			nearestStartTime = times[i];
-		}
-	}
-
-	const top = // the position of the hour line + the minute offset
-		(document.getElementById(`${nearestStartTime.unix}`)?.offsetTop || 0) +
-		((event.startTime - nearestStartTime.unix) / 3600000) * HOUR_HEIGHT;
+	const scheduleStart = times[0]?.unix ?? event.startTime;
+	const top = ((event.startTime - scheduleStart) / 3600000) * HOUR_HEIGHT;
 	const height = ((event.endTime - event.startTime) / 3600000) * HOUR_HEIGHT - 4;
 
 	return { top, height };

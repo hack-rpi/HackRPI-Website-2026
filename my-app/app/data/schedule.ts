@@ -4,25 +4,30 @@ export type Event = {
 	id: string;
 	title: string;
 	description: string;
-	startTime: number; // computed in page.tsx
-	endTime: number;   // computed in page.tsx
+	startTime: number;
+	endTime: number;
 	location: string;
 	speaker: string;
 	eventType: "workshop" | "constant" | "important" | "food" | "deadline";
 	visible: boolean;
 	column?: number; // 1-4
-  width: number;
+	width?: number;
+};
+
+export type ScheduleEventData = Omit<Event, "startTime" | "endTime" | "width"> & {
+	startTime: string;
+	endTime: string;
 };
 
 export type ScheduleData = {
-  saturdayEvents: Event[];
-  sundayEvents: Event[];
+	saturdayEvents: ScheduleEventData[];
+	sundayEvents: ScheduleEventData[];
 };
 
 export const SATURDAY_START = new Date("2026-11-07T09:00:00-05:00").getTime();
 
 // Saturday ends ~11 PM same night (we just need this for display ranges)
-export const SATURDAY_END = new Date("2026-11-07T00:00:00-05:00").getTime() - 1;
+export const SATURDAY_END = new Date("2026-11-08T00:00:00-05:00").getTime() - 1;
 
 export const SUNDAY_START = new Date("2026-11-08T00:00:00-05:00").getTime();
 
