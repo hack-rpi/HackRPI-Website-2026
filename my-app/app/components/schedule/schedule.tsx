@@ -105,7 +105,7 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 function calculateTopAndHeightOfEvent(event: Event, times: TimelineLabel[]): { top: number; height: number } {
 	const HOUR_HEIGHT = 96; // 96px in height for each hour
 	const scheduleStart = times[0]?.unix ?? event.startTime;
-	const top = ((event.startTime - scheduleStart) / 3600000) * HOUR_HEIGHT;
+	const top = ((event.startTime - scheduleStart) / 3600000) * HOUR_HEIGHT + 12;
 	const height = ((event.endTime - event.startTime) / 3600000) * HOUR_HEIGHT - 4;
 
 	return { top, height };
