@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
 import envelope from './envelope.png';
+import "./style.css"
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -20,9 +21,26 @@ export default function AboutUs() {
 	});
 
 	return (
-		<div className="relative p-5 bg-sky-500 h-screen">
+		<div className="relative p-5 bg-sky-500 min-h-screen">
 
-			<div id="letter" className="
+			<div className="envelopeContainer">
+				<div className="envelopeFlap">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div className="envelopeBody">
+					<div className="envelopeMarks"></div>
+					<div className="envelopeMarks1"></div>
+					<div className="envelopeMarks2"></div>
+					<div className="envelopeMarks2"></div>
+					<div className="envelopeMarks"></div>
+				</div>
+			</div>
+			
+
+
+			{/* <div id="letter" className="
 				absolute bg-white h-[45vh]
 				rotate-6 w-[65vh] left-[35%] top-[30%]
 			">
@@ -43,15 +61,15 @@ export default function AboutUs() {
 					in New York's Tech Valley and beyond. All students from all schools are welcome to
 					participate, regardless of their major or experience level.
 				</div>
-			</div>
+			</div> */}
 
-			<div className="absolute left-[26%] top-[25%]">
+			{/* <div className="absolute left-[26%] top-[25%]">
 				<Image
 					src={envelope}
 					alt="Envelope"
 					width={750}
 				/>
-			</div>
+			</div> */}
 			{/* TODO: The image should later be changed to be responsive. */}
 
 			<div

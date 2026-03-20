@@ -140,6 +140,10 @@ var themes = {
 	},
 } as any;
 
+// 			<div className='container bg-sky-500'>
+
+
+
 function SponsorUsPage() {
 	const { getPosition } = useMouseLogic();
 	var isMobileLayout = false;
@@ -175,8 +179,8 @@ function SponsorUsPage() {
 			// ${-offX}px ${-offY}px ${scale * 2}px rgba(255,255,255,0.9)
 
 			element.style.boxShadow = `
-				${offX}px ${offY}px ${scale}px var(--shadow),
-				${-offX}px ${-offY}px ${scale}px var(--light)
+				${offX}px ${offY}px ${scale * 2}px var(--shadow),
+				${-offX}px ${-offY}px ${scale * 2}px var(--light)
 			`;
 		});
 	}
@@ -269,7 +273,6 @@ function SponsorUsPage() {
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
 
 			let arrow = document.createElement('span');
-      arrow.style.fontSize = "2em";
 			arrow.innerHTML = '&rarr;';
 
 			let secondTier = document.createElement('h3');
@@ -392,7 +395,7 @@ function SponsorUsPage() {
 		document.getElementById('container3')!.style.width = size1 + 'px';
 		document.getElementById('container4')!.style.width = size1 + 'px';
 		mobileLayout();
-		// calculateShadows();
+		calculateShadows();
 		updateBenefits(viewingCurrentTier);
 	}
 
@@ -400,21 +403,20 @@ function SponsorUsPage() {
 		load();
 		window.addEventListener('resize', load);
 		
-		// window.addEventListener('mousemove', calculateShadows);
-		// window.addEventListener('scroll', calculateShadows);
+		window.addEventListener('mousemove', calculateShadows);
+		window.addEventListener('scroll', calculateShadows);
 	}, []);
 
-	return (
-		<>
+	return (<>
 		<NavBar showOnScroll={false}/>
-		<div style={{minHeight: 'calc(100vh - 16px)', width: '100%'}}>	
-			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
-			<div className="container bg-sky-500">
+		<div id="thing" style={{minHeight: 'calc( 100vh - 16px)', width: '100%'}}>	
+			{/* <div className='acontainer' style={{marginTop: '100px'}}></div> */}
+			<div className="acontainer" style={{height: "130px", width: "40vw"}}>
 				<div className="p-5 text-center neumorphic">
-          Click the buttons to see the benefits!
-        </div>
+					Click the buttons to see the benefits!
+				</div>
 			</div>
-			<div id='container1' className='container bg-sky-500'>
+			<div id='container1' className='acontainer' style={{}}>
 				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('bronze')}} style={{}}>
 					<h1>Bronze</h1>
 					<h2>750</h2>
@@ -433,17 +435,17 @@ function SponsorUsPage() {
 				</div>
 			</div>
 
-			<div className='container bg-sky-500'>
-				<div id='container2' className="neumorphic container centerText" style={{}}>
+			<div className='acontainer'>
+				<div id='container2' className="neumorphic centerText acontainer" style={{}}>
 					<div id='benefits' className='stackText' style={{}}>
 						<h3>Bronze</h3>
 					</div>
 				</div>
 			</div>
 
-			<div className='container bg-sky-500'>
-				<div id='container3' className="clickable neumorphic container centerText" style={{}}>
-					<div className='stackText text-lg' style={{}}>
+			<div className='acontainer'>
+				<div id='container3' className="clickable neumorphic centerText acontainer" style={{}}>
+					<div className='stackText' style={{}}>
 						<h4>We understand that standard sponsorship tiers may not suit all organizations.</h4>
 						<h4>Please contact &nbsp;
 							<a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>&nbsp;
@@ -452,8 +454,8 @@ function SponsorUsPage() {
 				</div>
 			</div>
 
-			<div className='container bg-sky-500'>
-				<div id='container4' className="neumorphic container" style={{}}>
+			<div className='acontainer'>
+				<div id='container4' className="neumorphic centerText acontainer" style={{}}>
 					<div id='docText' className='stackText' style={{}}>
 						<h3>Logo on T-Shirt</h3>
 						<p>Your company logo will be printed on the free shirts we give out</p>
@@ -501,10 +503,15 @@ function SponsorUsPage() {
 					</div>
 				</div>
 			</div>
+
+			<iframe
+				className="sponsorshipBooklet"
+				src="https://drive.google.com/file/d/1GCYJHNR37vq6_UT4v17lAOR4Cr4qUJcq/preview"
+				allow="autoplay"
+				sandbox="allow-scripts allow-same-origin allow-popups"
+			></iframe>
 		</div>
-		<Footer/>
-		</>
-	);
+	</>);
 }
 
 export default SponsorUsPage;
