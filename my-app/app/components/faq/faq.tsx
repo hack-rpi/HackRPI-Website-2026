@@ -24,14 +24,14 @@ export default function FAQPage() {
 			},
 		})
 		.fromTo('#cloud1_faq', {
-      x: 0,
+      x: -5,
     }, {
 			x: innerWidth/4,
 		}, 0)
 		.fromTo('#cloud2_faq', {
-      x: 0,
+      x: innerWidth/4,
     }, {
-			x: innerWidth/5,
+			x: -5,
 		}, 0);
   });
 
