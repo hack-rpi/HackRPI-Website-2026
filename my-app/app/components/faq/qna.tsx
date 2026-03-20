@@ -18,8 +18,12 @@ export default function QnA({title, content, defaultOpen = false }: FAQ) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={contentId}
-        className="faq-button w-full flex justify-between items-center
-        bg-gradient-to-b from-white to-sky-200 text-sky-500 border-none p-5 cursor-pointer text-left text-lg">
+        className="
+          w-full flex justify-between items-center
+          bg-gradient-to-b from-white to-sky-200 text-sky-500
+          border-none p-5 cursor-pointer text-left text-lg
+        "
+      >
         <span>{title}</span>
         <span aria-hidden="true" className="text-18 text-[1]">
           {open ? "-" : "+"}
