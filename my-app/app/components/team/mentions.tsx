@@ -2,9 +2,10 @@
 
 export default function Mentions() {
 	return (
-		<div className="h-[250vh] will-change-transform translate-z-0 bg-white" id="mentions-container">
-			<div className="flex h-[140vh] gap-0 bg-gBlack">
-				<div className="flex-1 h-[90vh] bg-gray-600 items-center justify-center text-4xl text-center flex"
+		<div className="h-[200vh] will-change-transform translate-z-0 bg-white" id="mentions-container">
+			<div className="flex h-[10vh] gap-0 bg-gBlack"></div>
+			<div className="flex h-[120vh] gap-0 bg-gBlack">
+				<div className="flex-1 h-[90vh] items-center justify-center text-4xl text-center flex"
 					id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
 					3d Trophy model placeholder
 				</div>
@@ -23,9 +24,10 @@ export default function Mentions() {
 					))}
 				</div>
 			</div>
-			<div className='font-sans text-[90px] flex-1 h-[100vh] w-full text-center content-center grid gap-10 bg-gBlack'>
+			<div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
+			<div className='font-mono text-[50px] flex-1 h-[100vh] w-[100vw] text-center content-center grid gap-10 bg-white p-35 text-gBlack'>
 				<span className=" relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-					<b>In the Clouds</b> something something
+					Hack RPI <b>In the Clouds</b> something
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 				</span>
 				<span className="relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
@@ -37,7 +39,7 @@ export default function Mentions() {
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 				</span>
 				<span className="relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-					For the <b>twelfth</b> year in a row we say
+					For the <b>thirteenth</b> year in a row we say
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 				</span>
 				<span className="relative w-fit mx-auto" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
@@ -45,7 +47,6 @@ export default function Mentions() {
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 				</span>
 			</div>
-			<div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
 		</div>
 	);
 };

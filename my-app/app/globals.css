@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 :root {
   --background: #ffffff;
@@ -11,6 +12,8 @@
   --color-gBlack: #111112;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-hackrpi-clouds-green: #00ff7f;
+  --color-hackrpi-clouds-blue: #87CEEB;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,4 +47,57 @@ Also for the text, it is needed to have its opacity 0 then put to 1 once the wid
   rotate: none;
   scale: none;
   transform: scale(1, 1);
+}
+
+#links-animate {
+  --norris-primary: #bfdbfe;
+  --norris-secondary: #fff;
+  --norris-size: 2.75rem;
+  --norris-time: 25ms;
+}
+
+#links-animate .norris-line {
+  cursor: pointer;
+  overflow: hidden;
+  line-height: var(--norris-size);
+}
+
+#links-animate .norris-char {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  white-space: pre;
+}
+
+#links-animate .norris-char::before,
+#links-animate .norris-char::after {
+  position: absolute;
+  left: 0;
+  content: attr(data-char);
+  color: var(--norris-primary);
+  white-space: pre;
+  transition: transform ease-in-out calc(var(--norris-time) * 10), color ease-in-out calc(var(--norris-time) * 10), opacity ease-in-out calc(var(--norris-time) * 10);
+  transition-delay: calc(var(--index) * var(--norris-time));
+}
+
+#links-animate .norris-char::before {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#links-animate .norris-char::after {
+  transform: translateY(var(--norris-size));
+  opacity: 0;
+}
+
+#links-animate .norris-line:hover .norris-char::before {
+  transform: translateY(calc(-1 * var(--norris-size)));
+  color: var(--norris-secondary);
+  opacity: 0;
+}
+
+#links-animate .norris-line:hover .norris-char::after {
+  transform: translateY(0);
+  color: var(--norris-secondary);
+  opacity: 1;
 }

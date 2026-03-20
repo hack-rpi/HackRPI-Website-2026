@@ -14,12 +14,15 @@ export default function HackRPILink({
 	return (
 		<NextLink
 			href={href}
-			className={`${className} group border-hackrpi-pink border-2 text-hackrpi-orange hover:bg-hackrpi-pink hover:text-hackrpi-yellow transition-colors duration-500 font-pix font-medium relative text-3xl`}
+			className={`
+				${className}
+				group border-purple-500 border-2 text-sky-500 hover:bg-purple-500
+				hover:text-yellow-500 transition-colors duration-500 font-pix font-medium relative text-3xl`}
 			target={target}
 		>
 			{children}
 			<svg
-				className="absolute top-1 right-1 group-hover:fill-hackrpi-yellow fill-hackrpi-pink transition-colors duration-0"
+				className="absolute top-1 right-1 group-hover:fill-yellow-500 fill-purple-500 transition-colors duration-0"
 				xmlns="http://www.w3.org/2000/svg"
 				width="15"
 				height="15"
