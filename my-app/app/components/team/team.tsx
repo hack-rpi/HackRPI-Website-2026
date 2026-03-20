@@ -14,7 +14,7 @@ export default function Team() {
 				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 			</div>
 			<div className="h-full w-[370vw] flex absolute" id="team-content">
-				<FaceCard size={1} left={135} top={25} img="/placeholder.png" name="Ben Kudarauskas"/>
+				<FaceCard size={1} left={135} top={25} img="/team/calebJR.jpg" name="Ben Kudarauskas"/>
 				<FaceCard size={1} left={165} top={45}img="/placeholder.png" name="John Doe"/>
 				<FaceCard size={1} left={200} top={30}img="/placeholder.png" name="Ben Dover"/>
 				<FaceCard size={1} left={240} top={10}img="/placeholder.png" name="Ben Kudarauskas"/>
