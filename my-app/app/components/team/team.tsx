@@ -3,6 +3,27 @@ import FaceCard from './faceCard';
 // import {FaceCard, Box, Squa} from './faceCard';
 
 
+const teamMembers = [
+	{ img: '/team/aaryan.jpeg', name: 'Aaryan Gautam' },
+	{ img: '/team/Adwait_Naware.jpeg', name: 'Adwait Naware' },
+	{ img: '/team/calebJR.jpg', name: 'Caleb Liu' },
+	{ img: '/team/cj.jpeg', name: 'CJ Marino' },
+	{ img: '/team/daksheshJR.jpg', name: 'Dakshesh Amaram' },
+	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
+	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
+	{ img: '/team/jackson.jpeg', name: 'Jackson Baimel' },
+	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
+	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
+	{ img: '/team/matthew.jpeg', name: 'Matthew Treanor' },
+	{ img: '/team/shankar.jpeg', name: 'Shankar Gowrisankar' },
+	{ img: '/team/suyash.jpeg', name: 'Suyash Amatya' },
+	{ img: '/team/tobias.jpeg', name: 'Tobias Manayath' },
+	{ img: '/team/xenia.jpeg', name: 'Xenia Khusid' },
+];
+
+const topOffsets = [45, 35, 25, 30, 45, 30, 40];
+
+
 // https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
 
 export default function Team() {
@@ -13,14 +34,17 @@ export default function Team() {
 				Meet the Team
 				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 			</div>
-			<div className="h-full w-[370vw] flex absolute" id="team-content">
-				<FaceCard size={1} left={135} top={25} img="/team/calebJR.jpg" name="Ben Kudarauskas"/>
-				<FaceCard size={1} left={165} top={45}img="/placeholder.png" name="John Doe"/>
-				<FaceCard size={1} left={200} top={30}img="/placeholder.png" name="Ben Dover"/>
-				<FaceCard size={1} left={240} top={10}img="/placeholder.png" name="Ben Kudarauskas"/>
-				<FaceCard size={1} left={290} top={30}img="/placeholder.png" name="Ben Kudarauskas"/>
-				<FaceCard size={1} left={320} top={10}img="/placeholder.png" name="Ben Dover"/>
-				<FaceCard size={1} left={340} top={45}img="/placeholder.png" name="Ben Kudarauskas"/>
+			<div className="h-full flex absolute" id="team-content" style={{ width: `${teamMembers.length * 28 + 170}vw` }}>
+				{teamMembers.map((member, i) => (
+					<FaceCard
+						key={member.name}
+						size={1}
+						left={135 + i * 28}
+						top={topOffsets[i % topOffsets.length]}
+						img={member.img}
+						name={member.name}
+					/>
+				))}
 			</div>
 		</div>
 	);
