@@ -40,6 +40,7 @@ export default function Cover(){
         <iframe ref={map} loading="lazy" allowFullScreen src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"></iframe>
       </div>
       <div className="coverTextContainer bg-gradient-to-b from-black to-purple-300">
+        <div className="coverBackimg"></div>
         {coverText.map((text, i) => {
           const Tag = text.type as keyof JSX.IntrinsicElements;
 
