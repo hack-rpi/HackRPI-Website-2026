@@ -14,7 +14,7 @@ export default function DesktopTitleComponent() {
   );
 
   return (
-    <div className="relative w-full h-screen bg-blue-4000 p-5 overflow-hidden">
+    <div className="relative w-full h-screen bg-[#00152b] p-5 overflow-hidden">
       <div className="absolute inset-0">
         <Canvas
           worker={worker}
@@ -25,7 +25,7 @@ export default function DesktopTitleComponent() {
 
       <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-30 pl-20">
         <div
-          className="text-blue-200 text-4xl leading-none ml-3"
+          className="text-blue-200 text-[2.15rem] leading-none ml-3"
           style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="title-animate"
         >
@@ -34,7 +34,7 @@ export default function DesktopTitleComponent() {
         </div>
 
         <div
-          className="text-[14rem] font-bold leading-none tracking-tight"
+          className="text-[12rem] font-bold leading-none tracking-tight"
           style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="title-animate"
         >
@@ -54,8 +54,8 @@ export default function DesktopTitleComponent() {
 
       <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-10 pl-20">
         <div
-          className="text-blue-200 text-[2.75rem] leading-none ml-3"
-          style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 0% 0px 0px)" }}
+          className="text-blue-200 text-[2.45rem] leading-none ml-3"
+          style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="links-animate"
         >
           <div data-text="Event information">Event information</div>
