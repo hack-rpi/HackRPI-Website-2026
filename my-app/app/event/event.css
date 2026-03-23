@@ -55,6 +55,7 @@ h1{
   transform: scale(3);
   animation-delay: 0.1s;
   z-index: 1;
+  filter: invert(100%);
 }
 
 @keyframes zoomOut {
