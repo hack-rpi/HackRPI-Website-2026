@@ -1,31 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
+
 :root {
-  /* --bg: #D58936;
-  --light: #ffad44;
-  --shadow: #9e6528; */
+    /* --bg: #D58936;
+    --light: #ffad44;
+    --shadow: #9e6528; */
 
-  --bg: #ffffff;
-  --light: #ffffd9;
-  --shadow: #fff5ff;
+    --bg: #EFD6AC;
+    --light: #ffffd9;
+    --shadow: #b19e7f;
 
-  --text: #04151F;
-  --accent: #368F8B;
-  /* --accent: #183A37; */
+    --text: #04151F;
+    --accent: #368F8B;
+    /* --accent: #183A37; */
 
-  --text2: #8A716A;
-  /* --text3: #725752; */
-
-  --sky-bg: oklch(68.5% 0.169 237.323)
+    --text2: #8A716A;
+    /* --text3: #725752; */
 }
 
 *{
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+    margin:0;
+    padding:0;
+    font-family: Aldrich, serif;
 
-  user-select: none;
-  -webkit-user-drag: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 
-  color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 *::-webkit-scrollbar {
@@ -39,75 +43,74 @@ a:link, a:visited, a:focus, a:hover, a:active{
 }
 
 body{
-  /* background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
-  background-position: center; */
+    background-color: var(--bg);
+    font-size: 0.5em;
+
+    /* background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
+    background-position: center; */
 }
 
 h1{
-  font-size: 1.5em;
+    font-size: 2.3em;
 }
 h2{
-  font-size: 1em;
+    font-size: 1.5em;
 }
 h3{
-  font-size: 2em;
-  margin: 10px 0px;
+    font-size: 3em;
+    margin: 10px 0px;
 }
 h4{
-  font-size: 1em;
-  line-height:130%;
+    font-size: 1.8em;
+    line-height:130%;
 }
 p{
-  font-size: 1em;
-  line-height: 140%;
-  color: var(--text2);
+    font-size: 2.5em;
+    line-height: 140%;
+    color: var(--text2);
 }
 span{
-  font-size: 1em;
-  line-height: 140%;
-}
-span.title {
-  font-size: 2em;
+    font-size: 2.5em;
+    line-height: 140%;
 }
 
 .neumorphic {
-  background-color: var(--bg);
-  border-radius: 15px;
-  margin: 0 5vh;
+    background-color: var(--bg);
+    border-radius: 15px;
 }
 
 .glassmorphic {
-  background-color: var(--bg);
-  backdrop-filter: blur(9px) saturate(169%);
-  -webkit-backdrop-filter: blur(9px) saturate(169%);
-  opacity: 0.5;
-  border-radius: 15px;
-  transition: opacity 0.3s ease;
+    background-color: var(--bg);
+    backdrop-filter: blur(9px) saturate(169%);
+    -webkit-backdrop-filter: blur(9px) saturate(169%);
+    opacity: 0.5;
+    border-radius: 15px;
+    transition: opacity 0.3s ease;
 }
 .glassmorphic:hover{
-  opacity:0.85;   
+    opacity:0.85;   
 }
 
 .sponsorCard {
-  width: 20vw;
-  height: 60vh;
-  margin: 20px;
+    width: 20vw;
+    height: 60vh;
+    margin: 20px;
 
-  box-sizing: border-box;
-  display: flex;
+    box-sizing: border-box;
+    display: flex;
 }
 
 .centerText {
-  text-align:center;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.container{
+.acontainer{
   box-sizing: border-box;
-  padding: 15px 30px;
+  padding: 30px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -115,50 +118,47 @@ span.title {
 }
 
 .stackText{
-  box-sizing: border-box;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
 }
 
 
 .clickable{
-  transition: transform 0.3s ease;
-  cursor: pointer;
+    transition: transform 0.3s ease;
 }
 .clickable:active {
-  transition: transform 0.1s ease;
-  transform: scale(0.98);
+    transition: transform 0.1s ease;
+    transform: scale(0.98);
 }
 
 .benefit{
-  transition: 0.3s ease, transform 0.3s ease;
-  white-space: nowrap;
-  padding: 3px;
-  cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
 }
 .benefit:hover{
-  transform: scale(1.05);
-  transition: 0.3s ease, transform 0.1s ease;;
+    transform: scale(1.05);
+    transition: 0.3s ease, transform 0.1s ease;;
 }
 .benefit:active{
-  transform: scale(0.98);
-  transition: 0.1s ease, transform 0.1s ease;
+    transform: scale(0.98);
+    transition: 0.1s ease, transform 0.1s ease;
 }
 
 .currentBenefit{
-  
+
 }
 .availableBenefit{
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 .benefitContainer{
-  /* display: flex;
-  flex-direction: row;
-  gap: 10px; */
+    /* display: flex;
+    flex-direction: row;
+    gap: 10px; */
 }
 
 .benefitContainer {
@@ -166,6 +166,7 @@ span.title {
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   align-items: center; /* Vertically centers items */
+    margin: 3px 0;
 }
 
 .benefitContainer:nth-child(1) {
@@ -197,4 +198,9 @@ span.title {
     10% {filter: blur(5px);}
     80% {filter: blur(0px);}
     100% {filter: blur(0px);}
+}
+
+.sponsorshipBooklet{
+    width:100%;
+    height: 100vh;
 }

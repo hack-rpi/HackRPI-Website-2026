@@ -1,10 +1,17 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { type DeltaTime } from "@/utils/timer";
-import { calculateDeltaTime } from "@/utils/timer";
+//import { type DeltaTime } from "@/utils/timer";
+//import { calculateDeltaTime } from "@/utils/timer";
 
 export default function Timer() {
+
+  return "Add working imports";
+
+}
+
+/*
+
 	const hackathonStart = useMemo(() => new Date("2025-11-15T11:00:00"), []); // November 15, 2025 11:00:00 AM
 	const hackathonEnd = useMemo(() => new Date("2025-11-16T11:00:00"), []); // November 16, 2025 11:00:00 AM
 
@@ -90,3 +97,5 @@ function Circle({ bgColor, textColor, children }: { bgColor: string; textColor: 
 		</div>
 	);
 }
+
+*/

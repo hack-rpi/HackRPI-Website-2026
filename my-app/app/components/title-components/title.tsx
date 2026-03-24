@@ -1,24 +1,37 @@
+// my-app/app/components/title-components/title.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DesktopTitleComponent from "./desktop-title";
+import MobileTitleComponent from "./mobile-title";
 
-export default function TitleComponent() {
-	const [windowWidth, setWindowWidth] = useState(0);
+type Props = {
+  onReady?: (variant: "desktop" | "mobile") => void;
+};
 
-	useEffect(() => {
-		setWindowWidth(window.innerWidth);
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth);
-		};
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-	if (windowWidth > 860) return <DesktopTitleComponent />;
+export default function TitleComponent({ onReady }: Props) {
+  const [windowWidth, setWindowWidth] = useState(0);
 
-	//if (windowWidth < 859 && windowWidth > 0) return <MobileTitleComponent />;
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-	return <div className="h-screen"></div>;
+  const variant = useMemo<"desktop" | "mobile" | null>(() => {
+    if (windowWidth === 0) return null;
+    return windowWidth > 860 ? "desktop" : "mobile";
+  }, [windowWidth]);
+
+  useEffect(() => {
+    if (!variant || !onReady) return;
+    const id = requestAnimationFrame(() => onReady(variant));
+    return () => cancelAnimationFrame(id);
+  }, [variant, onReady]);
+
+  if (variant === "desktop") return <DesktopTitleComponent />;
+  if (variant === "mobile") return <DesktopTitleComponent />;
+
+  return <div className="h-screen" />;
 }

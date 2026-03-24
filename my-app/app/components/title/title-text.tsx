@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import PixelSideBar from "../pixel-sidebar/pixel-sidebar";
+//import PixelSideBar from "../pixel-sidebar/pixel-sidebar";
+//FIX
 
 export default function TitleText() {
 	const fullText = "HACK\u00A0\u00A0\u00A0RPI";
@@ -104,9 +105,9 @@ export default function TitleText() {
 			</div>
 
 			{/* Sidebar */}
-			<div className="absolute top-0 left-[800px] z-20 w-[500px]">
+			{/*<div className="absolute top-0 left-[800px] z-20 w-[500px]">
 				<PixelSideBar />
-			</div>
+			</div>*/}
 		</div>
 	);
 }
