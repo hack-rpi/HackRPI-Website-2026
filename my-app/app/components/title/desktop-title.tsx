@@ -2,7 +2,8 @@
 
 import TitleText from "./title-text";
 import Image from "next/image";
-import RegistrationLink from "@/components/themed-components/registration-link";
+//import RegistrationLink from "@/components/themed-components/registration-link";
+//FIX
 
 export default function DesktopTitleComponent() {
 	return (
@@ -22,9 +23,9 @@ export default function DesktopTitleComponent() {
 			</div>
 
 			{/* Registration button (clickable now) */}
-			<div className="absolute bottom-10 right-3 z-50">
+			{/*FIX ADD IMPORT <div className="absolute bottom-10 right-3 z-50">
 				<RegistrationLink className="text-[35px]" />
-			</div>
+			</div>*/}
 
 			{/* Bottom-right SVG */}
 			<div
