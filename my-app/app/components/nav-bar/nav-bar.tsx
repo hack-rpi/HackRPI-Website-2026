@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { NavGroup } from "./nav-bar-links";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
+import DesktopNavBarVariant from "./desktop/nav-bar-desktop-variant";
 import MobileNavBar from "./mobile/nav-bar-mobile";
 import MlhBanner from "../mlh-banner/mlh-banner";
 
@@ -34,7 +35,9 @@ export const links: NavGroup[] = [
 	},
 ];
 
-export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
+export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolean, variant?: number}) {
+	variant = variant ?? 0;
+
 	const [showNav, setShowNav] = useState(false);
 	const [windowWidth, setWindowWidth] = useState(0);
 	/*const [isDarkMode, setIsDarkMode] = useState(
@@ -95,7 +98,16 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 				{/* <MlhBanner /> */}
 			</>
 		);
-	return (
+
+	if (variant === 1) {
+		return (
+			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
+				<DesktopNavBarVariant links={links} />
+				{/* <MlhBanner /> */}
+			</div>
+		)
+	}
+	else return (
 		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
 			<DesktopNavBar links={links} />
 			{/* <MlhBanner /> */}

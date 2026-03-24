@@ -6,27 +6,28 @@ import { NavGroup } from "../nav-bar-links";
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
 
-export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
-	return (
-		/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
-		<div className="w-full h-16 bg-linear-to-r from-sky-200 via-white to-sky-200 text-slate-800">
-			<div
-				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-black z-50"
-				role="navigation"
-			>
-				<div className="flex items-center justify-center mr-4">
-					<Link href="/" className="w-fit whitespace-nowrap">
-						{/* <NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-10 image-full" /> */}
-					</Link>
-				</div>
-				{/* Uncomment when ready to add registration button back */}
-				{/* <div className="min-w-fit lg:w-8/12 flex items-center justify-start"> */}
-				<div className="min-w-fit flex items-center justify-start gap-10">
-					{links.map((link) => (
-						<NavGroupComponent key={link.name} name={link.name} links={link.links} />
-					))}
-					
-					<Link
+export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
+
+  return (
+    /*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
+    <div className="w-full h-16 bg-linear-to-r from-sky-200/80 via-white/80 to-sky-200/80 text-slate-800 backdrop-blur-sm">
+      <div
+        className="flex justify-center lg:justify-center items-center h-full border-b-2 border-black z-50"
+        role="navigation"
+      >
+        <div className="flex items-center justify-center mr-4">
+          <Link href="/" className="w-fit whitespace-nowrap">
+            {/* <NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-10 image-full" /> */}
+          </Link>
+        </div>
+        {/* Uncomment when ready to add registration button back */}
+        {/* <div className="min-w-fit lg:w-8/12 flex items-center justify-start"> */}
+        <div className="min-w-fit flex items-center justify-start gap-10">
+          {links.map((link) => (
+            <NavGroupComponent key={link.name} name={link.name} links={link.links} />
+          ))}
+          
+          <Link
 						href="/news"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
@@ -73,11 +74,11 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 					>
 						Give Now
 					</Link>
-				</div>
-				<div className="ml-2">
-					{/* <RegistrationButton className="w-auto" /> */}
-				</div>
-			</div>
-		</div>
-	);
+        </div>
+        <div className="ml-2">
+          {/* <RegistrationButton className="w-auto" /> */}
+        </div>
+      </div>
+    </div>
+  );
 }
