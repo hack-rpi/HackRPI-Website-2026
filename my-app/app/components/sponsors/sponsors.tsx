@@ -8,7 +8,7 @@ export default function Sponsors() {
 	return (
 		<div 
 		
-			className="bg-[url('https://cdn.suwalls.com/wallpapers/nature/clouds-in-the-sky-21828-1920x1080.jpg')] h-auto p-5 gap-10 flex flex-col">
+			className="bg-[url('https://cdn.suwalls.com/wallpapers/nature/clouds-in-the-sky-21828-1920x1080.jpg')] h-auto p-5 gap-10 flex flex-col no-repeat">
 			idk what bg color this will be yet, so it's just black for now
 			<div className="w-full h-[9vh] p-5 text-center text-2xl">
 				This would not be possible without our sponsors; thank you all for your support!
