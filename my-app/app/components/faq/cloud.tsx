@@ -6,7 +6,7 @@ type CloudProps = {
 
 export default function Cloud({ id, text }: CloudProps) {
   return (
-    <div id={id} className="m-5 relative h-90 w-[150vh]">
+    <div id={id} className="my-10 relative h-100 w-[150vh]">
       <div className="absolute bottom-[30%] left-15 h-[65%] w-70 rounded-full bg-white" />
       <div className="absolute bottom-22 left-70 h-[65%] w-40 rounded-full bg-white" />
       <div className="absolute bottom-7 left-90 h-[85%] w-80 rounded-full bg-white" />
@@ -17,9 +17,11 @@ export default function Cloud({ id, text }: CloudProps) {
       <div className="absolute bottom-[10%] left-50 h-[60%] w-70 rounded-full bg-white" />
       <div className="absolute bottom-[12%] left-190 h-[65%] w-70 rounded-full bg-white" />
 
-      <div className="absolute inset-0 flex flex-col left-15 justify-center px-8 text-[110%] hover:text-[120%]">
+      <div className="absolute inset-0 flex flex-col left-15 justify-center px-8
+        text-[110%] hover:scale-105 transition duration-300">
         {text.map((line, index) => (
-          <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap hover:text-blue-800 hover:font-semibold">
+          <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap text-center
+            hover:text-blue-800 hover:font-semibold transition">
             {line}
           </p>
         ))}

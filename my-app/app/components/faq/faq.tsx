@@ -24,12 +24,12 @@ export default function FAQPage() {
 			},
 		})
 		.fromTo('#cloud1_faq', {
-      x: -5,
+      x: -10,
     }, {
-			x: innerWidth/4,
+			x: innerWidth/6,
 		}, 0)
 		.fromTo('#cloud2_faq', {
-      x: innerWidth/4,
+      x: innerWidth/6,
     }, {
 			x: -5,
 		}, 0);
