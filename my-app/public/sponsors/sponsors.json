@@ -12,6 +12,12 @@
 		}
   ],
 	"GOLD": [
+		{
+			"name": "placeholder",
+			"logoPath": "/OIP.jpg",
+			"url": "https://www.example.com/"
+			
+		}
 	],
 	"SILVER": [
     { "name": "Accenture",
