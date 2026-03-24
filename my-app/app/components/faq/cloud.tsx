@@ -6,22 +6,22 @@ type CloudProps = {
 
 export default function Cloud({ id, text }: CloudProps) {
   return (
-    <div id={id} className="m-5 p-10 relative h-100 w-[135vh]">
-      <div className="absolute bottom-[30%] left-10 h-[50%] w-40 rounded-full bg-white" />
-      <div className="absolute bottom-[30%] left-20 h-[60%] w-70 rounded-full bg-white" />
-      <div className="absolute bottom-22 left-70 h-[60%] w-40 rounded-full bg-white" />
-      <div className="absolute bottom-14 left-90 h-[70%] w-70 rounded-full bg-white" />
-      <div className="absolute bottom-1/6 left-140 h-[70%] w-50 rounded-full bg-white" />
-      <div className="absolute bottom-[40%] left-180 h-[55%] w-65 rounded-full bg-white" />
-      <div className="absolute bottom-[20%] left-200 h-[55%] w-65 rounded-full bg-white" />
-      <div className="absolute bottom-[10%] left-5 h-[55%] w-70 rounded-full bg-white" />
-      <div className="absolute bottom-1/12 left-50 h-[55%] w-40 rounded-full bg-white" />
-      <div className="absolute bottom-1/6 left-75 h-[55%] w-40 rounded-full bg-white" />
-      <div className="absolute bottom-[15%] left-170 h-[60%] w-52 rounded-full bg-white" />
+    <div id={id} className="my-10 relative h-100 w-[150vh]">
+      <div className="absolute bottom-[30%] left-15 h-[65%] w-70 rounded-full bg-white" />
+      <div className="absolute bottom-22 left-70 h-[65%] w-40 rounded-full bg-white" />
+      <div className="absolute bottom-7 left-90 h-[85%] w-80 rounded-full bg-white" />
+      <div className="absolute bottom-7 left-140 h-[80%] w-70 rounded-full bg-white" />
+      <div className="absolute bottom-[40%] left-190 h-[60%] w-65 rounded-full bg-white" />
+      <div className="absolute bottom-[20%] left-240 h-[60%] w-75 rounded-full bg-white" />
+      <div className="absolute bottom-[10%] left-5 h-[60%] w-70 rounded-full bg-white" />
+      <div className="absolute bottom-[10%] left-50 h-[60%] w-70 rounded-full bg-white" />
+      <div className="absolute bottom-[12%] left-190 h-[65%] w-70 rounded-full bg-white" />
 
-      <div className="absolute inset-0 z-10 flex flex-col left-10 justify-center px-8">
+      <div className="absolute inset-0 flex flex-col left-15 justify-center px-8
+        text-[110%] hover:scale-105 transition duration-300">
         {text.map((line, index) => (
-          <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap hover:text-blue-800 hover:font-semibold">
+          <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap text-center
+            hover:text-blue-800 hover:font-semibold transition">
             {line}
           </p>
         ))}
