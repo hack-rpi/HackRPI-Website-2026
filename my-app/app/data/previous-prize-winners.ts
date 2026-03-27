@@ -52,7 +52,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		description:
 			"The Helpful Assessment Readiness Platform leverages artificial intelligence to create highly interactive, personalized, and adaptive technical interviews.",
 		imageUrl: "/last-year/HARP.png",
-		prizeCategory: "Best Artificial Intelligence Hack, [MLH] Best Use of DigitalOcean Gradient AI",
+		prizeCategory: "Best Artificial Intelligence Hack",
 	},
 	{
 		title: "ByteBite",
@@ -121,6 +121,14 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		description: "Locality Sensitive Hashing based RAG Chatbot.",
 		imageUrl: "/last-year/Wurst.jpeg",
 		prizeCategory: "[MLH] Best Use of Gemini API",
+	},
+	{
+		title: "HARP",
+		authors: ["Teerthraj Parmar", "Matthew McCall", "Swaroop Sridhar"],
+		description:
+			"The Helpful Assessment Readiness Platform leverages artificial intelligence to create highly interactive, personalized, and adaptive technical interviews.",
+		imageUrl: "/last-year/HARP.png",
+		prizeCategory: "[MLH] Best Use of DigitalOcean Gradient AI",
 	},
 	{
 		title: "RetroVision",
