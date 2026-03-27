@@ -5,11 +5,12 @@ import { NavGroup } from "../nav-bar-links";
 
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
+import NavLink from "./nav-link";
 
 export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 	return (
 		/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
-		<div className="w-full h-16 bg-gradient-to-r from-sky-200 via-white to-sky-200 text-slate-800">
+		<div className="w-full h-16 bg-linear-to-r from-sky-200 via-white to-sky-200 text-slate-800">
 			<div
 				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-black z-50"
 				role="navigation"
@@ -25,70 +26,14 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 					{links.map((link) => (
 						<NavGroupComponent key={link.name} name={link.name} links={link.links} />
 					))}
-					<Link
-						href="/sponsorship"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
-							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
-							hover:bg-[length:100%_2px] my-4 mx-2
-						"
-					>
-						Sponsor Us
-					</Link>
-					{/* <Link
-						href="/event"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
-					>
-						Event Info
-					</Link> */}
-					{/* <Link
-						href="/event/schedule"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
-					>
-						Schedule
-					</Link> */}
-					{/* <Link
-						href="/announcements"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
-					>
-						Announcements
-					</Link>
-					<Link
-						href="/event/prizes"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
-					>
-						Prizes
-					</Link> */}
-					{/* <Link
-						href="/2048/leaderboard"
-						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
-					>
-						2048 Leaderboard
-					</Link> */}
-
-					<Link
-						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
-							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
-							hover:bg-[length:100%_2px]
-						"
-						target="_blank"
-					>
-						Code of Conduct
-					</Link>
-
-					<Link
+					
+					<NavLink href="/news" title="News"/>
+					<NavLink href="/sponsorship" title="Sponsor Us"/>
+					<NavLink
+						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" title="Code of Conduct"/>
+					<NavLink
 						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom
-							transition-all duration-200 bg-gradient-to-r from-[#00ff7f] to-[#87CEEB]
-							hover:bg-[length:100%_2px]
-						"
-						target="_blank"
-					>
-						Give Now
-					</Link>
+						title="Give Now" />
 				</div>
 				<div className="ml-2">
 					{/* <RegistrationButton className="w-auto" /> */}

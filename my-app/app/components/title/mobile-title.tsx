@@ -1,7 +1,8 @@
 "use client";
 
 import TitleText from "./mobile-title-text";
-import RegistrationButton from "@/components/themed-components/registration-link";
+//import RegistrationButton from "@/components/themed-components/registration-link";
+//Add working import
 
 export default function MobileTitleComponent() {
 	return (
@@ -12,9 +13,9 @@ export default function MobileTitleComponent() {
 			</div>
 
 			{/* Registration button below everything */}
-			<div className="w-full flex justify-center">
+			{/*<div className="w-full flex justify-center">
 				<RegistrationButton className="text-[28px] px-6 py-3" />
-			</div>
+			</div>*/}
 		</div>
 	);
 }
