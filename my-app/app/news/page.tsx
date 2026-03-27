@@ -6,6 +6,12 @@ import articlesData from './data.json';
 import NavBar from '../components/nav-bar/nav-bar';
 import './news.css';
 
+import Lenis from 'lenis';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Page: React.FC = () => {
   // Import article data from JSON file
   const articles: ArticleData[] = articlesData.articles;
@@ -20,7 +26,7 @@ const Page: React.FC = () => {
     article => !article.featured && article.category !== 'Hackathon'
   );
 
-  // Handle browser back button
+  // Handle browser back button + lenis
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       if (event.state?.articleId) {
@@ -30,6 +36,22 @@ const Page: React.FC = () => {
         setSelectedArticle(null);
       }
     };
+
+    // lenis scrolling section
+    const lenis = new Lenis({
+      smoothWheel: true,
+      duration: 1.2,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    // end lenis scrolling section
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
