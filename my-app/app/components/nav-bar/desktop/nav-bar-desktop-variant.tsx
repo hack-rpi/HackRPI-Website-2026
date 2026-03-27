@@ -15,7 +15,7 @@ function NavLink({href, children, onClick}: {
 		<Link
 			className="
 				w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-size-[0%_2px] bg-no-repeat
-				bg-bottom-left transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+				bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 				hover:bg-size-[100%_2px] focus:bg-size-[100%_4px]
 			"
 			href={href}
@@ -33,7 +33,7 @@ function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 				role="link"
 				className="
 					text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-					transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+					transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 					hover:bg-size-[100%_2px] focus:bg-size-[100%_4px] my-4 mx-2 whitespace-nowrap
 				"
 			>
@@ -82,7 +82,7 @@ export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
 						href="/news"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 							hover:bg-size-[100%_2px]
 						"
 						target="_blank"
@@ -94,7 +94,7 @@ export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
 						href="/sponsorship"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 							hover:bg-size-[100%_2px]
 						"
 						target="_blank"
@@ -106,7 +106,7 @@ export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
 						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 							hover:bg-size-[100%_2px]
 						"
 						target="_blank"
@@ -118,7 +118,7 @@ export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
 						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-[#00ff7f] to-[#87CEEB]
+							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
 							hover:bg-size-[100%_2px]
 						"
 						target="_blank"
