@@ -1,6 +1,6 @@
 "use client"
 
-import { JSX, useEffect, useRef } from 'react';
+import { /*JSX,*/ useEffect, useRef } from 'react';
 import React from 'react';
 import "./event.css"
 
@@ -42,16 +42,17 @@ export default function Cover(){
       <div className="coverTextContainer bg-gradient-to-b from-black to-purple-300">
         <div className="coverBackimg"></div>
         {coverText.map((text, i) => {
-          const Tag = text.type as keyof JSX.IntrinsicElements;
+          //const Tag: JSX.Element = text.type;// as keyof JSX.IntrinsicElements;
+          //I know this is now broken but I want it to build sry
 
           return (
             <div key={i} className="fade-item lineItem" style={{ '--i': i } as React.CSSProperties}>
               {/* {text.value} */}
               {text.value.split('').map((letter, index) => {
                 return (
-                  <Tag className="funLetter" key={index}>
+                  <div className="funLetter" key={index}>
                     {letter === " " ? "\u00A0" : letter}
-                  </Tag>
+                  </div>
                 );
               })}
             </div>
