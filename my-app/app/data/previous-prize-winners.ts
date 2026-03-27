@@ -1,138 +1,140 @@
-import type { ProjectDisplayProps } from "@/components/prev-projects/project-display";
-import type { ProjectCarouselProps } from "@/components/prev-projects/project-carousel";
+import type { ProjectDisplayProps } from "@/app/components/prev-projects/project-display";
+import type { ProjectCarouselProps } from "@/app/components/prev-projects/project-carousel";
 
 export const podiumPrizes: ProjectDisplayProps[] = [
 	{
-		title: "WALKR",
-		authors: ["Ryan Dong", "Oliver Adams", "Jordyn Young"],
+		title: "TrashCam",
+		authors: ["ajitesh bankula", "Connor Kuemerle", "Samson Kempiak", "Matthew Durcan"],
 		description:
-			"WALKR combines GPS coordinates with advanced geospatial mapping to instantly pinpoint the user’s location and provide guidance based on nearby landmarks. Our approach integrates real-time positioning with the angle and orientation of the user’s phone to project an accurate walking route displayed in a mixed-reality headset. Users can simply say their destination aloud, and WALKR’s hands-free voice recognition sets up a precise route without needing a glance at the screen. Notably, WALKR also offers a fully integrated wheelchair-accessible route option, ensuring that users with mobility challenges receive optimal path guidance.",
-		imageUrl: "/projectImages/Walkr.png",
+			"We wanted to build something that mixes AI, hardware, and environmental impact in a way that's actually useful. Everyone throws trash away, but very few people sort it correctly, and most campuses or public places have no idea how full their bins are or how much contamination they get. TrashCam was born from the idea of turning an ordinary trash can into a smart, reactive, AI-powered system that could see what's being thrown away and help facilities track sustainability metrics.",
+		imageUrl: "/last-year/placeholder.gif",
 		prizeCategory: "First Place",
 		imageOnLeft: false,
 	},
 	{
-		title: "Shelfie",
-		authors: ["yasemin-et Turkoglu", "phanl2", "Rumeysa Kara", "drchubbington"],
+		title: "RetroBrainScan",
+		authors: ["Drew Bhavsar", "Sage JPC", "Rafi Khan"],
 		description:
-			"In today's fast-paced urban environment, traditional libraries and bookstores are facing challenges in engaging with the digital-native population. Our team was inspired to bridge this gap by creating Shelfie, a modern solution that makes literary discovery accessible. With many city residents facing time constraints and information overload, we wanted to create a tool that makes finding the right book as easy as using social media, thereby promoting literacy and cultural engagement in urban communities.",
-		imageUrl: "/projectImages/Shelfie.png",
+			"Our inspiration came from personal experiences watching family members live with, and sometimes lose their lives to, dementia. We wanted to build a tool that helps families understand what's coming, prepare earlier, and feel less alone in the process.",
+		imageUrl: "/last-year/RetroBrainScan.png",
 		imageOnLeft: true,
 		prizeCategory: "Second Place",
-	},
-	{
-		title: "Green",
-		authors: ["Mami Ravaloarison"],
-		description:
-			'"Green" is an app built to reduce traffic emissions by helping drivers find routes with minimal stops as possible. It analyzes current traffic for a route and dynamically recommends routes that avoid traffic hotspots, ensuring drivers spend less time in traffic even though, now the travel time has increased. Every time a user completes a route with fewer emissions, they earn points. These points can then be redeemed for discounts or rewards offered by environmentally conscious companies, such as WWF, National Geographic, and others dedicated to environmental causes.',
-		imageUrl: "/projectImages/GreenWinner.png",
-		prizeCategory: "Best Sustainability Hack",
-		imageOnLeft: false,
 	},
 ];
 
 export const carouselPrizes: ProjectCarouselProps[] = [
 	{
-		title: "EcoVision",
-		authors: ["Nikul Patel", "Robert Acebedo", "Timothy Liakh", "Matteo Rathgeber"],
+		title: "Night Shift",
+		authors: ["Justin Zhang", "courteneyS Sit"],
 		description:
-			"EcoVISION allows users to upload an image or video of items to identify which can be recycled, reused, or salvaged. For individual users, it provides actionable tips on repurposing items to promote sustainability at home. Additionally, EcoVision’s video processing feature can analyze footage from conveyor belts in waste management facilities, automatically detecting recyclable and reusable items on a larger scale. This capability could streamline sorting processes and boost recycling efficiency in industrial waste management, making EcoVISION adaptable from personal use to large-scale environmental solutions.",
-		imageUrl: "/projectImages/EcoVision.png",
-		prizeCategory: "Best AI Hack",
+			'Night Shift is an ICU Digital Twin where our "Modern" AI finds optimal, life-saving strategies that outperform "Retro" human-led decisions, creating a smarter decision-support tool for hospitals.',
+		imageUrl: "/last-year/Night-Shift.png",
+		prizeCategory: "Best Machine Learning Hack",
 	},
 	{
-		title: "Emission Mission",
-		authors: ["Nick Ciuica", "Nyssa Gandhi", "Jeremy Goldberger", "Lyle Jaron Alcordo"],
+		title: "RetroCare",
+		authors: ["Vedant Naidu", "Ravjeet Chahal"],
 		description:
-			"Emission Mission provides an interactive experience for children to learn about energy sources in their local area. It allows users to input a zip code and will look up energy production information for that specific power grid. Then, it allows users to choose to add their own power plant and see how it affects their local region!",
-		imageUrl: "/projectImages/Emission Mission.png",
-		prizeCategory: " Best Education Hack",
+			"RetroCare reimagines the bedside nurse through AI calls that monitor seniors' meds, mood, and safety, offering compassionate care and peace of mind.",
+		imageUrl: "/last-year/RetroCare.png",
+		prizeCategory: "Best Healthcare Hack",
 	},
 	{
-		title: "Quantum Shor's Algorithm",
-		authors: ["SethW4 Watabe", "Kazuki Neo"],
-		description:
-			"Our project implements Shor's algorithm, a quantum algorithm that factors large integers, which forms the basis of many encryption schemes. By demonstrating how Shor's algorithm can factorize numbers, we illustrate how quantum computing could eventually break traditional encryption, highlighting the need for quantum-safe security solutions.",
-		imageUrl: "/projectImages/image.png",
-		prizeCategory: "Best Quantum Hack ",
+		title: "ReStyle",
+		authors: ["Priscilla Wong", "David Zhao", "Caitlin Yau", "Harry Hargreaves"],
+		description: "Every Thread Tells a New Story.",
+		imageUrl: "/last-year/ReStyle.png",
+		prizeCategory: "Best Sustainability Hack",
 	},
 	{
-		title: "Street Bites",
-		authors: ["Sree Lasya Gogineni", "Irene", "Ananya Subramaniam", "Sahasra Yellapragada"],
+		title: "HARP",
+		authors: ["Teerthraj Parmar", "Matthew McCall", "Swaroop Sridhar"],
 		description:
-			"Through Street Bites, users can better navigate and find food trucks and not feel overwhelmed or stressed by choices in urban areas. We also help food truck owners attract more customers, additionally supporting small businesses in the process.",
-		imageUrl: "/projectImages/Street Bites.png",
-		prizeCategory: "Best Startup Hack",
+			"The Helpful Assessment Readiness Platform leverages artificial intelligence to create highly interactive, personalized, and adaptive technical interviews.",
+		imageUrl: "/last-year/HARP.png",
+		prizeCategory: "Best Artificial Intelligence Hack, [MLH] Best Use of DigitalOcean Gradient AI",
 	},
 	{
-		title: "The Green Room",
-		authors: ["DavidASC20 Chong", "Elvis Sun"],
+		title: "ByteBite",
+		authors: ["Alex C", "Dathan Lang", "Akshat Prakash", "Brian Tam"],
 		description:
-			"The Green Room is an AR app that lets users visualize a variety of plants in their own space. Through a blend of AR, interactive plant information, and ai-driven personalized recommendations, the app helps users choose the perfect plants based on their unique environment and lifestyle. Users can view the plants in AR, learn about each plant's care requirements and optimal placement, and even analyse where in their room these plants would fit best.",
-		imageUrl: "/projectImages/The Green Room.png",
-		prizeCategory: "Best Mobile Hack",
-	},
-	{
-		title: "EcoDraft",
-		authors: ["Phu Thai", "Kelly Crane"],
-		description:
-			"Cranek2 is an architecture major attempting to minor in CS. This Hackathon on Urban planning was the perfect opportunity to blend our interests in software engineering and architecture. Phuthai450 just wants to learn the Blazor stack for personal experience.",
-		imageUrl: "/projectImages/EcoDraft.png",
-		prizeCategory: "Best Cybersecurity Hack",
-	},
-	{
-		title: "Mango Maps",
-		authors: ["Justin Chen", "Christopher Poon", "MBtheOtaku", "WangWNico Wang"],
-		description:
-			"This project can be summed up as an aggregate of various geographical data sources all in one place. Its purpose is to provide an architect, city planner, tourist, and etc with as much information about a place as possible. Our project currently displays information such as region air quality, individual building characteristics, areas susceptible to flooding, evacuation centers in case of disasters, and fun visualizations of theoretical disasters.",
-		imageUrl: "/projectImages/Mango Maps.png",
+			"ByteBites.tech turns campus dining menus into personalized health guidance filtering allergies, supporting chronic conditions, and recommending smarter meals tailored to each student's wellness goals.",
+		imageUrl: "/last-year/ByteBite.png",
 		prizeCategory: "Best Data Science Hack",
 	},
 	{
-		title: "UrbanSpark",
-		authors: ["Roman Slack", "Koushik Sarkar", "Wasi Hussain", "Glenn Tatum"],
+		title: "Brain Invaders",
+		authors: ["Deyan Reza", "Farhan Khan", "MMahmud24"],
 		description:
-			"UrbanSpark serves as a personalized recommendation platform that leverages AI to analyze user input and deliver curated suggestions for urban opportunities. Users start by completing a quick onboarding form where they share details such as their location, interests, and goals. From there, UrbanSpark’s AI engine generates a series of queries tailored to their profile. These queries are then processed by the SerpAPI to retrieve up-to-date information on educational programs, jobs, volunteering, events, and more. Finally, the information is summarized into concise recommendations, which are presented on a user-friendly dashboard, guiding users toward the opportunities best suited to their aspirations.",
-		imageUrl: "/projectImages/UrbanSpark.png",
-		prizeCategory: "Best Beginner Hack",
+			"Brain Invaders is a cognitive training game designed to help improve impulse control, response inhibition, and timing-based decision-making.",
+		imageUrl: "/last-year/Brain-Invaders.jpg",
+		prizeCategory: "Best First-Time Hack",
 	},
 	{
-		title: "Last Hope Alarm Clock",
-		authors: ["Joe Schmoe"],
-		description: "Electrocutes you to wake you up. You can set the time from your phone.",
-		imageUrl: "/projectImages/Last Hope Alarm Clock.png",
-		prizeCategory: "Track Challenge: Ship Fast, Ship Often – Build a Payworthy MVP in a Weekend",
+		title: "Pancake Pals",
+		authors: ["Ashley Chan", "Eddie Matthews", "Yasmin"],
+		description: "Multiplayer game to keep your screen time low!",
+		imageUrl: "/last-year/Pancake-Pals.png",
+		prizeCategory: "Best Mobile Hack",
 	},
 	{
-		title: "MedLink Pro",
-		authors: ["Jimmy Zhen", "Hayden Dinkin", "Rittivuth Chea", "Thomas Cho"],
+		title: "CRT All In One & PiCI",
+		authors: ["otemitayo1212", "Tim Rota", "R3Vipers Ames", "zcacciapalle Cacciapalle"],
 		description:
-			"MedLink Pro connects nurses with doctors across different hospitals to facilitate urgent consultations, especially in hospitals that face staffing shortages or are located in rural areas. This way, patients can receive prompt advice and necessary care without excessive delays.",
-		imageUrl: "/projectImages/MedLink Pro.png",
-		prizeCategory: "Best Public Health Innovation",
+			'We integrated a Windows XP computer, Raspberry Pi on a custom PCI card, and a cooling system into a 19" CRT monitor. The Windows XP machine is retro, the Raspberry Pi is modern, and we even built a custom game.',
+		imageUrl: "/last-year/crt-all-in-one-pici.jpg",
+		prizeCategory: "Best Hardware Hack",
 	},
 	{
-		title: "AccessACity",
-		authors: ["Lilu K", "nicoleSpaul", "bjk2023"],
+		title: "Gachirat",
+		authors: ["Megan Leigh", "Rijul Verma", "Kaeshev Alapati"],
 		description:
-			"AccessACity's major function is its event system. We display the local states and cities in those states of our users. Then, using a modern navigation system, users can locate their events on maps. They can save these events, rsvp to them, and even make their own.",
-		imageUrl: "/projectImages/AccessACity.png",
-		prizeCategory: "Track Challenge: Ship Fast, Ship Often – Build a Payworthy MVP in a Weekend ",
+			"Gachirat is a retro-inspired digital pet that helps you improve your health and financial literacy in a fun, gamified way.",
+		imageUrl: "/last-year/Gachirat.png",
+		prizeCategory: "Judge Favorite",
 	},
 	{
-		title: "RPInSights",
+		title: "Bloomy",
+		authors: ["Jacob Hebbel", "firecqt Steenbruggen"],
+		description: "A smart chatbot for all your financial questions.",
+		imageUrl: "/last-year/Bloomy.png",
+		prizeCategory: "[Photon] Best Use of Photon",
+	},
+	{
+		title: "ChronOS",
 		authors: ["Tazeem Mahashin"],
 		description:
-			"In my first week as a freshman I heavily relied on Google Maps to navigate the RPI campus which was quite challenging. I noticed that Google Maps was good for getting me places but even then it tend to give me the wrong direction, mess up, etc and it lacked real-time data on facilities like dining halls, study spaces, and how I could take advantage of these resources to make the most of my time at RPI. This problem inspired me to develop RPInSights, a modern, AI-powered campus navigation tool with interactive 3D mapping.",
-		imageUrl: "/projectImages/RPInSights.png",
-		prizeCategory: "Track Challenge: Ship Fast, Ship Often – Build a Payworthy MVP in a Weekend",
+			"ChronOS - [Chronos: Time] x [OS: Operating System] 2025 SOTA AI meets Retro Microsoft '95 to make learning much more productive while still enjoyable.",
+		imageUrl: "/last-year/ChronOS.png",
+		prizeCategory: "[MLH] Best Use of AI powered by Reach Capital",
 	},
 	{
-		title: "Able",
-		authors: ["Erik Umble", "Joel McCandless"],
+		title: "QuACKER",
+		authors: ["Rita Lei", "Nicole Wu", "Farrah Hass"],
+		description: "Questionably Accurate Course Knowledge, Evaluation, & Ratings.",
+		imageUrl: "/last-year/QuACKER.png",
+		prizeCategory: "[MLH] Best .Tech Domain Name",
+	},
+	{
+		title: "Wurst",
+		authors: ['Mingjia "Jacky" Guan', "Xiyuan Li", "Yuanhao Zhou", "Ray Feng"],
+		description: "Locality Sensitive Hashing based RAG Chatbot.",
+		imageUrl: "/last-year/Wurst.jpeg",
+		prizeCategory: "[MLH] Best Use of Gemini API",
+	},
+	{
+		title: "RetroVision",
+		authors: ["Ankit Kumar Upadhyay", "sanjaychari Chari", "anweshitpanda Panda"],
 		description:
-			"It provides users with an assistant that can analyze nearby locations, provide recommendations, and share human voice experiences from community members who have been to those places.",
-		imageUrl: "/projectImages/image.png",
-		prizeCategory: "Accessibilities Track",
+			"An AI portal that turns books and podcasts about Troy into short narrated videos, letting students watch the city's history unfold on a platform that can later scale to any city.",
+		imageUrl: "/last-year/RetroVision.png",
+		prizeCategory: "[MLH] Best Use of ElevenLabs",
+	},
+	{
+		title: "Echo Of You",
+		authors: ["Kelly Crane", "Phu Thai"],
+		description: "Bringing yesterday into today | Relive past people in our modern lives.",
+		imageUrl: "/last-year/Echo-Of-You.png",
+		prizeCategory: "[MLH] Best Use of Vultr",
 	},
 ];

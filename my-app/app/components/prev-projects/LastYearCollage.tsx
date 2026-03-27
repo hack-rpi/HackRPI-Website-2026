@@ -34,7 +34,7 @@ export default function LastYearCollage() {
           w-full p-5
           columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5
           gap-3
-          [column-fill:_balance]
+          [column-fill:balance]
         "
 			>
 				{photos.map((src) => (
