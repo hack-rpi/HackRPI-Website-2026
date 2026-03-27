@@ -19,7 +19,7 @@ export default function Event() {
 
   return (
 		<> 
-      <NavBar showOnScroll={true} variant={1}/>
+      <NavBar showOnScroll={true} />
       <Cover/>
 
       <main className = "flex flex-col w-full">
