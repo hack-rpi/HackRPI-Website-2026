@@ -92,7 +92,7 @@ const Page: React.FC = () => {
   // Otherwise, show the main page with article grid
   return (
     <div className="main-container">
-      <NavBar />
+      <NavBar showOnScroll={false} />
 
       {/* Featured Article - Compact */}
       <section className="featured-grid">
