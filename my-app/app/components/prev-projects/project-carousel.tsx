@@ -43,7 +43,7 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 								alt={project.title}
 								width={500}
 								height={500}
-								className="sizeImage z-0 object-cover w-full max-h-[40vh] mb-2 rounded-md"
+								className="sizeImage z-0 object-cover w-full max-h-[45vh] mb-2 rounded-md"
 							></Image>
 							<div className="absolute sm:w-3/4 -top-50 flex-col w-full pl-4 mt-2 text-center"></div>
 							<p className="w-full px-4 font-sans text-center my-2">{project.description}</p>

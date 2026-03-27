@@ -26,7 +26,7 @@ function DesktopProjectDisplay(props: ProjectDisplayProps) {
 		>
 			<div className="w-1/2">
 				<h1 className="font-modern text-white text-left text-4xl text-shadow-md pb-4 ">{props.prizeCategory}</h1>
-				<h2 className="font-modern collapse-title font-medium text-2xl text-white">{props.title}</h2>
+				<h2 className="font-modern pb-2 font-medium text-2xl text-white">{props.title}</h2>
 				<hr />
 				<p className="font-neutral2">{props.authors.join(", ")}</p>
 				<hr />
