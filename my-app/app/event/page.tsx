@@ -62,7 +62,7 @@ export default function Event() {
           text-white p-5 flex flex-col items-center
         ">
           <h1 className="text-center">Project Submission and Judging</h1>
-          <div className="w-full max-w-7xl border-2 border-orange-500 p-[1em]">
+          <div className="w-full max-w-7xl p-[1em]">
             <h2 className="text-center">Judging Criteria</h2>
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
@@ -195,33 +195,40 @@ export default function Event() {
           </div>
 
           {/* Project Submission Section */}
-          <div className="w-full max-w-7xl border-2 border-orange-500 p-[1em]">
+          <div className="w-full max-w-7xl p-[1em]">
 						<div className="text-center mb-12">
 							<h2>Project Submission</h2>
 							<p>Submit your project through Devpost and showcase your amazing work!</p>
 						</div>
 
 						{/* Submission Timeline */}
-						<div className="w-full max-w-[1600px] mx-auto mb-12 px-2 sm:px-4">
+						<div className="w-full max-w-400 mx-auto mb-12 px-2 sm:px-4">
 							<div className="relative">
 								{/* Timeline Line */}
-								<div className="absolute left-6 sm:left-8 lg:left-10 top-0 bottom-0 w-1 bg-gradient-to-b from-hackrpi-orange via-hackrpi-pink to-hackrpi-light-purple"></div>
+								<div className="absolute left-6 sm:left-8 lg:left-10 top-0 bottom-0 w-1 bg-linear-to-b from-hackrpi-orange via-hackrpi-pink to-hackrpi-light-purple"></div>
 
 								{/* Timeline Steps */}
 								<div className="space-y-8">
 									{/* Step 1 */}
 									<div className="relative flex items-start">
-										<div className="relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-hackrpi-orange rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl shadow-lg shadow-hackrpi-orange/50">
+										<div className="
+											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											bg-sky-500 rounded-full flex items-center justify-center
+											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-sky-500/50
+										">
 											1
 										</div>
-										<div className="ml-6 md:ml-8 lg:ml-10 bg-gradient-to-r from-hackrpi-orange/10 to-transparent border-l-4 border-hackrpi-orange p-5 md:p-6 lg:p-8 rounded-r-lg flex-1">
+										<div className="
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-blue-500/10 to-transparent
+											border-l-4 border-blue-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-orange mb-2">Create Your Account</h3>
-											<p className="text-gray-300 md:text-lg">
+											<p className="text-white md:text-lg">
 												<a
 													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="text-hackrpi-light-purple hover:text-hackrpi-pink underline transition-colors"
+													className="text-purple-500 hover:text-pink-500 underline transition-colors"
 												>
 													Sign up for a Devpost account
 												</a>{" "}
@@ -232,27 +239,34 @@ export default function Event() {
 
 									{/* Step 2 */}
 									<div className="relative flex items-start">
-										<div className="relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-hackrpi-pink rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl shadow-lg shadow-hackrpi-pink/50">
+										<div className="
+											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											bg-green-500 rounded-full flex items-center justify-center
+											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-green-500/50
+										">
 											2
 										</div>
-										<div className="ml-6 md:ml-8 lg:ml-10 bg-gradient-to-r from-hackrpi-pink/10 to-transparent border-l-4 border-hackrpi-pink p-5 md:p-6 lg:p-8 rounded-r-lg flex-1">
+										<div className="
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-green-500/10 to-transparent
+											border-l-4 border-green-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-pink mb-2">Prepare Your Submission</h3>
-											<p className="text-gray-300 mb-3 md:text-lg">Include these essential elements:</p>
-											<ul className="space-y-2 text-sm md:text-base lg:text-lg text-gray-400">
+											<p className="text-white mb-3 md:text-lg">Include these essential elements:</p>
+											<ul className="space-y-2 text-sm md:text-base lg:text-lg text-white">
 												<li className="flex items-center">
-													<span className="text-hackrpi-yellow mr-2">▸</span>
+													<span className="mr-2">▸</span>
 													Project title and description
 												</li>
 												<li className="flex items-center">
-													<span className="text-hackrpi-yellow mr-2">▸</span>
+													<span className="mr-2">▸</span>
 													Demo video showcasing your hack
 												</li>
 												<li className="flex items-center">
-													<span className="text-hackrpi-yellow mr-2">▸</span>
+													<span className="mr-2">▸</span>
 													Technologies used and challenges faced
 												</li>
 												<li className="flex items-center">
-													<span className="text-hackrpi-yellow mr-2">▸</span>
+													<span className="mr-2">▸</span>
 													Team member information
 												</li>
 											</ul>
@@ -261,21 +275,28 @@ export default function Event() {
 
 									{/* Step 3 */}
 									<div className="relative flex items-start">
-										<div className="relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-hackrpi-yellow rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl shadow-lg shadow-hackrpi-yellow/50">
+										<div className="
+											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											bg-yellow-500 rounded-full flex items-center justify-center
+											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-yellow-500/50
+										">
 											3
 										</div>
-										<div className="ml-6 md:ml-8 lg:ml-10 bg-gradient-to-r from-hackrpi-yellow/10 to-transparent border-l-4 border-hackrpi-yellow p-5 md:p-6 lg:p-8 rounded-r-lg flex-1">
-											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-yellow mb-2">
+										<div className="
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-yellow-500/10 to-transparent
+											border-l-4 border-yellow-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+										">
+											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
 												Submit Before Deadline
 											</h3>
-											<div className="space-y-2 text-gray-300 md:text-lg">
+											<div className="space-y-2 text-white md:text-lg">
 												<p className="flex items-center">
-													<span className="text-hackrpi-orange font-bold mr-2">📅</span>
-													Submit by <span className="font-bold text-hackrpi-orange mx-1">9:00 AM Sunday</span>
+													<span className="text-white font-bold mr-2">📅</span>
+													Submit by <span className="font-bold text-white mx-1">9:00 AM Sunday</span>
 												</p>
 												<p className="flex items-center">
-													<span className="text-hackrpi-pink font-bold mr-2">✏️</span>
-													Edit until <span className="font-bold text-hackrpi-pink mx-1">11:00 AM Sunday</span>
+													<span className="text-white font-bold mr-2">✏️</span>
+													Edit until <span className="font-bold text-white mx-1">11:00 AM Sunday</span>
 												</p>
 											</div>
 										</div>
@@ -283,14 +304,21 @@ export default function Event() {
 
 									{/* Step 4 */}
 									<div className="relative flex items-start">
-										<div className="relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-hackrpi-light-purple rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl shadow-lg shadow-hackrpi-light-purple/50">
+										<div className="
+											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											bg-red-500 rounded-full flex items-center justify-center
+											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-red-500/50
+										">
 											4
 										</div>
-										<div className="ml-6 md:ml-8 lg:ml-10 bg-gradient-to-r from-hackrpi-light-purple/10 to-transparent border-l-4 border-hackrpi-light-purple p-5 md:p-6 lg:p-8 rounded-r-lg flex-1">
-											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-light-purple mb-2">
+										<div className="
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-red-500/10 to-transparent
+											border-l-4 border-red-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+										">
+											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
 												Present Your Project
 											</h3>
-											<p className="text-gray-300 md:text-lg">
+											<p className="text-white md:text-lg">
 												After 11am, no changes allowed. Be ready to give a live demo and explain your project to the
 												judges!
 											</p>
@@ -304,12 +332,20 @@ export default function Event() {
 						<div className="text-center">
 							<HackRPILink
 								href="https://hackrpi2025.devpost.com/"
-								className="inline-block w-full sm:w-auto text-3xl sm:text-4xl md:text-5xl px-10 sm:px-14 md:px-20 py-6 sm:py-8 md:py-10 bg-gradient-to-r from-hackrpi-orange to-hackrpi-pink hover:from-hackrpi-pink hover:to-hackrpi-light-purple transform hover:scale-105 md:hover:scale-110 transition-all duration-300 shadow-xl hover:shadow-2xl ring-4 ring-hackrpi-yellow/60 border-hackrpi-yellow/70 !text-white hover:!text-white drop-shadow-md rounded-xl"
+								className="
+									inline-block w-full sm:w-auto text-3xl sm:text-4xl md:text-5xl px-10
+									sm:px-14 md:px-20 py-6 sm:py-8 md:py-10 bg-linear-to-r
+									from-orange-500 to-pink-500
+									hover:from-purple-500 hover:to-blue-500
+									transform hover:scale-105 md:hover:scale-110
+									transition-all duration-300 shadow-xl hover:shadow-2xl
+									ring-4 ring-hackrpi-yellow/60 border-hackrpi-yellow/70
+									text-white hover:text-white drop-shadow-md rounded-xl"
 								target="_blank"
 							>
 								SUBMIT ON DEVPOST
 							</HackRPILink>
-							<p className="mt-4 text-sm text-gray-400">
+							<p className="mt-4 text-sm text-white">
 								Ready to showcase your amazing project? Click above to start your submission!
 							</p>
 						</div>
