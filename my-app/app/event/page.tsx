@@ -58,7 +58,7 @@ export default function Event() {
 
         <div className="
           w-full h-auto
-          bg-linear-to-b from-sky-500 to-hackrpi-clouds-green
+          bg-linear-to-b from-sky-500 from-75% to-hackrpi-clouds-green
           text-white p-5 flex flex-col items-center
         ">
           <h1 className="text-center">Project Submission and Judging</h1>
@@ -213,8 +213,8 @@ export default function Event() {
 									<div className="relative flex items-start">
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
-											bg-sky-500 rounded-full flex items-center justify-center
-											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-sky-500/50
+											bg-blue-500 rounded-full flex items-center justify-center
+											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-blue-500/50
 										">
 											1
 										</div>
@@ -292,11 +292,11 @@ export default function Event() {
 											<div className="space-y-2 text-white md:text-lg">
 												<p className="flex items-center">
 													<span className="text-white font-bold mr-2">📅</span>
-													Submit by <span className="font-bold text-white mx-1">9:00 AM Sunday</span>
+													Submit by <span className="font-bold text-white bg-yellow-500 mx-0.5 px-0.5">9:00 AM Sunday</span>
 												</p>
 												<p className="flex items-center">
 													<span className="text-white font-bold mr-2">✏️</span>
-													Edit until <span className="font-bold text-white mx-1">11:00 AM Sunday</span>
+													Edit until <span className="font-bold text-white bg-red-500 mx-0.5 px-0.5">11:00 AM Sunday</span>
 												</p>
 											</div>
 										</div>
@@ -319,7 +319,8 @@ export default function Event() {
 												Present Your Project
 											</h3>
 											<p className="text-white md:text-lg">
-												After 11am, no changes allowed. Be ready to give a live demo and explain your project to the
+												After <span className="font-bold text-white bg-red-500 mx-0.5 px-0.5">11:00 AM Sunday</span>,
+												no changes are allowed. Be ready to give a live demo and explain your project to the
 												judges!
 											</p>
 										</div>
