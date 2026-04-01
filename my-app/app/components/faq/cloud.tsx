@@ -1,10 +1,10 @@
 
 type CloudProps = {
   id: string;
-  text: string[];
+  content: React.ReactNode[];
 };
 
-export default function Cloud({ id, text }: CloudProps) {
+export default function Cloud({ id, content }: CloudProps) {
   return (
     <div id={id} className="my-10 relative h-100 w-[150vh]">
       <div className="absolute bottom-[30%] left-15 h-[65%] w-70 rounded-full bg-white" />
@@ -19,7 +19,7 @@ export default function Cloud({ id, text }: CloudProps) {
 
       <div className="absolute inset-0 flex flex-col left-15 justify-center px-8
         text-[110%] hover:scale-105 transition duration-300">
-        {text.map((line, index) => (
+        {content.map((line, index) => (
           <p key={index} className="p-1 max-w-[150vh] text-purple-700 text-nowrap text-center
             hover:text-blue-800 hover:font-semibold transition">
             {line}

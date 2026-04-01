@@ -41,7 +41,10 @@ export default function PastYearProjects() {
 	return (
 		<>
 			<NavBar showOnScroll={false}/>
-			<div className="w-full pt-[8vh] flex items-center justify-center flex-col bg-linear-to-b from-sky-500 via-purple-500 to-purple-800" id="winners">
+			<div className="
+				w-full pt-[8vh] flex items-center justify-center
+				flex-col bg-linear-to-b from-sky-500 via-purple-500 to-purple-800 pb-20
+			" id="winners">
 				<h2 className="text-3xl font-bold text-center p-5 m-5">Previous Projects from HackRPI 2025</h2>
 				<div className="w-11/12 lg:w-3/4 xl:w-2/3 flex flex-col items-center justify-center">
 					<div className="grid grid-cols-1 gap-8 mx-auto">
@@ -64,7 +67,10 @@ export default function PastYearProjects() {
 					</HackRPILink>
 				</div>
 			</div>
-			<Footer/>
+			<div className="bg-white">
+				<div className="w-full h-[10vh] bg-purple-800" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+				<Footer/>
+			</div>
 		</>
 	);
 }

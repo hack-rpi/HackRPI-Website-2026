@@ -41,6 +41,8 @@ export default function Event() {
       <Cover/>
 
       <main className = "flex flex-col w-full">
+
+				{/* Mentoring information */}
         <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-row text-white pt-10">
           <div className="w-[10%] flex flex-col items-center justify-center p-5">
             <h1>Need Help?</h1>
@@ -74,10 +76,12 @@ export default function Event() {
           </div>
         </div>
 
+				{/* Project submission and judging */}
         <div className="
           w-full h-auto
           bg-linear-to-b from-sky-500 from-75% to-hackrpi-clouds-green
           text-white p-5 flex flex-col items-center
+					pb-20
         ">
           <h1 className="text-center">Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
@@ -370,9 +374,9 @@ export default function Event() {
 						</div>
 					</div>
         </div>
-        
       </main>
-      <div className="p-5 bg-white">
+      <div className="bg-white">
+				<div className="w-full h-[10vh] bg-hackrpi-clouds-green" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
         <Footer />
       </div>
 		</>

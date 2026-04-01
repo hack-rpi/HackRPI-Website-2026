@@ -1,10 +1,36 @@
+"use client"
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Footer() {
+
+	useGSAP(() => {
+		const pin = document.querySelector("#footer-ellipse");
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: pin,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+			},
+		})
+		.fromTo("#footer-ellipse",
+			{ clipPath: "ellipse(70% 0% at 50% -10%)" },
+			{ clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
+		)
+	});
+
 	return (
 		<div className="h-screen w-full bg-transparent" id="footer">
 			<div className="h-[50vh]" />
-			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border-1 text-2xl mx-5 bottom-5 h-[50vh] relative flex flex-col text-center bg-gBlack">
+			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border text-2xl mx-5 bottom-5 h-[50vh] relative flex flex-col text-center bg-gBlack">
 				<div className="relative w-full h-[90%] flex flex-row">
-					<div className="relative z-10 w-1/2 h-full p-0 flex flex-col p-30 items-center">
+					<div className="relative z-10 w-1/2 h-full p-20 flex flex-col items-center">
 						<div className="relative z-10 w-fit h-full p-0 flex flex-col pt-0 pl-0">
 						<div
 							className="text-blue-200 text-[1.75rem] leading-none ml-3 mr-auto"
