@@ -30,7 +30,7 @@ export const links: NavGroup[] = [
 		name: "HackRPI XII",
 		links: [
 			{ href: "/last-year", children: "Winners" },
-			{ href: "/last-year#photos", children: "Photos" },
+			{ href: "/last-year/photos", children: "Photos" },
 		],
 	},
 ];

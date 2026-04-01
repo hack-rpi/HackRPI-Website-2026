@@ -3,12 +3,14 @@
 import React, { useEffect } from "react";
 import "@/app/globals.css";
 import ProjectDisplay from "@/app/components/prev-projects/project-display";
-import ProjectCarousel from "../components/prev-projects/project-carousel";
+import ProjectCarousel from "@/app/components/prev-projects/project-carousel";
 import { podiumPrizes } from "@/app/data/previous-prize-winners";
 import { carouselPrizes } from "@/app/data/previous-prize-winners";
 import Image from "next/image";
+
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
+import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 import Lenis from 'lenis';
 import gsap from "gsap";
@@ -54,6 +56,12 @@ export default function PastYearProjects() {
 					</div>
 					<hr className="my-8 border-t border-gray-200 w-full desktop:w-1/2 " />
 					<ProjectCarousel projects={carouselPrizes} />
+					<HackRPILink
+						href="https://hackrpi-2025.devpost.com/project-gallery"
+						className="text-primary text-xl lg:text-2xl px-5 py-2 mt-2 mb-20"
+					>
+						See all projects!
+					</HackRPILink>
 				</div>
 			</div>
 			<Footer/>
