@@ -10,6 +10,12 @@ import HappeningNow from "@/app/components/schedule/happening-now";
 import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
+import Lenis from 'lenis';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 // async function fetchEvents(): Promise<{
 // 	status: number;
 // 	message: string;
@@ -139,6 +145,21 @@ export default function Page() {
 
 	useEffect(() => {
 		fetchData();
+
+		// lenis scrolling
+		const lenis = new Lenis({
+			smoothWheel: true,
+			duration: 1.2,
+		});
+
+		lenis.on("scroll", ScrollTrigger.update);
+
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
 	}, []);
 	
 

@@ -7,13 +7,36 @@ import ProjectCarousel from "@/app/components/prev-projects/project-carousel";
 import { podiumPrizes } from "@/app/data/previous-prize-winners";
 import { carouselPrizes } from "@/app/data/previous-prize-winners";
 import Image from "next/image";
-import NavBar from "@/app/components/nav-bar/nav-bar";
-import Footer from "@/app/components/footer/footer";
-import Lenis from 'lenis';
+
+import NavBar from "../components/nav-bar/nav-bar";
+import Footer from "../components/footer/footer";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
+
+import Lenis from 'lenis';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PastYearProjects() {
 	const topProjects = podiumPrizes.slice(0, 3);
+
+	useEffect(() => {
+    // lenis scrolling
+    const lenis = new Lenis({
+      smoothWheel: true,
+      duration: 1.2,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  })
 
 	return (
 		<>

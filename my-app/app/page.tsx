@@ -9,7 +9,7 @@ import Sponsors from "@/app/components/sponsors/sponsors";
 import TeamComponent from "@/app/components/team/team";
 import Mentions from "@/app/components/team/mentions";
 
-import Lenis from 'lenis'
+import Lenis from 'lenis';
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

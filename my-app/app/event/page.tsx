@@ -1,3 +1,5 @@
+"use client"
+
 import { Metadata } from 'next';
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
@@ -8,14 +10,30 @@ import Cover from './cover';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const metadata: Metadata = {
-  title: 'Event Information - HackRPI 2026',
-  description:
-    'Event information for HackRPI 2026',
-};
+import Lenis from 'lenis';
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Event() {
-  
+  useEffect(() => {
+    // lenis scrolling
+    const lenis = new Lenis({
+      smoothWheel: true,
+      duration: 1.2,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  })
 
   return (
 		<> 
