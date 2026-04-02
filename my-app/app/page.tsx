@@ -26,6 +26,7 @@ export default function Home() {
     // <span className="text-xl font-mono relative w-fit mx-auto" id="text-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 
     const elements = document.querySelectorAll(`[id="${arguments[0]}"]`);
+    if (elements === null) return;
     const tl = gsap.timeline();
     // console.log(elements)
 
@@ -38,10 +39,13 @@ export default function Home() {
           tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
           tl.to(element.children[1], { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
 
-        } else {
+        } else if (element.firstElementChild !== null){
           tl.to(element.firstElementChild, { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
           tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
           tl.to(element.firstElementChild, { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
+        }
+        else {
+          return;
         }
       });
     } else if (effect == 1) {

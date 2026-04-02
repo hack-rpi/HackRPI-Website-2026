@@ -102,9 +102,12 @@ export default function FAQPage() {
           <>To register, click here to register with Major League Hacking.</>
         ]}/>
 
-      <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-linear-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
+      <h1 className="
+        w-[20vh] mx-5 p-2 text-xl md:text-2xl xl:text-lg text-center
+        bg-linear-to-b from-white to-sky-200 text-sky-500
+      ">FAQ</h1>
 
-      <section className="w-[125vh] p-5" aria-label="Frequently asked questions">
+      <section className="w-full sm:w-[50vh] lg:w-[70vh] xl:w-[125vh] p-5" aria-label="Frequently asked questions">
         {faqs.map((f) => (
 					<QnA key={f.title} title={f.title} content={f.content} />
         ))}

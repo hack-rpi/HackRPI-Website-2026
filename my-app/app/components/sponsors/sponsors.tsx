@@ -6,11 +6,11 @@ import sponsors from '../../../public/sponsors/sponsors.json';
 
 export default function Sponsors() {
 	return (
-		<div 
-		
-			className="bg-[url('https://cdn.suwalls.com/wallpapers/nature/clouds-in-the-sky-21828-1920x1080.jpg')] h-auto p-5 gap-10 flex flex-col no-repeat">
-			idk what bg color this will be yet, so it's just black for now
-			<div className="w-full h-[9vh] p-5 text-center text-2xl">
+		<div className="
+			bg-[url('https://cdn.suwalls.com/wallpapers/nature/clouds-in-the-sky-21828-1920x1080.jpg')]
+			h-auto p-5 gap-10 flex flex-col no-repeat
+		">
+			<div className="w-full h-full sm:h-[9vh] p-5 text-center text-2xl">
 				This would not be possible without our sponsors; thank you all for your support!
 			</div>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">

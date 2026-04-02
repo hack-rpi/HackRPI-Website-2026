@@ -6,6 +6,7 @@ type CloudProps = {
 
 export default function Cloud({ id, content }: CloudProps) {
   return (
+    // NOTE: This is a nightmare for responsive design
     <div id={id} className="my-10 relative h-100 w-[150vh]">
       <div className="absolute bottom-[30%] left-15 h-[65%] w-70 rounded-full bg-white" />
       <div className="absolute bottom-22 left-70 h-[65%] w-40 rounded-full bg-white" />
