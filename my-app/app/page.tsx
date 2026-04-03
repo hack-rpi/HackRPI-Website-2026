@@ -191,13 +191,13 @@ export default function Home() {
     <>
       <NavBar showOnScroll={true} />
       <div className="w-full overflow-hidden">
-      <TitleComponent
-        onReady={(variant) => {
-          // Runs once the chosen title variant is mounted/rendered
-          textAnimation("title-animate", 0.9, 0.0, 0);
-          textAnimation("links-animate", 0.5, 0.0, 0);
-        }}
-      />
+        <TitleComponent
+          onReady={(variant) => {
+            // Runs once the chosen title variant is mounted/rendered
+            textAnimation("title-animate", 0.9, 0.0, 0);
+            textAnimation("links-animate", 0.5, 0.0, 0);
+          }}
+        />
         <AboutUs />
         <FAQPage />
         <Sponsors />

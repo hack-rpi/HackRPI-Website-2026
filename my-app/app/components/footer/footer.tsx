@@ -26,8 +26,7 @@ export default function Footer() {
 	});
 
 	return (
-		<div className="h-screen w-full bg-transparent" id="footer">
-			<div className="h-[50vh]" />
+		<div className="h-auto w-full bg-transparent pt-20" id="footer">
 			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border text-2xl mx-5 bottom-5 h-[50vh] relative flex flex-col text-center bg-gBlack">
 				<div className="relative w-full h-[90%] flex flex-row">
 					<div className="relative z-10 w-1/2 h-full p-20 flex flex-col items-center">
