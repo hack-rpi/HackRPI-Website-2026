@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { NavGroup } from "./nav-bar-links";
+import DesktopNavBarSolid from "./desktop/nav-bar-desktop-solid";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
-import DesktopNavBarVariant from "./desktop/nav-bar-desktop-variant";
 import MobileNavBar from "./mobile/nav-bar-mobile";
 import MlhBanner from "../mlh-banner/mlh-banner";
+import DesktopNavBarDarker from "./desktop/nav-bar-desktop-darker";
 
 export const links: NavGroup[] = [
 	{
@@ -102,14 +103,14 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 	if (variant === 1) {
 		return (
 			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
-				<DesktopNavBar links={links} />
+				<DesktopNavBarDarker links={links} />
 				{/* <MlhBanner /> */}
 			</div>
 		)
 	}
 	else return (
 		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
-			<DesktopNavBarVariant links={links} />
+			<DesktopNavBar links={links} />
 			{/* <MlhBanner /> */}
 		</div>
 	);

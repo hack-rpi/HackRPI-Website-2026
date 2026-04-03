@@ -108,14 +108,13 @@ const Page: React.FC = () => {
   // Otherwise, show the main page with article grid
   return (
     <>
-    <NavBar showOnScroll={false} />
+    <NavBar showOnScroll={false} variant={1}/>
     <main className="
       min-h-screen w-full overflow-x-hidden bg-black font-sans
-      leading-relaxed text-white bg-linear-to-b from-sky-500 to-purple-600
+      leading-relaxed text-white bg-linear-to-b from-blue-800 to-black to-10%
       [background:radial-gradient(ellipse_at_top_right,rgba(168,85,247,0.05)_0%,transparent_50%),
-        radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)]
-      pb-15
-      ">
+        radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)] pb-15
+    ">
       <section className="mx-auto grid max-w-400 grid-cols-1 gap-12 px-12 pb-10 pt-25 max-md:px-6 max-md:pt-8">
         <Article 
           data={featuredArticle} 
@@ -195,8 +194,8 @@ const Page: React.FC = () => {
       <Article data={featuredArticle} variant="full" />
       */}
     </main>
-    <footer className="bg-white">
-      <div className="w-full h-[10vh] bg-purple-600" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+    <footer className="bg-gray-800">
+      <div className="w-full h-[10vh] bg-black" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
       <Footer/>
     </footer>
     </>
