@@ -8,7 +8,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
 
   if (tier === "obsidian") {
     bg_color =
-      "bg-slate-900/0.5 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "bg-slate bg-opacity-50 border border-white/20";
     text_color = "text-purple-300";
     shadowColor = "147,51,234"; 
   } else if (tier === "gold") {

@@ -22,7 +22,7 @@ export default function Sponsors() {
 		let drops = Array.from({ length: 150 }, () => ({
 			x: Math.random() * w,
 			y: Math.random() * h,
-			l: Math.random() * 20 + 10,
+			l: Math.random() * 50 + 30,
 			speed: Math.random() * 4 + 4
 		}));
 
