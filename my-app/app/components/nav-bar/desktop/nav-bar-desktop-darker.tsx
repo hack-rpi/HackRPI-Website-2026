@@ -44,7 +44,7 @@ function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 				tabIndex={-1}
 				className="
 					dropdown-content menu p-2 w-52
-					bg-linear-to-b from-white/50 to-sky-500/90
+					bg-linear-to-b from-purple-400/80 to-blue-800/50
 					backdrop-blur-sm
 				"
 			>
@@ -58,10 +58,10 @@ function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 	);
 }
 
-export default function DesktopNavBarVariant({ links }: { links: NavGroup[] }) {
+export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
   return (
     /*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
-    <div className="w-full h-16 bg-linear-to-b from-white/90 to-sky-500/50 text-slate-800 backdrop-blur-sm">
+    <div className="w-full h-16 bg-linear-to-b from-purple-400/80 to-blue-800/40 text-cyan-300 backdrop-blur-sm">
       <div
         className="flex justify-center lg:justify-center items-center h-full z-50"
         role="navigation"

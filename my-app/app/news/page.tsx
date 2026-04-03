@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Article, { ArticleData } from './article';
 import articlesData from './data.json';
 import NavBar from '../components/nav-bar/nav-bar';
-import './news.css';
 
 import Lenis from 'lenis';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Footer from '../components/footer/footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,27 +82,21 @@ const Page: React.FC = () => {
   // If an article is selected, show the full article view
   if (selectedArticle) {
     return (
-      <div className="main-container article-view">
-        {/* Full Article View */}
+      <div className="
+        min-h-screen w-full overflow-x-hidden bg-black text-white
+        [background:radial-gradient(ellipse_at_top_right,rgba(168,85,247,0.05)_0%,transparent_50%),
+          radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)]"
+      >
         <Article data={selectedArticle} variant="full" />
-        
-        {/* Back to Home Button */}
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem 4rem' }}>
-          <button 
+
+        <div className="mx-auto max-w-225 px-8 pb-16">
+          <button
+            type="button"
             onClick={handleBackToHome}
-            style={{
-              background: 'var(--gradient-gold)',
-              color: 'var(--bg-primary)',
-              border: 'none',
-              padding: '1rem 2rem',
-              borderRadius: '8px',
-              fontSize: '1rem',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            className="cursor-pointer rounded-lg border-0
+              bg-[linear-gradient(135deg,#ffd700_0%,#ffed4e_50%,#ffd700_100%)] px-8 py-4
+              text-base font-semibold text-black transition-transform duration-200
+              ease-out hover:-translate-y-0.5"
           >
             ← Back to All Articles
           </button>
@@ -113,11 +107,15 @@ const Page: React.FC = () => {
 
   // Otherwise, show the main page with article grid
   return (
-    <div className="main-container">
-      <NavBar showOnScroll={false} />
-
-      {/* Featured Article - Compact */}
-      <section className="featured-grid">
+    <>
+    <NavBar showOnScroll={false} variant={1}/>
+    <main className="
+      min-h-screen w-full overflow-x-hidden bg-black font-sans
+      leading-relaxed text-white bg-linear-to-b from-blue-800 to-black to-10%
+      [background:radial-gradient(ellipse_at_top_right,rgba(168,85,247,0.05)_0%,transparent_50%),
+        radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)] pb-15
+    ">
+      <section className="mx-auto grid max-w-400 grid-cols-1 gap-12 px-12 pb-10 pt-25 max-md:px-6 max-md:pt-8">
         <Article 
           data={featuredArticle} 
           variant="featured"
@@ -128,17 +126,35 @@ const Page: React.FC = () => {
       {/* Hackathon News Section - Horizontal Scroll */}
       {hackathonArticles.length > 0 && (
         <>
-          <div className="section-header">
-            <h2 className="section-title">Hackathon</h2>
+          <div className="mx-auto max-w-400 px-12 pb-8 pt-8 max-md:px-6">
+            <h2 className="
+              bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight
+              text-transparent max-md:text-2xl
+            ">
+              Hackathon
+            </h2>
           </div>
-          
-          <section className="horizontal-scroll-section">
-            <div className="horizontal-scroll-container">
-              {hackathonArticles.map(article => (
-                <div key={article.id} className="horizontal-scroll-card">
-                  <Article 
-                    data={article} 
+
+          <section className="mx-auto max-w-400 overflow-visible px-12 pb-12 max-md:px-6">
+            <div
+              className="
+                -my-8 flex snap-x snap-mandatory gap-8 overflow-x-auto overflow-y-visible py-8 pb-12 scroll-pl-12
+                [scrollbar-color:#ffd700_#0d0d0d] [scrollbar-width:thin] max-md:scroll-pl-6 [&::-webkit-scrollbar]:h-2.5 
+                [&::-webkit-scrollbar-thumb]:rounded-md
+                [&::-webkit-scrollbar-thumb]:bg-[linear-gradient(135deg,#ffd700_0%,#ffed4e_50%,#ffd700_100%)]
+                [&::-webkit-scrollbar-thumb]:shadow-[0_0_10px_rgba(255,215,0,0.5)] 
+                [&::-webkit-scrollbar-thumb:hover]:bg-[#ffe94d] [&::-webkit-scrollbar-track]:rounded-md 
+                [&::-webkit-scrollbar-track]:bg-[#0d0d0d]
+              ">
+              {hackathonArticles.map((article) => (
+                <div
+                  key={article.id}
+                  className="w-65 min-w-65 max-w-65 shrink-0 snap-start max-md:w-60 max-md:min-w-60 max-md:max-w-60"
+                >
+                  <Article
+                    data={article}
                     variant="card"
+                    scrollCard
                     onClick={() => handleArticleClick(article)}
                   />
                 </div>
@@ -149,12 +165,20 @@ const Page: React.FC = () => {
       )}
 
       {/* Section Header for Latest Stories */}
-      <div className="section-header">
-        <h2 className="section-title">Latest Stories</h2>
+      <div className="mx-auto max-w-400 px-12 pb-8 pt-12 max-md:px-6">
+        <h2 className="
+          bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight
+          text-transparent max-md:text-2xl
+        ">
+          Latest Stories
+        </h2>
       </div>
 
-      {/* Articles Grid */}
-      <section className="articles-grid">
+      <section className="
+        mx-auto grid max-w-400 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]
+        gap-6 p-12 max-md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] max-md:gap-5
+        max-md:px-6 max-md:py-12
+      ">
         {regularArticles.map(article => (
           <Article 
             key={article.id} 
@@ -169,7 +193,12 @@ const Page: React.FC = () => {
       {/* 
       <Article data={featuredArticle} variant="full" />
       */}
-    </div>
+    </main>
+    <footer className="bg-gray-800">
+      <div className="w-full h-[10vh] bg-black" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+      <Footer/>
+    </footer>
+    </>
   );
 };
 

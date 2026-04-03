@@ -82,27 +82,32 @@ export default function FAQPage() {
         </div>
       </div>
 
-      <Cloud id="cloud1_faq" text={[
-        "Arrival and check-in takes place from 9-10 AM Saturday.",
-        "Our opening ceremony starts at 10 AM, and hacking begins at 11am.",
-        "During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.",
-        "Teams will then present their projects, and the best projects win prizes!",
-        "Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday.",
-        "The event will end around 4 PM on Sunday."
+      <Cloud id="cloud1_faq" content={[
+        <>Arrival and check-in takes place from <span className="bg-pink-200">9-10 AM Saturday</span>.</>,
+        <>Our opening ceremony starts at <span className="bg-blue-200">10 AM</span>,
+          and hacking begins at <span className="bg-green-200">11 AM</span>.</>,
+        <>During hacking time, teams of 1-4 have 24 hours to build a project relating to our theme, In the Clouds.</>,
+        <>Teams will then present their projects, and the best projects win prizes!</>,
+        <>Your projects must be on Devpost by <span className="bg-orange-200">10 AM Sunday</span>,
+        and all coding must stop at <span className="bg-red-200">11 AM Sunday</span>.</>,
+        <>The event will end around <span className="bg-purple-100">4 PM on Sunday</span>.</>
       ]}/>
 
-      <Cloud id="cloud2_faq" text={[
-          "Everyone is welcome to participate in HackRPI!",
-          "Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.",
-          "You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.",
-          "Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.",
-          "Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.",
-          "To register, click here to register with Major League Hacking."
+      <Cloud id="cloud2_faq" content={[
+          <>Everyone is welcome to participate in HackRPI!</>,
+          <>Participation is free for all students, including high school students and students not in Rensselaer Polytechnic Institute.</>,
+          <>You do not need to be an expert or a hackathon veteran; our team of mentors will guide you along the way.</>,
+          <>Note that students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms.</>,
+          <>Additionally, students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.</>,
+          <>To register, click here to register with Major League Hacking.</>
         ]}/>
 
-      <h1 className="w-[20vh] mx-5 p-2 text-2xl text-center bg-linear-to-b from-white to-sky-200 text-sky-500">FAQ</h1>
+      <h1 className="
+        w-[20vh] mx-5 p-2 text-xl md:text-2xl xl:text-lg text-center
+        bg-linear-to-b from-white to-sky-200 text-sky-500
+      ">FAQ</h1>
 
-      <section className="w-[125vh] p-5" aria-label="Frequently asked questions">
+      <section className="w-full sm:w-[50vh] lg:w-[70vh] xl:w-[125vh] p-5" aria-label="Frequently asked questions">
         {faqs.map((f) => (
 					<QnA key={f.title} title={f.title} content={f.content} />
         ))}

@@ -21,7 +21,7 @@ export default function QnA({title, content, defaultOpen = false }: FAQ) {
         className="
           w-full flex justify-between items-center
           bg-linear-to-b from-white to-sky-200 text-sky-500
-          border-none p-5 cursor-pointer text-left text-lg
+          border-none p-5 cursor-pointer text-left text-xl md:text-2xl xl:text-lg
         "
       >
         <span>{title}</span>
