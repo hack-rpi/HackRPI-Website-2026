@@ -161,12 +161,12 @@ export default function Page() {
 
 		requestAnimationFrame(raf);
 	}, []);
-	
 
 	return (
-		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
-			<NavBar showOnScroll={false} />
-			<div className="w-11/12 desktop:w-2/3 grow shrink basis-auto mt-28 desktop:mt-16 ">
+		<>
+		<NavBar showOnScroll={false} />
+		<main className="flex flex-col w-full h-fit min-h-screen items-center justify-center bg-linear-to-b from-blue-800 to-purple-900">
+			<div className="w-11/12 desktop:w-2/3 grow shrink basis-auto mt-28 desktop:mt-16">
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
@@ -254,15 +254,21 @@ export default function Page() {
 								{modalEvent.location} {modalEvent.speaker ? `• ${modalEvent.speaker}` : ""}
 							</p>
 							<p className="text-3xl mb-4">
-								{new Date(modalEvent.startTime).toLocaleString()} - {new Date(modalEvent.endTime).toLocaleString()}
+								{new Date(modalEvent.startTime).toLocaleString([], {
+								})} - {new Date(modalEvent.endTime).toLocaleString([], {
+								})}
 							</p>
 							<p className="text-2xl">{modalEvent.description}</p>
 						</div>
 					</div>
 				)}
 			</div>
-			<Footer />
-		</div>
+		</main>
+		<footer className="bg-gray-400">
+			<div className="w-full h-[10vh] bg-purple-900" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+			<Footer/>
+		</footer>
+		</>
 	);
 }
 

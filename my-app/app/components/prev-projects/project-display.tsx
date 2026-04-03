@@ -33,7 +33,7 @@ function DesktopProjectDisplay(props: ProjectDisplayProps) {
 				<p className="mt-2 font-neutral2">{props.description}</p>
 			</div>
 			<div className="w-2/5">
-				<Image src={props.imageUrl} alt={props.title} height={500} width={500} />
+				<Image src={props.imageUrl} alt={props.title} height={500} width={500} loading="eager"/>
 			</div>
 		</div>
 	);
