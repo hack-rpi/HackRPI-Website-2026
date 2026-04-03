@@ -79,9 +79,8 @@ export default function Event() {
 				{/* Project submission and judging */}
         <div className="
           w-full h-auto
-          bg-linear-to-b from-sky-500 from-75% to-hackrpi-clouds-green
-          text-white p-5 flex flex-col items-center
-					pb-20
+          bg-linear-to-b from-sky-500 from-80% to-hackrpi-clouds-green
+          text-white p-5 flex flex-col items-center pb-20
         ">
           <h1 className="text-center">Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
@@ -227,7 +226,8 @@ export default function Event() {
 						<div className="w-full max-w-400 mx-auto mb-12 px-2 sm:px-4">
 							<div className="relative">
 								{/* Timeline Line */}
-								<div className="absolute left-6 sm:left-8 lg:left-10 top-0 bottom-0 w-1 bg-linear-to-b from-hackrpi-orange via-hackrpi-pink to-hackrpi-light-purple"></div>
+								<div className="absolute left-6 sm:left-8 lg:left-10 top-0 bottom-0 w-1
+								bg-linear-to-b from-blue-500 via-green-500 to-red-500"></div>
 
 								{/* Timeline Steps */}
 								<div className="space-y-8">
@@ -241,7 +241,7 @@ export default function Event() {
 											1
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-blue-500/10 to-transparent
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-blue-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-orange mb-2">Create Your Account</h3>
@@ -269,7 +269,7 @@ export default function Event() {
 											2
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-green-500/10 to-transparent
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-green-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-pink mb-2">Prepare Your Submission</h3>
@@ -305,7 +305,7 @@ export default function Event() {
 											3
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-yellow-500/10 to-transparent
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-yellow-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -334,7 +334,7 @@ export default function Event() {
 											4
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-red-500/10 to-transparent
+											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-red-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
