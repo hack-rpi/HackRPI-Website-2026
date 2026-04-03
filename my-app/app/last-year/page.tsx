@@ -41,7 +41,7 @@ export default function PastYearProjects() {
 	return (
 		<>
 			<NavBar showOnScroll={false}/>
-			<div className="
+			<main className="
 				w-full pt-[8vh] flex items-center justify-center
 				flex-col bg-linear-to-b from-sky-500 via-purple-500 to-purple-800 pb-20
 			" id="winners">
@@ -66,11 +66,11 @@ export default function PastYearProjects() {
 						See all projects!
 					</HackRPILink>
 				</div>
-			</div>
-			<div className="bg-white">
+			</main>
+			<footer className="bg-white">
 				<div className="w-full h-[10vh] bg-purple-800" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
 				<Footer/>
-			</div>
+			</footer>
 		</>
 	);
 }

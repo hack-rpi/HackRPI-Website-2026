@@ -375,10 +375,10 @@ export default function Event() {
 					</div>
         </div>
       </main>
-      <div className="bg-white">
+      <footer className="bg-white">
 				<div className="w-full h-[10vh] bg-hackrpi-clouds-green" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
         <Footer />
-      </div>
+      </footer>
 		</>
 	);
 }

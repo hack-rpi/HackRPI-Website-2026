@@ -203,9 +203,9 @@ export default function Home() {
         <Sponsors />
         <TeamComponent />
         <Mentions />
-        <div className="bg-white">
+        <footer className="bg-white">
           <Footer />
-        </div>
+        </footer>
       </div>
     </>
   );

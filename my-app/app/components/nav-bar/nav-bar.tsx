@@ -101,14 +101,14 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 
 	if (variant === 1) {
 		return (
-			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
+			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 				<DesktopNavBar links={links} />
 				{/* <MlhBanner /> */}
 			</div>
 		)
 	}
 	else return (
-		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
+		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 			<DesktopNavBarVariant links={links} />
 			{/* <MlhBanner /> */}
 		</div>
