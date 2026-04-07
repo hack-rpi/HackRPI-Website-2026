@@ -6,9 +6,11 @@ import useMouseLogic from "./mouse";
 import next from "next";
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
+import SponsorCard from "./sponsorCard";
+import Lenis from "lenis";
 
 const tw = {
-	container: "box-border px-[30px] py-0 flex flex-row w-full justify-center m-5",
+	container: "box-border px-[30px] py-0 flex flex-row justify-center m-5",
 	stackText: "box-border p-5 flex flex-col w-full justify-center",
 
 	neumorphic: "bg-white rounded-[15px]",
@@ -20,6 +22,9 @@ const tw = {
 	benefitRow: "transition whitespace-nowrap hover:scale-[1.05] active:scale-[0.98] duration-300",
 	benefitAvailable: "opacity-50",
 	benefitContainer: "grid grid-cols-3 w-full items-center my-[3px]",
+
+	light: "var(--color-purple-500)",
+	shadow: "var(--color-purple-300)",
 } as const;
 
 var listItems = {
@@ -180,7 +185,7 @@ function SponsorUsPage() {
 			const dy = centerY - y;
 
 			const size = Math.max(rect.width, rect.height);
-			const scale = size * 0.03; // adjust as needed
+			const scale = size * 0.02; // adjust as needed
 
 			const len = Math.hypot(dx, dy) || 1;
 			const offX = (dx / len) * scale;
@@ -190,8 +195,8 @@ function SponsorUsPage() {
 			// ${-offX}px ${-offY}px ${scale * 2}px rgba(255,255,255,0.9)
 
 			element.style.boxShadow = `
-				${offX}px ${offY}px ${scale * 2}px var(--shadow),
-				${-offX}px ${-offY}px ${scale * 2}px var(--light)
+				${offX}px ${offY}px ${scale * 2}px ${tw.shadow},
+				${-offX}px ${-offY}px ${scale * 2}px ${tw.light}
 			`;
 		});
 	}
@@ -252,15 +257,14 @@ function SponsorUsPage() {
 		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-900`;
 		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-900";
 
-		//im so cooked, just go with it
 		if (isMobileLayout || tier == 'obsidian'){
-			benefitsDiv.innerHTML = `<h3 class="text-[1.75em] my-[10px]">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
+			benefitsDiv.innerHTML = `<h3 class="text-[#04151F] text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
 				let p = document.createElement('p');
 				p.textContent = name;
 				p.onclick = function(){scrollDocs(name)};
 
-				p.className = benefitCurrent;
+				p.className = `my-[3px] ${benefitCurrent}`;
 				let tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
@@ -268,7 +272,7 @@ function SponsorUsPage() {
 					}
 					currentBenefits.push(p);
 				}else{
-					p.className = benefitAvailable;
+					p.className = `my-[3px] ${benefitAvailable}`;
 					potentialBenefits.push(p);
 				}
 			}
@@ -286,7 +290,7 @@ function SponsorUsPage() {
 			titleBenefitContainer.className = tw.benefitContainer;
 			let firstTier = document.createElement('h3');
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
-			firstTier.className = "justify-self-start text-[#04151F] text-[1.75em] my-[10px]";
+			firstTier.className = "justify-self-center text-[#04151F] text-[1.75em] my-[10px]";
 
 			let arrow = document.createElement('span');
 			arrow.innerHTML = '&rarr;';
@@ -294,7 +298,7 @@ function SponsorUsPage() {
 
 			let secondTier = document.createElement('h3');
 			secondTier.innerHTML = nextTier.charAt(0).toUpperCase() + nextTier.slice(1);
-			secondTier.className = "justify-self-end text-[#04151F] text-[1.75em] my-[10px]";
+			secondTier.className = "justify-self-center text-[#04151F] text-[1.75em] my-[10px]";
 
 			titleBenefitContainer.appendChild(firstTier);
 			titleBenefitContainer.appendChild(arrow);
@@ -309,7 +313,7 @@ function SponsorUsPage() {
 				p.textContent = name;
 				benefitContainer.onclick = function(){scrollDocs(name)};
 
-				p.className = `justify-self-start ${benefitCurrent}`;
+				p.className = `justify-self-center ${benefitCurrent}`;
 				let tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
@@ -318,7 +322,7 @@ function SponsorUsPage() {
 						let nextValue = tiers[nextTier as keyof typeof tiers];
 						if (nextTier!= 'obsidian' && nextTier != null && nextValue != false && nextValue != tierValue){
 							let nextTier = document.createElement('p');
-							nextTier.className = `justify-self-end ${benefitAvailable}`;
+							nextTier.className = `justify-self-center ${benefitAvailable}`;
 							
 							let promoter = tiers[tier+'promoter' as keyof typeof tiers] as string;
 							nextTier.textContent = promoter;
@@ -336,7 +340,7 @@ function SponsorUsPage() {
 					}
 					currentBenefits.push(benefitContainer);
 				}else{
-					p.className = `justify-self-start ${benefitAvailable}`;
+					p.className = `justify-self-center ${benefitAvailable}`;
 					benefitContainer.appendChild(p);
 					potentialBenefits.push(benefitContainer);
 
@@ -349,7 +353,7 @@ function SponsorUsPage() {
 						benefitContainer.appendChild(arrow);
 
 						let p = document.createElement('p');
-						p.className = `justify-self-end ${benefitCurrent}`;
+						p.className = `justify-self-center ${benefitCurrent}`;
 						p.textContent+= name;
 						benefitContainer.appendChild(p);
 					}
@@ -425,19 +429,32 @@ function SponsorUsPage() {
 		
 		window.addEventListener('mousemove', calculateShadows);
 		window.addEventListener('scroll', calculateShadows);
+
+		// lenis scrolling section
+		const lenis = new Lenis({
+			smoothWheel: true,
+			duration: 1.2,
+		});
+
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
 	}, []);
 
 	return (<>
 		<NavBar showOnScroll={false}/>
-		<main className="w-full h-auto bg-sky-500">	
+		<main className="w-full bg-sky-500 pt-[8vh]">	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
-			<div className={tw.container} style={{height: "130px", width: "40vw"}}>
-				<div className={`${tw.neumorphic} p-5 text-center`} data-neumorphic="true">
+			<div className={`${tw.container} flex-col`}>
+				<div className={`${tw.neumorphic} text-[#04151F] p-5 text-center items-center`} data-neumorphic="true">
 					Click the buttons to see the benefits!
 				</div>
 			</div>
 			<div id='container1' className={`${tw.container} text-[#04151F]`} style={{}}>
-				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('bronze')}} style={{}}>
+				{/* <div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('bronze')}} style={{}}>
 					<h1 className="text-[2em]">Bronze</h1>
 					<h2 className="text-[1.75em]">750</h2>
 				</div>
@@ -452,13 +469,26 @@ function SponsorUsPage() {
 				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('obsidian')}} style={{}}>
 					<h1 className="text-[2em]">Obsidian</h1>
 					<h2 className="text-[1.75em]">5000</h2>
+				</div> */}
+
+				<div onClick={function(){updateBenefits('bronze')}}>
+					<SponsorCard tier="Bronze" amount="750" className={`${tw.clickable}`}/>
+				</div>
+				<div onClick={function(){updateBenefits('silver')}}>
+					<SponsorCard tier="Silver" amount="1500" className={`${tw.clickable}`}/>
+				</div>
+				<div onClick={function(){updateBenefits('gold')}}>
+					<SponsorCard tier="Gold" amount="2500" className={`${tw.clickable}`}/>
+				</div>
+				<div onClick={function(){updateBenefits('obsidian')}}>
+					<SponsorCard tier="Obsidian" amount="5000" className={`${tw.clickable}`}/>
 				</div>
 			</div>
 
 			<div className={tw.container}>
 				<div id='container2' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
 					<div id='benefits' className={tw.stackText} style={{}}>
-						<h3 className="text-[#04151F] text-[1.75em] my-[10px]">Bronze</h3>
+						<h3 className="text-[#04151F] text-[1.75em] my-2.5">LOADING</h3>
 					</div>
 				</div>
 			</div>
@@ -530,6 +560,7 @@ function SponsorUsPage() {
 				allow="autoplay"
 				sandbox="allow-scripts allow-same-origin allow-popups"
 			></iframe>
+			<div className="bg-sky-500 h-[30vh]"></div>
 		</main>
 		<footer className="bg-white">
 			<div className="w-full h-[10vh] bg-sky-500" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
