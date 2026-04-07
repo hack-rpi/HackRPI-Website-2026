@@ -82,11 +82,13 @@ const Page: React.FC = () => {
   // If an article is selected, show the full article view
   if (selectedArticle) {
     return (
-      <div className="
+      <>
+      <NavBar showOnScroll={false} variant={1}/>
+      <main className="
         min-h-screen w-full overflow-x-hidden bg-black text-white
         [background:radial-gradient(ellipse_at_top_right,rgba(168,85,247,0.05)_0%,transparent_50%),
-          radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)]"
-      >
+          radial-gradient(ellipse_at_bottom_left,rgba(255,215,0,0.04)_0%,transparent_50%)] pt-[8vh]
+      ">
         <Article data={selectedArticle} variant="full" />
 
         <div className="mx-auto max-w-225 px-8 pb-16">
@@ -101,7 +103,12 @@ const Page: React.FC = () => {
             ← Back to All Articles
           </button>
         </div>
-      </div>
+      </main>
+      <footer className="bg-gray-800">
+        <div className="w-full h-[10vh] bg-black" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+        <Footer/>
+      </footer>
+      </>
     );
   }
 
