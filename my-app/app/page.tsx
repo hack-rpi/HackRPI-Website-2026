@@ -83,6 +83,7 @@ export default function Home() {
     const sectionPin = document.querySelector("#pin");
     const teamTitle = document.querySelector("#team-title");
     const teamContent = document.querySelector("#team-content");
+    const parallaxBg = document.querySelector("#parallax-bg");
     const mentions = document.querySelector("#mentions-container");
 
     // guards
@@ -113,6 +114,12 @@ export default function Home() {
 
     // 0 -> 1 is normal animation time, then 1 -> 1.2 is the pause at the end
     tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: (1 * speed), force3D: true }, 0);
+    
+    // parallax background at half speed
+    if (parallaxBg) {
+      tl.fromTo(parallaxBg, { x: -introDistance * 0.5 }, { x: -scrollWidth * 0.5, ease: "none", duration: (1 * speed), force3D: true }, 0);
+    }
+    
     tl.to(teamTitle, { x: -scrollWidth / 2, ease: "none", duration: (0.5 * speed), force3D: true }, (0.7 * speed));
 
     // Pause on mentions screen for a bit before scrolling
