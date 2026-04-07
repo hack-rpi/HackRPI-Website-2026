@@ -1,11 +1,26 @@
 "use client";
 
+import "@/app/globals.css";
 import React, { use, useEffect } from "react";
-import "./sponsor.css";
 import useMouseLogic from "./mouse";
 import next from "next";
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
+
+const tw = {
+	container: "box-border px-[30px] py-0 flex flex-row w-full justify-center m-5",
+	stackText: "box-border p-5 flex flex-col w-full justify-center",
+
+	neumorphic: "bg-white rounded-[15px]",
+	sponsorCard: "w-[20vw] h-[60vh] m-5 box-border flex",
+	centerText: "text-center flex flex-col items-center justify-center",
+
+	clickable: "transition-transform duration-300 active:duration-100 active:scale-[0.98]",
+
+	benefitRow: "transition whitespace-nowrap hover:scale-[1.05] active:scale-[0.98] duration-300",
+	benefitAvailable: "opacity-50",
+	benefitContainer: "grid grid-cols-3 w-full items-center my-[3px]",
+} as const;
 
 var listItems = {
 	"Logo on T-Shirt": {
@@ -140,10 +155,6 @@ var themes = {
 	},
 } as any;
 
-// 			<div className='container bg-sky-500'>
-
-
-
 function SponsorUsPage() {
 	const { getPosition } = useMouseLogic();
 	var isMobileLayout = false;
@@ -151,7 +162,7 @@ function SponsorUsPage() {
 
 	function calculateShadows() {
 
-		Array.from(document.getElementsByClassName('neumorphic')).forEach((el) => {
+		Array.from(document.querySelectorAll('[data-neumorphic="true"]')).forEach((el) => {
 			let element = el as HTMLElement;
 			// element.style.boxShadow = '20px 20px 60px #bebebe, -20px -20px 60px #ffffff';
 
@@ -237,15 +248,19 @@ function SponsorUsPage() {
 		let currentBenefits = [];
 		let potentialBenefits = [];
 
+		const benefitCurrent = `${tw.benefitRow} text-[1.25em] leading-[140%] text-slate-900`;
+		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-900`;
+		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-900";
+
 		//im so cooked, just go with it
 		if (isMobileLayout || tier == 'obsidian'){
-			benefitsDiv.innerHTML = `<h3>${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
+			benefitsDiv.innerHTML = `<h3 class="text-[1.75em] my-[10px]">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
 				let p = document.createElement('p');
 				p.textContent = name;
 				p.onclick = function(){scrollDocs(name)};
 
-				p.className = 'benefit currentBenefit';
+				p.className = benefitCurrent;
 				let tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
@@ -253,7 +268,7 @@ function SponsorUsPage() {
 					}
 					currentBenefits.push(p);
 				}else{
-					p.className = 'benefit availableBenefit';
+					p.className = benefitAvailable;
 					potentialBenefits.push(p);
 				}
 			}
@@ -268,15 +283,18 @@ function SponsorUsPage() {
 			
 			benefitsDiv.innerHTML = '';
 			let titleBenefitContainer = document.createElement('div');
-			titleBenefitContainer.className = 'benefitContainer';
+			titleBenefitContainer.className = tw.benefitContainer;
 			let firstTier = document.createElement('h3');
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
+			firstTier.className = "justify-self-start text-[#04151F] text-[1.75em] my-[10px]";
 
 			let arrow = document.createElement('span');
 			arrow.innerHTML = '&rarr;';
+			arrow.className = `justify-self-center text-[1.25em] leading-[140%] text-slate-900`;
 
 			let secondTier = document.createElement('h3');
 			secondTier.innerHTML = nextTier.charAt(0).toUpperCase() + nextTier.slice(1);
+			secondTier.className = "justify-self-end text-[#04151F] text-[1.75em] my-[10px]";
 
 			titleBenefitContainer.appendChild(firstTier);
 			titleBenefitContainer.appendChild(arrow);
@@ -285,13 +303,13 @@ function SponsorUsPage() {
 			
 			for (const [name, tiers] of Object.entries(listItems)) {
 				let benefitContainer = document.createElement('div');
-				benefitContainer.className = 'benefitContainer';
+				benefitContainer.className = tw.benefitContainer;
 				let nextTierNote = null;
 				let p = document.createElement('p');
 				p.textContent = name;
 				benefitContainer.onclick = function(){scrollDocs(name)};
 
-				p.className = 'benefit currentBenefit';
+				p.className = `justify-self-start ${benefitCurrent}`;
 				let tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
@@ -300,7 +318,7 @@ function SponsorUsPage() {
 						let nextValue = tiers[nextTier as keyof typeof tiers];
 						if (nextTier!= 'obsidian' && nextTier != null && nextValue != false && nextValue != tierValue){
 							let nextTier = document.createElement('p');
-							nextTier.className = 'benefit availableBenefit';
+							nextTier.className = `justify-self-end ${benefitAvailable}`;
 							
 							let promoter = tiers[tier+'promoter' as keyof typeof tiers] as string;
 							nextTier.textContent = promoter;
@@ -311,13 +329,14 @@ function SponsorUsPage() {
 					if(nextTierNote){
 						let arrow = document.createElement('span');
 						arrow.innerHTML = '&rarr;';
+						arrow.className = benefitArrow;
 
 						benefitContainer.appendChild(arrow);
 						benefitContainer.appendChild(nextTierNote);
 					}
 					currentBenefits.push(benefitContainer);
 				}else{
-					p.className = 'benefit availableBenefit';
+					p.className = `justify-self-start ${benefitAvailable}`;
 					benefitContainer.appendChild(p);
 					potentialBenefits.push(benefitContainer);
 
@@ -325,11 +344,12 @@ function SponsorUsPage() {
 					if(tier != 'obsidian' && nextValue){
 						let arrow = document.createElement('span');
 						arrow.innerHTML = '&rarr;';
+						arrow.className = benefitArrow;
 
 						benefitContainer.appendChild(arrow);
 
 						let p = document.createElement('p');
-						p.className = 'benefit currentBenefit';
+						p.className = `justify-self-end ${benefitCurrent}`;
 						p.textContent+= name;
 						benefitContainer.appendChild(p);
 					}
@@ -378,9 +398,9 @@ function SponsorUsPage() {
 			}else{
 				if (childElement.tagName == 'H3') justFound = false;
 				if (!justFound){
-					childElement.style.animation = 'none';
+					childElement.style.animation = "none";
 					void childElement.offsetWidth;
-					childElement.style.animation = 'tempBlur 4s ease 0s 1 normal';
+					childElement.style.animation = "tempBlur 4s ease 0s 1 normal";
 
 					justFound = false
 				}
@@ -409,108 +429,120 @@ function SponsorUsPage() {
 
 	return (<>
 		<NavBar showOnScroll={false}/>
-		<div id="thing" style={{minHeight: 'calc( 100vh - 16px)', width: '100%'}}>	
-			{/* <div className='acontainer' style={{marginTop: '100px'}}></div> */}
-			<div className="acontainer" style={{height: "130px", width: "40vw"}}>
-				<div className="p-5 text-center neumorphic">
+		<main className="w-full h-auto bg-sky-500">	
+			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
+			<div className={tw.container} style={{height: "130px", width: "40vw"}}>
+				<div className={`${tw.neumorphic} p-5 text-center`} data-neumorphic="true">
 					Click the buttons to see the benefits!
 				</div>
 			</div>
-			<div id='container1' className='acontainer' style={{}}>
-				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('bronze')}} style={{}}>
-					<h1>Bronze</h1>
-					<h2>750</h2>
+			<div id='container1' className={`${tw.container} text-[#04151F]`} style={{}}>
+				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('bronze')}} style={{}}>
+					<h1 className="text-[2em]">Bronze</h1>
+					<h2 className="text-[1.75em]">750</h2>
 				</div>
-				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('silver')}} style={{}}>
-					<h1>Silver</h1>
-					<h2>1500</h2>
+				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('silver')}} style={{}}>
+					<h1 className="text-[2em]">Silver</h1>
+					<h2 className="text-[1.75em]">1500</h2>
 				</div>
-				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('gold')}} style={{}}>
-					<h1>Gold</h1>
-					<h2>2500</h2>
+				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('gold')}} style={{}}>
+					<h1 className="text-[2em]">Gold</h1>
+					<h2 className="text-[1.75em]">2500</h2>
 				</div>
-				<div className="clickable neumorphic sponsorCard centerText" onClick={function(){updateBenefits('obsidian')}} style={{}}>
-					<h1>Obsidian</h1>
-					<h2>5000</h2>
+				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('obsidian')}} style={{}}>
+					<h1 className="text-[2em]">Obsidian</h1>
+					<h2 className="text-[1.75em]">5000</h2>
 				</div>
 			</div>
 
-			<div className='acontainer'>
-				<div id='container2' className="neumorphic centerText acontainer" style={{}}>
-					<div id='benefits' className='stackText' style={{}}>
-						<h3>Bronze</h3>
+			<div className={tw.container}>
+				<div id='container2' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
+					<div id='benefits' className={tw.stackText} style={{}}>
+						<h3 className="text-[#04151F] text-[1.75em] my-[10px]">Bronze</h3>
 					</div>
 				</div>
 			</div>
 
-			<div className='acontainer'>
-				<div id='container3' className="clickable neumorphic centerText acontainer" style={{}}>
-					<div className='stackText' style={{}}>
-						<h4>We understand that standard sponsorship tiers may not suit all organizations.</h4>
-						<h4>Please contact &nbsp;
+			<div className={tw.container}>
+				<div id='container3' className={`${tw.clickable} ${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
+					<div className={tw.stackText} style={{}}>
+						<h4 className="text-[#04151F] text-[1.25em] leading-[130%]">We understand that standard sponsorship tiers may not suit all organizations.</h4>
+						<h4 className="text-[#04151F] text-[1.25em] leading-[130%]">Please contact &nbsp;
 							<a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>&nbsp;
 							 if you want to develop a tailored sponsorship package.</h4>
 					</div>
 				</div>
 			</div>
 
-			<div className='acontainer'>
-				<div id='container4' className="neumorphic centerText acontainer" style={{}}>
-					<div id='docText' className='stackText' style={{}}>
-						<h3>Logo on T-Shirt</h3>
-						<p>Your company logo will be printed on the free shirts we give out</p>
-						<p>Higher tiers increase the size of the logo</p>
+			<div className={tw.container}>
+				<div id='container4' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
+					<div id='docText' className={tw.stackText} style={{}}>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Logo on T-Shirt</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company logo will be printed on the free shirts we give out</p>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Higher tiers increase the size of the logo</p>
 
-						<h3>Logo on Website</h3>
-						<p>Your company logo will be included on our website</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Logo on Website</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company logo will be included on our website</p>
 
-						<h3>Distribute Company Swag</h3>
-						<p>Bring merchandise to your booth</p>
-						<p>Alternatively we can have some at the check in desk to hand out</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Distribute Company Swag</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Bring merchandise to your booth</p>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Alternatively we can have some at the check in desk to hand out</p>
 
-						<h3>Company Flier in Event Folder</h3>
-						<p>We'll include your flier in the event folder handed out to all participants at check in</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Company Flier in Event Folder</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">We'll include your flier in the event folder handed out to all participants at check in</p>
 
-						<h3>Social Media Advertising</h3>
-						<p>Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Social Media Advertising</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
 
-						<h3>Company Judges</h3>
-						<p>Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Company Judges</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)</p>
 
-						<h3>Resume Book</h3>
-						<p>Your company will be included on the list we send out participant resumes to (after the event in mid-November)</p>
-						<p>In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Resume Book</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company will be included on the list we send out participant resumes to (after the event in mid-November)</p>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)</p>
 
-						<h3>Host Fireside Chat</h3>
-						<p>Company informational session during the main event hackathon</p>
-						<p>Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Host Fireside Chat</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Company informational session during the main event hackathon</p>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
 
-						<h3>Host a Workshop</h3>
-						<p>Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
-						<p>This can occur before as a separate HackRPI event or during the main hackathon</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Host a Workshop</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">This can occur before as a separate HackRPI event or during the main hackathon</p>
 
-						<h3>Promotional Mail to Hackers</h3>
-						<p>Your company will be featured on the mail we send out to all hackers signed up before the main event</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Promotional Mail to Hackers</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company will be featured on the mail we send out to all hackers signed up before the main event</p>
 
-						<h3>Priority Booth Placement</h3>
-						<p>Your booth/table will be closer to the entrance and area where the majority of participants are</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Priority Booth Placement</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your booth/table will be closer to the entrance and area where the majority of participants are</p>
 
-						<h3>Opening Ceremony Demo</h3>
-						<p>During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Opening Ceremony Demo</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
 
-						<h3>Optional Table Upgrade</h3>
-						<p>We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Optional Table Upgrade</h3>
+						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>
 					</div>
 				</div>
 			</div>
 
 			<iframe
-				className="sponsorshipBooklet"
+				className="mx-auto w-[90%] h-[120vh] bg-sky-500 py-10"
 				src="https://drive.google.com/file/d/1GCYJHNR37vq6_UT4v17lAOR4Cr4qUJcq/preview"
 				allow="autoplay"
 				sandbox="allow-scripts allow-same-origin allow-popups"
 			></iframe>
-		</div>
+		</main>
+		<footer className="bg-white">
+			<div className="w-full h-[10vh] bg-sky-500" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+			<Footer/>
+		</footer>
+		<style jsx global>{`
+			@keyframes tempBlur {
+				0% { filter: blur(0px); }
+				10% { filter: blur(5px); }
+				80% { filter: blur(0px); }
+				100% { filter: blur(0px); }
+			}
+		`}</style>
 	</>);
 }
 
