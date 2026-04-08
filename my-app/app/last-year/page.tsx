@@ -13,10 +13,6 @@ import Footer from "../components/footer/footer";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 import Lenis from 'lenis';
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function PastYearProjects() {
 	const topProjects = podiumPrizes.slice(0, 3);
@@ -27,8 +23,6 @@ export default function PastYearProjects() {
       smoothWheel: true,
       duration: 1.2,
     });
-
-    lenis.on("scroll", ScrollTrigger.update);
 
     function raf(time: number) {
       lenis.raf(time);

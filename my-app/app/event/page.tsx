@@ -12,10 +12,6 @@ import Image from 'next/image';
 
 import Lenis from 'lenis';
 import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Event() {
   useEffect(() => {
@@ -24,8 +20,6 @@ export default function Event() {
       smoothWheel: true,
       duration: 1.2,
     });
-
-    lenis.on("scroll", ScrollTrigger.update);
 
     function raf(time: number) {
       lenis.raf(time);
