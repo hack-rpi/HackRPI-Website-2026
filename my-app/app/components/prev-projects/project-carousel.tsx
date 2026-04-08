@@ -43,8 +43,8 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 									src={project.imageUrl}
 									alt={project.title}
 									fill
-									objectFit="cover"
-									className="sizeImage z-0 w-full mb-2 rounded-md"
+									className="sizeImage z-0 w-full mb-2 rounded-md object-cover"
+									sizes="75vw"
 								></Image>
 							</div>
 							<div className="absolute sm:w-3/4 -top-50 flex-col w-full pl-4 mt-2 text-center"></div>

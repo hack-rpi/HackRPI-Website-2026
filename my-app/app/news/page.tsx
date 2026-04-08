@@ -6,11 +6,7 @@ import articlesData from './data.json';
 import NavBar from '../components/nav-bar/nav-bar';
 
 import Lenis from 'lenis';
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from '../components/footer/footer';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Page: React.FC = () => {
   // Import article data from JSON file
@@ -42,8 +38,6 @@ const Page: React.FC = () => {
       smoothWheel: true,
       duration: 1.2,
     });
-
-    lenis.on("scroll", ScrollTrigger.update);
 
     function raf(time: number) {
       lenis.raf(time);
