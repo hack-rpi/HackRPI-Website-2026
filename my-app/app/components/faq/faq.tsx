@@ -36,7 +36,7 @@ export default function FAQPage() {
   });
 
   return (
-    <div id="faq" className="w-[full] h-auto p-5 flex flex-col bg-sky-500">
+    <div id="faq" className="w-[full] h-auto p-5 flex flex-col bg-[#00152b]">
       <div className="w-full mt-[5vh]"/>
       
       <div className="flex flex-row justify-center mt-5">

@@ -23,21 +23,21 @@ const teamMembers = [
 
 const topOffsets = [45, 35, 25, 30, 45, 30, 40];
 const parallaxPositions = [
-	{ top: 10, left: 50, size: 0.6 },
-	{ top: 55, left: 72, size: 0.5 },
-	{ top: 5, left: 94, size: 0.65 },
-	{ top: 60, left: 116, size: 0.55 },
-	{ top: 15, left: 138, size: 0.6 },
-	{ top: 50, left: 160, size: 0.7 },
-	{ top: 8, left: 182, size: 0.58 },
-	{ top: 55, left: 204, size: 0.62 },
-	{ top: 20, left: 226, size: 0.6 },
-	{ top: 58, left: 248, size: 0.68 },
-	{ top: 12, left: 270, size: 0.56 },
-	{ top: 48, left: 292, size: 0.64 },
-	{ top: 22, left: 314, size: 0.61 },
-	{ top: 52, left: 336, size: 0.59 },
-	{ top: 18, left: 358, size: 0.63 },
+	{ top: 10, left: 50, size: 1.02 },
+	{ top: 55, left: 72, size: 0.85 },
+	{ top: 5, left: 94, size: 1.105 },
+	{ top: 60, left: 116, size: 0.935 },
+	{ top: 15, left: 138, size: 1.02 },
+	{ top: 50, left: 160, size: 1.19 },
+	{ top: 8, left: 182, size: 0.986 },
+	{ top: 55, left: 204, size: 1.054 },
+	{ top: 20, left: 226, size: 1.02 },
+	{ top: 58, left: 248, size: 1.156 },
+	{ top: 12, left: 270, size: 0.952 },
+	{ top: 48, left: 292, size: 1.088 },
+	{ top: 22, left: 314, size: 1.037 },
+	{ top: 52, left: 336, size: 1.003 },
+	{ top: 18, left: 358, size: 1.071 },
 ];
 
 // https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
