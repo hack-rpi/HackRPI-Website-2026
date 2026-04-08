@@ -117,8 +117,8 @@ export default function Scene() {
   return (
     <>
       <directionalLight position={[4, 4, 5]} intensity={0.8} />
-        {/* <BackgroundSphere /> */}
-        <BackgroundCircle />
+        <BackgroundSphere />
+        {/* <BackgroundCircle /> */}
         <Model />
         <ImageRectangle />
     </>
