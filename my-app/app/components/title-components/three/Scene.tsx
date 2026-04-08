@@ -5,7 +5,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const PLANE_URL = "/3d/plane.glb";
+const PLANE_URL = "/3d/plane0.glb";
 const glbLoadStart =
   typeof performance !== "undefined" ? performance.now() : Date.now();
 let glbTimingLogged = false;
