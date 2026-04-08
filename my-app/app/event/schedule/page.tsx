@@ -1,7 +1,6 @@
 "use client";
 
 import NavBar from "@/app/components/nav-bar/nav-bar";
-import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
 import type { Event, ScheduleData, ScheduleEventData } from "@/app/data/schedule";
 import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/app/data/schedule";
@@ -11,6 +10,11 @@ import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 import Lenis from 'lenis';
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/app/components/footer/footer"), {
+	loading: () => null,
+});
 
 // async function fetchEvents(): Promise<{
 // 	status: number;
@@ -158,8 +162,11 @@ export default function Page() {
 
 	return (
 		<>
-		<NavBar showOnScroll={false} />
-		<main className="flex flex-col w-full h-fit min-h-screen items-center justify-center bg-linear-to-b from-blue-800 to-purple-900">
+		<NavBar showOnScroll={false} variant={1}/>
+		<main className="
+			flex flex-col w-full h-fit min-h-screen pb-[15vh]
+			items-center justify-center bg-linear-to-b from-blue-800 via-purple-800 via-85% to-black
+		">
 			<div className="w-11/12 desktop:w-2/3 grow shrink basis-auto mt-28 desktop:mt-16">
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
@@ -258,10 +265,16 @@ export default function Page() {
 				)}
 			</div>
 		</main>
-		<footer className="bg-gray-400">
-			<div className="w-full h-[10vh] bg-purple-900" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
-			<Footer/>
-		</footer>
+		{state !== "loading" && (
+			<footer className="bg-gray-800">
+				<div
+					className="w-full h-[10vh] bg-black"
+					style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }}
+					id="footer-ellipse"
+				></div>
+				<Footer />
+			</footer>
+		)}
 		</>
 	);
 }
