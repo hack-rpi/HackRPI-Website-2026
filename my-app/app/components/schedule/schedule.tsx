@@ -29,19 +29,19 @@ export default function Schedule(props: ScheduleProps) {
 					<div key={index} className="relative flex flex-col grow shrink basis-auto h-full mx-0.5 sm:mx-1">
 						{column.map((event) => {
 							const { top, height } = calculateTopAndHeightOfEvent(event, props.times);
-							let color = "bg-gray-500 text-black border-black";
+							let color = "bg-purple-300 text-black border-black";
 
 							const eventPassed = props.currentTime.getTime() > event.endTime;
 							const eventStarted = props.currentTime.getTime() > event.startTime;
 
 							if (event.eventType === "workshop") {
-								color = "bg-red-500 text-black border-black";
+								color = "bg-blue-500 text-slate-200 border-slate-200";
 							} else if (event.eventType === "deadline") {
-								color = "bg-blue-500 text-black border-black";
+								color = "bg-black text-white border-white";
 							} else if (event.eventType === "food") {
 								color = "bg-green-500 text-black border-black";
 							} else if (event.eventType === "important") {
-								color = "bg-orange-500 text-gray-300 border-gray-300";
+								color = "bg-red-500 text-gray-300 border-gray-300";
 							}
 
 							if (eventStarted) {
@@ -92,12 +92,14 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 				>
 					{props.time.str}
 				</p>
-				<div className="bg-white w-2 h-2 rounded-full mr-4 "></div>
+				<div className={`w-2 h-2 rounded-full mr-4 ${
+					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-green-400" : "bg-white"
+				}`}></div>
 				<hr className="grow shrink basis-auto border border-gray-400" id={`${props.time.unix}`} />
 			</div>
 			<div
 				className={`w-2 h-20 rounded-full ml-18 sm:ml-22 ${
-					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-hackrpi-secondary-yellow" : "bg-white"
+					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-green-400" : "bg-white"
 				}`}
 			></div>
 		</div>

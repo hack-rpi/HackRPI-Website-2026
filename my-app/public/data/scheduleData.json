@@ -26,7 +26,7 @@
     },
     {
       "id": "sat-2",
-      "title": "Coding Starts!",
+      "title": "Coding Starts @ 11 AM",
       "description": "Ready! Set! Code! Start working on your projects!",
       "location": "DCC 308",
       "speaker": "",
@@ -352,27 +352,27 @@
     },
     {
       "id": "sun-submission1",
-      "title": "Devpost Submissions Due @ 9 AM",
-      "description": "You must create a Devpost submission before 9 AM Sunday. You can edit your submission and project until coding ends at 11.",
+      "title": "Devpost Submissions Due @ 10 AM",
+      "description": "You must create a Devpost submission before 10 AM Sunday. You can edit your submission and project until coding ends at 11.",
       "location": "",
       "speaker": "",
       "eventType": "deadline",
       "visible": true,
-      "column": 2,
-      "startTime": "08:00:00",
-      "endTime": "09:00:00"
+      "column": 1,
+      "startTime": "10:00:00",
+      "endTime": "11:00:00"
     },
     {
       "id": "sun-submission2",
-      "title": "Coding Ends",
+      "title": "Coding Ends @ 11 AM",
       "description": "Hands off the keyboard! No work on your project should occur until after the event ends!",
       "location": "",
       "speaker": "",
       "eventType": "deadline",
       "visible": true,
-      "column": 2,
-      "startTime": "10:30:00",
-      "endTime": "11:00:00"
+      "column": 1,
+      "startTime": "11:00:00",
+      "endTime": "12:00:00"
     },
     {
       "id": "sun-judging1",

@@ -132,6 +132,7 @@ export default function Page() {
 
 		const interval = setInterval(() => {
 			setCurrentDateTime(new Date());
+			// setCurrentDateTime(new Date("2026-11-07T14:45:45-05:00")); // NOTE: for testing purposes
 		}, 1000);
 
 		addEventListener("keydown", (event) => {
@@ -167,11 +168,11 @@ export default function Page() {
 			flex flex-col w-full h-fit min-h-screen pb-[15vh]
 			items-center justify-center bg-linear-to-b from-blue-800 via-purple-800 via-85% to-black
 		">
-			<div className="w-11/12 desktop:w-2/3 grow shrink basis-auto mt-28 desktop:mt-16">
+			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28 desktop:mt-16">
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
-						className="text-primary text-xl lg:text-2xl px-5 py-2"
+						className="bg-sky-400 text-white text-xl lg:text-2xl px-5 py-2"
 					>
 						Google Calendar
 					</HackRPILink>
@@ -182,7 +183,7 @@ export default function Page() {
 						{currentDateTime.toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}
 					</p>
 				</div>
-				<hr className="w-full border-primary border-2 my-4" />
+				<hr className="w-full border-gray-400 border-2 my-4" />
 				{state === "loading" && (
 					<div className="flex h-fit items-center justify-center w-full">
 						<h2 className="text-xl">Loading the schedule: </h2>
@@ -234,16 +235,16 @@ export default function Page() {
 
 				{modalEvent && (
 					<div
-						className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-20"
+						className="fixed top-0 left-0 w-screen h-screen bg-black/50 flex items-center justify-center z-20"
 						onClick={() => {
 							setModalEvent(null);
 						}}
 					>
-						<div className="w-11/12 desktop:w-2/3 h-5/6 bg-hackrpi-secondary-light-blue rounded-lg p-4 overflow-y-auto z-30">
+						<div className="w-11/12 max-w-2/3 h-5/6 bg-blue-800 rounded-lg p-5 overflow-y-auto z-30">
 							<div className="flex items-center justify-between mb-4 border-b-2 border-b-gray-400 h-24">
 								<h1 className=" text-3xl xs:text-4xl md:text-5xl font-bold">{modalEvent.title}</h1>
 								<button
-									className="text-4xl font-bold text-black mr-4 hover:text-primary focus:text-primary"
+									className="text-4xl font-bold text-white mr-4 hover:text-primary focus:text-primary"
 									onClick={() => {
 										setModalEvent(null);
 									}}
