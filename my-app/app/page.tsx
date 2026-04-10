@@ -10,13 +10,16 @@ import TeamComponent from "@/app/components/team/team";
 import Mentions from "@/app/components/team/mentions";
 
 import Lenis from 'lenis';
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
+import FinalMessage from "./components/final-message/final-message";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const [Navbar, setNavbar] = useState<ReactNode>(<NavBar showOnScroll={true} variant={1}/>);
 
   function textAnimation(id: string, speed: number = 1.0, delay: number = 0.0, effect: number = 0) {
     // Pass an id for it to iterate though. It must have a child element like this:
@@ -162,7 +165,7 @@ export default function Home() {
     //trophytl.fromTo(document.querySelector("#trophy-canvas"), { x: "0vw", y: 0, transform: "scale(1)" }, { x: 500, y: 1000, transform: "scale(0.2)", duration: 1.0, ease: "none" });
 
 
-    // animate speach text
+    // animate speech text
     ScrollTrigger.create({
       trigger: "#winner-animate",
       start: "top bottom",
@@ -176,6 +179,7 @@ export default function Home() {
       },
     });
 
+
     // animate effect in footer
     const footerTl = gsap.timeline({
       scrollTrigger: {
@@ -185,8 +189,49 @@ export default function Home() {
         scrub: true,
       },
     });
+    footerTl.fromTo(
+      document.querySelector("#footer-ellipse"),
+      { clipPath: "ellipse(70% 0% at 50% -10%)" },
+      { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
+    );
 
-    footerTl.fromTo(document.querySelector("#footer-ellipse"), { clipPath: "ellipse(70% 0% at 50% -10%)" }, { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" });
+
+    // switch navbar styling
+    ScrollTrigger.create({
+      trigger: "#switch-light",
+      start: "top top",
+      end: "bottom top",
+      onEnter: () => {
+        setNavbar(<NavBar showOnScroll={true}/>);
+      },
+      onEnterBack: () => {
+        setNavbar(<NavBar showOnScroll={true}/>);
+      },
+      onLeave: () => {
+        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+      },
+      onLeaveBack: () => {
+        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+      }
+    });
+
+    ScrollTrigger.create({
+      trigger: "#switch-light-2",
+      start: "top top",
+      end: "bottom top",
+      onEnter: () => {
+        setNavbar(<NavBar showOnScroll={true}/>);
+      },
+      onEnterBack: () => {
+        setNavbar(<NavBar showOnScroll={true}/>);
+      },
+      onLeave: () => {
+        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+      },
+      onLeaveBack: () => {
+        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+      }
+    });
 
 
     return () => {
@@ -196,7 +241,8 @@ export default function Home() {
 
   return (
     <>
-      <NavBar showOnScroll={true} />
+      {/* <NavBar showOnScroll={true} /> */}
+      { Navbar }
       <div className="w-full overflow-hidden">
         <TitleComponent
           onReady={(variant) => {
@@ -207,10 +253,14 @@ export default function Home() {
         />
         <AboutUs />
         <FAQPage />
-        <Sponsors />
+        <div id="switch-light">
+          <Sponsors />
+        </div>
         <TeamComponent />
         <Mentions />
-        <footer className="bg-white">
+        <footer id="switch-light-2" className="bg-white">
+          <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
+          <FinalMessage/>
           <Footer />
         </footer>
       </div>
