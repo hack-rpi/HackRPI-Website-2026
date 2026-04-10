@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import { text } from "stream/consumers";
 
-
-export default function SponsorCard({ name, tier, image, link }: any) {
+export default function SponsorCard({ tier, amount }: any) {
   let bg_color, text_color;
   let shadowColor = "0,0,0"; // default RGB
 
-  if (tier === "obsidian") {
+  if (tier === "Obsidian") {
     bg_color =
       "bg-slate-900/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-purple-300";
     shadowColor = "147,51,234"; 
-  } else if (tier === "gold") {
+  } else if (tier === "Gold") {
     bg_color =
       "bg-yellow-100/30 bg-gradient-to-br from-white/40 to-transparent border border-white/20";
     text_color = "text-yellow-100";
     shadowColor = "234,179,8"; 
-  } else if (tier === "silver") {
+  } else if (tier === "Silver") {
     bg_color =
       "bg-blue-600/30 bg-gradient-to-br from-white/75 to-transparent border border-white/20";
     text_color = "text-white";
     shadowColor = "59,130,246";
-  } else if (tier === "bronze") {
+  } else if (tier === "Bronze") {
     bg_color =
       "bg-orange-700/30 bg-gradient-to-br from-white/100 to-transparent border border-white/20";
     text_color = "text-orange-500";
@@ -85,7 +83,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   }
 
   let style =
-    "w-[300px] h-[300px] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[300px] h-[400px] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
@@ -96,41 +94,18 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   return (
 
   <div className="m-6 flex flex-col items-center group perspective-[1000px]">
-    <span
-      className={sponsor_name_style}
-      >
-        {name}
-    </span>
     <div
-      className={style + " relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
+      className={style + " relative overflow-hidden border-3 transform-gpu transform-3d flex flex-col"}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
         transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         boxShadow: shadow
-        
       }}
     >
-      <a href = {link} target="_blank" rel="noopener noreferrer">
-      <div className="flex flex-col items-center justify-center gap-2">
-        {image && (
-          <img
-            src={image}
-            alt={name}
-            className="absolute inset-0 w-full h-full object-contain p-3"
-          />
-        )}
-      </div>
-      </a>
+      <h1 className="text-[2em]">{tier}</h1>
+      <h2 className="text-[1.75em]">{amount}</h2>
     </div>
-
-   
-    <span
-      className={sponsor_rank_style}
-        
-    >
-      {tier}
-    </span>
   </div>
 );
 }
