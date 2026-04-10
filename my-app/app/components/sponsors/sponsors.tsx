@@ -23,17 +23,20 @@ export default function Sponsors() {
 			x: Math.random() * w,
 			y: Math.random() * h,
 			l: Math.random() * 50 + 30,
-			speed: Math.random() * 4 + 4
+			speed: Math.random() * 4 + 4,
+			raincolor : Math.random() * (200 - 100) + 100,
 		}));
 
 		function draw() {
 			if (!ctx) return;
 			ctx.clearRect(0, 0, w, h);
 
-			ctx.strokeStyle = "rgba(200,200,255,0.6)";
-			ctx.lineWidth = 1;
+			
+			
 
 			drops.forEach(d => {
+				ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, 0.6)`;
+				ctx.lineWidth = 1;
 				ctx.beginPath();
 				ctx.moveTo(d.x, d.y);
 				ctx.lineTo(d.x + 1, d.y + d.l);
