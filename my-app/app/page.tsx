@@ -110,7 +110,7 @@ export default function Home() {
     tl.call(() => { if (!HA1) { textAnimation("team-title", 0.6); HA1 = true; } }, [], 0.1);
 
     let HA2 = false;
-    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.3); HA2 = true; } }, [], 0.0);
+    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.1); HA2 = true; } }, [], 0.0);
 
     // 0 -> 1 is normal animation time, then 1 -> 1.2 is the pause at the end
     tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: (1 * speed), force3D: true }, 0);
