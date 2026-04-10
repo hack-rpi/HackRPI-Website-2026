@@ -166,7 +166,7 @@ export default function Page() {
 		<NavBar showOnScroll={false} variant={1}/>
 		<main className="
 			flex flex-col w-full h-fit min-h-screen pb-[15vh]
-			items-center justify-center bg-linear-to-b from-blue-800 via-purple-800 via-85% to-black
+			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-black
 		">
 			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28 desktop:mt-16">
 				<div className="flex w-full items-center justify-center">
