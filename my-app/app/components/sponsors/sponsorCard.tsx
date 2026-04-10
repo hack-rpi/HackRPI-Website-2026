@@ -3,29 +3,37 @@ import { text } from "stream/consumers";
 
 
 export default function SponsorCard({ name, tier, image, link }: any) {
-  let bg_color, text_color;
+  let bg_color, text_color, opacity, hoverOpacity;
   let shadowColor = "0,0,0"; // default RGB
 
   if (tier === "obsidian") {
     bg_color =
-      "bg-slate-900/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
+      "border-white/20";
     text_color = "text-purple-300";
     shadowColor = "147,51,234"; 
+    opacity = "opacity-70";
+    hoverOpacity = "hover:opacity-70";
   } else if (tier === "gold") {
     bg_color =
-      "bg-yellow-100/30 bg-gradient-to-br from-white/40 to-transparent border border-white/20";
+      "bg-yellow-100/30 bg-gradient-to-br from-white/15 to-transparent border-white/20";
     text_color = "text-yellow-100";
     shadowColor = "234,179,8"; 
+    opacity = "opacity-85";
+    hoverOpacity = "hover:opacity-90";
   } else if (tier === "silver") {
     bg_color =
-      "bg-blue-600/30 bg-gradient-to-br from-white/75 to-transparent border border-white/20";
+      "bg-blue-600/30 bg-gradient-to-br from-white/20 to-transparent border-white/20";
     text_color = "text-white";
     shadowColor = "59,130,246";
+    opacity = "opacity-90";
+    hoverOpacity = "hover:opacity-95";
   } else if (tier === "bronze") {
     bg_color =
-      "bg-orange-700/30 bg-gradient-to-br from-white/100 to-transparent border border-white/20";
+      "bg-orange-700/30 bg-gradient-to-br from-white/25 to-transparent border-white/20";
     text_color = "text-orange-500";
     shadowColor = "239,68,68"; 
+    opacity = "opacity-95";
+    hoverOpacity = "hover:opacity-100";
   } else {
     bg_color =
       "bg-orange-500/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
@@ -89,7 +97,10 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     bg_color +
     " " +
     text_color +
-    " transition-transform text-center flex items-center justify-center transition-all duration-400 ease-out";
+    " transition-transform text-center flex items-center justify-center transition-all duration-400 ease-out " +
+
+    opacity + " " + hoverOpacity;
+    
 
   let sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
