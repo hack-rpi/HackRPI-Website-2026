@@ -1,12 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
-
 :root {
     /* --bg: #D58936;
     --light: #ffad44;
     --shadow: #9e6528; */
 
-    --bg: #EFD6AC;
-    --light: #ffffd9;
+    --bg: var(--color-sky-500);
+    --card: var(--color-white);
+    --card-surround: var(--color-purple-500);
     --shadow: #b19e7f;
 
     --text: #04151F;
@@ -20,7 +19,6 @@
 *{
     margin:0;
     padding:0;
-    font-family: Aldrich, serif;
 
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -36,51 +34,43 @@
   display: none;
 }
 
-
-a:link, a:visited, a:focus, a:hover, a:active{
-  color: var(--accent);
-  text-decoration: none;
-}
-
 body{
     background-color: var(--bg);
-    font-size: 0.5em;
-
     /* background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
     background-position: center; */
 }
 
 h1{
-    font-size: 2.3em;
+    font-size: 2em;
 }
 h2{
-    font-size: 1.5em;
+    font-size: 1.75em;
 }
 h3{
-    font-size: 3em;
+    font-size: 1.75em;
     margin: 10px 0px;
 }
 h4{
-    font-size: 1.8em;
+    font-size: 1.25em;
     line-height:130%;
 }
 p{
-    font-size: 2.5em;
+    font-size: 1.25em;
     line-height: 140%;
     color: var(--text2);
 }
 span{
-    font-size: 2.5em;
+    font-size: 1.25em;
     line-height: 140%;
 }
 
 .neumorphic {
-    background-color: var(--bg);
+    background-color: var(--card);
     border-radius: 15px;
 }
 
 .glassmorphic {
-    background-color: var(--bg);
+    background-color: var(--card);
     backdrop-filter: blur(9px) saturate(169%);
     -webkit-backdrop-filter: blur(9px) saturate(169%);
     opacity: 0.5;

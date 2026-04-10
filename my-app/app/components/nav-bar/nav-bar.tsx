@@ -2,9 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { NavGroup } from "./nav-bar-links";
+import DesktopNavBarSolid from "./desktop/nav-bar-desktop-solid";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
 import MobileNavBar from "./mobile/nav-bar-mobile";
 import MlhBanner from "../mlh-banner/mlh-banner";
+import DesktopNavBarDarker from "./desktop/nav-bar-desktop-darker";
 
 export const links: NavGroup[] = [
 	{
@@ -29,12 +31,14 @@ export const links: NavGroup[] = [
 		name: "HackRPI XII",
 		links: [
 			{ href: "/last-year", children: "Winners" },
-			{ href: "/last-year#photos", children: "Photos" },
+			{ href: "/last-year/photos", children: "Photos" },
 		],
 	},
 ];
 
-export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
+export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolean, variant?: number}) {
+	variant = variant ?? 0;
+
 	const [showNav, setShowNav] = useState(false);
 	const [windowWidth, setWindowWidth] = useState(0);
 	/*const [isDarkMode, setIsDarkMode] = useState(
@@ -95,10 +99,19 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 				{/* <MlhBanner /> */}
 			</>
 		);
-	return (
-		<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
+
+	if (variant === 1) {
+		return (
+			<nav className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
+				<DesktopNavBarDarker links={links} />
+				{/* <MlhBanner /> */}
+			</nav>
+		)
+	}
+	else return (
+		<nav className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 			<DesktopNavBar links={links} />
 			{/* <MlhBanner /> */}
-		</div>
+		</nav>
 	);
 }

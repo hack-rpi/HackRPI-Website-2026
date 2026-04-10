@@ -9,7 +9,7 @@ import Sponsors from "@/app/components/sponsors/sponsors";
 import TeamComponent from "@/app/components/team/team";
 import Mentions from "@/app/components/team/mentions";
 
-import Lenis from 'lenis'
+import Lenis from 'lenis';
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,6 +26,7 @@ export default function Home() {
     // <span className="text-xl font-mono relative w-fit mx-auto" id="text-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 
     const elements = document.querySelectorAll(`[id="${arguments[0]}"]`);
+    if (elements === null) return;
     const tl = gsap.timeline();
     // console.log(elements)
 
@@ -38,10 +39,13 @@ export default function Home() {
           tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
           tl.to(element.children[1], { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
 
-        } else {
+        } else if (element.firstElementChild !== null){
           tl.to(element.firstElementChild, { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
           tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
           tl.to(element.firstElementChild, { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
+        }
+        else {
+          return;
         }
       });
     } else if (effect == 1) {
@@ -79,6 +83,7 @@ export default function Home() {
     const sectionPin = document.querySelector("#pin");
     const teamTitle = document.querySelector("#team-title");
     const teamContent = document.querySelector("#team-content");
+    const parallaxBg = document.querySelector("#parallax-bg");
     const mentions = document.querySelector("#mentions-container");
 
     // guards
@@ -105,10 +110,16 @@ export default function Home() {
     tl.call(() => { if (!HA1) { textAnimation("team-title", 0.6); HA1 = true; } }, [], 0.1);
 
     let HA2 = false;
-    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.3); HA2 = true; } }, [], 0.0);
+    tl.call(() => { if (!HA2) { textAnimation("name-animate", 1.0, 0.1); HA2 = true; } }, [], 0.0);
 
     // 0 -> 1 is normal animation time, then 1 -> 1.2 is the pause at the end
     tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: (1 * speed), force3D: true }, 0);
+    
+    // parallax background at half speed
+    if (parallaxBg) {
+      tl.fromTo(parallaxBg, { x: -introDistance * 0.5 }, { x: -scrollWidth * 0.5, ease: "none", duration: (1 * speed), force3D: true }, 0);
+    }
+    
     tl.to(teamTitle, { x: -scrollWidth / 2, ease: "none", duration: (0.5 * speed), force3D: true }, (0.7 * speed));
 
     // Pause on mentions screen for a bit before scrolling
@@ -187,21 +198,21 @@ export default function Home() {
     <>
       <NavBar showOnScroll={true} />
       <div className="w-full overflow-hidden">
-      <TitleComponent
-        onReady={(variant) => {
-          // Runs once the chosen title variant is mounted/rendered
-          textAnimation("title-animate", 0.9, 0.0, 0);
-          textAnimation("links-animate", 0.5, 0.0, 0);
-        }}
-      />
+        <TitleComponent
+          onReady={(variant) => {
+            // Runs once the chosen title variant is mounted/rendered
+            textAnimation("title-animate", 0.9, 0.0, 0);
+            textAnimation("links-animate", 0.5, 0.0, 0);
+          }}
+        />
         <AboutUs />
         <FAQPage />
         <Sponsors />
         <TeamComponent />
         <Mentions />
-        <div className="bg-white">
+        <footer className="bg-white">
           <Footer />
-        </div>
+        </footer>
       </div>
     </>
   );

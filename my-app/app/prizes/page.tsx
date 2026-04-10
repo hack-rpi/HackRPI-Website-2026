@@ -7,7 +7,7 @@ import Footer from "@/app/components/footer/footer";
 export default function Test() {
   return (
 		<>
-		<NavBar />
+		<NavBar showOnScroll={false} />
 		<main className = "w-full gap-3 h-screen">
 			<div className = "TitleSection">
 				Prizes!

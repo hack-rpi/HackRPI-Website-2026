@@ -113,7 +113,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
         {name}
     </span>
     <div
-      className={style + " relative overflow-hidden border border-3 transform-gpu [transform-style:preserve-3d]"}
+      className={style + " relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{

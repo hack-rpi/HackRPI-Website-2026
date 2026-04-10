@@ -5,23 +5,23 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
 import envelope from './envelope.png';
-import "./style.css"
+import "./style.css";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutUs() {
 
-	useGSAP(() => {
+	// useGSAP(() => {
 		// Animate the letter to jump up and down
-		gsap.timeline()
-			.to("#letter", {x: 2, y: -20, duration: 1})
-			.yoyo(true)
-			.repeat(-1);
-	});
+	// 	gsap.timeline()
+	// 		.to("#letter", {x: 2, y: -20, duration: 1})
+	// 		.yoyo(true)
+	// 		.repeat(-1);
+	// });
 
 	return (
-		<div className="relative p-5 bg-sky-500 min-h-screen">
+		<div className="relative p-5 bg-[#00152b] min-h-screen">
 
 			<div className="envelopeContainer">
 				<div className="envelopeFlap">
