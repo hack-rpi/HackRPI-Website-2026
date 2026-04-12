@@ -252,8 +252,8 @@ export default function Home() {
           }}
         />
         <AboutUs />
-        <FAQPage />
         <div id="switch-light">
+          <FAQPage />
           <Sponsors />
         </div>
         <TeamComponent />

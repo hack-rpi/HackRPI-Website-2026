@@ -21,7 +21,7 @@ export default function AboutUs() {
 	// });
 
 	return (
-		<div className="relative p-5 bg-[#00152b] min-h-screen">
+		<div className="relative p-5 bg-linear-to-b from-hackrpi-clouds-dark-blue to-sky-900 min-h-screen">
 
 			<div className="envelopeContainer">
 				<div className="envelopeFlap">
