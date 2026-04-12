@@ -13,7 +13,7 @@ const tw = {
 	container: "box-border px-[30px] py-0 flex flex-row justify-center m-5",
 	stackText: "box-border p-5 flex flex-col w-full justify-center",
 
-	neumorphic: "bg-white rounded-[15px]",
+	neumorphic: "bg-purple-800 rounded-[15px]",
 	sponsorCard: "w-[20vw] h-[60vh] m-5 box-border flex",
 	centerText: "text-center flex flex-col items-center justify-center",
 
@@ -24,7 +24,7 @@ const tw = {
 	benefitContainer: "grid grid-cols-3 w-full items-center my-[3px]",
 
 	light: "var(--color-purple-500)",
-	shadow: "var(--color-purple-300)",
+	shadow: "var(--color-purple-400)",
 } as const;
 
 var listItems = {
@@ -185,7 +185,7 @@ function SponsorUsPage() {
 			const dy = centerY - y;
 
 			const size = Math.max(rect.width, rect.height);
-			const scale = size * 0.02; // adjust as needed
+			const scale = size * 0.01; // adjust as needed
 
 			const len = Math.hypot(dx, dy) || 1;
 			const offX = (dx / len) * scale;
@@ -253,12 +253,12 @@ function SponsorUsPage() {
 		let currentBenefits = [];
 		let potentialBenefits = [];
 
-		const benefitCurrent = `${tw.benefitRow} text-[1.25em] leading-[140%] text-slate-900`;
-		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-900`;
-		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-900";
+		const benefitCurrent = `${tw.benefitRow} text-[1.25em] leading-[140%] text-slate-100`;
+		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-100`;
+		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-100";
 
 		if (isMobileLayout || tier == 'obsidian'){
-			benefitsDiv.innerHTML = `<h3 class="text-[#04151F] text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
+			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
 				let p = document.createElement('p');
 				p.textContent = name;
@@ -290,15 +290,15 @@ function SponsorUsPage() {
 			titleBenefitContainer.className = tw.benefitContainer;
 			let firstTier = document.createElement('h3');
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
-			firstTier.className = "justify-self-center text-[#04151F] text-[1.75em] my-[10px]";
+			firstTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
 
 			let arrow = document.createElement('span');
 			arrow.innerHTML = '&rarr;';
-			arrow.className = `justify-self-center text-[1.25em] leading-[140%] text-slate-900`;
+			arrow.className = `justify-self-center text-[1.25em] leading-[140%] text-slate-100`;
 
 			let secondTier = document.createElement('h3');
 			secondTier.innerHTML = nextTier.charAt(0).toUpperCase() + nextTier.slice(1);
-			secondTier.className = "justify-self-center text-[#04151F] text-[1.75em] my-[10px]";
+			secondTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
 
 			titleBenefitContainer.appendChild(firstTier);
 			titleBenefitContainer.appendChild(arrow);
@@ -445,15 +445,15 @@ function SponsorUsPage() {
 	}, []);
 
 	return (<>
-		<NavBar showOnScroll={false}/>
-		<main className="w-full bg-sky-500 pt-[8vh]">	
+		<NavBar showOnScroll={false} variant={1}/>
+		<main className="w-full bg-hackrpi-clouds-dark-blue pt-[8vh]">	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
 			<div className={`${tw.container} flex-col`}>
-				<div className={`${tw.neumorphic} text-[#04151F] p-5 text-center items-center`} data-neumorphic="true">
+				<div className={`${tw.neumorphic} text-white p-5 text-center items-center`} data-neumorphic="true">
 					Click the buttons to see the benefits!
 				</div>
 			</div>
-			<div id='container1' className={`${tw.container} text-[#04151F]`} style={{}}>
+			<div id='container1' className={`${tw.container} text-slate-100`} style={{}}>
 				{/* <div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('bronze')}} style={{}}>
 					<h1 className="text-[2em]">Bronze</h1>
 					<h2 className="text-[1.75em]">750</h2>
@@ -488,7 +488,7 @@ function SponsorUsPage() {
 			<div className={tw.container}>
 				<div id='container2' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
 					<div id='benefits' className={tw.stackText} style={{}}>
-						<h3 className="text-[#04151F] text-[1.75em] my-2.5">LOADING</h3>
+						<h3 className="text-slate-100 text-[1.75em] my-2.5">LOADING</h3>
 					</div>
 				</div>
 			</div>
@@ -496,10 +496,14 @@ function SponsorUsPage() {
 			<div className={tw.container}>
 				<div id='container3' className={`${tw.clickable} ${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
 					<div className={tw.stackText} style={{}}>
-						<h4 className="text-[#04151F] text-[1.25em] leading-[130%]">We understand that standard sponsorship tiers may not suit all organizations.</h4>
-						<h4 className="text-[#04151F] text-[1.25em] leading-[130%]">Please contact &nbsp;
-							<a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>&nbsp;
-							 if you want to develop a tailored sponsorship package.</h4>
+						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">We understand that standard sponsorship tiers may not suit all organizations.</h4>
+						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">
+							Please contact &nbsp;
+							<a href="mailto:hackrpi@rpi.edu" className="underline text-blue-500 hover:text-purple-500">
+								hackrpi@rpi.edu
+							</a>
+							&nbsp; if you want to develop a tailored sponsorship package.
+						</h4>
 					</div>
 				</div>
 			</div>
@@ -507,63 +511,63 @@ function SponsorUsPage() {
 			<div className={tw.container}>
 				<div id='container4' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
 					<div id='docText' className={tw.stackText} style={{}}>
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Logo on T-Shirt</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company logo will be printed on the free shirts we give out</p>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Higher tiers increase the size of the logo</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Logo on T-Shirt</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company logo will be printed on the free shirts we give out</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Higher tiers increase the size of the logo</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Logo on Website</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company logo will be included on our website</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Logo on Website</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company logo will be included on our website</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Distribute Company Swag</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Bring merchandise to your booth</p>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Alternatively we can have some at the check in desk to hand out</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Distribute Company Swag</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Bring merchandise to your booth</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Alternatively we can have some at the check in desk to hand out</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Company Flier in Event Folder</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">We'll include your flier in the event folder handed out to all participants at check in</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Flier in Event Folder</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We'll include your flier in the event folder handed out to all participants at check in</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Social Media Advertising</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Social Media Advertising</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Company Judges</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Judges</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Resume Book</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company will be included on the list we send out participant resumes to (after the event in mid-November)</p>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Resume Book</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company will be included on the list we send out participant resumes to (after the event in mid-November)</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Host Fireside Chat</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Company informational session during the main event hackathon</p>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Host Fireside Chat</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Company informational session during the main event hackathon</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Host a Workshop</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">This can occur before as a separate HackRPI event or during the main hackathon</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Host a Workshop</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">This can occur before as a separate HackRPI event or during the main hackathon</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Promotional Mail to Hackers</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your company will be featured on the mail we send out to all hackers signed up before the main event</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Promotional Mail to Hackers</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company will be featured on the mail we send out to all hackers signed up before the main event</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Priority Booth Placement</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">Your booth/table will be closer to the entrance and area where the majority of participants are</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Priority Booth Placement</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your booth/table will be closer to the entrance and area where the majority of participants are</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Opening Ceremony Demo</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Opening Ceremony Demo</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-[#04151F]">Optional Table Upgrade</h3>
-						<p className="text-[1.25em] leading-[140%] text-slate-600 text-left ml-8 mb-2">We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Optional Table Upgrade</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>
 					</div>
 				</div>
 			</div>
 
 			<iframe
-				className="mx-auto w-[90%] h-[120vh] bg-sky-500 py-10"
+				className="mx-auto w-[90%] h-[120vh] py-10"
 				src="https://drive.google.com/file/d/1GCYJHNR37vq6_UT4v17lAOR4Cr4qUJcq/preview"
 				allow="autoplay"
 				sandbox="allow-scripts allow-same-origin allow-popups"
 			></iframe>
-			<div className="bg-sky-500 h-[30vh]"></div>
+			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
 		</main>
-		<footer className="bg-white">
-			<div className="w-full h-[10vh] bg-sky-500" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+		<footer className="bg-gray-800">
+			<div className="w-full h-[10vh] bg-hackrpi-clouds-dark-blue" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
 			<Footer/>
 		</footer>
 		<style jsx global>{`

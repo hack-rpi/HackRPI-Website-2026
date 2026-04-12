@@ -14,6 +14,7 @@
   --font-mono: var(--font-geist-mono);
   --color-hackrpi-clouds-green: #00ff7f;
   --color-hackrpi-clouds-blue: #87CEEB;
+  --color-hackrpi-clouds-dark-blue: #00152b;
 }
 
 @media (prefers-color-scheme: dark) {

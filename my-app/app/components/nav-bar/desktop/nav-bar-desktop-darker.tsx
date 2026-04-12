@@ -5,6 +5,7 @@ import { NavGroup } from "../nav-bar-links";
 
 import Link from "next/link";
 import { Link as lin } from "../nav-bar-links";
+import MlhBanner from "../../mlh-banner/mlh-banner";
 
 function NavLink({href, children, onClick}: {
 	href: string;
@@ -60,7 +61,8 @@ function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 
 export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
   return (
-    /*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
+		<>
+    {/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/}
     <div className="w-full h-16 bg-linear-to-b from-purple-400/60 to-blue-800/30 text-slate-100 backdrop-blur-sm">
       <div
         className="flex justify-center lg:justify-center items-center h-full z-50"
@@ -131,5 +133,7 @@ export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
         </div>
       </div>
     </div>
+		<MlhBanner src="/mlh-badges/mlh-trust-badge-2027-dark.svg"/>
+		</>
   );
 }
