@@ -28,16 +28,16 @@ function Scene() {
 	useEffect(() => {
 		const landing = document.querySelector("#landing");
 		if (!centerRef.current) return;
-		setTimeout(() => {}, 500);
-		const tl = gsap.timeline({ 			
+		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: landing,
 				start: "top top",
 				end: () => "+=" + window.innerHeight * 0.8,
 				scrub: true,
 				anticipatePin: 0,
-			},});
-		tl.fromTo(centerRef.current.position, { x: -width / 4 , y: height / 4 + 2, z: 0 }, { x: 0, y: -1.5 , z: 0, duration: 1, ease: "power1.inOut" }, 0);
+			},
+		});
+		tl.fromTo(centerRef.current.position, { x: -width / 4, y: height / 4 + 2, z: 0 }, { x: 0, y: -0.5, z: 0, duration: 1, ease: "power1.inOut" }, 0);
 		tl.fromTo(centerRef.current.scale, { x: 2, y: 2, z: 2 }, { x: 1, y: 1, z: 1, duration: 0.7, ease: "power1.inOut" }, 0);
 		tl.fromTo(centerRef.current.rotation, { x: 0, y: 0, z: 0 }, { x: 0, y: Math.PI * 2, z: 0, duration: 1, ease: "power1.inOut" }, 0);
 	}, [width, height]);
@@ -48,10 +48,10 @@ function Scene() {
 						Bottom:  position={[0 - 0.5, -height / 2 + 1, 0]} scale={[1,1,1]}
 						Top: 	 position={[-width / 2 + 0.5, height / 16 + 1, 0]}  scale={[5,5,5]}
 			*/}
-			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[5,5,5]}>
+			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[2, 2, 2]}>
 				<Model />
 			</Center>
-			<ambientLight intensity={1} />
+			<ambientLight intensity={2} />
 			<pointLight position={[10, 10, 10]} />
 
 			{/* <OrbitControls /> */}
@@ -66,17 +66,18 @@ function SceneTransition() {
 	useEffect(() => {
 		const pin = document.querySelector("#pin");
 		if (!centerRef.current) return;
-		const tl = gsap.timeline({ 			
+		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: pin,
 				start: "top top",
 				end: () => "+=" + window.innerHeight * 3,
 				scrub: true,
 				anticipatePin: 0,
-			},});
+			},
+		});
 		console.log(width / 1.2);
 		tl.fromTo(centerRef.current.position, { x: width / 1.2, y: 5, z: 0 }, { x: -width / 1.2, y: 5, z: 0, duration: 1, ease: "power1.inOut" }, 0.2);
-		tl.fromTo(centerRef.current.rotation, { x: -0.5, y: -Math.PI, z: 0 }, { x: 0.5, y: -3*Math.PI, z: 0, duration: 1, ease: "power1.inOut" }, 0.2);
+		tl.fromTo(centerRef.current.rotation, { x: -0.5, y: -Math.PI, z: 0 }, { x: 0.5, y: -3 * Math.PI, z: 0, duration: 1, ease: "power1.inOut" }, 0.2);
 	}, [width, height]);
 
 	return (
@@ -85,7 +86,7 @@ function SceneTransition() {
 						Bottom:  position={[0 - 0.5, -height / 2 + 1, 0]} scale={[1,1,1]}
 						Top: 	 position={[-width / 2 + 0.5, height / 16 + 1, 0]}  scale={[5,5,5]}
 			*/}
-			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[2.5,2.5,2.5]}>
+			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[2.5, 2.5, 2.5]}>
 				<Model />
 			</Center>
 			<ambientLight intensity={1} />
@@ -160,7 +161,9 @@ export default function prizes() {
 		// Get elements
 		const sectionPin = document.querySelector("#pin");
 		const majorPrizes = document.querySelector("#majorPrizes");
-		const minorPrizes = document.querySelector("#minorPrizes");
+		// bg colors to change
+		const landing = document.querySelector("#landing");
+		const spacer = document.querySelector("#spacer");
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
@@ -172,7 +175,7 @@ export default function prizes() {
 			},
 		});
 
-		tl.fromTo(majorPrizes, { clipPath: "inset(0px -30% 0px 0px)"}, { clipPath: "inset(0px 130% 0px 0px)", duration: 1, ease: "power1.inOut" }, 0.2);
+		tl.fromTo(majorPrizes, { clipPath: "inset(0px -30% 0px 0px)" }, { clipPath: "inset(0px 130% 0px 0px)", duration: 1, ease: "power1.inOut" }, 0.2);
 
 		// Once section pin is fully in view port pin the screen until the end of sideways scrolling.
 		ScrollTrigger.create({
@@ -182,6 +185,22 @@ export default function prizes() {
 			pin: true,
 			anticipatePin: 0, // make sure this is off or else it will anticipate it and jump the gun and make it not look smooth
 		});
+
+		// Background change color
+		const tlColor = gsap.timeline({
+			scrollTrigger: {
+				trigger: landing,
+				start: "top top",
+				end: () => "+=" + window.innerHeight * 1.6,
+				scrub: true,
+				anticipatePin: 0,
+			},
+		});
+
+		tlColor.fromTo(landing, { backgroundColor: "rgb(0,0,0)" }, { backgroundColor: "rgb(200,200,200)" , duration: 1, ease: "power1.inOut" }, 0.2);
+		tlColor.fromTo(spacer, { backgroundColor: "rgb(0,0,0)" }, { backgroundColor: "rgb(200,200,200)" , duration: 1, ease: "power1.inOut" }, 0.2);
+		tlColor.fromTo(majorPrizes, { backgroundColor: "rgb(0,0,0)" }, { backgroundColor: "rgb(200,200,200)" , duration: 1, ease: "power1.inOut" }, 0.2);
+
 
 
 
@@ -199,13 +218,13 @@ export default function prizes() {
 				<div className="h-screen flex" id="landing">
 					{/* 3D model */}
 					<div className="h-[150vh] w-full absolute">
-						<Canvas orthographic camera={{ position: [0, 0, 5], zoom: 100 }}>
+						<Canvas dpr={[0.9, 1]} orthographic camera={{ position: [0, 0, 5], zoom: 100 }}>
 							<Scene />
 						</Canvas>
 					</div>
-					<div className="w-11/20 bg-gBlack h-full">
+					<div className="w-11/20 h-full">
 					</div>
-					<div className="w-9/20 bg-gBlack h-full flex flex-col  justify-center">
+					<div className="w-9/20 h-full flex flex-col justify-center">
 						<div className="w-[50%] left flex flex-col items-start justify-center text-6xl text-left">
 							{/* todo: actaully import impact and a diff fancy font for Prizes */}
 							<span className="font-impact"><b>Thousands</b></span>
@@ -219,27 +238,41 @@ export default function prizes() {
 						<button></button>
 					</div>
 				</div>
-				<div className="h-[50vh] w-full bg-gBlack flex items-center justify-center">
-					
-				</div>
+				<div className="h-[50vh] w-full flex items-center justify-center" id="spacer" />
+
 				<div className="w-full h-screen" id="pin">
 					<div className="h-[100vh] z-2 w-full absolute">
-						<Canvas orthographic camera={{ position: [0, 0, 10], zoom: 100 }}>
+						<Canvas dpr={[1, 1.5]} orthographic camera={{ position: [0, 0, 10], zoom: 100 }}>
 							<SceneTransition />
 						</Canvas>
 					</div>
-					<div className="w-full h-screen absolute bg-gray-400 pt-100 text-center text-2xl font-sans" id="majorPrizes">
-						Major prizes
-						<div id="track1">
-							info...
-						</div>
-					</div>
-					<div className="w-full h-screen absolute z-[-1] pt-100 text-center text-2xl font-sans" id="otherPrizes">
+
+					<div className="w-full h-screen absolute flex text-center text-2xl font-sans" id="majorPrizes">
 						<div id="minor">
 							For minor prize tracks
 						</div>
 						<div id="mlh">
 							For MLH prize tracks
+						</div>
+												
+					</div>
+
+					<div className="w-full h-screen absolute z-[-1] flex text-center text-2xl font-sans bg-[rgb(200,200,200)]" id="otherPrizes">
+						<div className="w-[200vh] bottom-[-50vh] right-240 aspect-square absolute rounded-full bg-gBlack"></div>
+						<div className="h-full w-2/5 justify-center items-center flex">
+							<div className="w-2/3 bg-gray-200 aspect-square z-[1]">
+								A
+							</div>
+						</div>
+						<div className="h-full w-3/5">
+							<div className="w-full h-full flex flex-col justify-center items-center">
+								<div className="w-5/6 h-1/6 bg-gray-500">
+									a
+								</div>
+								<div className="w-5/6 h-1/6 bg-gray-600">
+									b
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
