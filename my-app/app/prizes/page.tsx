@@ -4,15 +4,22 @@ import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 
 import Lenis from 'lenis';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
 
 import { Canvas, useThree } from "@react-three/fiber";
-import { Center, OrbitControls, Text } from '@react-three/drei'
+import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
 
 gsap.registerPlugin(ScrollTrigger);
+
+function Model() {
+	// clone the scene so more than one timeline instance can use it
+	const { scene } = useGLTF('/3d/mkwii3.glb');
+	const clonedScene = useMemo(() => scene.clone(), [scene]);
+	return <Center><primitive object={clonedScene} /></Center>;
+}
 
 function Scene() {
 	const { width, height } = useThree((state) => state.viewport)
@@ -21,17 +28,18 @@ function Scene() {
 	useEffect(() => {
 		const landing = document.querySelector("#landing");
 		if (!centerRef.current) return;
+		setTimeout(() => {}, 500);
 		const tl = gsap.timeline({ 			
 			scrollTrigger: {
 				trigger: landing,
 				start: "top top",
-				end: () => "+=" + window.innerHeight * 0.75,
+				end: () => "+=" + window.innerHeight * 0.8,
 				scrub: true,
 				anticipatePin: 0,
 			},});
-		tl.fromTo(centerRef.current.position, { x: -width / 2 + 0.5, y: height / 16 + 2, z: 0 }, { x: -0.5, y: -height / 2 + 1, z: 0, duration: 1, ease: "power1.inOut" }, 0);
-		tl.fromTo(centerRef.current.scale, { x: 5, y: 5, z: 5 }, { x: 1, y: 1, z: 1, duration: 1, ease: "power1.inOut" }, 0);
-		tl.fromTo(centerRef.current.rotation, { x: 0, y: 0, z: 0 }, { x: Math.PI, y: -Math.PI * 2, z: 0, duration: 1, ease: "power1.inOut" }, 0);
+		tl.fromTo(centerRef.current.position, { x: -width / 4 , y: height / 4 + 2, z: 0 }, { x: 0, y: -1.5 , z: 0, duration: 1, ease: "power1.inOut" }, 0);
+		tl.fromTo(centerRef.current.scale, { x: 2, y: 2, z: 2 }, { x: 1, y: 1, z: 1, duration: 0.7, ease: "power1.inOut" }, 0);
+		tl.fromTo(centerRef.current.rotation, { x: 0, y: 0, z: 0 }, { x: 0, y: Math.PI * 2, z: 0, duration: 1, ease: "power1.inOut" }, 0);
 	}, [width, height]);
 
 	return (
@@ -40,13 +48,10 @@ function Scene() {
 						Bottom:  position={[0 - 0.5, -height / 2 + 1, 0]} scale={[1,1,1]}
 						Top: 	 position={[-width / 2 + 0.5, height / 16 + 1, 0]}  scale={[5,5,5]}
 			*/}
-			<Center ref={centerRef} bottom right position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[5,5,5]}>
-				<mesh rotation={[0, 0, 0]}>
-					<boxGeometry />
-					<meshStandardMaterial color="blue" />
-				</mesh>
+			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[5,5,5]}>
+				<Model />
 			</Center>
-			<ambientLight intensity={0.5} />
+			<ambientLight intensity={1} />
 			<pointLight position={[10, 10, 10]} />
 
 			{/* <OrbitControls /> */}
@@ -69,8 +74,9 @@ function SceneTransition() {
 				scrub: true,
 				anticipatePin: 0,
 			},});
-		tl.fromTo(centerRef.current.position, { x: width /2, y: height / 16 - 2, z: 0 }, { x: -width /2, y: height / 16 - 2, z: 0, duration: 1, ease: "power1.inOut" }, 0.25);
-		tl.fromTo(centerRef.current.rotation, { x: 1, y: 0, z: 0 }, { x: 1, y: 3*Math.PI, z: 0, duration: 1, ease: "power1.inOut" }, 0.25);
+		console.log(width / 1.2);
+		tl.fromTo(centerRef.current.position, { x: width / 1.2, y: 5, z: 0 }, { x: -width / 1.2, y: 5, z: 0, duration: 1, ease: "power1.inOut" }, 0.2);
+		tl.fromTo(centerRef.current.rotation, { x: -0.5, y: -Math.PI, z: 0 }, { x: 0.5, y: -3*Math.PI, z: 0, duration: 1, ease: "power1.inOut" }, 0.2);
 	}, [width, height]);
 
 	return (
@@ -79,13 +85,10 @@ function SceneTransition() {
 						Bottom:  position={[0 - 0.5, -height / 2 + 1, 0]} scale={[1,1,1]}
 						Top: 	 position={[-width / 2 + 0.5, height / 16 + 1, 0]}  scale={[5,5,5]}
 			*/}
-			<Center ref={centerRef} bottom right position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[5,5,5]}>
-				<mesh rotation={[0, 0, 0]}>
-					<boxGeometry />
-					<meshStandardMaterial color="blue" />
-				</mesh>
+			<Center ref={centerRef} bottom position={[-width / 2 + 0.5, height / 16 + 1, 0]} scale={[2.5,2.5,2.5]}>
+				<Model />
 			</Center>
-			<ambientLight intensity={0.5} />
+			<ambientLight intensity={1} />
 			<pointLight position={[10, 10, 10]} />
 
 			{/* <OrbitControls /> */}
@@ -169,7 +172,7 @@ export default function prizes() {
 			},
 		});
 
-		tl.to(majorPrizes, { clipPath: "inset(0px 100% 0px 0px)", duration: 1, ease: "power1.inOut" }, 0.25);
+		tl.fromTo(majorPrizes, { clipPath: "inset(0px -30% 0px 0px)"}, { clipPath: "inset(0px 130% 0px 0px)", duration: 1, ease: "power1.inOut" }, 0.2);
 
 		// Once section pin is fully in view port pin the screen until the end of sideways scrolling.
 		ScrollTrigger.create({
@@ -195,7 +198,7 @@ export default function prizes() {
 			<main className="w-full h-screen font-sans text-lg">
 				<div className="h-screen flex" id="landing">
 					{/* 3D model */}
-					<div className="h-[130vh] w-full absolute">
+					<div className="h-[150vh] w-full absolute">
 						<Canvas orthographic camera={{ position: [0, 0, 5], zoom: 100 }}>
 							<Scene />
 						</Canvas>
@@ -216,28 +219,22 @@ export default function prizes() {
 						<button></button>
 					</div>
 				</div>
-				<div className="h-[30vh] w-full bg-gBlack flex items-center justify-center">
+				<div className="h-[50vh] w-full bg-gBlack flex items-center justify-center">
 					
 				</div>
 				<div className="w-full h-screen" id="pin">
 					<div className="h-[100vh] z-2 w-full absolute">
-						<Canvas orthographic camera={{ position: [0, 0, 5], zoom: 100 }}>
+						<Canvas orthographic camera={{ position: [0, 0, 10], zoom: 100 }}>
 							<SceneTransition />
 						</Canvas>
 					</div>
-					<div className="w-full h-screen absolute bg-gray-400" id="majorPrizes">
+					<div className="w-full h-screen absolute bg-gray-400 pt-100 text-center text-2xl font-sans" id="majorPrizes">
 						Major prizes
 						<div id="track1">
-							Track 1
-						</div>
-						<div id="track2">
-							Track 2
-						</div>
-						<div id="track3">
-							Track3
+							info...
 						</div>
 					</div>
-					<div className="w-full h-screen absolute z-[-1]" id="otherPrizes">
+					<div className="w-full h-screen absolute z-[-1] pt-100 text-center text-2xl font-sans" id="otherPrizes">
 						<div id="minor">
 							For minor prize tracks
 						</div>
