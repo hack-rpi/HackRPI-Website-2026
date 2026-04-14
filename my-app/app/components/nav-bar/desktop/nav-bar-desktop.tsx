@@ -1,6 +1,6 @@
 import NextImg from "next/image";
 import { NavGroup } from "../nav-bar-links";
-// import logo from "@/public/Retro_HackRPI_Logo.png";
+import logo from "@/public/HackRPI_Logo_Dark.png";
 // import RegistrationButton from "@/components/themed-components/registration-header-link";
 
 import Link from "next/link";
@@ -65,12 +65,12 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
     {/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/}
     <div className="w-full h-16 bg-linear-to-b from-white/90 to-sky-500/50 text-slate-800 backdrop-blur-sm">
       <div
-        className="flex justify-center lg:justify-center items-center h-full z-50"
+        className="flex justify-center lg:justify-center items-center h-full z-50 w-[95%]"
         role="navigation"
       >
         <div className="flex items-center justify-center mr-4">
           <Link href="/" className="w-fit whitespace-nowrap">
-            {/* <NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-10 image-full" /> */}
+            <NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-[20vh] image-full" />
           </Link>
         </div>
         {/* Uncomment when ready to add registration button back */}
