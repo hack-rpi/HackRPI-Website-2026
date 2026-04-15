@@ -38,13 +38,13 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 						<div className="bg-transparent lightText w-full flex flex-col items-center justify-start bg-silver rounded-md m-4">
 							<h2 className="w-full mb-2 text-center text-2xl font-bold font-sans">{project.title}</h2>
 							<p className="mb-4 w-full text-center m">{project.authors.join(", \n")}</p>
-							<div className="relative w-[100vh] h-[45vh]">
+							<div className="relative w-75 lg:w-[100vh] h-75 lg:h-[45vh]">
 								<Image
 									src={project.imageUrl}
 									alt={project.title}
 									fill
 									className="sizeImage z-0 w-full mb-2 rounded-md object-cover"
-									sizes="75vw"
+									sizes="(max-width: 75vw) 1vw"
 								></Image>
 							</div>
 							<div className="absolute sm:w-3/4 -top-50 flex-col w-full pl-4 mt-2 text-center"></div>

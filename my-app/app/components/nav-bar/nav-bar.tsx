@@ -94,7 +94,6 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		return (
 			<>
 				<MobileNavBar links={links} />
-				{/* <MlhBanner /> */}
 			</>
 		);
 

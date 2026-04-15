@@ -24,7 +24,7 @@ export default function Schedule(props: ScheduleProps) {
 					<TimelineElement time={time} currentTime={props.currentTime} key={time.str} />
 				))}
 			</div>
-			<div className="absolute top-0 right-0 grow shrink basis-auto w-full h-full pl-24 sm:pl-28 flex items-start justify-start">
+			<div className="absolute top-0 right-0 grow shrink basis-auto w-full h-full pl-20 lg:pl-28 flex items-start justify-start">
 				{eventsInColumns.map((column, index) => (
 					<div key={index} className="relative flex flex-col grow shrink basis-auto h-full mx-0.5 sm:mx-1">
 						{column.map((event) => {
@@ -83,7 +83,7 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 		<div className="flex flex-col items-start justify-start w-full h-24">
 			<div className="flex items-center justify-start w-full h-fit">
 				<p
-					className={` text-white mr-2 w-16 sm:w-20  ${
+					className={` text-white lg:mr-2 w-16 lg:w-20  ${
 						props.currentTime.getTime() > props.time.unix &&
 						props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000
 							? "font-bold text-sm xs:text-base sm:text-lg"
@@ -92,13 +92,13 @@ function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {
 				>
 					{props.time.str}
 				</p>
-				<div className={`w-2 h-2 rounded-full mr-4 ${
+				<div className={`w-2 h-2 rounded-full mr-2 lg:mr-4 ${
 					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-green-400" : "bg-white"
 				}`}></div>
 				<hr className="grow shrink basis-auto border border-gray-400" id={`${props.time.unix}`} />
 			</div>
 			<div
-				className={`w-2 h-20 rounded-full ml-18 sm:ml-22 ${
+				className={`w-2 h-20 rounded-full ml-16 lg:ml-22 ${
 					props.currentTime.getTime() < props.time.unix + 60 * 60 * 1000 ? "bg-green-400" : "bg-white"
 				}`}
 			></div>
