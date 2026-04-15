@@ -70,7 +70,13 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
       >
         <div className="flex items-center justify-center mr-4">
           <Link href="/" className="w-fit whitespace-nowrap">
-            <NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-[20vh] image-full" />
+            <NextImg
+							alt="HackRPI Logo"
+							aria-label="Home Page"
+							src={logo}
+							className="w-[20vh] image-full"
+							loading="eager"
+						/>
           </Link>
         </div>
         {/* Uncomment when ready to add registration button back */}

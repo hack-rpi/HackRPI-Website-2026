@@ -35,7 +35,7 @@ export default function Cover(){
   },[])
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row">
       <div className="mapContainer">
         <iframe ref={map} loading="lazy" allowFullScreen src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"></iframe>
       </div>

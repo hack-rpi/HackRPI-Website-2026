@@ -35,13 +35,12 @@ export default function Event() {
       <Cover/>
 
       <main className = "flex flex-col w-full">
-
 				{/* Mentoring information */}
-        <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-row text-white pt-10">
-          <div className="w-[10%] flex flex-col items-center justify-center p-5">
+        <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-col lg:flex-row text-white pt-10">
+          <div className="w-full lg:w-[10%] flex flex-col items-center justify-center p-5">
             <h1>Need Help?</h1>
           </div>
-          <div className="w-[45%] p-5">
+          <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start p-5 px-10">
             <h2>Mentoring Information</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
@@ -50,7 +49,7 @@ export default function Event() {
             be able to overcome obstacles, learn new skills, and maximize your hackathon experience.
             Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
-          <div className="w-[45%] p-5">
+          <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start p-5 px-10">
             <h2>Event Discord</h2>
             Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
