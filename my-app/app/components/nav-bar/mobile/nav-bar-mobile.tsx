@@ -1,7 +1,7 @@
 import { NavGroup } from "../nav-bar-links";
 import { useState, useEffect } from "react";
-import NextImg from "next/image";
-import logo from "@/public/HackRPI_Logo_Light.png";
+import Image from "next/image";
+import logo from "@/public/HackRPI_Logo_Dark.png";
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
 import MlhBanner from "../../mlh-banner/mlh-banner";
@@ -27,27 +27,27 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 				bg-linear-to-r from-sky-500 to-hackrpi-clouds-green z-20
 			">
 				<div className="flex items-center justify-start w-1/3">
-					<button onClick={() => setNavMenuOpen((prev) => !prev)} className="text-white text-4xl ml-8 ">
-						<NextImg
+					<button onClick={() => setNavMenuOpen((prev) => !prev)} className="text-white text-4xl ml-8 w-10 h-8">
+						<Image
 							alt="Hamburger Menu"
 							src="/menu-icon.svg"
-							width={40}
-							height={40}
+							width={0}
+							height={0}
 							loading="eager"
 							preload={true}
-							className="w-10 h-8"
+							className="w-auto h-auto"
 						/>
 					</button>
 				</div>
-				<div className="flex items-center justify-center w-1/3">
+				<div className="flex items-center justify-center w-2/3">
 					<Link href="/" className="w-fit whitespace-nowrap">
-						{/* <NextImg
+						<Image
 							alt="HackRPI Logo"
 							aria-label="Home Page"
 							src={logo}
-							className="w-[20vh] image-full"
+							className="w-fit image-full -translate-x-2.5 -translate-y-px"
 							loading="eager"
-						/> */}
+						/>
 					</Link>
 				</div>
 				<div className="flex items-center justify-center w-1/3"></div>

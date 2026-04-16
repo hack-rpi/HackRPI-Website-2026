@@ -83,7 +83,7 @@ export default function SponsorCard({ tier, amount }: any) {
   }
 
   let style =
-    "w-[300px] h-[400px] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[300px] h-[125px] desktop:h-[400px] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
@@ -93,7 +93,7 @@ export default function SponsorCard({ tier, amount }: any) {
   let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
 
-  <div className="m-6 flex flex-col items-center group perspective-[1000px]">
+  <div className="desktop:m-6 flex flex-col items-center group perspective-[1000px]">
     <div
       className={style + " relative overflow-hidden border-3 transform-gpu transform-3d flex flex-col"}
       onMouseMove={handleMove}

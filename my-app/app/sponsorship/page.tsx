@@ -10,7 +10,7 @@ import SponsorCard from "./sponsorCard";
 import Lenis from "lenis";
 
 const tw = {
-	container: "box-border px-[30px] py-0 flex flex-row justify-center m-5",
+	container: "box-border desktop:px-[30px] py-0 flex flex-row justify-center m-7",
 	stackText: "box-border p-5 flex flex-col w-full justify-center",
 
 	neumorphic: "bg-purple-800 rounded-[15px]",
@@ -234,8 +234,8 @@ function SponsorUsPage() {
 				let childElement = child as HTMLElement;
 				childElement.style.width = '100%';
 				childElement.style.height = 'auto';
-				childElement.style.padding = '20px';
-				childElement.style.margin = '20px 0';
+				childElement.style.padding = '7px';
+				childElement.style.margin = '5px 0';
 			});
 		}
 	}
@@ -258,7 +258,7 @@ function SponsorUsPage() {
 		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-100";
 
 		if (isMobileLayout || tier == 'obsidian'){
-			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
+			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.25em] desktop:text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
 				let p = document.createElement('p');
 				p.textContent = name;
@@ -449,7 +449,7 @@ function SponsorUsPage() {
 		<main className="w-full bg-hackrpi-clouds-dark-blue pt-[8vh]">	
 			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
 			<div className={`${tw.container} flex-col`}>
-				<div className={`${tw.neumorphic} text-white p-5 text-center items-center`} data-neumorphic="true">
+				<div className={`${tw.neumorphic} text-white px-5 py-2 desktop:py-5 text-center items-center text-md desktop:text-xl`} data-neumorphic="true">
 					Click the buttons to see the benefits!
 				</div>
 			</div>
