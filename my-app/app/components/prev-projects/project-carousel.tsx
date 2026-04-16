@@ -38,7 +38,7 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 						<div className="bg-transparent lightText w-full flex flex-col items-center justify-start bg-silver rounded-md m-4">
 							<h2 className="w-full mb-2 text-center text-2xl font-bold font-sans">{project.title}</h2>
 							<p className="mb-4 w-full text-center m">{project.authors.join(", \n")}</p>
-							<div className="relative w-75 lg:w-[100vh] h-75 lg:h-[45vh]">
+							<div className="relative w-75 desktop:w-[100vh] h-75 desktop:h-[45vh]">
 								<Image
 									src={project.imageUrl}
 									alt={project.title}

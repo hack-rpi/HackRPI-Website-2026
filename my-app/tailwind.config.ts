@@ -54,10 +54,10 @@ const config: Config = {
 				bronze: "#cd7f32",
 			},
 			screens: {
-				desktop: "860px",
-				xs: "475px",
+				// desktop: "860px",
+				// xs: "475px",
 				shift: { max: "1150px" },
-				"2xs": "375px",
+				// "2xs": "375px",
 			},
 			backgroundImage: {
 				"radial-yellow-200": "radial-gradient(circle, #fef08a, #fde047)",

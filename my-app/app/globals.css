@@ -15,6 +15,9 @@
   --color-hackrpi-clouds-green: #00ff7f;
   --color-hackrpi-clouds-blue: #87CEEB;
   --color-hackrpi-clouds-dark-blue: #00152b;
+  --breakpoint-desktop: 860px;
+  --breakpoint-xs: 475px;
+  --breakpoint-2xs: 375px;
 }
 
 @media (prefers-color-scheme: dark) {

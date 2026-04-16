@@ -76,6 +76,7 @@ export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
 							src={logo}
 							className="w-[20vh] image-full translate-x-1 translate-y-1.75"
 							loading="eager"
+							preload={true}
 						/>
           </Link>
         </div>

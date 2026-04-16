@@ -65,7 +65,7 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
     {/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/}
     <div className="w-full h-16 bg-linear-to-b from-white/90 to-sky-500/50 text-slate-800 backdrop-blur-sm">
       <div
-        className="flex justify-center lg:justify-center items-center h-full z-50 w-[95%]"
+        className="flex justify-center items-center h-full z-50 w-[95%]"
         role="navigation"
       >
         <div className="flex items-center justify-center mr-4">
@@ -76,6 +76,7 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 							src={logo}
 							className="w-[20vh] image-full"
 							loading="eager"
+							preload={true}
 						/>
           </Link>
         </div>

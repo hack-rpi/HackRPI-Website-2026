@@ -36,11 +36,11 @@ export default function Event() {
 
       <main className = "flex flex-col w-full">
 				{/* Mentoring information */}
-        <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-col lg:flex-row text-white pt-10">
-          <div className="w-full lg:w-[10%] flex flex-col items-center justify-center p-5">
+        <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-col desktop:flex-row text-white pt-10">
+          <div className="w-full desktop:w-[10%] flex flex-col items-center justify-center p-5">
             <h1>Need Help?</h1>
           </div>
-          <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start p-5 px-10">
+          <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2>Mentoring Information</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
@@ -49,7 +49,7 @@ export default function Event() {
             be able to overcome obstacles, learn new skills, and maximize your hackathon experience.
             Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
-          <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start p-5 px-10">
+          <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2>Event Discord</h2>
             Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
@@ -84,7 +84,7 @@ export default function Event() {
               professors, alumni, and fellow students. They'll evaluate your work based on these criteria:
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">
 							{/* Practicality & Utility Card */}
 							<div className="
                 group relative bg-linear-to-br from-purple-500 to-sky-500
@@ -219,7 +219,7 @@ export default function Event() {
 						<div className="w-full max-w-400 mx-auto mb-12 px-2 sm:px-4">
 							<div className="relative">
 								{/* Timeline Line */}
-								<div className="absolute left-6 sm:left-8 lg:left-10 top-0 bottom-0 w-1
+								<div className="absolute left-6 sm:left-8 desktop:left-10 top-0 bottom-0 w-1
 								bg-linear-to-b from-blue-500 via-green-500 to-red-500"></div>
 
 								{/* Timeline Steps */}
@@ -227,15 +227,15 @@ export default function Event() {
 									{/* Step 1 */}
 									<div className="relative flex items-start">
 										<div className="
-											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-blue-500 rounded-full flex items-center justify-center
-											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-blue-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-blue-500/50
 										">
 											1
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-blue-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
+											border-l-4 border-blue-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-orange mb-2">Create Your Account</h3>
 											<p className="text-white md:text-lg">
@@ -255,19 +255,19 @@ export default function Event() {
 									{/* Step 2 */}
 									<div className="relative flex items-start">
 										<div className="
-											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-green-500 rounded-full flex items-center justify-center
-											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-green-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-green-500/50
 										">
 											2
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-green-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
+											border-l-4 border-green-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-pink mb-2">Prepare Your Submission</h3>
 											<p className="text-white mb-3 md:text-lg">Include these essential elements:</p>
-											<ul className="space-y-2 text-sm md:text-base lg:text-lg text-white">
+											<ul className="space-y-2 text-sm md:text-base desktop:text-lg text-white">
 												<li className="flex items-center">
 													<span className="mr-2">▸</span>
 													Project title and description
@@ -291,15 +291,15 @@ export default function Event() {
 									{/* Step 3 */}
 									<div className="relative flex items-start">
 										<div className="
-											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-yellow-500 rounded-full flex items-center justify-center
-											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-yellow-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-yellow-500/50
 										">
 											3
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-yellow-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
+											border-l-4 border-yellow-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
 												Submit Before Deadline
@@ -320,15 +320,15 @@ export default function Event() {
 									{/* Step 4 */}
 									<div className="relative flex items-start">
 										<div className="
-											relative z-10 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-red-500 rounded-full flex items-center justify-center
-											text-xl md:text-2xl lg:text-3xl shadow-lg shadow-red-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-red-500/50
 										">
 											4
 										</div>
 										<div className="
-											ml-6 md:ml-8 lg:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-red-500 p-5 md:p-6 lg:p-8 rounded-r-lg flex-1
+											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
+											border-l-4 border-red-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
 												Present Your Project

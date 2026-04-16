@@ -28,13 +28,13 @@ export default function Footer() {
 	return (
 		<div className="h-auto w-full bg-transparent pt-20" id="footer">
 			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border text-2xl
-					mx-5 bottom-5 h-full lg:h-[50vh] relative flex flex-col text-center bg-gBlack
+					mx-5 bottom-5 h-full desktop:h-[50vh] relative flex flex-col text-center bg-gBlack
 				">
-				<div className="relative w-full h-[90%] flex flex-col items-center lg:flex-row lg:items-start">
-					<div className="relative z-10 w-1/2 h-full pb-5 p-10 lg:p-20 lg:pb-20 flex flex-col items-center">
+				<div className="relative w-full h-[90%] flex flex-col items-center desktop:flex-row desktop:items-start">
+					<div className="relative z-10 w-1/2 h-full pb-5 p-10 desktop:p-20 desktop:pb-20 flex flex-col items-center">
 						<div className="relative z-10 w-fit h-full p-0 flex flex-col pt-0 pl-0">
 						<div
-							className="text-blue-200 text-[1.25rem] lg:text-[1.75rem] leading-none text-center lg:text-left lg:ml-3 lg:mr-auto"
+							className="text-blue-200 text-[1.25rem] desktop:text-[1.75rem] leading-none text-center desktop:text-left desktop:ml-3 desktop:mr-auto"
 							style={{ fontFamily: "Calibri, sans-serif" }}
 							id="title-animate"
 						>
@@ -42,7 +42,7 @@ export default function Footer() {
 						</div>
 
 						<div
-							className="text-[5rem] lg:text-[10rem] font-bold leading-none tracking-tight"
+							className="text-[5rem] desktop:text-[10rem] font-bold leading-none tracking-tight"
 							style={{ fontFamily: "Calibri, sans-serif" }}
 							id="title-animate"
 						>
@@ -50,7 +50,7 @@ export default function Footer() {
 						</div>
 
 							<div
-								className="text-blue-200 text-[2rem] lg:text-[2.3rem] font-mono leading-none lg:ml-auto lg:mr-5"
+								className="text-blue-200 text-[2rem] desktop:text-[2.3rem] font-mono leading-none desktop:ml-auto desktop:mr-5"
 								style={{ clipPath: "inset(0px 0% 0px 0px)" }}
 								id="title-animate"
 							>
@@ -59,12 +59,12 @@ export default function Footer() {
 						</div>
 					</div>
 					<div className="
-						relative z-10 lg:mt-7 w-11/12 lg:w-1/2 h-full font-mono
-						flex flex-col items-center justify-center text-center p-5 lg:p-30 lg:px-20
+						relative z-10 desktop:mt-7 w-11/12 desktop:w-1/2 h-full font-mono
+						flex flex-col items-center justify-center text-center p-5 desktop:p-30 desktop:px-20
 					">
-						<span className="text-white text-lg lg:text-2xl">Darrin Communications Center</span>
-						<span className="text-white text-lg lg:text-2xl">@ Rensselaer Polytechnic Institute</span>
-						<span className="text-white text-lg lg:text-2xl">110 8th St, Troy, NY 12180</span>
+						<span className="text-white text-lg desktop:text-2xl">Darrin Communications Center</span>
+						<span className="text-white text-lg desktop:text-2xl">@ Rensselaer Polytechnic Institute</span>
+						<span className="text-white text-lg desktop:text-2xl">110 8th St, Troy, NY 12180</span>
 						<div className="mt-6 flex items-center justify-center gap-4 text-blue-200">
 							<a
 								href="https://discord.com/invite/BkDVUmrufa"
@@ -125,7 +125,7 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
-				<span className="block w-full pb-4 text-center text-sm lg:text-lg font-mono">Made with ❤️ by HackRPI, © 2026 HackRPI</span>
+				<span className="block w-full pb-4 text-center text-sm desktop:text-lg font-mono">Made with ❤️ by HackRPI, © 2026 HackRPI</span>
 			</div>
 		</div>
 	);

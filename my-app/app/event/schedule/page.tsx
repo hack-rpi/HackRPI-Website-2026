@@ -178,8 +178,8 @@ export default function Page() {
 					</HackRPILink>
 				</div>
 				<div className="flex w-full items-center justify-between mt-3">
-					<h1 className="text-xl lg:text-4xl font-bold text-center">Schedule</h1>
-					<p className="text-center font-bold text-xl lg:text-3xl">
+					<h1 className="text-xl xs:text-4xl font-bold text-center">Schedule</h1>
+					<p className="text-center font-bold text-xl xs:text-3xl">
 						{currentDateTime.toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}
 					</p>
 				</div>
@@ -205,7 +205,7 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-xl lg:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
+						<h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
