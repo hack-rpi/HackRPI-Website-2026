@@ -91,7 +91,9 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		}
 	};
 
-	if (windowWidth < 860) // If you're changing this, remember to change --breakpoint-mobile in globals.css too
+	if (windowWidth === 0) return;
+
+	if (windowWidth < 860) // If you're changing this, remember to change --breakpoint-desktop in globals.css too
 		return (
 			<MobileNavBar links={links} />
 		);

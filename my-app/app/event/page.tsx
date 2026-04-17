@@ -216,7 +216,7 @@ export default function Event() {
 						</div>
 
 						{/* Submission Timeline */}
-						<div className="w-full max-w-400 mx-auto mb-12 px-2 sm:px-4">
+						<div className="w-full max-w-400 mx-auto mb-12 desktop:px-5">
 							<div className="relative">
 								{/* Timeline Line */}
 								<div className="absolute left-6 sm:left-8 desktop:left-10 top-0 bottom-0 w-1
@@ -266,7 +266,7 @@ export default function Event() {
 											border-l-4 border-green-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-pink mb-2">Prepare Your Submission</h3>
-											<p className="text-white mb-3 md:text-lg">Include these essential elements:</p>
+											<p className="text-white mb-3 text-sm md:text-lg">Include these essential elements:</p>
 											<ul className="space-y-2 text-sm md:text-base desktop:text-lg text-white">
 												<li className="flex items-center">
 													<span className="mr-2">▸</span>
@@ -305,14 +305,22 @@ export default function Event() {
 												Submit Before Deadline
 											</h3>
 											<div className="space-y-2 text-white md:text-lg">
-												<p className="flex items-center">
-													<span className="text-white font-bold mr-2">📅</span>
-													Submit by <span className="font-bold text-white bg-yellow-500 mx-0.5 px-0.5">9:00 AM Sunday</span>
-												</p>
-												<p className="flex items-center">
-													<span className="text-white font-bold mr-2">✏️</span>
-													Edit until <span className="font-bold text-white bg-red-500 mx-0.5 px-0.5">11:00 AM Sunday</span>
-												</p>
+												<div className="flex items-center mb-5 text-[1.2rem]">
+													<div className="w-[50%] desktop:w-auto">
+														Submit by
+													</div>
+													<div className="w-[50%] desktop:w-auto font-bold text-white bg-orange-400 px-1 desktop:ml-2 text-right">
+														9:00 AM Sunday
+													</div>
+												</div>
+												<div className="flex items-center mb-5 text-[1.2rem]">
+													<div className="w-[50%] desktop:w-auto">
+														Edit until
+													</div>
+													<div className="w-[50%] desktop:w-auto font-bold text-white bg-red-500 px-1 desktop:ml-2 text-right">
+														11:00 AM Sunday
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
