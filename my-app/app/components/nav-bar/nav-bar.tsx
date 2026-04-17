@@ -49,6 +49,8 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 
 	// Add event listener to the window to update the scrollY state
 	useEffect(() => {
+		setWindowWidth(window.innerWidth);
+
 		const storedTheme = localStorage.getItem("theme");
 		if (storedTheme === "dark") {
 			document.documentElement.classList.add("dark");
@@ -57,7 +59,6 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		}
 
 		const scrollThreshold = window.innerHeight - navHeight;
-		setWindowWidth(window.innerWidth);
 		const handleScroll = () => {
 			setShowNav(window.scrollY > scrollThreshold);
 		};
@@ -90,23 +91,22 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		}
 	};
 
-	if (windowWidth < 860)
+	if (windowWidth === 0) return;
+
+	if (windowWidth < 860) // If you're changing this, remember to change --breakpoint-desktop in globals.css too
 		return (
-			<>
-				<MobileNavBar links={links} />
-				{/* <MlhBanner /> */}
-			</>
+			<MobileNavBar links={links} />
 		);
 
 	if (variant === 1) {
 		return (
-			<nav className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
+			<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 				<DesktopNavBarDarker links={links} />
 			</nav>
 		)
 	}
 	else return (
-		<nav className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
+		<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 			<DesktopNavBar links={links} />
 		</nav>
 	);
