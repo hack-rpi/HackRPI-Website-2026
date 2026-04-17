@@ -1,6 +1,12 @@
+"use client";
 
-import FaceCard from './faceCard';
-// import {FaceCard, Box, Squa} from './faceCard';
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { textAnimation } from "@/lib/text-animation";
+import FaceCard from "./faceCard";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 const teamMembers = [
@@ -40,9 +46,73 @@ const parallaxPositions = [
 	{ top: 18, left: 358, size: 1.071 },
 ];
 
-// https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
-
 export default function Team() {
+	useEffect(() => {
+		const ctx = gsap.context(() => {
+			const sectionPin = document.querySelector("#pin");
+			const teamTitle = document.querySelector("#team-title");
+			const teamContent = document.querySelector("#team-content");
+			const parallaxBg = document.querySelector("#parallax-bg");
+
+			if (!sectionPin) return;
+			if (!teamTitle) return;
+
+			const scrollWidth = sectionPin.scrollWidth - document.documentElement.clientWidth;
+			const introDistance = scrollWidth * 0.15;
+			const speed = 1.5;
+
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: sectionPin,
+					start: "top 90%",
+					end: () => "+=" + scrollWidth * speed,
+					scrub: true,
+					anticipatePin: 0,
+				},
+			});
+
+			let HA1 = false;
+			tl.call(() => {
+				if (!HA1) {
+					textAnimation("team-title", 0.6);
+					HA1 = true;
+				}
+			}, [], 0.1);
+
+			let HA2 = false;
+			tl.call(() => {
+				if (!HA2) {
+					textAnimation("name-animate", 1.0, 0.1);
+					HA2 = true;
+				}
+			}, [], 0.0);
+
+			tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: 1 * speed, force3D: true }, 0);
+
+			if (parallaxBg) {
+				tl.fromTo(
+					parallaxBg,
+					{ x: -introDistance * 0.5 },
+					{ x: -scrollWidth * 0.5, ease: "none", duration: 1 * speed, force3D: true },
+					0
+				);
+			}
+
+			tl.to(teamTitle, { x: -scrollWidth / 2, ease: "none", duration: 0.5 * speed, force3D: true }, 0.7 * speed);
+
+			tl.to({}, { duration: 0.1 * speed });
+
+			ScrollTrigger.create({
+				trigger: sectionPin,
+				start: "top top",
+				end: () => "+=" + scrollWidth,
+				pin: true,
+				anticipatePin: 0,
+			});
+		});
+
+		return () => ctx.revert();
+	}, []);
 
 	return (
 		<div className="h-screen will-change-transform translate-z-0 overflow-hidden bg-gBlack" id="pin">
