@@ -30,7 +30,7 @@ export default function DesktopTitleComponent() {
   return ( //  bg-[#00152b] THIS IS TEMP WHILE I SORT OUT 3D MODEL LOADING
     // bg-[url('/3d/placeholder.png')]
   // Or i could just render a view of it since its the same sin wave motion and slap it on the background
-    <div className="relative w-full h-screen bg-[#00152b] bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
+    <div className="relative w-full h-screen bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
       <div className="absolute inset-0">
         <Canvas
           worker={worker}
