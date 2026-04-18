@@ -1,5 +1,7 @@
 // import RegistrationButton from "@/components/themed-components/registration-link"; // FIXME
 
+import Link from "next/link";
+
 type FAQ = {
 	title: string;
 	content: React.ReactNode;
@@ -73,9 +75,9 @@ const faqs: FAQ[] = [
 				Unfortunately, we are unable to provide travel reimbursement at this time, however, we have sleep rooms on
 				campus for students 18 and older, and we are more than happy to recommend local accommodations if you email us
 				at{" "}
-				<a href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue underline">
+				<Link href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue underline">
 					hackrpi@rpi.edu
-				</a>
+				</Link>
 				.
 			</p>
 		),

@@ -1,11 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MlhBanner({src} : {src: string}) {
 	return (
-		<a
+		<Link
 			id="mlh-trust-badge"
 			href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
 			target="_blank"
+			rel="noopener noreferrer"
 			className="
 				block w-20 desktop:max-w-25 h-auto fixed right-2 desktop:right-5 top-0 z-10000
 				opacity-50% transition-all duration-75 ease-in hover:opacity-80
@@ -19,6 +21,6 @@ export default function MlhBanner({src} : {src: string}) {
 				className="w-auto h-auto"
 				preload={true}
 			/>
-		</a>
+		</Link>
 	);
 }

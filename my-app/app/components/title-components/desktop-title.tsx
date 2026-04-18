@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Canvas } from "@react-three/offscreen";
 import Scene from "@/app/components/title-components/three/Scene";
+import Link from "next/link";
 
 export default function DesktopTitleComponent() {
   const worker = useMemo(
@@ -76,13 +77,13 @@ export default function DesktopTitleComponent() {
         >
           <div className="text-animation-layer inline-block w-auto" />
           {linkItems.map(({ label, href }) => (
-            <a key={label} className="norris-line block w-fit" data-text={label} href={href}>
+            <Link key={label} className="norris-line block w-fit" data-text={label} href={href}>
               {splitLabel(label).map((char, index) => (
                 <span key={`${label}-${index}`} className="norris-char" data-char={char} style={{ ["--index" as string]: index }}>
                   {char}
                 </span>
               ))}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
