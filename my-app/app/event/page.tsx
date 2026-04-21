@@ -1,19 +1,27 @@
 "use client"
 
-import { Metadata } from 'next';
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import HackRPILink from '@/app/components/themed-components/hackrpi-link';
 
 import "./event.css"
 import Cover from './cover';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import Lenis from 'lenis';
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Event() {
+	const judgingRef = useRef<HTMLDivElement | null>(null);
+	const judgingGridRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     // lenis scrolling
     const lenis = new Lenis({
@@ -21,13 +29,55 @@ export default function Event() {
       duration: 1.2,
     });
 
+		lenis.on("scroll", ScrollTrigger.update);
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
-  })
+		return () => {
+			lenis.destroy();
+		};
+  }, []);
+
+	useGSAP(() => {
+		const sectionPin = judgingRef.current;
+		const grid = judgingGridRef.current;
+		if (!sectionPin || !grid) return;
+
+		const leftCards = gsap.utils.toArray<HTMLElement>(".leftCard", grid);
+		const rightCards = gsap.utils.toArray<HTMLElement>(".rightCard", grid);
+
+		gsap.set(leftCards, { x: -100, opacity: 0, willChange: "transform,opacity" });
+		gsap.set(rightCards, { x: 100, opacity: 0, willChange: "transform,opacity" });
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: grid,
+				scrub: true,
+				start: "top 85%",
+				end: "bottom bottom",
+			},
+		})
+		.to(leftCards, {
+			x: 0,
+			opacity: 1,
+			stagger: 0.08,
+			force3D: true,
+		}, 0)
+		.to(rightCards, {
+			x: 0,
+			opacity: 1,
+			stagger: 0.08,
+			force3D: true,
+		}, 0);
+	}, { scope: judgingRef });
+
+	useGSAP(() => {
+		// TODO: make the project submission timeline opacity-animated
+	});
 
   return (
 		<> 
@@ -70,7 +120,7 @@ export default function Event() {
         </div>
 
 				{/* Project submission and judging */}
-        <div className="
+        <div ref={judgingRef} id="judging" className="
           w-full h-auto
           bg-linear-to-b from-sky-500 from-80% to-hackrpi-clouds-green
           text-white p-5 flex flex-col items-center pb-20
@@ -84,14 +134,14 @@ export default function Event() {
               professors, alumni, and fellow students. They'll evaluate your work based on these criteria:
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">
+            <div ref={judgingGridRef} className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-10">
 							{/* Practicality & Utility Card */}
-							<div className="
+							<div className="leftCard
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-pink/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-pink
               ">
-								<div className="
+								<div className=" 
                   bg-red-500 absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center text-2xl
                   group-hover:rotate-12 transition-transform duration-300
@@ -107,7 +157,7 @@ export default function Event() {
 							</div>
 
 							{/* Creativity Card */}
-							<div className="
+							<div className="rightCard 
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
@@ -127,7 +177,7 @@ export default function Event() {
 							</div>
 
 							{/* Technical Difficulty Card */}
-              <div className="
+              <div className="leftCard 
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
@@ -147,7 +197,7 @@ export default function Event() {
 							</div>
 
 							{/* Effort Card */}
-							<div className="
+							<div className="rightCard 
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
@@ -167,7 +217,7 @@ export default function Event() {
 							</div>
 
 							{/* User Experience Card */}
-							<div className="
+							<div className="leftCard 
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
@@ -187,7 +237,7 @@ export default function Event() {
 							</div>
 
 							{/* Collaboration & Learning Card */}
-							<div className="
+							<div className="rightCard 
                 group relative bg-linear-to-br from-purple-500 to-sky-500
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
