@@ -58,7 +58,7 @@ function Model({ scale: planeScale = DESKTOP_PLANE_SCALE }: { scale?: number }) 
 
   useFrame((state) => {
     if (modelRef.current) {
-      modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.5;
+      modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.8;
       modelRef.current.rotation.z =
         -Math.PI / Math.abs(Math.sin(state.clock.elapsedTime) + 10);
     }
