@@ -5,34 +5,9 @@ import { NavGroup } from "./nav-bar-links";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
 import MobileNavBar from "./mobile/nav-bar-mobile";
 import DesktopNavBarDarker from "./desktop/nav-bar-desktop-darker";
+import linkData from "@/app/data/links.json";
 
-export const links: NavGroup[] = [
-	{
-		name: "Home",
-		links: [
-			{ href: "/", children: "Home" },
-			{ href: "/#about", children: "About" },
-			{ href: "/#faq", children: "FAQ" },
-			{ href: "/#sponsors", children: "Sponsors" },
-			{ href: "/#team", children: "Team" },
-		],
-	},
-	{
-		name: "Event",
-		links: [
-			{ href: "/event", children: "Event Info" },
-			{ href: "/event/schedule", children: "Schedule" },
-			{ href: "/event/prizes", children: "Prizes" },
-		],
-	},
-	{
-		name: "HackRPI XII",
-		links: [
-			{ href: "/last-year", children: "Winners" },
-			{ href: "/last-year/photos", children: "Photos" },
-		],
-	},
-];
+export const links: NavGroup[] = linkData;
 
 export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolean, variant?: number}) {
 	variant = variant ?? 0;
