@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { text } from "stream/consumers";
 
 
@@ -122,7 +123,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
         
       }}
     >
-      <a href = {link} target="_blank" rel="noopener noreferrer">
+      <Link href={link} target="_blank" rel="noopener noreferrer">
       <div className="flex flex-col items-center justify-center gap-2">
         {image && (
           <img
@@ -132,7 +133,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
           />
         )}
       </div>
-      </a>
+      </Link>
     </div>
 
    

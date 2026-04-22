@@ -7,11 +7,26 @@ import Link from "next/link";
 import { Link as lin } from "../nav-bar-links";
 import MlhBanner from "../../mlh-banner/mlh-banner";
 
-function NavLink({href, children, onClick}: {
+function NavLink({href, children, new_tab, onClick}: {
 	href: string;
 	children: React.ReactNode;
+	new_tab: boolean;
 	onClick?: () => void;
 }) {
+	if (new_tab) {
+		<Link
+			className="
+				w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-size-[0%_2px] bg-no-repeat
+				bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
+				hover:bg-size-[100%_2px] focus:bg-size-[100%_4px]
+			"
+			href={href}
+			target="_blank"
+			onClick={onClick}
+		>
+			{children}
+		</Link>
+	}
 	return (
 		<Link
 			className="
@@ -28,6 +43,37 @@ function NavLink({href, children, onClick}: {
 }
 
 function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
+	if (links.length == 1) {
+		if (links[0].new_tab) {
+			return (
+				<Link
+					role="link"
+					href={links[0].href}
+					className="
+						mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
+						transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
+						hover:bg-size-[100%_2px]
+					"
+					target="_blank"
+				>
+					{name}
+				</Link>
+			)
+		}
+		return (
+			<Link
+				role="link"
+				href={links[0].href}
+				className="
+					mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
+					transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
+					hover:bg-size-[100%_2px]
+				"
+			>
+				{name}
+			</Link>
+		)
+	}
 	return (
 		<div className="dropdown dropdown-hover">
 			<div
@@ -51,7 +97,7 @@ function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 			>
 				{links.map((link) => (
 					<li key={link.href} className="my-1" role="link">
-						<NavLink href={link.href}>{link.children}</NavLink>
+						<NavLink href={link.href} new_tab={link.new_tab}>{link.children}</NavLink>
 					</li>
 				))}
 			</ul>
@@ -86,54 +132,6 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
           {links.map((link) => (
             <NavGroupComponent key={link.name} name={link.name} links={link.links} />
           ))}
-          
-          <Link
-						href="/news"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
-							hover:bg-size-[100%_2px]
-						"
-						target="_blank"
-					>
-						News
-					</Link>
-
-          <Link
-						href="/sponsorship"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
-							hover:bg-size-[100%_2px]
-						"
-						target="_blank"
-					>
-						Sponsor Us
-					</Link>
-
-          <Link
-						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
-							hover:bg-size-[100%_2px]
-						"
-						target="_blank"
-					>
-						Code of Conduct
-					</Link>
-
-					<Link
-						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
-						className="
-							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
-							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500
-							hover:bg-size-[100%_2px]
-						"
-						target="_blank"
-					>
-						Give Now
-					</Link>
         </div>
         <div className="ml-2">
           {/* <RegistrationButton className="w-auto" /> */}

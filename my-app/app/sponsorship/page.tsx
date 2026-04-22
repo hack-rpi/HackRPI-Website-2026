@@ -8,6 +8,7 @@ import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
 import SponsorCard from "./sponsorCard";
 import Lenis from "lenis";
+import Link from "next/link";
 
 const tw = {
 	container: "box-border desktop:px-[30px] py-0 flex flex-row justify-center m-7",
@@ -499,9 +500,9 @@ function SponsorUsPage() {
 						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">We understand that standard sponsorship tiers may not suit all organizations.</h4>
 						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">
 							Please contact &nbsp;
-							<a href="mailto:hackrpi@rpi.edu" className="underline text-blue-500 hover:text-purple-500">
+							<Link href="mailto:hackrpi@rpi.edu" className="underline text-blue-500 hover:text-purple-500">
 								hackrpi@rpi.edu
-							</a>
+							</Link>
 							&nbsp; if you want to develop a tailored sponsorship package.
 						</h4>
 					</div>

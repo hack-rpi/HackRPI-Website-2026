@@ -1,0 +1,80 @@
+[
+	{
+		"name": "Home",
+		"links": [
+			{ "href": "/",
+				"children": "Home",
+				"new_tab": false },
+			{ "href": "/#about",
+				"children": "About",
+				"new_tab": false },
+			{ "href": "/#faq",
+				"children": "FAQ",
+				"new_tab": false },
+			{ "href": "/#sponsors",
+				"children": "Sponsors",
+				"new_tab": false },
+			{ "href": "/#team",
+				"children": "Team",
+				"new_tab": false }
+		]
+	},
+	{
+		"name": "Event",
+		"links": [
+			{ "href": "/event",
+				"children": "Event Info",
+				"new_tab": false },
+			{ "href": "/event/schedule",
+				"children": "Schedule",
+				"new_tab": false },
+			{ "href": "/prizes",
+				"children": "Prizes",
+				"new_tab": false }
+		]
+	},
+	{
+		"name": "HackRPI XII",
+		"links": [
+			{ "href": "/last-year",
+				"children": "Winners",
+				"new_tab": false },
+			{ "href": "/last-year/photos",
+				"children": "Photos",
+				"new_tab": false }
+		]
+	},
+	{
+		"name": "News",
+		"links" : [
+			{ "href": "/news",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": false }
+		]
+	},
+	{
+		"name": "Sponsor Us",
+		"links" : [
+			{ "href": "/sponsorship",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": false }
+		]
+	},
+	{
+		"name": "Code of Conduct",
+		"links" : [
+			{ "href": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": true }
+		]
+	},
+	{
+		"name": "Give Now",
+		"links" : [
+			{ "href": "https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": true
+			}
+		]
+	}
+]

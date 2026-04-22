@@ -239,14 +239,14 @@ export default function Event() {
 										">
 											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-orange mb-2">Create Your Account</h3>
 											<p className="text-white md:text-lg">
-												<a
+												<Link
 													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
 													target="_blank"
 													rel="noopener noreferrer"
 													className="text-purple-500 hover:text-pink-500 underline transition-colors"
 												>
 													Sign up for a Devpost account
-												</a>{" "}
+												</Link>{" "}
 												to get started with your submission.
 											</p>
 										</div>

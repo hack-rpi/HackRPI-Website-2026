@@ -8,6 +8,7 @@ import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, 
 import HappeningNow from "@/app/components/schedule/happening-now";
 import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
+import Link from "next/link";
 
 import Lenis from 'lenis';
 import dynamic from "next/dynamic";
@@ -195,7 +196,7 @@ export default function Page() {
 					<div className="badge bg-primary flex items-center justify-center h-fit my-4 ">
 						<p className="text-error-content text-xl p-2">
 							Oops! Looks like we ran into an issue loading the events. Please check your internet and refresh to try
-							again, if the problem persists, please let us know at <a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>
+							again, if the problem persists, please let us know at <Link href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</Link>
 							. Thank you!
 						</p>
 					</div>
