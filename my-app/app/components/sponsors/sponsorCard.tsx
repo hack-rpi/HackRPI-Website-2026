@@ -100,7 +100,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
 
   return (
     <a href = {link} target="_blank" rel="noopener noreferrer m-5"> 
-    <div className="m-6 flex flex-col items-center group perspective-[7500px] relative">
+    <div className="m-3 flex flex-col items-center group relative" style={{ perspective: "800px" }}>
 
       <span className={sponsor_name_style}>{name}</span>
 
@@ -109,8 +109,8 @@ export default function SponsorCard({ name, tier, image, link }: any) {
       <div
         className={style + " m-4 relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
         style={{
-          transform: `perspective(7500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-          boxShadow: shadow
+            transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+            boxShadow: shadow
         }}
       > 
           <div className="flex flex-col items-center justify-center gap-2">
