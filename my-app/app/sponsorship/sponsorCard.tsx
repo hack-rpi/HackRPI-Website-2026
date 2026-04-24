@@ -38,21 +38,9 @@ export default function SponsorCard({ tier, amount }: any) {
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
   const rect = e.currentTarget.getBoundingClientRect();
 
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const margin = 20;
-
-  // Prevent jitter near edges
-  if (
-    x < margin ||
-    x > rect.width - margin ||
-    y < margin ||
-    y > rect.height - margin
-  ) {
-    return;
-  }
-
+  const x = e.clientX - rect.left + 10;
+  const y = e.clientY - rect.top + 10
+  
   let percentX = (x / rect.width - 0.5) * 2;
   let percentY = (y / rect.height - 0.5) * 2;
 

@@ -35,17 +35,28 @@ export default function Sponsors() {
 			
 
 			drops.forEach(d => {
-				ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, 0.6)`;
+				// Fade out in the bottom 40% of the canvas
+				const fadeStart = h * 0.6;
+				const fadeEnd = h * 0.95;
+				
+				let alpha = 0.6;
+				if (d.y > fadeStart) {
+					const fadeProgress = (d.y - fadeStart) / (fadeEnd - fadeStart);
+					alpha = 0.6 * (1 - Math.min(fadeProgress, 1));
+				}
+
+				ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, ${alpha})`;
 				ctx.lineWidth = 1;
 				ctx.beginPath();
 				ctx.moveTo(d.x, d.y);
 				ctx.lineTo(d.x + 1, d.y + d.l);
 				ctx.stroke();
+
 				const SPEED_MULTIPLIER = 4;
 				d.y += d.speed * SPEED_MULTIPLIER;
-				d.x += 2; // slight wind
+				d.x += 2;
 
-				if (d.y > h) {
+				if (d.y > fadeEnd) {   // Reset when fully faded, not at h
 					d.y = -20;
 					d.x = Math.random() * w;
 				}
