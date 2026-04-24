@@ -8,6 +8,7 @@ import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, 
 import HappeningNow from "@/app/components/schedule/happening-now";
 import Schedule from "@/app/components/schedule/schedule";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
+import Link from "next/link";
 
 import Lenis from 'lenis';
 import dynamic from "next/dynamic";
@@ -168,7 +169,7 @@ export default function Page() {
 			flex flex-col w-full h-fit min-h-screen pb-[15vh]
 			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-black
 		">
-			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28 desktop:mt-16">
+			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28">
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
@@ -177,9 +178,9 @@ export default function Page() {
 						Google Calendar
 					</HackRPILink>
 				</div>
-				<div className="flex w-full items-center justify-between">
-					<h1 className="text-3xl xs:text-4xl font-bold text-center">Schedule</h1>
-					<p className="text-center font-bold text-xl  xs:text-3xl">
+				<div className="flex w-full items-center justify-between mt-3">
+					<h1 className="text-xl xs:text-4xl font-bold text-center">Schedule</h1>
+					<p className="text-center font-bold text-xl xs:text-3xl">
 						{currentDateTime.toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}
 					</p>
 				</div>
@@ -195,7 +196,7 @@ export default function Page() {
 					<div className="badge bg-primary flex items-center justify-center h-fit my-4 ">
 						<p className="text-error-content text-xl p-2">
 							Oops! Looks like we ran into an issue loading the events. Please check your internet and refresh to try
-							again, if the problem persists, please let us know at <a href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</a>
+							again, if the problem persists, please let us know at <Link href="mailto:hackrpi@rpi.edu">hackrpi@rpi.edu</Link>
 							. Thank you!
 						</p>
 					</div>
@@ -205,7 +206,7 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Saturday, November 7, 2026</h1>
+						<h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
@@ -218,7 +219,7 @@ export default function Page() {
 							}}
 						/>
 						<div className="h-4"></div>
-						<h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-center">Sunday, November 8, 2026</h1>
+						<h1 className="text-xl lg:text-3xl font-bold text-center">Sunday, November 8, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 

@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Canvas } from "@react-three/offscreen";
 import Scene from "@/app/components/title-components/three/Scene";
+import Link from "next/link";
 
 export default function DesktopTitleComponent() {
   const worker = useMemo(
@@ -30,7 +31,7 @@ export default function DesktopTitleComponent() {
   return ( //  bg-[#00152b] THIS IS TEMP WHILE I SORT OUT 3D MODEL LOADING
     // bg-[url('/3d/placeholder.png')]
   // Or i could just render a view of it since its the same sin wave motion and slap it on the background
-    <div className="relative w-full h-screen bg-[#00152b] bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
+    <div className="relative w-full h-screen bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
       <div className="absolute inset-0">
         <Canvas
           worker={worker}
@@ -76,13 +77,13 @@ export default function DesktopTitleComponent() {
         >
           <div className="text-animation-layer inline-block w-auto" />
           {linkItems.map(({ label, href }) => (
-            <a key={label} className="norris-line block w-fit" data-text={label} href={href}>
+            <Link key={label} className="norris-line block w-fit" data-text={label} href={href}>
               {splitLabel(label).map((char, index) => (
                 <span key={`${label}-${index}`} className="norris-char" data-char={char} style={{ ["--index" as string]: index }}>
                   {char}
                 </span>
               ))}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Link from "next/link";
+import { text } from "stream/consumers";
+
 
 export default function SponsorCard({ name, tier, image, link }: any) {
   let bg_color, text_color, opacity, hoverOpacity;

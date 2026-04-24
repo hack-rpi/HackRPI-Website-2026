@@ -10,7 +10,10 @@ const glbLoadStart =
   typeof performance !== "undefined" ? performance.now() : Date.now();
 let glbTimingLogged = false;
 
-function Model() {
+const DESKTOP_PLANE_SCALE = 0.15;
+const MOBILE_PLANE_SCALE = 0.09;
+
+function Model({ scale: planeScale = DESKTOP_PLANE_SCALE }: { scale?: number }) {
   const { scene } = useGLTF(PLANE_URL);
   const modelRef = useRef<THREE.Object3D>(null);
 
@@ -55,7 +58,7 @@ function Model() {
 
   useFrame((state) => {
     if (modelRef.current) {
-      modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.5;
+      modelRef.current.position.y = -1 + Math.sin(state.clock.elapsedTime) * 0.8;
       modelRef.current.rotation.z =
         -Math.PI / Math.abs(Math.sin(state.clock.elapsedTime) + 10);
     }
@@ -67,7 +70,7 @@ function Model() {
       object={scene}
       position={[4, -1, -5]}
       rotation={[0, -Math.PI / 4, 0]}
-      scale={0.15}
+      scale={planeScale}
     />
   );
 }
@@ -113,14 +116,23 @@ function BackgroundCircle() {
   );
 }
 
-export default function Scene() {
+type SceneProps = {
+  centered?: boolean;
+};
+
+export default function Scene({ centered = false }: SceneProps) {
+  const groupPosition = (centered ? ([-4.5, 0, 0] as const) : ([0, 0, 0] as const));
+  const planeScale = centered ? MOBILE_PLANE_SCALE : DESKTOP_PLANE_SCALE;
+
   return (
     <>
       <directionalLight position={[4, 4, 5]} intensity={0.8} />
+      <group position={groupPosition}>
         <BackgroundSphere />
         {/* <BackgroundCircle /> */}
-        <Model />
+        <Model scale={planeScale} />
         <ImageRectangle />
+      </group>
     </>
   );
 }

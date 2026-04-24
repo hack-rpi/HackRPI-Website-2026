@@ -31,7 +31,7 @@ export default function TitleComponent({ onReady }: Props) {
   }, [variant, onReady]);
 
   if (variant === "desktop") return <DesktopTitleComponent />;
-  if (variant === "mobile") return <DesktopTitleComponent />;
+  if (variant === "mobile") return <MobileTitleComponent />;
 
   return <div className="h-screen" />;
 }

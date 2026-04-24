@@ -46,10 +46,10 @@ function MobileProjectDisplay(props: ProjectDisplayProps) {
 				<Image src={props.imageUrl} alt={props.title} height={500} width={500} className="previousWinnersImages" />
 			</div>
 			<div>
-				<h1 className="font-modern text-white text-left text-4xl text-shadow-md pb-4">{props.prizeCategory}</h1>
-				<h2 className="font-modern collapse-title font-medium text-2xl text-white">{props.title}</h2>
+				<h1 className="font-modern text-white text-center text-4xl text-shadow-md p-2">{props.prizeCategory}</h1>
+				<h2 className="font-modern text-white text-center text-2xl font-medium p-2">{props.title}</h2>
 				<hr />
-				<p className="font-sans font-white text-lg">{props.authors.join(", ")}</p>
+				<p className="font-sans text-white text-lg p-2 text-center">{props.authors.join(", ")}</p>
 				<hr />
 				<p className="mt-2">{props.description}</p>
 			</div>

@@ -1,6 +1,50 @@
-"use client"
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { textAnimation } from "@/lib/text-animation";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Mentions() {
+	const mentionsAnimatedRef = useRef(false);
+
+	useEffect(() => {
+		const ctx = gsap.context(() => {
+			const sectionPin = document.querySelector("#pin");
+			const mentions = document.querySelector("#mentions-container");
+			const scrollWidth = sectionPin
+				? sectionPin.scrollWidth - document.documentElement.clientWidth
+				: 0;
+
+			if (!mentions) return;
+
+			ScrollTrigger.create({
+				trigger: mentions,
+				start: "20% bottom",
+				end: () => "+=" + scrollWidth,
+				onEnter: () => {
+					if (!mentionsAnimatedRef.current) {
+						mentionsAnimatedRef.current = true;
+						textAnimation("mentions-animate", 0.6);
+					}
+				},
+			});
+
+			gsap.timeline({
+				scrollTrigger: {
+					trigger: "#trophy-canvas",
+					start: "top top",
+					end: "bottom center",
+					scrub: true,
+				},
+			});
+		});
+
+		return () => ctx.revert();
+	}, []);
+
 	return (
 		<div className="h-auto will-change-transform translate-z-0 bg-white" id="mentions-container">
 			<div className="flex h-[10vh] gap-0 bg-gBlack"></div>
