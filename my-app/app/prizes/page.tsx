@@ -266,11 +266,11 @@ export default function prizes() {
 				<div className="h-[50vh] w-full flex items-center justify-center" id="spacer" />
 
 				<div className="w-full h-screen" id="pin">
-					{/* <div className="h-[100vh] z-2 w-full absolute">
+					 <div className="h-[100vh] z-2 w-full absolute">
 						<Canvas dpr={[1, 1.5]} orthographic camera={{ position: [0, 0, 10], zoom: 100 }}>
 							<SceneTransition />
 						</Canvas>
-					</div> */}
+					</div> 
 
 					<div className="w-full h-screen absolute flex text-center text-2xl font-sans" id="majorPrizes">
 
@@ -283,8 +283,8 @@ export default function prizes() {
 
 					<div className="w-full h-screen absolute z-[-1] flex text-center text-2xl font-sans bg-[rgb(200,200,200)]" id="otherPrizes">
 						<div className="h-full w-2/5 justify-center items-center flex">
-							<div className="w-2/3 bg-gray-200 aspect-square z-[1]">
-								A
+							<div className="w-2/3 bg-gray-200 aspect-square z-[1] flex items-center justify-center rounded-xl text-3xl text-black">
+								PLACEHOLDER
 							</div>
 						</div>
 						<div className="h-full w-3/5 flex flex-col justify-center items-center">
