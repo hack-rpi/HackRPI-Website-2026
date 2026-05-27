@@ -1,126 +1,77 @@
-:root{
-    --envelope-color: rgb(219, 217, 213);
-    --envelopeBorder: black;
+/* Container handles the safety zone for the 3D animation space */
+.envelope-container {
+  position: relative;
+  width: 70vw;
+  max-width: 800px;
+  /* Adds space specifically on top so the popped out letter stays visible */
+  padding-top: 40vw; 
+  perspective: 1500px;
+  cursor: pointer;
 }
 
-.envelopeContainer{
-    position:relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    padding: 0 10%;
+/* Base structure holding the layers (Locks the 3/2 aspect ratio here instead) */
+.envelope-3d {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
 }
 
-.envelopeBody{
-    position:relative;
-    width: 100%;
-    aspect-ratio: 3 / 1.7;
-    background-color: var(--envelope-color);
-    border-radius: 10px;
-    overflow:hidden;
-    border: 5px solid var(--envelopeBorder);
-    border-top: none;
-    z-index: 1;
-    
+.envelope-container:hover .envelope-3d {
+  transform: translateY(-15px) rotateX(15px);
 }
 
-.envelopeMarks{
-    position:absolute;
-    width: 69.2%;
-    height: 50%;
-    background-color: var(--envelope-color);
-    bottom:0;
-    transform: translate(0, 50.3%);
-    z-index:1;
+/* 1. Envelope Solid Back Wall */
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1e293b;
+  border-radius: 12px;
+  z-index: 1;
 }
 
-.envelopeMarks:first-of-type{
-    rotate: -30deg;
-    left:-30%;
-    border-top: 5px solid var(--envelopeBorder);
+/* 2. Inner Letter */
+.letter-content {
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  width: 92%;
+  height: 88%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  z-index: 2;
+  will-change: transform;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-.envelopeMarks:last-of-type{
-    rotate: 30deg;
-    right:-30%;
-    border-top: 5px solid var(--envelopeBorder);
+/* 3. Envelope Front Pocket */
+.envelope-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #334155;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 12px;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 50% 50%);
 }
 
-.envelopeMarks1{
-    position:absolute;
-    width: 31%;
-    height: 55.2%;
-    background-color: var(--envelope-color);
-    bottom:0;
-    left:50%;
-    transform: translate(-50%, 0);
-    z-index:2;
-    border-top: 5px solid var(--envelopeBorder);
-}
-
-.envelopeMarks2{
-    position:absolute;
-    width: 66%;
-    height: 120%;
-    background-color: var(--envelope-color);
-    bottom:0;
-    z-index:0;
-    border-left: 5px solid var(--envelopeBorder);
-}
-
-.envelopeMarks2:nth-of-type(3){
-    transform: translate(0%, 25%);
-    rotate: -60deg;
-    left:-39.5%;
-    border-right: 5px solid var(--envelopeBorder);
-}
-
-.envelopeMarks2:nth-of-type(4){
-    transform: translate(0%, 25%);
-    rotate: 60deg;
-    right:-39.5%;
-}
-
-.envelopeFlap{
-    position:relative;
-    width: 100%;
-    min-height: 40%;
-    top:0;
-
-    overflow: hidden;
-    z-index: 2;
-}
-.envelopeFlap div:nth-child(3){
-    bottom:0;
-    position:absolute;
-    width: 100%;
-    height: 30%;
-    background-color: var(--envelope-color);
-    border-radius: 10px;
-    z-index:5;
-    border-left: 5px solid var(--envelopeBorder);
-    border-right: 5px solid var(--envelopeBorder);
-}
-.envelopeFlap div:nth-child(1){
-    position:absolute;
-    width: 77.7%;
-    height: 100%;
-    background-color: var(--envelope-color);
-    transform: translate(0, 44.5%);
-    z-index:4;
-
-    rotate: -30deg;
-    left:-10%;
-    border-top: 5px solid var(--envelopeBorder);
-}
-.envelopeFlap div:nth-child(2){
-    position:absolute;
-    width: 77.7%;
-    height: 100%;
-    background-color: var(--envelope-color);
-    transform: translate(0, 44.5%);
-    z-index:4;
-
-    rotate: 30deg;
-    right:-10%;
-    border-top: 5px solid var(--envelopeBorder);
+/* 4. Envelope Top Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 51%;
+  background-color: #475569;
+  z-index: 4; 
+  transform-origin: top center;
+  will-change: transform;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }

@@ -4,9 +4,6 @@ import ShinyCard from '../shinyCard';
 import sponsors from '../../../public/sponsors/sponsors.json';
 import { useRef, useEffect } from 'react';
 
-
-
-
 export default function Sponsors() {
 		const canvasRef = useRef(null);
 
@@ -85,9 +82,7 @@ export default function Sponsors() {
 				ref={canvasRef}
 				className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
 			/>
-			<div className="w-full h-[9vh] p-5 text-center text-2xl">
-				This would not be possible without our sponsors; thank you all for your support!
-			</div>
+			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-50">Thank you to our sponsors that make HackRPI possible!</h2>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.OBSIDIAN.map((sponsor, index) => (
 					<SponsorCard
@@ -127,6 +122,17 @@ export default function Sponsors() {
 						key={index}
 						name={sponsor.name}
 						tier={"bronze"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+			</div>
+			<div className = "flex flex-row justify-center flex-wrap gap-10">
+				{sponsors.COLLABORATORS.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"collab"}
 						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>

@@ -50,44 +50,19 @@
 	],
 	"COLLABORATORS": [
     {
-			"name": "Awake Chocolate",
-			"logoPath": "/Awake_Chocolate.png",
-			"url": "https://awakechocolate.com/"
-		},
+		"name": "Pure Buttons",
+		"logoPath": "/Pure-Buttons.svg",
+		"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
+	},
     {
-			"name": "DeFazio's Pizza",
-			"logoPath": "/DeFazios.png",
-			"url": "https://defaziospizza.com/"
-		},
-		{
-			"name": "Dibella's Subs",
-			"logoPath": "/Dibellas.png",
-			"url": "https://www.dibellas.com/"
-		},
-		{
-			"name": "Github",
-			"logoPath": "/github-logo.svg",
-			"url": "https://github.com/"
-		},
-    {
-      "name": "Monster Energy",
-      "logoPath": "/MonsterEnergy.png",
-      "url": "https://www.monsterenergy.com/en-us/"
-    },
-    {
-			"name": "Photon",
-			"logoPath": "/Photon.png",
-			"url": "https://photon.codes/"
-		},
-		{
-			"name": "Pure Buttons",
-			"logoPath": "/Pure-Buttons-Blue-Gradient-Logo-RGB.svg",
-			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
-		},
-    {
-			"name": "Taichi Bubble Tea",
-			"logoPath": "/Taichi.png",
-			"url": "https://www.taichibubbletea.com/"
-		}
+		"name": "MLH",
+		"logoPath": "",
+		"url": ""
+	},
+	{
+		"name": "Github",
+		"logoPath": "/github-logo.svg",
+		"url": "https://github.com/"
+	}
 	]
 }

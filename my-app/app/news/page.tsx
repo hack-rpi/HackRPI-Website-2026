@@ -22,18 +22,51 @@ const Page: React.FC = () => {
     article => !article.featured && article.category !== 'Hackathon'
   );
 
-  // Handle browser back button + lenis
+  // Core URL Routing & Back-Button Sync
   useEffect(() => {
+    // 1. Function to parse current URL and match an article
+    const checkUrlForArticle = () => {
+      // Handles window.location.hash (e.g., #article/some-id)
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#article/')) {
+        const idFromHash = hash.replace('#article/', '');
+        const article = articles.find(a => String(a.id) === idFromHash);
+        if (article) {
+          setSelectedArticle(article);
+          return;
+        }
+      }
+
+      // Optional fallback: Checks if modern window.location.pathname matches /id directly
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      if (pathSegments.length === 1) {
+        const idFromPath = pathSegments[0];
+        const article = articles.find(a => String(a.id) === idFromPath);
+        if (article) {
+          setSelectedArticle(article);
+          return;
+        }
+      }
+
+      // If no valid IDs are in the URL, clear state back to grid view
+      setSelectedArticle(null);
+    };
+
+    // 2. Run immediately when page loads to check for incoming linked URLs
+    checkUrlForArticle();
+
+    // 3. Handle browser back/forward buttons
     const handlePopState = (event: PopStateEvent) => {
       if (event.state?.articleId) {
         const article = articles.find(a => a.id === event.state.articleId);
         setSelectedArticle(article || null);
       } else {
-        setSelectedArticle(null);
+        // Fallback to checking the raw URL string if history state properties are empty
+        checkUrlForArticle();
       }
     };
 
-    // lenis scrolling section
+    // Lenis scrolling integration
     const lenis = new Lenis({
       smoothWheel: true,
       duration: 1.2,
@@ -43,9 +76,7 @@ const Page: React.FC = () => {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
-    // end lenis scrolling section
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -56,7 +87,7 @@ const Page: React.FC = () => {
     setSelectedArticle(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Add to browser history
+    // Add to browser history using Hash routing
     window.history.pushState(
       { articleId: article.id },
       '',
@@ -69,8 +100,8 @@ const Page: React.FC = () => {
     setSelectedArticle(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Update browser history
-    window.history.pushState({}, '', '#');
+    // Reset path back to home safely
+    window.history.pushState({}, '', window.location.pathname);
   };
 
   // If an article is selected, show the full article view
@@ -124,40 +155,24 @@ const Page: React.FC = () => {
         />
       </section>
 
-      {/* Hackathon News Section - Horizontal Scroll */}
+      {/* Hackathon News Section */}
       {hackathonArticles.length > 0 && (
         <>
           <div className="mx-auto max-w-400 px-12 pb-8 pt-8 max-md:px-6">
-            <h2 className="
-              bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight
-              text-transparent max-md:text-2xl
-            ">
+            <h2 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
               Hackathon
             </h2>
           </div>
 
           <section className="mx-auto max-w-400 overflow-visible px-12 pb-12 max-md:px-6">
-            <div
-              className="
+            <div className="
                 -my-8 flex snap-x snap-mandatory gap-8 overflow-x-auto overflow-y-visible py-8 pb-12 scroll-pl-12
                 [scrollbar-color:#ffd700_#0d0d0d] [scrollbar-width:thin] max-md:scroll-pl-6 [&::-webkit-scrollbar]:h-2.5 
-                [&::-webkit-scrollbar-thumb]:rounded-md
-                [&::-webkit-scrollbar-thumb]:bg-[linear-gradient(135deg,#ffd700_0%,#ffed4e_50%,#ffd700_100%)]
-                [&::-webkit-scrollbar-thumb]:shadow-[0_0_10px_rgba(255,215,0,0.5)] 
-                [&::-webkit-scrollbar-thumb:hover]:bg-[#ffe94d] [&::-webkit-scrollbar-track]:rounded-md 
-                [&::-webkit-scrollbar-track]:bg-[#0d0d0d]
+                ...
               ">
               {hackathonArticles.map((article) => (
-                <div
-                  key={article.id}
-                  className="w-65 min-w-65 max-w-65 shrink-0 snap-start max-md:w-60 max-md:min-w-60 max-md:max-w-60"
-                >
-                  <Article
-                    data={article}
-                    variant="card"
-                    scrollCard
-                    onClick={() => handleArticleClick(article)}
-                  />
+                <div key={article.id} className="w-65 min-w-65 max-w-65 shrink-0 snap-start max-md:w-60 max-md:min-w-60 max-md:max-w-60">
+                  <Article data={article} variant="card" scrollCard onClick={() => handleArticleClick(article)} />
                 </div>
               ))}
             </div>
@@ -165,35 +180,18 @@ const Page: React.FC = () => {
         </>
       )}
 
-      {/* Section Header for Latest Stories */}
+      {/* Latest Stories Section */}
       <div className="mx-auto max-w-400 px-12 pb-8 pt-12 max-md:px-6">
-        <h2 className="
-          bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight
-          text-transparent max-md:text-2xl
-        ">
+        <h2 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
           Latest Stories
         </h2>
       </div>
 
-      <section className="
-        mx-auto grid max-w-400 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]
-        gap-6 p-12 max-md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] max-md:gap-5
-        max-md:px-6 max-md:py-12
-      ">
+      <section className="mx-auto grid max-w-400 grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-6 p-12 max-md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] max-md:gap-5 max-md:px-6 max-md:py-12">
         {regularArticles.map(article => (
-          <Article 
-            key={article.id} 
-            data={article} 
-            variant="card"
-            onClick={() => handleArticleClick(article)}
-          />
+          <Article key={article.id} data={article} variant="card" onClick={() => handleArticleClick(article)} />
         ))}
       </section>
-
-      {/* Example of Full Article View (commented out) */}
-      {/* 
-      <Article data={featuredArticle} variant="full" />
-      */}
     </main>
     <footer className="bg-gray-800">
       <div className="w-full h-[10vh] bg-black" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>

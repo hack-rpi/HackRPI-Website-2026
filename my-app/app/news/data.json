@@ -180,6 +180,22 @@
       "author": "Diana Foster",
       "date": "Jan 25, 2026",
       "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop"
+    },
+
+
+
+
+    {
+      "id": "2027",
+      "title": "HackRPI 2027 Greetings",
+      "excerpt": "Greetings HackRPI Hackers 2027! Here is our message to you.",
+      "content": "\n\n### Welcome Hackers!\n\nHackRPI 2026 is Rensselaer Polytechnic Institute's 13th annual intercollegiate hackathon hosted by students for students. Starting at noon on Saturday, November 7th, teams of 1-4 people have 24 hours to build and submit projects relating to our theme, In The Clouds. \n\nAfter submitting their projects, participants showcase their work in front of professors, industry professionals, and fellow students.\n\n### In The Clouds: \n\nSoar to new heights at our 13th annual hackathon. This year’s theme challenges you to design projects that take flight—whether literally or figuratively. Elevate existing solutions to high peaks or even create something new with emerging technologies. After all, the sky’s the limit (or is it?!). \n\n###Our Goal \n\nOur goal is to inspire and challenge innovators, creators, developers, and entrepreneurs in New York's Tech Valley and beyond. All students from all schools are welcome to participate, regardless of their major or experience level. Whether you're a seasoned hacker or a first-time participant, HackRPI is the perfect opportunity to learn new skills, meet new people, and have fun!",
+      "category": "Hackathon",
+      "author": "HackRPI Team",
+      "date": "May 27, 2027",
+      "imageUrl": "https://images.unsplash.com/photo-1548092372-0d1bd40894a3?w=800&h=600&fit=crop",
+      "featured": false
     }
   ]
 }
+

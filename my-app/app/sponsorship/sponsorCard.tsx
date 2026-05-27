@@ -26,8 +26,8 @@ export default function SponsorCard({ tier, amount }: any) {
     shadowColor = "239,68,68"; 
   } else {
     bg_color =
-      "bg-orange-500/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
-    text_color = "text-red-600";
+      "bg-grey-500/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
+    text_color = "text-grey-500";
   }
 
   const [rotateX, setRotateX] = useState(0);

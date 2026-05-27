@@ -142,17 +142,23 @@ export default function Team() {
 				</div>
 			</div>
 
-			<div className="text-6xl top-10 left-15 font-mono absolute mt-[7vh]" id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-				Meet the Team
-				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
+			<div className="absolute left-15 z-50 mt-20 flex flex-col gap-4 max-w-4xl">
+				<h2 id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }} className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
+					Meet the HackRPI Organizing Team
+					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
+				</h2>
+				<p className="text-lg text-white/70 leading-relaxed">
+					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord or fill out one of the forms below!
+				</p>
 			</div>
+
 			<div className="h-full flex absolute" id="team-content" style={{ width: `${teamMembers.length * 28 + 170}vw` }}>
 				{teamMembers.map((member, i) => (
 					<FaceCard
 						key={member.name}
 						size={1}
 						left={135 + i * 28}
-						top={topOffsets[i % topOffsets.length]}
+						top={topOffsets[0*topOffsets.length]}
 						img={member.img}
 						name={member.name}
 					/>

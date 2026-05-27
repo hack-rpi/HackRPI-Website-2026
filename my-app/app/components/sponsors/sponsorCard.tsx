@@ -1,3 +1,5 @@
+'use-client';
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { text } from "stream/consumers";
@@ -32,8 +34,8 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     opacity = "opacity-95";
     hoverOpacity = "hover:opacity-100";
   } else {
-    bg_color = "bg-orange-500/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
-    text_color = "text-red-600";
+    bg_color = "bg-grey-600/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
+    text_color = "text-grey-600";
   }
 
   const [rotateX, setRotateX] = useState(0);
@@ -84,7 +86,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   }
 
   let style =
-    "w-[300px] h-[300px] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[20vw] h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
@@ -113,7 +115,8 @@ export default function SponsorCard({ name, tier, image, link }: any) {
         className={style + " m-4 relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
         style={{
             transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-            boxShadow: shadow
+            boxShadow: shadow,
+            perspective: "800px"
         }}
       > 
           <div className="flex flex-col items-center justify-center gap-2">
@@ -124,7 +127,8 @@ export default function SponsorCard({ name, tier, image, link }: any) {
                 alt={name}
                 className="absolute inset-0 w-full h-full object-contain p-7 transition-transform duration-200 ease-out"
                 style={{
-                  transform: `translateX(${imgX}px) translateY(${imgY}px) scale(1.05)`
+                  transform: `translateX(${imgX}px) translateY(${imgY}px) scale(1.05)`,
+                  perspective: "800px"
                 }}
               />
             )}
