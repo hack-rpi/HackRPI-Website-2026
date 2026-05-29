@@ -14,47 +14,6 @@ export default function AboutUs() {
     const isFlapOpen = useRef<boolean>(false);
 
     useGSAP(() => {
-        // 1. Scroll Trigger for the Envelope Flap
-        // gsap.to(".envelope-flap", {
-        //     rotateX: 180,
-        //     duration: 0.5,
-        //     ease: "power2.inOut",
-        //     onComplete: () => {
-        //         isFlapOpen.current = true;
-        //         // Safely tuck flap behind letter only AFTER it opens fully
-        //         gsap.set(".envelope-flap", { zIndex: 1 });
-        //     },
-        //     onReverseComplete: () => {
-        //         isFlapOpen.current = false;
-        //         // Pull forward only AFTER it closes fully
-        //         gsap.set(".envelope-flap", { zIndex: 4 });
-        //     },
-        //     scrollTrigger: {
-        //         trigger: ".envelope-wrapper",
-        //         start: "top -50%",
-        //         end: "bottom 25%",
-        //         toggleActions: "play reverse play reverse", // Closes smoothly if scrolled away up or down
-        //         onToggle: (self) => {
-        //             // isFlapOpen.current = self.isActive;
-        //             // // Safely tuck flap behind letter if open, or pull forward if closed
-        //             // gsap.set(".envelope-flap", { zIndex: self.isActive ? 1 : 4 });
-                    
-        //             // // Force the letter back down if the envelope closes via scrolling out of view
-        //             if (!self.isActive && hoverTl.current) {
-        //                 hoverTl.current.reverse();
-        //             }
-        //         }
-        //     }
-        // });
-
-        // // 2. Separate Hover Timeline for the Letter Pop-out
-        // hoverTl.current = gsap.timeline({ paused: true })
-        //     .to(".letter-content", { 
-        //         y: "-60%", 
-        //         duration: 0.4, 
-        //         ease: "back.out(1.1)" 
-        //     });
-
         hoverTl.current = gsap.timeline({
             scrollTrigger: {
                 trigger: ".envelope-wrapper",
@@ -105,7 +64,7 @@ export default function AboutUs() {
         }
     };
     return (
-       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-screen flex items-center justify-center mb-[10vh]">
+       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-screen flex items-center justify-center mb-[10vh] mt-[10vh]">
         
         {/* The 3D Scene Wrapper now has built-in top padding space */}
         <div 
