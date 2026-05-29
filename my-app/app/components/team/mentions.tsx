@@ -1,14 +1,71 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
 
+import type { Group } from "three";
+
+import type { PointLight } from "three";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
+
 gsap.registerPlugin(ScrollTrigger);
+
+function Model() {
+	const { scene } = useGLTF('/3d/trophy.glb');
+	const clonedScene = useMemo(() => scene.clone(), [scene]);
+	return <Center><primitive object={clonedScene} /></Center>;
+}
+
+function MovingLight({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
+    const lightRef = useRef<PointLight>(null);
+
+    // useFrame runs on every single 3D render frame loop
+    useFrame(() => {
+        if (lightRef.current) {
+            // Constantly read the position from our GSAP-animated object
+            lightRef.current.position.x = scrollData.current.x;
+        }
+    });
+
+    return (
+        <pointLight 
+            ref={lightRef}
+            position={[100, 0, 5]} 
+            intensity={5.0} 
+            distance={0} 
+            decay={1}
+        />
+    );
+}
+
+function Scene({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
+    return (
+        <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
+            <ambientLight intensity={0.3} />
+
+            <directionalLight 
+                position={[5, 10, 5]} 
+                intensity={1.5} 
+                castShadow 
+            />
+
+            {/* Render the self-updating light */}
+            <MovingLight scrollData={scrollData} />
+
+            <hemisphereLight color={"#ffffff"} groundColor={"#444444"} intensity={0.4} />
+
+            <Model/>
+            <OrbitControls enableZoom={false} />
+        </Canvas>
+    )
+}
 
 export default function Mentions() {
 	const mentionsAnimatedRef = useRef(false);
+    const scrollData = useRef({ x: 100 });
 
 	useEffect(() => {
 		const ctx = gsap.context(() => {
@@ -35,11 +92,14 @@ export default function Mentions() {
 			gsap.timeline({
 				scrollTrigger: {
 					trigger: "#trophy-canvas",
-					start: "top top",
-					end: "bottom center",
+					start: "top 100%", 
+					end: "bottom top", 
 					scrub: true,
 				},
-			});
+			}).to(scrollData.current, {
+                x: -100,
+                ease: "none"
+            });
 		});
 
 		return () => ctx.revert();
@@ -51,7 +111,7 @@ export default function Mentions() {
 			<div className="flex h-[120vh] gap-0 bg-gBlack">
 				<div className="flex-1 h-[90vh] items-center justify-center text-4xl text-center flex"
 					id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
-					3d Trophy model placeholder
+					<Scene scrollData={scrollData}/>
 				</div>
 				<div className="flex-1 h-screen w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
 					<span className="text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>

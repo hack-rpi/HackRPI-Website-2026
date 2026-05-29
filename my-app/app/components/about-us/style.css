@@ -46,6 +46,7 @@
   z-index: 2;
   will-change: transform;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  overflow-y:hidden;
 }
 
 /* 3. Envelope Front Pocket */

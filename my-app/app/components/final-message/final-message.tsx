@@ -7,7 +7,7 @@ export default function FinalMessage () {
         <div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
       </span>
       <span className="relative block w-fit whitespace-nowrap scale-y-85 origin-center" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-        HackRPI 
+        HackRPI{' '}
         <b className="text-[60px] tracking-[0em] inline-block transition-all duration-300 ease-out cursor-pointer hover:scale-105 hover:tracking-[0.05em] hover:text-sky-200/80 active:scale-95">
           In the Clouds
         </b> 2027

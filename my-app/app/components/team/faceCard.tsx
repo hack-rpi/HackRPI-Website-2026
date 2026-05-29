@@ -68,15 +68,14 @@ export default function FaceCard({ size, left, top, img, name }: any) {
 	let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
 
 	return (
-		<div      className={"absolute transform-gpu [transform-style:preserve-3d] duration-400 p-5 ease-out"}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{
-        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        boxShadow: shadow,
-		height: `${size * 45}vh`, width: `${size * 36}vh`, marginLeft: `${left}vw`, marginTop: `${top}vh` 
-        
-      }}>
+		<div className={"absolute transform-gpu [transform-style:preserve-3d] duration-400 p-5 ease-out"}
+			onMouseMove={handleMove}
+			onMouseLeave={handleLeave}
+			style={{
+				transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+				boxShadow: shadow,
+				height: `${size * 45}vh`, width: `${size * 36}vh`, marginLeft: `${left}vw`, marginTop: `${top}vh` }}
+		>
 			<div className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm" style={{ boxShadow: '0 0 40px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
 				<img className="h-full w-full object-cover" src={`${img}`} alt={name} />
 			</div>

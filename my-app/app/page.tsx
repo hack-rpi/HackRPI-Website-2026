@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
+import Buffer from "@/app/components/themed-components/buffer"
 
 import Lenis from 'lenis';
 import { ReactNode, useEffect, useState } from "react";
@@ -134,6 +135,7 @@ export default function Home() {
         <AboutUs />
         <div id="switch-light">
           <FAQPage />
+          <Buffer fillColor="#5f6b7a"/>
           <Sponsors />
         </div>
         <TeamComponent />

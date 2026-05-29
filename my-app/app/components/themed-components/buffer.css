@@ -1,0 +1,20 @@
+@keyframes slowDrift {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) scaleY(1.08); /* Slight vertical swell for organic feel */
+  }
+  100% {
+    transform: translateX(0) scaleY(1);
+  }
+}
+
+.animate-wave-slow {
+  animation: slowDrift var(--drift-duration, 40s) ease-in-out infinite;
+}
+
+/* Smooth masking blend mode to make the colors gradient perfectly into the next section */
+.buffer-blend {
+  mix-blend-mode: normal;
+}

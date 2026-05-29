@@ -10,21 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const teamMembers = [
-	{ img: '/team/aaryan.jpeg', name: 'Aaryan Gautam' },
-	{ img: '/team/Adwait_Naware.jpeg', name: 'Adwait Naware' },
-	{ img: '/team/calebJR.jpg', name: 'Caleb Liu' },
-	{ img: '/team/cj.jpeg', name: 'CJ Marino' },
-	{ img: '/team/daksheshJR.jpg', name: 'Dakshesh Amaram' },
-	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
-	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
-	{ img: '/team/jackson.jpeg', name: 'Jackson Baimel' },
-	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
-	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
-	{ img: '/team/matthew.jpeg', name: 'Matthew Treanor' },
-	{ img: '/team/shankar.jpeg', name: 'Shankar Gowrisankar' },
-	{ img: '/team/suyash.jpeg', name: 'Suyash Amatya' },
 	{ img: '/team/tobias.jpeg', name: 'Tobias Manayath' },
-	{ img: '/team/xenia.jpeg', name: 'Xenia Khusid' },
+	{ img: '/team/jackson.jpeg', name: 'Jackson Baimel' },
+	{ img: '/team/calebJR.jpg', name: 'Caleb Liu' },
+	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
+	{ img: '/team/cj.jpeg', name: 'CJ Marino' },
+	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
+	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
+	{ img: '/team/matthew.jpeg', name: 'Matthew Treanor' },
+	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
+	
 ];
 
 const topOffsets = [45, 35, 25, 30, 45, 30, 40];
@@ -48,26 +43,29 @@ const parallaxPositions = [
 
 export default function Team() {
 	useEffect(() => {
+		const scrollBox = document.querySelector("#horizontal-scrollbox");
+		const parallaxBg = document.querySelector("#parallax-bg") as HTMLElement | null;
+
+		// Clean native scroll handler for background parallax
+		const handleScroll = () => {
+			if (!scrollBox || !parallaxBg) return;
+			const scrolledAmount = scrollBox.scrollLeft;
+			
+			// Moves background at 30% speed of the foreground scrollbox
+			parallaxBg.style.setProperty('--bg-scroll', `-${scrolledAmount * 0.3}px`);
+		};
+
+		if (scrollBox) {
+			scrollBox.addEventListener("scroll", handleScroll, { passive: true });
+		}
+
 		const ctx = gsap.context(() => {
-			const sectionPin = document.querySelector("#pin");
-			const teamTitle = document.querySelector("#team-title");
-			const teamContent = document.querySelector("#team-content");
-			const parallaxBg = document.querySelector("#parallax-bg");
-
-			if (!sectionPin) return;
-			if (!teamTitle) return;
-
-			const scrollWidth = sectionPin.scrollWidth - document.documentElement.clientWidth;
-			const introDistance = scrollWidth * 0.15;
-			const speed = 1.5;
-
+			// Retain your entry text animations 
 			const tl = gsap.timeline({
 				scrollTrigger: {
-					trigger: sectionPin,
+					trigger: "#pin",
 					start: "top 90%",
-					end: () => "+=" + scrollWidth * speed,
-					scrub: true,
-					anticipatePin: 0,
+					toggleActions: "play none none none"
 				},
 			});
 
@@ -86,50 +84,34 @@ export default function Team() {
 					HA2 = true;
 				}
 			}, [], 0.0);
-
-			tl.fromTo(teamContent, { x: -introDistance }, { x: -scrollWidth, ease: "none", duration: 1 * speed, force3D: true }, 0);
-
-			if (parallaxBg) {
-				tl.fromTo(
-					parallaxBg,
-					{ x: -introDistance * 0.5 },
-					{ x: -scrollWidth * 0.5, ease: "none", duration: 1 * speed, force3D: true },
-					0
-				);
-			}
-
-			tl.to(teamTitle, { x: -scrollWidth / 2, ease: "none", duration: 0.5 * speed, force3D: true }, 0.7 * speed);
-
-			tl.to({}, { duration: 0.1 * speed });
-
-			ScrollTrigger.create({
-				trigger: sectionPin,
-				start: "top top",
-				end: () => "+=" + scrollWidth,
-				pin: true,
-				anticipatePin: 0,
-			});
 		});
 
-		return () => ctx.revert();
+		return () => {
+			ctx.revert();
+			if (scrollBox) {
+				scrollBox.removeEventListener("scroll", handleScroll);
+			}
+		};
 	}, []);
 
 	return (
-		<div className="h-screen will-change-transform translate-z-0 overflow-hidden bg-gBlack" id="pin">
-			{/* parallax background images */}
-			<div className="absolute inset-0 overflow-hidden" style={{ pointerEvents: 'none' }}>
-				<div className="h-full flex absolute" id="parallax-bg" style={{ width: `${teamMembers.length * 28 + 170}vw` }}>
+		<div className="relative min-h-screen bg-gBlack py-20 overflow-hidden" id="pin">
+			
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div 
+					className="h-full flex absolute transition-transform duration-75 ease-out" 
+					id="parallax-bg"
+					style={{ transform: 'translateX(var(--bg-scroll, 0px))' }} 
+				>
 					{parallaxPositions.map((pos, i) => (
 						<div
 							key={`parallax-${i}`}
-							className="absolute opacity-15 will-change-transform"
+							className="absolute opacity-15"
 							style={{
 								height: `${pos.size * 45}vh`,
 								width: `${pos.size * 36}vh`,
-								marginLeft: `${pos.left}vw`,
-								marginTop: `${pos.top}vh`,
-								top: 0,
-								left: 0,
+								left: `${pos.left}vw`,
+								top: `${pos.top}vh`,
 							}}
 						>
 							<img
@@ -142,7 +124,7 @@ export default function Team() {
 				</div>
 			</div>
 
-			<div className="absolute left-15 z-50 mt-20 flex flex-col gap-4 max-w-4xl">
+			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
 				<h2 id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }} className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
 					Meet the HackRPI Organizing Team
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
@@ -152,16 +134,23 @@ export default function Team() {
 				</p>
 			</div>
 
-			<div className="h-full flex absolute" id="team-content" style={{ width: `${teamMembers.length * 28 + 170}vw` }}>
-				{teamMembers.map((member, i) => (
-					<FaceCard
-						key={member.name}
-						size={1}
-						left={135 + i * 28}
-						top={topOffsets[0*topOffsets.length]}
-						img={member.img}
-						name={member.name}
-					/>
+			<div 
+				id="horizontal-scrollbox"
+				className="w-full overflow-x-auto flex gap-12 px-6 md:px-16 pb-12 relative z-10 scroll-smooth snap-x select-none"
+			>
+				{teamMembers.map((member) => (
+					<div 
+						key={member.name} 
+						className="w-64 h-96 flex-shrink-0 snap-start relative"
+					>
+						<FaceCard
+							size={1}
+							left={0} 
+							top={0}
+							img={member.img}
+							name={member.name}
+						/>
+					</div>
 				))}
 			</div>
 		</div>
