@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { useThree } from "@react-three/fiber";
 
 const PLANE_URL = "/3d/plane0.glb";
 const glbLoadStart =
@@ -120,7 +121,7 @@ type SceneProps = {
   centered?: boolean;
 };
 
-export default function Scene({ centered = false }: SceneProps) {
+export function Scene({ centered = false }: SceneProps) {
   const groupPosition = (centered ? ([-4.5, 0, 0] as const) : ([0, 0, 0] as const));
   const planeScale = centered ? MOBILE_PLANE_SCALE : DESKTOP_PLANE_SCALE;
 
@@ -135,4 +136,18 @@ export default function Scene({ centered = false }: SceneProps) {
       </group>
     </>
   );
+}
+
+interface SceneLoadedProps {
+  onLoaded?: () => void;
+}
+
+export default function SceneOnLoad({ onLoaded }: SceneLoadedProps) {
+  useEffect(() => {
+    if(onLoaded)
+    // Fires as soon as the canvas context is ready and this component mounts
+    onLoaded();
+  }, [onLoaded]);
+
+  return <Scene />;
 }
