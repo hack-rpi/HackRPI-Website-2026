@@ -1,10 +1,18 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Canvas } from "@react-three/offscreen";
 import Scene from "@/app/components/title-components/three/Scene";
+import SceneOnLoad from "@/app/components/title-components/three/Scene";
+
+type SceneProps = {
+  centered?: boolean;
+};
 
 export default function MobileTitleComponent() {
+
+	const [isLoading, setIsLoading] = useState(true);
+	
 	const worker = useMemo(
 		() =>
 			new Worker(new URL("@/app/components/title-components/three/worker-mobile.tsx", import.meta.url), {
@@ -12,7 +20,7 @@ export default function MobileTitleComponent() {
 			}),
 		[]
 	);
-
+	
 	return ( //  bg-[#00152b] THIS IS TEMP WHILE I SORT OUT 3D MODEL LOADING
 		// bg-[url('/3d/placeholder.png')]
 	// Or i could just render a view of it since its the same sin wave motion and slap it on the background
@@ -20,7 +28,7 @@ export default function MobileTitleComponent() {
 			<div className="absolute inset-0">
 				<Canvas
 					worker={worker}
-					fallback={<Scene centered />}
+					fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
 					camera={{ position: [0, 0, 6], fov: 55 }}
 				/>
 			</div>
