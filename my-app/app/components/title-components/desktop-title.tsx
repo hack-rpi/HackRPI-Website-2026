@@ -32,6 +32,7 @@ export default function DesktopTitleComponent() {
   ];
 
   useEffect(() => {
+    console.log("trying to load up");
     if (!worker) return;
 
     const handleWorkerMessage = (event: MessageEvent) => {
@@ -41,7 +42,7 @@ export default function DesktopTitleComponent() {
         setIsLoading(false);
       }
     };
-
+    console.log("added listener");
     worker.addEventListener("message", handleWorkerMessage);
     return () => worker.removeEventListener("message", handleWorkerMessage);
   }, [worker]);
