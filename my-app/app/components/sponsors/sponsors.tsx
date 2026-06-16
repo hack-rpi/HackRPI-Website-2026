@@ -89,7 +89,7 @@ export default function Sponsors() {
 						key={index}
 						name={sponsor.name}
 						tier={"obsidian"}
-						image={"/sponsors/sponsor_logos" + sponsor.logoPath}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>
 				))}
@@ -100,7 +100,7 @@ export default function Sponsors() {
 						key={index}
 						name={sponsor.name}
 						tier={"gold"}
-						image={"/sponsors/sponsor_logos" + sponsor.logoPath}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>
 				))}
@@ -111,7 +111,7 @@ export default function Sponsors() {
 						key={index}
 						name={sponsor.name}
 						tier={"silver"}
-						image={"/sponsors/sponsor_logos" + sponsor.logoPath}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>
 				))}
