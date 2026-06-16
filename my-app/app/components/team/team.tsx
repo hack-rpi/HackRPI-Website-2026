@@ -12,12 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 const teamMembers = [
 	{ img: '/team/tobias.jpeg', name: 'Tobias Manayath' },
 	{ img: '/team/jackson.jpeg', name: 'Jackson Baimel' },
-	{ img: '/team/calebJR.jpg', name: 'Caleb Liu' },
+	{ img: '/team/Caleb.jpg', name: 'Caleb Liu' },
 	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
 	{ img: '/team/cj.jpeg', name: 'CJ Marino' },
 	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
 	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
-	{ img: '/team/matthew.jpeg', name: 'Matthew Treanor' },
 	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
 	
 ];

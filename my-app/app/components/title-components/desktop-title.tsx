@@ -32,17 +32,13 @@ export default function DesktopTitleComponent() {
   ];
 
   useEffect(() => {
-    console.log("trying to load up");
     if (!worker) return;
 
     const handleWorkerMessage = (event: MessageEvent) => {
-      // Look for a custom event type sent from your 3D Scene setup inside the worker
       if (event.data?.type === "three-scene-ready") {
-        console.log("Worker signaled scene is ready! Removing loading screen.");
         setIsLoading(false);
       }
     };
-    console.log("added listener");
     worker.addEventListener("message", handleWorkerMessage);
     return () => worker.removeEventListener("message", handleWorkerMessage);
   }, [worker]);
