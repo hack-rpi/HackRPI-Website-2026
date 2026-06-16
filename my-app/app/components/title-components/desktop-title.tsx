@@ -31,6 +31,21 @@ export default function DesktopTitleComponent() {
     { label: "Discord", href: "https://discord.gg/" },
   ];
 
+  useEffect(() => {
+    if (!worker) return;
+
+    const handleWorkerMessage = (event: MessageEvent) => {
+      // Look for a custom event type sent from your 3D Scene setup inside the worker
+      if (event.data?.type === "three-scene-ready") {
+        console.log("Worker signaled scene is ready! Removing loading screen.");
+        setIsLoading(false);
+      }
+    };
+
+    worker.addEventListener("message", handleWorkerMessage);
+    return () => worker.removeEventListener("message", handleWorkerMessage);
+  }, [worker]);
+
   const splitLabel = (label: string) => {
     const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
     return Array.from(segmenter.segment(label), (segment) => segment.segment);
@@ -101,7 +116,8 @@ export default function DesktopTitleComponent() {
         <div className="absolute inset-0">
           <Canvas
             worker={worker}
-            fallback={<SceneOnLoad onLoaded={() => {console.log("IS LOADING FALSE"); setIsLoading(false)}} />}
+            // fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
+            fallback={<SceneOnLoad />}
             camera={{ position: [0, 0, 6], fov: 55 }}
           />
         </div>
