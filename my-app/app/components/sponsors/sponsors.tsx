@@ -95,7 +95,7 @@ export default function Sponsors() {
 				))}
 			</div>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor, index) => (
+				{sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor: any, index: number) => (
 					<SponsorCard
 						key={index}
 						name={sponsor.name}
