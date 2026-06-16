@@ -6,7 +6,7 @@ import Link from 'next/link';
 import "./style.css";
 
 // Register both plugins securely
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutUs() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,7 @@ export default function AboutUs() {
     useGSAP(() => {
         hoverTl.current = gsap.timeline({
             scrollTrigger: {
-                trigger: ".envelope-wrapper",
+                trigger: ".envelope-container",
                 start: "top -50%",
                 end: "bottom 25%",
                 scrub: false, // Set to true if you want the animation bound to the actual scrollbar momentum
