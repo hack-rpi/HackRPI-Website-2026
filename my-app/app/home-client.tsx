@@ -1,23 +1,21 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
 import Buffer from "@/app/components/themed-components/buffer"
+import AboutUs from "@/app/components/about-us/about-us";
+import FAQPage from "@/app/components/faq/faq";
+import Sponsors from "@/app/components/sponsors/sponsors";
+import TeamComponent from "@/app/components/team/team";
+import Mentions from "@/app/components/team/mentions";
+import FinalMessage from "@/app/components/final-message/final-message";
 
 import Lenis from 'lenis';
 import { ReactNode, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
-
-const AboutUs = dynamic(() => import("@/app/components/about-us/about-us"));
-const FAQPage = dynamic(() => import("@/app/components/faq/faq"));
-const Sponsors = dynamic(() => import("@/app/components/sponsors/sponsors"));
-const TeamComponent = dynamic(() => import("@/app/components/team/team"));
-const Mentions = dynamic(() => import("@/app/components/team/mentions"));
-const FinalMessage = dynamic(() => import("./components/final-message/final-message"));
 
 gsap.registerPlugin(ScrollTrigger);
 
