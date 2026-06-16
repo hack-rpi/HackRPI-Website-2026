@@ -20,108 +20,125 @@ import { textAnimation } from "@/lib/text-animation";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomeClient() {
-  const [Navbar, setNavbar] = useState<ReactNode>(<NavBar showOnScroll={true} variant={1}/>);
+  const [Navbar, setNavbar] = useState<ReactNode>(null);
+  const [isClient, setIsClient] = useState(false);
 
+  // Initialize client flag
   useEffect(() => {
-    // lenis scrolling
-    const lenis = new Lenis({
-      smoothWheel: true,
-      duration: 1.2,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    const sectionPin = document.querySelector("#pin");
-    const scrollWidth = sectionPin
-      ? sectionPin.scrollWidth - document.documentElement.clientWidth
-      : 0;
-
-
-    // animate speech text
-    ScrollTrigger.create({
-      trigger: "#winner-animate",
-      start: "top bottom",
-      end: () => "+=" + scrollWidth,
-      onEnter: () => {
-        let HA2 = false;
-        if (!HA2) {
-          textAnimation("winner-animate", 1.5, 0.05);
-          HA2 = true;
-        }
-      },
-    });
-
-
-    // animate effect in footer
-    const footerTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#footer-ellipse",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-    footerTl.fromTo(
-      document.querySelector("#footer-ellipse"),
-      { clipPath: "ellipse(70% 0% at 50% -10%)" },
-      { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
-    );
-
-    
-    // switch navbar styling
-    ScrollTrigger.create({
-      trigger: "#switch-light",
-      start: "top top",
-      end: "bottom top",
-      onEnter: () => {
-        setNavbar(<NavBar showOnScroll={true}/>);
-      },
-      onEnterBack: () => {
-        setNavbar(<NavBar showOnScroll={true}/>);
-      },
-      onLeave: () => {
-        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-      },
-      onLeaveBack: () => {
-        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-      }
-    });
-
-    ScrollTrigger.create({
-      trigger: "#switch-light-2",
-      start: "top top",
-      end: "bottom top",
-      onEnter: () => {
-        setNavbar(<NavBar showOnScroll={true}/>);
-      },
-      onEnterBack: () => {
-        setNavbar(<NavBar showOnScroll={true}/>);
-      },
-      onLeave: () => {
-        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-      },
-      onLeaveBack: () => {
-        setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-      }
-    });
-
-    return () => {
-      ScrollTrigger.killAll();
-      lenis.destroy();
-    };
+    setIsClient(true);
+    setNavbar(<NavBar showOnScroll={true} variant={1}/>);
   }, []);
+
+  // Setup Lenis and GSAP animations
+  useEffect(() => {
+    if (!isClient) return;
+    
+    // Delay setup to ensure DOM is fully hydrated
+    const setupTimer = setTimeout(() => {
+      try {
+        const lenis = new Lenis({
+          smoothWheel: true,
+          duration: 1.2,
+        });
+
+        lenis.on("scroll", ScrollTrigger.update);
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        const sectionPin = document.querySelector("#pin");
+        const scrollWidth = sectionPin
+          ? sectionPin.scrollWidth - document.documentElement.clientWidth
+          : 0;
+
+        // animate speech text
+        ScrollTrigger.create({
+          trigger: "#winner-animate",
+          start: "top bottom",
+          end: () => "+=" + scrollWidth,
+          onEnter: () => {
+            let HA2 = false;
+            if (!HA2) {
+              textAnimation("winner-animate", 1.5, 0.05);
+              HA2 = true;
+            }
+          },
+        });
+
+        // animate effect in footer
+        const footerEl = document.querySelector("#footer-ellipse");
+        if (footerEl) {
+          const footerTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#footer-ellipse",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+          footerTl.fromTo(
+            footerEl,
+            { clipPath: "ellipse(70% 0% at 50% -10%)" },
+            { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
+          );
+        }
+
+        // switch navbar styling
+        ScrollTrigger.create({
+          trigger: "#switch-light",
+          start: "top top",
+          end: "bottom top",
+          onEnter: () => {
+            setNavbar(<NavBar showOnScroll={true}/>);
+          },
+          onEnterBack: () => {
+            setNavbar(<NavBar showOnScroll={true}/>);
+          },
+          onLeave: () => {
+            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+          },
+          onLeaveBack: () => {
+            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+          }
+        });
+
+        ScrollTrigger.create({
+          trigger: "#switch-light-2",
+          start: "top top",
+          end: "bottom top",
+          onEnter: () => {
+            setNavbar(<NavBar showOnScroll={true}/>);
+          },
+          onEnterBack: () => {
+            setNavbar(<NavBar showOnScroll={true}/>);
+          },
+          onLeave: () => {
+            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+          },
+          onLeaveBack: () => {
+            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+          }
+        });
+
+        return () => {
+          ScrollTrigger.killAll();
+          lenis.destroy();
+        };
+      } catch (error) {
+        console.error("Error setting up animations:", error);
+      }
+    }, 100);
+
+    return () => clearTimeout(setupTimer);
+  }, [isClient]);
 
   return (
     <>
-      {/* <NavBar showOnScroll={true} /> */}
-      { Navbar }
+      {isClient && Navbar}
       <div className="w-full overflow-hidden">
         <TitleComponent
           onReady={(variant) => {
