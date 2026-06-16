@@ -16,7 +16,7 @@ export default function AboutUs() {
     useGSAP(() => {
         hoverTl.current = gsap.timeline({
             scrollTrigger: {
-                trigger: ".envelope-container",
+                trigger: ".envelope-wrapper",
                 start: "top -50%",
                 end: "bottom 25%",
                 scrub: false, // Set to true if you want the animation bound to the actual scrollbar momentum
