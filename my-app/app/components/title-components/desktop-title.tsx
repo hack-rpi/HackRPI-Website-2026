@@ -101,7 +101,7 @@ export default function DesktopTitleComponent() {
         <div className="absolute inset-0">
           <Canvas
             worker={worker}
-            fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
+            fallback={<SceneOnLoad onLoaded={() => {console.log("IS LOADING FALSE"); setIsLoading(false)}} />}
             camera={{ position: [0, 0, 6], fov: 55 }}
           />
         </div>
