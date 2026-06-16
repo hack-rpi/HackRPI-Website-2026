@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="HackRPI_Favicon.png"></link>
+        <link rel="icon" href="/HackRPI_Favicon.png"></link>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-gBlack antialiased`}
