@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
@@ -10,11 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const teamMembers = [
-	{ img: '/team/tobias.jpeg', name: 'Tobias Manayath' },
-	{ img: '/team/jackson.jpeg', name: 'Jackson Baimel' },
+	{ img: '/team/tobias.jpg', name: 'Tobias Manayath' },
+	{ img: '/team/jackson.jpg', name: 'Jackson Baimel' },
 	{ img: '/team/Caleb.jpg', name: 'Caleb Liu' },
 	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
-	{ img: '/team/cj.jpeg', name: 'CJ Marino' },
+	{ img: '/team/cj.jpg', name: 'CJ Marino' },
 	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
 	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
 	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },

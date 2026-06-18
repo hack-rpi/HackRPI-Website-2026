@@ -11,6 +11,16 @@ import type { PointLight } from "three";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
 
+const mentions = [
+	"Ryan Bennett [Logistics]",
+	"James DeBlock [Marketing]",
+	"Somey Dong [Marketing]",
+	"Blessing Esochaghi [Marketing]",
+	"Corbin Larsen [Logistics]",
+	"Steven Luo [Technology]",
+	"Matthew Radford [Finance]",
+	"Jordan Ye [Technology]",
+]
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
@@ -120,9 +130,9 @@ export default function Mentions() {
 					</span>
 					<hr className='border my-1 mx-[10vw]'></hr>
 
-					{Array.from({ length: 10 }).map((_, i) => (
+					{Array.from(mentions).map((_, i) => (
 						<span key={i} className="text-xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-							John Doe
+							{mentions[i]}
 							<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 						</span>
 					))}
