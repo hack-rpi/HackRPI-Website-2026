@@ -133,7 +133,7 @@ export default function DesktopTitleComponent() {
           </div>
 
           <div
-            className="text-[12rem] font-bold leading-none tracking-tight"
+            className="text-white text-[12rem] font-bold leading-none tracking-tight"
             style={{
               fontFamily: "Calibri, sans-serif",
               clipPath: "inset(0px 100% 0px 0px)",
