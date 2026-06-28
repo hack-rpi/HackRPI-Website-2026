@@ -125,7 +125,7 @@ export default function Mentions() {
 				</div>
 				<div className="flex-1 h-screen w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
 					<span className="text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-						Honorable Mentions
+						Our Organizers
 						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 					</span>
 					<hr className='border my-1 mx-[10vw]'></hr>
