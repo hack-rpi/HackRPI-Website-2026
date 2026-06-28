@@ -10,7 +10,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   let shadowColor = "0,0,0";
 
   if (tier === "obsidian") {
-    bg_color = "border-white/20";
+    bg_color = "bg-purple-700/25 bg-gradient-to-br from-white/25 to-transparent border-purple-200/20";
     text_color = "text-purple-300";
     shadowColor = "147,51,234";
     opacity = "opacity-70";
@@ -34,8 +34,10 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     opacity = "opacity-95";
     hoverOpacity = "hover:opacity-100";
   } else {
-    bg_color = "bg-grey-600/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
+    bg_color = "bg-white/20 bg-gradient-to-br from-white/35 to-white/10 border-white/25";
     text_color = "text-grey-600";
+    shadowColor = "255,255,255";
+    opacity = "opacity-95";
   }
 
   const [rotateX, setRotateX] = useState(0);
