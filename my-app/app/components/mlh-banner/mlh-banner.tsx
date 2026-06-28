@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function MlhBanner({src} : {src: string}) {
+  src = "/mlh-badges/mlh-trust-badge-2027-white.svg";
 	return (
 		<div>
 			<Link
@@ -10,8 +11,8 @@ export default function MlhBanner({src} : {src: string}) {
 				target="_blank"
 				rel="noopener noreferrer"
 				className="trust-badge
-					block w-20 desktop:max-w-25 h-auto fixed right-2 desktop:right-5 top-0 z-10000
-					opacity-30 transition-all duration-200 ease-out hover:opacity-100 hover:scale-110
+					bg-green block w-20 desktop:max-w-25 h-auto fixed right-2 desktop:right-5 top-0 z-10000
+					transition-all duration-200 ease-out hover:scale-110
 				"
 			>
 				<Image
