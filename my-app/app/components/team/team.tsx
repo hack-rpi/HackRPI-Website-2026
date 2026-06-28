@@ -99,7 +99,7 @@ export default function Team() {
 		<div className="relative min-h-screen bg-gBlack py-20 overflow-hidden" id="pin">
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
-				<h2 id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }} className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
+				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
 					Meet the HackRPI Organizing Team
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 				</h2>
