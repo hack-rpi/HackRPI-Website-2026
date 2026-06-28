@@ -13,11 +13,13 @@ const teamMembers = [
 	{ img: '/team/tobias.jpg', name: 'Tobias Manayath' },
 	{ img: '/team/jackson.jpg', name: 'Jackson Baimel' },
 	{ img: '/team/Caleb.jpg', name: 'Caleb Liu' },
-	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
-	{ img: '/team/cj.jpg', name: 'CJ Marino' },
-	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
-	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
 	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
+	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
+	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
+	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
+	{ img: '/team/matt.jpg', name: 'Matthew Treanor' },
+
+
 	
 ];
 
@@ -95,33 +97,6 @@ export default function Team() {
 
 	return (
 		<div className="relative min-h-screen bg-gBlack py-20 overflow-hidden" id="pin">
-			
-			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				<div 
-					className="h-full flex absolute transition-transform duration-75 ease-out" 
-					id="parallax-bg"
-					style={{ transform: 'translateX(var(--bg-scroll, 0px))' }} 
-				>
-					{parallaxPositions.map((pos, i) => (
-						<div
-							key={`parallax-${i}`}
-							className="absolute opacity-15"
-							style={{
-								height: `${pos.size * 45}vh`,
-								width: `${pos.size * 36}vh`,
-								left: `${pos.left}vw`,
-								top: `${pos.top}vh`,
-							}}
-						>
-							<img
-								className="h-full w-full object-cover rounded-lg"
-								src={teamMembers[i % teamMembers.length].img}
-								alt="parallax-backdrop"
-							/>
-						</div>
-					))}
-				</div>
-			</div>
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
 				<h2 id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }} className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
