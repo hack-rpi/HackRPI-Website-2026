@@ -25,9 +25,9 @@ export default function DesktopTitleComponent() {
   const linkItems = [
     { label: "Event", href: "/event" },
     { label: "Schedule", href: "/event/schedule" },
-    { label: "Prizes", href: "/prizes" },
-    { label: "Last year", href: "/last-year" },
-    { label: "Sponsor us", href: "/sponsorship" },
+    //{ label: "Prizes", href: "/prizes" },
+    { label: "Last Year", href: "/last-year" },
+    { label: "Sponsor Us", href: "/sponsorship" },
     { label: "Discord", href: "https://discord.gg/" },
   ];
 

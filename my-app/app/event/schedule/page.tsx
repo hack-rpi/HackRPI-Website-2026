@@ -170,14 +170,14 @@ export default function Page() {
 			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-black
 		">
 			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28">
-				<div className="flex w-full items-center justify-center">
+				{/* <div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
 						className="bg-sky-400 text-white text-xl lg:text-2xl px-5 py-2"
 					>
 						Google Calendar
 					</HackRPILink>
-				</div>
+				</div> */}
 				<div className="flex w-full items-center justify-between mt-3">
 					<h1 className="text-xl xs:text-4xl font-bold text-center">Schedule</h1>
 					<p className="text-center font-bold text-xl xs:text-3xl">
@@ -206,7 +206,8 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
+						<h1 className="text-xl xs:text-3xl font-bold text-center">Coming soon!</h1>
+						{/* <h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
@@ -230,7 +231,7 @@ export default function Page() {
 							onEventClick={(event) => {
 								setModalEvent(allEvents.find((e) => e.id === event.id)!);
 							}}
-						/>
+						/> */}
 					</div>
 				)}
 

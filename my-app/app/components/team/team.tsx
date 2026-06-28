@@ -104,7 +104,7 @@ export default function Team() {
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 				</h2>
 				<p className="text-lg text-white/70 leading-relaxed">
-					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord or fill out one of the forms below!
+					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord!
 				</p>
 			</div>
 

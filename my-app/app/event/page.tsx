@@ -31,7 +31,7 @@ export default function Event() {
 
   return (
 		<> 
-      <NavBar showOnScroll={true} />
+      <NavBar showOnScroll={false} />
       <Cover/>
 
       <main className = "flex flex-col w-full">
@@ -51,10 +51,10 @@ export default function Event() {
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2>Event Discord</h2>
-            Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
+            {/*Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
-            Join the conversation on Discord and get the support you need to succeed at HackRPI.
-            <HackRPILink
+            Join the conversation on Discord and get the support you need to succeed at HackRPI.*/} Stay on the lookout - link coming soon!
+            {/*<HackRPILink
               href="https://discord.gg/BkDVUmrufa"
               className="
                 hover:bg-linear-to-br
@@ -65,7 +65,7 @@ export default function Event() {
               target="_blank"
             >
               <Image src="/social/discord.svg" alt="Discord Logo" width={50} height={50} />
-            </HackRPILink>
+            </HackRPILink>*/}
           </div>
         </div>
 
@@ -100,8 +100,7 @@ export default function Event() {
 								</div>
 								<h3 className="font-bold text-xl text-white mb-3">Practicality & Utility</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
-									What problem do you want to solve? How applicable is your hack to problems we&apos;re facing today?
-									Any future plans?
+									What problem do you want to solve? What impression do you get from the hack? Does it provide for a smooth user experience? Any future plans?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-pink to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 							</div>
@@ -121,7 +120,7 @@ export default function Event() {
 								</div>
 								<h3 className="font-bold text-xl text-hackrpi-light-purple mb-3">Creativity</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
-									How original is your hack? Is this a novel idea or something that many people have come across?
+									How original is your hack? Is this a novel idea or something that many people came across? How difficult is the problem you are solving?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-light-purple to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 							</div>
@@ -141,7 +140,7 @@ export default function Event() {
 								</div>
 								<h3 className="font-bold text-xl text-hackrpi-orange mb-3">Technical Difficulty</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
-									How technically challenging is it? Which technologies did you use?
+									How technically challenging was your project? How complex is your design? What different technologies did you use?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-orange to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 							</div>
@@ -161,49 +160,9 @@ export default function Event() {
 								</div>
 								<h3 className="font-bold text-xl text-hackrpi-yellow mb-3">Effort</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
-									Did the team genuinely commit time and effort to this product?
+									Did you genuinely commit time and effort to this product? Did your team work together and all contribute? Did you learn from the experience?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-yellow to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
-
-							{/* User Experience Card */}
-							<div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
-                border-2 border-hackrpi-light-purple/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
-              ">
-								<div className="
-                  absolute -top-3 -right-3 w-12 h-12
-                  bg-red-500 rounded-full flex items-center justify-center
-                  text-2xl group-hover:rotate-12 transition-transform duration-300
-                ">
-                  ✨
-								</div>
-								<h3 className="font-bold text-xl text-hackrpi-pink mb-3">User Experience</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
-									What impression do you get from the hack? Does it provide for a smooth user experience?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-pink to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
-
-							{/* Collaboration & Learning Card */}
-							<div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
-                border-2 border-hackrpi-light-purple/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
-              ">
-								<div className="
-                  absolute -top-3 -right-3 w-12 h-12
-                  bg-red-500 rounded-full flex items-center justify-center
-                  text-2xl group-hover:rotate-12 transition-transform duration-300
-                ">
-                  🤝
-								</div>
-								<h3 className="font-bold text-xl text-hackrpi-light-purple mb-3">Collaboration & Learning</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
-									Did the team work well together and split up work? Did they learn from the experience?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-light-purple to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 							</div>
 						</div>
           </div>
@@ -353,7 +312,7 @@ export default function Event() {
 						</div>
 
 						{/* CTA Button */}
-						<div className="text-center">
+						{/*<div className="text-center">
 							<HackRPILink
 								href="https://hackrpi2025.devpost.com/"
 								className="
@@ -372,7 +331,7 @@ export default function Event() {
 							<p className="mt-4 text-sm text-white">
 								Ready to showcase your amazing project? Click above to start your submission!
 							</p>
-						</div>
+						</div>*/}
 					</div>
         </div>
       </main>

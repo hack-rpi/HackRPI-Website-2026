@@ -27,9 +27,6 @@
 				"new_tab": false },
 			{ "href": "/event/schedule",
 				"children": "Schedule",
-				"new_tab": false },
-			{ "href": "/prizes",
-				"children": "Prizes",
 				"new_tab": false }
 		]
 	},
