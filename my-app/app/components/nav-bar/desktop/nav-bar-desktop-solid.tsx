@@ -79,6 +79,18 @@ export default function DesktopNavBarSolid({ links }: { links: NavGroup[] }) {
 					))}
 					
 					<Link
+						href="https://events.mlh.com/events/14390-hackrpi-2026"
+						className="
+							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left
+							transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-hackrpi-clouds-blue
+							hover:bg-size-[100%_2px]
+						"
+						target="_blank"
+					>
+						Register Today!
+					</Link>
+
+					<Link
 						href="/news"
 						className="
 							mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left

@@ -61,6 +61,14 @@
 		]
 	},
 	{
+		"name": "Register Now!",
+		"links" : [
+			{ "href": "https://events.mlh.com/events/14390-hackrpi-2026",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": true }
+		]
+	},
+	{
 		"name": "Code of Conduct",
 		"links" : [
 			{ "href": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",
