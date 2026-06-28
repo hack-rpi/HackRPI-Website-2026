@@ -43,7 +43,7 @@ export default function Footer() {
 						</div>
 
 						<div
-							className="text-[5rem] desktop:text-[10rem] font-bold leading-none tracking-tight"
+							className="text-white text-[5rem] desktop:text-[10rem] font-bold leading-none tracking-tight"
 							style={{ fontFamily: "Calibri, sans-serif" }}
 							id="title-animate"
 						>
