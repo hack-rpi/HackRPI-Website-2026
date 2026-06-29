@@ -10,17 +10,54 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const teamMembers = [
-	{ img: '/team/tobias.jpg', name: 'Tobias Manayath' },
-	{ img: '/team/jackson.jpg', name: 'Jackson Baimel' },
-	{ img: '/team/Caleb.jpg', name: 'Caleb Liu' },
-	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
-	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
-	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
-	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
-	{ img: '/team/matt.jpg', name: 'Matthew Treanor' },
-
-
-	
+	{
+		img: '/team/tobias.jpg',
+		name: 'Tobias Manayath',
+		pos: 'President',
+		gradientClass: 'from-blue-400 via-indigo-500 to-blue-700'
+	},
+	{
+		img: '/team/jackson.jpg',
+		name: 'Jackson Baimel',
+		pos: 'Vice President',
+		gradientClass: 'from-red-400 via-rose-500 to-red-700'
+	},
+	{
+		img: '/team/lalaJR.jpg',
+		name: 'Lala Liu',
+		pos: 'Director of Logistics',
+		gradientClass: 'from-yellow-300 via-amber-400 to-yellow-600'
+	},
+	{
+		img: '/team/devanJR.jpg',
+		name: 'Devan Patel',
+		pos: 'Director of Finance',
+		gradientClass: 'from-emerald-300 via-green-400 to-emerald-600'
+	},
+	{
+		img: '/team/EthanJR.png',
+		name: 'Ethan Kusse',
+		pos: 'Director of Sponsorship',
+		gradientClass: 'from-cyan-300 via-sky-400 to-cyan-600'
+	},
+	{
+		img: '/team/Caleb.jpg',
+		name: 'Caleb Liu',
+		pos: 'Director of Technology',
+		gradientClass: 'from-violet-300 via-purple-500 to-violet-700'
+	},
+	{
+		img: '/team/jodieJR.jpg',
+		name: 'Jodie Cho',
+		pos: 'Director of Marketing',
+		gradientClass: 'from-orange-300 via-orange-500 to-orange-700'
+	},
+	{
+		img: '/team/matt.jpg',
+		name: 'Matthew Treanor',
+		pos: 'Director of Outreach',
+		gradientClass: 'from-pink-300 via-rose-500 to-pink-700'
+	},
 ];
 
 const topOffsets = [45, 35, 25, 30, 45, 30, 40];
@@ -123,6 +160,8 @@ export default function Team() {
 							top={0}
 							img={member.img}
 							name={member.name}
+							pos={member.pos}
+							gradientClass={member.gradientClass}
 						/>
 					</div>
 				))}

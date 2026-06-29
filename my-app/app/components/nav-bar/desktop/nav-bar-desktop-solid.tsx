@@ -135,7 +135,7 @@ export default function DesktopNavBarSolid({ links }: { links: NavGroup[] }) {
 						"
 						target="_blank"
 					>
-						Give Now
+						Give
 					</Link>
 				</div>
 				<div className="ml-2">

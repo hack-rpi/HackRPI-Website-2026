@@ -102,7 +102,7 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 							bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]"
 						target="_blank"
 					>
-						Give Now
+						Give
 					</Link>
 				</div>
 			</div>
