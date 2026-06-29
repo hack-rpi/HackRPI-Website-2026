@@ -12,15 +12,26 @@ import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
 
 const mentions = [
-	"Ryan Bennett [Logistics]",
-	"James DeBlock [Marketing]",
-	"Somey Dong [Marketing]",
-	"Blessing Esochaghi [Marketing]",
-	"Corbin Larsen [Logistics]",
-	"Steven Luo [Technology]",
-	"Matthew Radford [Finance]",
-	"Jordan Ye [Technology]",
-]
+  { name: "Ryan Bennett", dept: "Logistics" },
+  { name: "James DeBlock", dept: "Marketing" },
+  { name: "Somey Dong", dept: "Marketing" },
+  { name: "Blessing Esochaghi", dept: "Marketing" },
+  { name: "Corbin Larsen", dept: "Logistics" },
+  { name: "Steven Luo", dept: "Technology" },
+  { name: "Matthew Radford", dept: "Finance" },
+  { name: "Jordan Ye", dept: "Technology" },
+];
+
+const deptConfig: Record<string, { icon: string; gradient: string; shadow: string }> = {
+  Logistics:   { icon: "☀︎", gradient: "from-yellow-300 via-amber-400 to-yellow-600",   shadow: "rgba(218,165,32,0.4)" },
+  Finance:     { icon: "🌧", gradient: "from-emerald-300 via-green-400 to-emerald-600", shadow: "rgba(85,187,34,0.4)" },
+  Sponsorship: { icon: "🌡", gradient: "from-cyan-300 via-sky-400 to-cyan-600",         shadow: "rgba(0,196,196,0.4)" },
+  Technology:  { icon: "☁︎", gradient: "from-violet-300 via-purple-500 to-violet-700",  shadow: "rgba(166,77,255,0.4)" },
+  Marketing:   { icon: "★",  gradient: "from-orange-300 via-orange-500 to-orange-700",  shadow: "rgba(255,119,0,0.4)" },
+  Outreach:    { icon: "☂",  gradient: "from-pink-300 via-rose-500 to-pink-700",        shadow: "rgba(255,51,153,0.4)" },
+};
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
@@ -80,7 +91,8 @@ export default function Mentions() {
 	useEffect(() => {
 		const ctx = gsap.context(() => {
 			const sectionPin = document.querySelector("#pin");
-			const mentions = document.querySelector("#mentions-container");
+			const mentionsContainer = document.querySelector("#mentions-container");
+			if (!mentionsContainer) return;
 			const scrollWidth = sectionPin
 				? sectionPin.scrollWidth - document.documentElement.clientWidth
 				: 0;
@@ -88,7 +100,7 @@ export default function Mentions() {
 			if (!mentions) return;
 
 			ScrollTrigger.create({
-				trigger: mentions,
+				trigger: mentionsContainer,
 				start: "20% bottom",
 				end: () => "+=" + scrollWidth,
 				onEnter: () => {
@@ -125,17 +137,27 @@ export default function Mentions() {
 				</div>
 				<div className="flex-1 h-screen w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
 					<span className="text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-						Our Organizers
+						Our Organizers ♡
 						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 					</span>
 					<hr className='border my-1 mx-[10vw]'></hr>
-
-					{Array.from(mentions).map((_, i) => (
-						<span key={i} className="text-xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-							{mentions[i]}
+					{mentions.map((m, i) => {
+					const cfg = deptConfig[m.dept];
+					return (
+						<span key={i} className="text-xl font-mono relative w-fit mx-auto flex items-center gap-3" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+							<b className="flex items-center gap-3 font-mono font-normal">
+							<span className="text-white">{m.name}</span>
+							<span
+								className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
+								style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
+							>
+								{cfg.icon} {m.dept}
+							</span>
+							</b>
 							<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 						</span>
-					))}
+					);
+					})}
 				</div>
 			</div>
 		</div>

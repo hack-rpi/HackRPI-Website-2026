@@ -25,9 +25,9 @@ export default function DesktopTitleComponent() {
   const linkItems = [
     { label: "Event", href: "/event" },
     { label: "Schedule", href: "/event/schedule" },
-    { label: "Prizes", href: "/prizes" },
-    { label: "Last year", href: "/last-year" },
-    { label: "Sponsor us", href: "/sponsorship" },
+    //{ label: "Prizes", href: "/prizes" },
+    { label: "Last Year", href: "/last-year" },
+    { label: "Sponsor Us", href: "/sponsorship" },
     { label: "Discord", href: "https://discord.gg/" },
   ];
 
@@ -154,7 +154,7 @@ export default function DesktopTitleComponent() {
           </div>
         </div>
 
-        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-10 pl-20">
+        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pl-20 justify-end pb-10">
           <div
             className="text-blue-200 text-[2.45rem] leading-none ml-3"
             style={{
@@ -185,6 +185,18 @@ export default function DesktopTitleComponent() {
             ))}
           </div>
         </div>
+
+        <div className="absolute z-10 left-20" style={{ top: "60%", left: "38%" }}>
+          <Link
+            href="https://events.mlh.com/events/14390-hackrpi-2026"
+            className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
+            style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
+            target="_blank"
+          >
+            Register Now ⇾
+          </Link>
+        </div>
+        
       </div>
     </>
   );

@@ -10,17 +10,54 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const teamMembers = [
-	{ img: '/team/tobias.jpg', name: 'Tobias Manayath' },
-	{ img: '/team/jackson.jpg', name: 'Jackson Baimel' },
-	{ img: '/team/Caleb.jpg', name: 'Caleb Liu' },
-	{ img: '/team/lalaJR.jpg', name: 'Lala Liu' },
-	{ img: '/team/devanJR.jpg', name: 'Devan Patel' },
-	{ img: '/team/EthanJR.png', name: 'Ethan Kusse' },
-	{ img: '/team/jodieJR.jpg', name: 'Jodie Cho' },
-	{ img: '/team/matt.jpg', name: 'Matthew Treanor' },
-
-
-	
+	{
+		img: '/team/tobias.jpg',
+		name: 'Tobias Manayath',
+		pos: 'President',
+		gradientClass: 'from-blue-400 via-indigo-500 to-blue-700'
+	},
+	{
+		img: '/team/jackson.jpg',
+		name: 'Jackson Baimel',
+		pos: 'Vice President',
+		gradientClass: 'from-red-400 via-rose-500 to-red-700'
+	},
+	{
+		img: '/team/lalaJR.jpg',
+		name: 'Lala Liu',
+		pos: 'Director of Logistics',
+		gradientClass: 'from-yellow-300 via-amber-400 to-yellow-600'
+	},
+	{
+		img: '/team/devanJR.jpg',
+		name: 'Devan Patel',
+		pos: 'Director of Finance',
+		gradientClass: 'from-emerald-300 via-green-400 to-emerald-600'
+	},
+	{
+		img: '/team/EthanJR.png',
+		name: 'Ethan Kusse',
+		pos: 'Director of Sponsorship',
+		gradientClass: 'from-cyan-300 via-sky-400 to-cyan-600'
+	},
+	{
+		img: '/team/Caleb.jpg',
+		name: 'Caleb Liu',
+		pos: 'Director of Technology',
+		gradientClass: 'from-violet-300 via-purple-500 to-violet-700'
+	},
+	{
+		img: '/team/jodieJR.jpg',
+		name: 'Jodie Cho',
+		pos: 'Director of Marketing',
+		gradientClass: 'from-orange-300 via-orange-500 to-orange-700'
+	},
+	{
+		img: '/team/matt.jpg',
+		name: 'Matthew Treanor',
+		pos: 'Director of Outreach',
+		gradientClass: 'from-pink-300 via-rose-500 to-pink-700'
+	},
 ];
 
 const topOffsets = [45, 35, 25, 30, 45, 30, 40];
@@ -99,12 +136,12 @@ export default function Team() {
 		<div className="relative min-h-screen bg-gBlack py-20 overflow-hidden" id="pin">
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
-				<h2 id="team-title" style={{ clipPath: "inset(0px 100% 0px 0px)" }} className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
+				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
 					Meet the HackRPI Organizing Team
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 				</h2>
 				<p className="text-lg text-white/70 leading-relaxed">
-					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord or fill out one of the forms below!
+					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord!
 				</p>
 			</div>
 
@@ -123,6 +160,8 @@ export default function Team() {
 							top={0}
 							img={member.img}
 							name={member.name}
+							pos={member.pos}
+							gradientClass={member.gradientClass}
 						/>
 					</div>
 				))}

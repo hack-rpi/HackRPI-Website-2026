@@ -27,14 +27,19 @@
 				"new_tab": false },
 			{ "href": "/event/schedule",
 				"children": "Schedule",
-				"new_tab": false },
-			{ "href": "/prizes",
-				"children": "Prizes",
 				"new_tab": false }
 		]
 	},
 	{
-		"name": "HackRPI XII",
+		"name": "Register",
+		"links" : [
+			{ "href": "https://events.mlh.com/events/14390-hackrpi-2026",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": true }
+		]
+	},
+	{
+		"name": "2025",
 		"links": [
 			{ "href": "/last-year",
 				"children": "Winners",
@@ -61,14 +66,6 @@
 		]
 	},
 	{
-		"name": "Register Now!",
-		"links" : [
-			{ "href": "https://events.mlh.com/events/14390-hackrpi-2026",
-				"children": "You're not meant to see this! This is a bug!",
-				"new_tab": true }
-		]
-	},
-	{
 		"name": "Code of Conduct",
 		"links" : [
 			{ "href": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",
@@ -77,7 +74,7 @@
 		]
 	},
 	{
-		"name": "Give Now",
+		"name": "Give",
 		"links" : [
 			{ "href": "https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1",
 				"children": "You're not meant to see this! This is a bug!",

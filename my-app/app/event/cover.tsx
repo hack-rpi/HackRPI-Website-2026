@@ -19,7 +19,7 @@ export default function Cover(){
 
     {value: "Check In", type: "h1"},
     {value: "Come check in at our entrance table inside!", type: "p"},
-    {value: "Participants will get wrist band for food and activities", type: "p"},
+    {value: "Participants will get wrist bands for food and activities", type: "p"},
     {value: "   ", type: "span"},
     {value: "   ", type: "span"},
     {value: "   ", type: "span"},

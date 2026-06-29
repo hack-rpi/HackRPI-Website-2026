@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
 
-export default function FaceCard({ size, left, top, img, name }: any) {
+export default function FaceCard({ size, left, top, img, name, pos, gradientClass }: any) {
 	let bg_color, text_color;
 	let shadowColor = "0,0,0"; // default RGB
 
@@ -82,6 +82,23 @@ export default function FaceCard({ size, left, top, img, name }: any) {
 			<span className="relative w-fit mx-auto mt-4 block" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 				<b className="text-white text-lg drop-shadow-lg">{name}</b>
 				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
+			</span>
+			<span className="relative w-fit mx-auto -mt-2 block" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+			<b
+				className={`
+					text-xs uppercase font-bold tracking-widest
+
+					bg-gradient-to-b
+					${gradientClass}
+
+					bg-clip-text
+					text-transparent
+
+					drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
+				`}
+			>
+				{pos}
+			</b>
 			</span>
 		</div>
 	);

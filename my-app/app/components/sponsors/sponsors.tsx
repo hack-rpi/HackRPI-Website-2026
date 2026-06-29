@@ -82,8 +82,8 @@ export default function Sponsors() {
 				ref={canvasRef}
 				className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
 			/>
-			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-50">Thank you to our sponsors that make HackRPI possible!</h2>
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
+			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">Thank you to our sponsors that make HackRPI possible!</h2>
+			{/* <div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.OBSIDIAN.map((sponsor, index) => (
 					<SponsorCard
 						key={index}
@@ -126,18 +126,19 @@ export default function Sponsors() {
 						link={sponsor.url}
 					/>
 				))}
-			</div>
+			</div> */}
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.COLLABORATORS.map((sponsor, index) => (
 					<SponsorCard
 						key={index}
 						name={sponsor.name}
-						tier={"collab"}
+						tier={"collaborator"}
 						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>
 				))}
 			</div>
+			<h2 className="relative -mt-[40px] text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">More sponsors flying in soon ✈︎</h2>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{/* <SponsorCard name="error" tier="invalid" image = "/sponsors/sponsor_logos/" /> */}
 			</div>
