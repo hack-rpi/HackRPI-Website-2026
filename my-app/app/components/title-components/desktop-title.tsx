@@ -119,12 +119,13 @@ export default function DesktopTitleComponent() {
           />
         </div>
 
-        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-30 pl-20">
+        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pl-20">
           <div
             className="text-blue-200 text-[2.15rem] leading-none ml-3"
             style={{
               fontFamily: "Calibri, sans-serif",
               clipPath: "inset(0px 100% 0px 0px)",
+              paddingTop: "45px",
             }}
             id="title-animate"
           >
@@ -154,12 +155,14 @@ export default function DesktopTitleComponent() {
           </div>
         </div>
 
-        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pl-20 justify-end pb-10">
+        <div className="relative z-10 w-fit p-0 flex flex-col pl-20 justify-end pb-10">
           <div
             className="text-blue-200 text-[2.45rem] leading-none ml-3"
             style={{
               fontFamily: "Calibri, sans-serif",
               clipPath: "inset(0px 100% 0px 0px)",
+              paddingTop: "30px",
+              filter: "drop-shadow(2px 4px 6px black)",
             }}
             id="links-animate"
           >
@@ -186,7 +189,7 @@ export default function DesktopTitleComponent() {
           </div>
         </div>
 
-        <div className="absolute z-10 left-20" style={{ top: "60%", left: "38%" }}>
+        <div className="absolute z-10 left-20" style={{ top: "49%", left: "37%" }}>
           <Link
             href="https://events.mlh.com/events/14390-hackrpi-2026"
             className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
