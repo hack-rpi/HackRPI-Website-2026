@@ -1,8 +1,8 @@
 
 export default function FinalMessage () {
   return (
-    <div className='font-mono font-medium uppercase flex w-screen flex-col items-center justify-center bg-white text-gBlack leading-loose px-2 py-16 sm:py-24' style={{ fontSize: 'clamp(16px, 4.5vw, 50px)', letterSpacing: 'clamp(0.02em, 0.5vw, 0.2em)' }}>
-  <span className="relative block w-fit whitespace-nowrap scale-y-85 origin-center" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+    <div className='font-mono font-medium uppercase flex w-screen flex-col items-center justify-center bg-white text-gBlack leading-loose px-2 pt-20 pb-16 sm:pt-40 sm:pb-24' style={{ fontSize: 'clamp(16px, 4.5vw, 50px)', letterSpacing: 'clamp(0.02em, 0.5vw, 0.2em)' }}>
+      <span className="relative block w-fit whitespace-nowrap scale-y-85 origin-center" id="winner-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
         Proud to host
         <div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
       </span>

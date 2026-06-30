@@ -133,7 +133,7 @@ export default function Team() {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen bg-gBlack py-20 overflow-hidden" id="pin">
+		<div className="relative min-h-0 md:min-h-screen bg-gBlack py-12 md:py-20 overflow-hidden" id="pin">
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
 				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">

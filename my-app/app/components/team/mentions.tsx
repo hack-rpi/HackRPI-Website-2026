@@ -64,7 +64,7 @@ function MovingLight({ scrollData }: { scrollData: React.MutableRefObject<{ x: n
 
 function Scene({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
     return (
-        <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
+        <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
             <ambientLight intensity={0.3} />
 
             <directionalLight 
@@ -128,15 +128,15 @@ export default function Mentions() {
 	}, []);
 
 	return (
-		<div className="h-auto will-change-transform translate-z-0 bg-white" id="mentions-container">
-			<div className="flex h-[10vh] gap-0 bg-gBlack"></div>
-			<div className="flex h-[120vh] gap-0 bg-gBlack">
-				<div className="flex-1 h-[90vh] items-center justify-center text-4xl text-center flex"
-					id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
-					<Scene scrollData={scrollData}/>
-				</div>
-				<div className="flex-1 h-screen w-full text-center content-center grid gap-5 bg-gBlack" id="mentions">
-					<span className="text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+    <div className="h-auto will-change-transform translate-z-0 bg-white" id="mentions-container">
+        <div className="flex h-[10vh] gap-0 bg-gBlack"></div>
+        <div className="flex flex-col md:flex-row h-auto md:h-[120vh] gap-0 bg-gBlack">
+            <div className="flex-1 h-[50vh] md:h-[90vh] items-center justify-center text-4xl text-center flex"
+                id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
+                <Scene scrollData={scrollData}/>
+            </div>
+            <div className="flex-1 h-auto md:h-screen w-full text-center content-center grid gap-5 bg-gBlack pt-12 pb-20 md:py-0" id="mentions">
+					<span className="text-3xl md:text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 						Our Organizers ♡
 						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 					</span>
@@ -144,22 +144,22 @@ export default function Mentions() {
 					{mentions.map((m, i) => {
 					const cfg = deptConfig[m.dept];
 					return (
-						<span key={i} className="text-xl font-mono relative w-fit mx-auto flex items-center gap-3" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+						<span key={i} className="text-base md:text-xl font-mono relative w-fit mx-auto flex items-center gap-3" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 							<b className="flex items-center gap-3 font-mono font-normal">
 							<span className="text-white">{m.name}</span>
 							<span
-								className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
-								style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
+									className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
+									style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
 							>
-								{cfg.icon} {m.dept}
+									{cfg.icon} {m.dept}
 							</span>
 							</b>
 							<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 						</span>
 					);
 					})}
-				</div>
-			</div>
-		</div>
+            </div>
+        </div>
+    </div>
 	);
 };
