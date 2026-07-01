@@ -14,37 +14,45 @@ export default function AboutUs() {
     const isFlapOpen = useRef<boolean>(false);
 
     useGSAP(() => {
-        hoverTl.current = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".envelope-wrapper",
-                start: "top -50%",
-                end: "bottom 25%",
-                scrub: false, // Set to true if you want the animation bound to the actual scrollbar momentum
-                toggleActions: "play reverse play reverse", // Handles forward and backward entry/exit smoothly
-            }
-        });
+        const mm = gsap.matchMedia();
 
-        // 2. Chain the animations in the exact sequence you want
-        hoverTl.current.to(".envelope-flap", {
-            rotateX: 180,
-            duration: 0.5,
-            ease: "power2.inOut",
-            onComplete: () => {
-                isFlapOpen.current = true;
-                gsap.set(".envelope-flap", { zIndex: 1 });
-            }
-        }).addLabel("flapOpened")
-        // This runs immediately when reversing back past this point
-        .call(() => {
-            isFlapOpen.current = false;
-            gsap.set(".envelope-flap", { zIndex: 4 });
-        }, undefined, 0) 
-        .to(".letter-content", { 
-            y: "-90%", 
-            height: "auto",
-            duration: 0.4, 
-            ease: "back.out(1.1)"
-        }).addLabel("letterOut");
+        mm.add({
+            isMobile: "(max-width: 767px)",
+            isDesktop: "(min-width: 768px)",
+        }, (context) => {
+            const { isMobile } = context.conditions as { isMobile: boolean };
+            const letterY = isMobile ? "-30%" : "-90%";
+
+            hoverTl.current = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".envelope-wrapper",
+                    start: "top -50%",
+                    end: "bottom 25%",
+                    scrub: false,
+                    toggleActions: "play reverse play reverse",
+                }
+            });
+
+            hoverTl.current.to(".envelope-flap", {
+                rotateX: 180,
+                duration: 0.5,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    isFlapOpen.current = true;
+                    gsap.set(".envelope-flap", { zIndex: 1 });
+                }
+            }).addLabel("flapOpened")
+            .call(() => {
+                isFlapOpen.current = false;
+                gsap.set(".envelope-flap", { zIndex: 4 });
+            }, undefined, 0)
+            .to(".letter-content", { 
+                y: letterY, 
+                height: "auto",
+                duration: 0.4, 
+                ease: "back.out(1.1)"
+            }).addLabel("letterOut");
+        });
 
     }, { scope: containerRef });
 
@@ -64,7 +72,7 @@ export default function AboutUs() {
         }
     };
     return (
-       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-screen flex items-center justify-center mb-[10vh] mt-[10vh]">
+       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-0 md:min-h-screen flex items-center justify-center mb-0 md:mb-[10vh] mt-[5vh] md:mt-[10vh] py-12 pb-64 md:py-0">
         
         {/* The 3D Scene Wrapper now has built-in top padding space */}
         <div 

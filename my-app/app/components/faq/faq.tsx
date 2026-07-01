@@ -73,8 +73,8 @@ export default function StackedCarousel() {
   }, []);
 
   return (
-    <div className="relative flex h-screen w-full items-center justify-center bg-zinc-950 overflow-hidden">
-      <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-4xl font-bold tracking-wider text-white/90 uppercase font-mono z-50">FAQ</h2>
+    <div className="relative flex h-auto md:h-screen w-full items-center justify-center bg-zinc-950 overflow-hidden py-32 md:py-0">
+  <h2 className="absolute top-16 md:top-10 left-1/2 -translate-x-1/2 text-3xl md:text-4xl font-bold tracking-wider text-white/90 uppercase font-mono z-50">FAQ</h2>
       <div
         ref={containerRef}
         // Increased container track height slightly to prevent clipping 3D bounding transforms
@@ -131,7 +131,7 @@ export default function StackedCarousel() {
           );
         })}
       </div>
-      <p className="absolute bottom-10 left-1/2 -translate-x-1/2 text-sm text-white/40 hover:text-white/80 transition-colors duration-200 font-mono tracking-wide z-50 whitespace-nowrap">Feel free to contact us with any other questions at <a href="mailto:hackrpi@rpi.edu" className="underline">hackrpi@rpi.edu</a>!</p>
+      <p className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 w-[85vw] md:w-auto px-4 md:px-0 text-sm text-center text-white/40 hover:text-white/80 transition-colors duration-200 font-mono tracking-wide z-50 whitespace-normal md:whitespace-nowrap">Feel free to contact us with any other questions at <a href="mailto:hackrpi@rpi.edu" className="underline">hackrpi@rpi.edu</a>!</p>
     </div>
   );
 }
