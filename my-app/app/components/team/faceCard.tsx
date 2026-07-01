@@ -74,7 +74,7 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 			style={{
 				transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
 				boxShadow: shadow,
-				height: `${size * 45}vh`, width: `${size * 36}vh`, marginLeft: `${left}vw`, marginTop: `${top}vh` }}
+				height: `min(${size * 45}vh, 60vw)`, width: `min(${size * 36}vh, 48vw)`, marginLeft: `${left}vw`, marginTop: `${top}vh` }}
 		>
 			<div className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm" style={{ boxShadow: '0 0 40px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
 				<img className="h-full w-full object-cover" src={`${img}`} alt={name} />
@@ -83,22 +83,22 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 				<b className="text-white text-lg drop-shadow-lg">{name}</b>
 				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 			</span>
-			<span className="relative w-fit mx-auto -mt-2 block" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-			<b
-				className={`
-					text-xs uppercase font-bold tracking-widest
+			<span className="relative w-fit mx-auto -mt-2 block leading-tight" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+				<b
+					className={`
+						text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-tight md:tracking-widest leading-tight
 
-					bg-gradient-to-b
-					${gradientClass}
+						bg-gradient-to-b
+						${gradientClass}
 
-					bg-clip-text
-					text-transparent
+						bg-clip-text
+						text-transparent
 
-					drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
-				`}
-			>
-				{pos}
-			</b>
+						drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
+					`}
+				>
+					{pos}
+				</b>
 			</span>
 		</div>
 	);

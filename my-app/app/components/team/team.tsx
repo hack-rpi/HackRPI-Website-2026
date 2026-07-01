@@ -133,7 +133,7 @@ export default function Team() {
 	}, []);
 
 	return (
-		<div className="relative min-h-0 md:min-h-screen bg-gBlack py-12 md:py-20 overflow-hidden" id="pin">
+		<div className="relative min-h-0 md:min-h-screen bg-gBlack pt-12 pb-4 md:py-20 overflow-hidden" id="pin">
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
 				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
@@ -147,22 +147,23 @@ export default function Team() {
 
 			<div 
 				id="horizontal-scrollbox"
-				className="w-full overflow-x-auto flex gap-12 px-6 md:px-16 pb-12 relative z-10 scroll-smooth snap-x select-none"
+				className="w-full overflow-x-auto overflow-y-visible flex gap-0 px-6 md:px-16 pb-4 md:pb-12 relative z-10 scroll-smooth snap-x select-none"
 			>
-				{teamMembers.map((member) => (
+				{teamMembers.map((member, i) => (
 					<div 
-						key={member.name} 
-						className="w-64 h-96 flex-shrink-0 snap-start relative"
+							key={member.name} 
+							className={`flex-shrink-0 snap-start relative ${i !== 0 ? "-ml-6 md:ml-0" : ""}`}
+							style={{ height: 'calc(min(45vh, 60vw) + 5rem)', width: 'min(36vh, 48vw)' }}
 					>
-						<FaceCard
-							size={1}
-							left={0} 
-							top={0}
-							img={member.img}
-							name={member.name}
-							pos={member.pos}
-							gradientClass={member.gradientClass}
-						/>
+							<FaceCard
+								size={1}
+								left={0} 
+								top={0}
+								img={member.img}
+								name={member.name}
+								pos={member.pos}
+								gradientClass={member.gradientClass}
+							/>
 					</div>
 				))}
 			</div>

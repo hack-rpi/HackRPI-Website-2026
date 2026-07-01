@@ -129,7 +129,7 @@ export default function Mentions() {
 
 	return (
     <div className="h-auto will-change-transform translate-z-0 bg-white" id="mentions-container">
-        <div className="flex h-[10vh] gap-0 bg-gBlack"></div>
+        <div className="flex h-[3vh] md:h-[10vh] gap-0 bg-gBlack"></div>
         <div className="flex flex-col md:flex-row h-auto md:h-[120vh] gap-0 bg-gBlack">
             <div className="flex-1 h-[50vh] md:h-[90vh] items-center justify-center text-4xl text-center flex"
                 id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
