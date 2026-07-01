@@ -88,7 +88,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   }
 
   let style =
-    "w-[20vw] h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[38vw] h-[38vw] md:w-[20vw] md:h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +

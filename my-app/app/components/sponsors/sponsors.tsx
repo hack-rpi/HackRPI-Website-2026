@@ -76,7 +76,7 @@ export default function Sponsors() {
 	return (
 		<div 
 			
-			className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 gap-10 flex flex-col">
+			className="relative min-h-0 md:min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 py-56 md:py-5 gap-10 flex flex-col">
 			<canvas
 				id="rain"
 				ref={canvasRef}

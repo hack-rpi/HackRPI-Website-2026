@@ -72,7 +72,7 @@ export default function AboutUs() {
         }
     };
     return (
-       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-screen flex items-center justify-center mb-[10vh] mt-[10vh]">
+       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-0 md:min-h-screen flex items-center justify-center mb-0 md:mb-[10vh] mt-[5vh] md:mt-[10vh] py-12 pb-64 md:py-0">
         
         {/* The 3D Scene Wrapper now has built-in top padding space */}
         <div 
