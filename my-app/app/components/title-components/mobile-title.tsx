@@ -61,19 +61,18 @@ export default function MobileTitleComponent() {
 					IN THE CLOUDS
 					<div className="text-animation-layer inline-block w-auto" />
 				</div>
-			</div>
 
-			<div className="absolute z-10 left-20" style={{ top: "34%", left: "27%" }}>
-				<Link
-					href="https://events.mlh.com/events/14390-hackrpi-2026"
-					className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
-					style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
-					target="_blank"
-				>
-					Register Now ⇾
-				</Link>
+				<div className="mt-4 left-20">
+					<Link
+						href="https://events.mlh.com/events/14390-hackrpi-2026"
+						className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
+						style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
+						target="_blank"
+					>
+						Register Now ⇾
+					</Link>
+				</div>
 			</div>
-
 		</div>
 	);
 }
