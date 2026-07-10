@@ -13,6 +13,23 @@ export default function NavGroup({
 }) {
 	const [clicked, setClicked] = useState(false);
 
+	if (links.length === 1) {
+        return (
+            <NextLink
+                href={links[0].href}
+                target={links[0].new_tab ? "_blank" : undefined}
+                onClick={onLinkClick}
+                className="
+                    w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
+                    bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
+                    bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]
+                "
+            >
+                {name}
+            </NextLink>
+        );
+    }
+
 	return (
 		<div
 			className="h-fit flex flex-col items-center justify-start w-full mb-2 overflow-hidden"

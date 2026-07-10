@@ -241,13 +241,15 @@ function SponsorUsPage() {
 		}
 	}
 
-	function updateBenefits(tier: string){
+	function updateBenefits(tier: string, shouldScroll = true){
 		changeTheme(tier);
 
-		document.getElementById('container2')!.scrollIntoView({
-			behavior: 'smooth',
-			block: 'center'      // Options: 'start', 'center', 'end', or 'nearest'
-		});
+		if (shouldScroll) {
+			document.getElementById("container2")!.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+			});
+    	}
 
 		viewingCurrentTier = tier;
 		let benefitsDiv = document.getElementById('benefits')!;
@@ -421,7 +423,7 @@ function SponsorUsPage() {
 		document.getElementById('container4')!.style.width = size1 + 'px';
 		mobileLayout();
 		calculateShadows();
-		updateBenefits(viewingCurrentTier);
+		updateBenefits(viewingCurrentTier, false);
 	}
 
 	useEffect(() => {
