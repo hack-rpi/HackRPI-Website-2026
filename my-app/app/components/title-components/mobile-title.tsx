@@ -72,6 +72,10 @@ export default function MobileTitleComponent() {
 						Register Now ⇾
 					</Link>
 				</div>
+
+				<div className="mt-4 left-20">
+					<img src="/cloud.png"></img>
+				</div>
 			</div>
 		</div>
 	);
