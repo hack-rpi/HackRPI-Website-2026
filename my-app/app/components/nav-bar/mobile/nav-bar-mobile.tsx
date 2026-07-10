@@ -73,37 +73,6 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 							onLinkClick={() => setNavMenuOpen(false)}
 						/>
 					))}
-					<Link
-						href="/sponsorship"
-						className="
-							w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
-							bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
-							bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]
-						"
-					>
-						Sponsor Us
-					</Link>
-					<Link
-						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-						className="
-							w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
-							bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
-							bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]
-						"
-						target="_blank"
-					>
-						Code of Conduct
-					</Link>
-					<Link
-						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
-						className="
-							w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
-							bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
-							bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]"
-						target="_blank"
-					>
-						Give
-					</Link>
 				</div>
 			</div>
 			<MlhBanner src="/mlh-badges/mlh-trust-badge-2027-white.svg"/>
