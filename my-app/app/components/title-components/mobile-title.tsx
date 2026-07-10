@@ -5,6 +5,8 @@ import { Canvas } from "@react-three/offscreen";
 import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from 'next/link';
+import ParallaxClouds from "./parallaxCloudsMobile";
+import SkyCountdownOverlay from "./countdown";
 
 type SceneProps = {
   centered?: boolean;
@@ -32,6 +34,11 @@ export default function MobileTitleComponent() {
 					fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
 					camera={{ position: [0, 0, 6], fov: 55 }}
 				/>
+			</div>
+
+			<div className="mt-4" style={{width: "100vw", height: "100vh", position: "absolute", left: 0}}>
+				<ParallaxClouds/>
+				<SkyCountdownOverlay center={true}/>
 			</div>
 
 			<div className="relative z-10 w-fit max-w-full mx-auto flex flex-col items-center justify-center text-center mt-36 mb-8 min-h-0">
@@ -73,9 +80,6 @@ export default function MobileTitleComponent() {
 					</Link>
 				</div>
 
-				<div className="mt-4 left-20">
-					<img src="/cloud.png"></img>
-				</div>
 			</div>
 		</div>
 	);

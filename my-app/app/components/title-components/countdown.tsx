@@ -7,7 +7,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-export default function SkyCountdownOverlay() {
+export default function SkyCountdownOverlay({center = false}:{center?: boolean}) {
   // Target date: November 7th, 2026 09:00:00
   const targetDate = new Date('2026-11-07T09:00:00').getTime();
   
@@ -45,7 +45,16 @@ export default function SkyCountdownOverlay() {
 
   return (
     // absolute inset-0 fills the container, items-end and justify-end pushes it to the bottom right
-    <div className="absolute inset-0 z-50 flex items-end justify-end pointer-events-none p-6 md:p-10 select-none">
+    // <div className="absolute inset-0 z-50 flex items-end justify-end pointer-events-none p-6 md:p-10 select-none">
+    <div 
+      className={`
+        absolute z-50 flex pointer-events-none p-6 md:p-10 select-none
+        ${center 
+          ? "inset-x-0 top-[66.6%] -translate-y-1/2 justify-center items-center" 
+          : "inset-0 items-end justify-end"
+        }
+      `}
+    >
       
       {/* Container with a soft cloud glow instead of a solid box */}
       <div className="pointer-events-auto flex flex-col items-center md:items-end bg-white/5 backdrop-blur-sm px-6 py-4 rounded-2xl border border-white/10 shadow-lg">
