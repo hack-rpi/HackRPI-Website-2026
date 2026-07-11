@@ -108,15 +108,15 @@ export default function AboutUs() {
 					<Link href="/news#article/2027" className="block group">
 						<div>
 							<h3 className="text-yellow-500 font-bold text-2xl md:text-3xl mb-4">About HackRPI</h3>
-							<p className="text-gray-700 text-xs md:text-sm leading-relaxed line-clamp-5 md:line-clamp-6">
+							<p className="text-gray-700 text-[9px] md:text-sm leading-snug line-clamp-none md:line-clamp-6">
 								HackRPI 2026 is Rensselaer Polytechnic Institute's 13th annual intercollegiate hackathon hosted by students for students. Starting at noon on Saturday, November 7th, teams of 1-4 people have 24 hours to build and submit projects relating to our theme, In The Clouds. After submitting their projects, participants showcase their work in front of professors, industry professionals, and fellow students.
 							</p>
                             <br></br>
-							<p className="text-gray-700 text-xs md:text-sm leading-relaxed line-clamp-5 md:line-clamp-6">
+							<p className="text-gray-700 text-[9px] md:text-sm leading-snug line-clamp-none md:line-clamp-6">
 								<b>In The Clouds:</b> Soar to new heights at our 13th annual hackathon. This year’s theme challenges you to design projects that take flight—whether literally or figuratively. Elevate existing solutions to high peaks or even create something new with emerging technologies. After all, the sky’s the limit (or is it?!).
 							</p>
                             <br></br>
-							<p className="text-gray-700 text-xs md:text-sm leading-relaxed line-clamp-5 md:line-clamp-6">
+							<p className="text-gray-700 text-[9px] md:text-sm leading-snug line-clamp-none md:line-clamp-6">
 								Our goal is to inspire and challenge innovators, creators, developers, and entrepreneurs in New York's Tech Valley and beyond. All students from all schools are welcome to participate, regardless of their major or experience level. Whether you're a seasoned hacker or a first-time participant, HackRPI is the perfect opportunity to learn new skills, meet new people, and have fun!
 							</p>
 						</div>
