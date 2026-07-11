@@ -14,7 +14,6 @@ interface Cloud {
 
 const CLOUD_IMAGES = [
   "/parallax/cloud.png",
-  "/parallax/cloud1.png",
   "/parallax/cloud2.png",
   "/parallax/cloud3.png",
   "/parallax/cloud4.png",
