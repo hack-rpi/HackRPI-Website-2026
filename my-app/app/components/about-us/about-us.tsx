@@ -36,7 +36,7 @@ export default function AboutUs() {
             isDesktop: "(min-width: 768px)",
         }, (context) => {
             const { isMobile } = context.conditions as { isMobile: boolean };
-            const letterY = isMobile ? "40%" : "-90%";
+            const letterY = isMobile ? "-30%" : "-90%";
             const startOpen = isMobile? " -120%" : "-50%";
 
             hoverTl.current = gsap.timeline({
@@ -104,12 +104,7 @@ export default function AboutUs() {
                 {/* 2. The Letter */}
                 <div className={`letter-content p-8 md:p-12 shadow-md select-none flex flex-col justify-between
                     ${isPortrait ? "z-[100]" : ""}
-                `}
-                style={{
-                    transform: isPortrait 
-                    ? `translateY(${isPortrait ? "40%" : "-90%"}) translateZ(50px)` 
-                    : undefined
-                }}>
+                `}>
 					<Link href="/news#article/2027" className="block group">
 						<div>
 							<h3 className="text-yellow-500 font-bold text-2xl md:text-3xl mb-4">About HackRPI</h3>

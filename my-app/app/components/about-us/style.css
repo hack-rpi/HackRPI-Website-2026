@@ -9,6 +9,15 @@
   cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  .envelope-container {
+    width: 80vw;       /* wider than the base 70vw */
+    max-width: 480px;
+    padding-top: 30vw;  /* scale this down proportionally too, or the pop-out space gets oversized */
+    margin-top: 350px;
+  }
+}
+
 /* Base structure holding the layers (Locks the 3/2 aspect ratio here instead) */
 .envelope-3d {
   position: relative;
@@ -47,6 +56,12 @@
   will-change: transform;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
   overflow-y:hidden;
+}
+
+@media (max-width: 767px) {
+  .letter-content {
+    height: 70%;
+  }
 }
 
 /* 3. Envelope Front Pocket */
