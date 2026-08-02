@@ -48,7 +48,7 @@ export default function SkyCountdownOverlay({center = false}:{center?: boolean})
     // <div className="absolute inset-0 z-50 flex items-end justify-end pointer-events-none p-6 md:p-10 select-none">
     <div 
       className={`
-        absolute z-50 flex pointer-events-none p-6 md:p-10 select-none
+        absolute z-10 flex pointer-events-none p-6 md:p-10 select-none
         ${center 
           ? "inset-x-0 top-[66.6%] -translate-y-1/2 justify-center items-center" 
           : "inset-0 items-end justify-end"

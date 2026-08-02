@@ -11,7 +11,7 @@ export default function MlhBanner({src} : {src: string}) {
 				target="_blank"
 				rel="noopener noreferrer"
 				className="trust-badge
-					bg-green block w-20 desktop:max-w-25 h-auto fixed right-2 desktop:right-5 top-0 z-10000
+					bg-green block w-20 desktop:max-w-25 h-auto fixed right-2 desktop:right-5 top-0 z-100
 					transition-all duration-200 ease-out hover:scale-110
 				"
 			>
