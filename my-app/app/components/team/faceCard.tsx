@@ -68,7 +68,7 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 	let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
 
 	return (
-		<div className={"absolute transform-gpu [transform-style:preserve-3d] duration-400 p-5 ease-out"}
+		<div className={"absolute transform-gpu transform-3d duration-400 p-5 ease-out"}
 			onMouseMove={handleMove}
 			onMouseLeave={handleLeave}
 			style={{
@@ -88,7 +88,7 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 					className={`
 						text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-tight md:tracking-widest leading-tight
 
-						bg-gradient-to-b
+						bg-linear-to-b
 						${gradientClass}
 
 						bg-clip-text

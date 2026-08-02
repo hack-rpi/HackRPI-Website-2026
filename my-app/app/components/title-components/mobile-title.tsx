@@ -52,7 +52,7 @@ export default function MobileTitleComponent() {
 				</div>
 
 				<div
-					className="text-[5rem] font-bold leading-none tracking-tight"
+					className="text-[5rem] text-white font-bold leading-none tracking-tight"
 					style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
 					id="title-animate"
 				>

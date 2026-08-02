@@ -136,7 +136,7 @@ export default function Team() {
 		<div className="relative min-h-0 md:min-h-screen bg-gBlack pt-12 pb-4 md:py-20 overflow-hidden" id="pin">
 
 			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
-				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
+				<h2 id="team-title" className="text-left text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
 					Meet the HackRPI Organizing Team
 					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
 				</h2>
@@ -152,7 +152,7 @@ export default function Team() {
 				{teamMembers.map((member, i) => (
 					<div 
 							key={member.name} 
-							className={`flex-shrink-0 snap-start relative ${i !== 0 ? "-ml-6 md:ml-0" : ""}`}
+							className={`shrink-0 snap-start relative ${i !== 0 ? "-ml-6 md:ml-0" : ""}`}
 							style={{ height: 'calc(min(45vh, 60vw) + 5rem)', width: 'min(36vh, 48vw)' }}
 					>
 							<FaceCard
