@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 export default function FaceCard({ size, left, top, img, name, pos, gradientClass }: any) {
 	let bg_color, text_color;
-	let shadowColor = "0,0,0"; // default RGB
+	const shadowColor = "0,0,0"; // default RGB
 
 	bg_color = " bg-gradient-to-br from-white/5 to-transparent border border-white/20";
 
@@ -62,10 +62,10 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 		setShadow(`0px 20px 40px rgba(${shadowColor},0.35)`);
 	}
 
-	let style =" transition-transform transition-all duration-400 ease-out";
+	const style =" transition-transform transition-all duration-400 ease-out";
 
-	let sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
-	let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
+	const sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
+	const sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
 
 	return (
 		<div className={"absolute transform-gpu transform-3d duration-400 p-5 ease-out"}

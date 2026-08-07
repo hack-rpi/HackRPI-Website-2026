@@ -5,10 +5,10 @@ export function arrangeEvents(events: Event[]): Event[][] {
 		return [];
 	}
 
-	let placedEvents: Event[][] = [];
+	const placedEvents: Event[][] = [];
 
 	for (let i = 1; i <= 4; i++) {
-		let col = events.filter((event) => event.column === i);
+		const col = events.filter((event) => event.column === i);
 		placedEvents.push(col);
 	}
 

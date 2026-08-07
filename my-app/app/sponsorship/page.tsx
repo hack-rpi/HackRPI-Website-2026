@@ -28,7 +28,7 @@ const tw = {
 	shadow: "var(--color-purple-400)",
 } as const;
 
-var listItems = {
+const listItems = {
 	"Logo on T-Shirt": {
 		'bronze': "small",
 		'silver': "small",
@@ -114,7 +114,7 @@ var listItems = {
 	}
 }
 
-var themes = {
+const themes = {
 	'default': {
 		bg: '#e0e0e0', //background
 		light: '#ffffff',
@@ -163,13 +163,13 @@ var themes = {
 
 function SponsorUsPage() {
 	const { getPosition } = useMouseLogic();
-	var isMobileLayout = false;
-	var viewingCurrentTier = 'bronze';
+	let isMobileLayout = false;
+	let viewingCurrentTier = 'bronze';
 
 	function calculateShadows() {
 
 		Array.from(document.querySelectorAll('[data-neumorphic="true"]')).forEach((el) => {
-			let element = el as HTMLElement;
+			const element = el as HTMLElement;
 			// element.style.boxShadow = '20px 20px 60px #bebebe, -20px -20px 60px #ffffff';
 
 			const rect = element.getBoundingClientRect();
@@ -203,11 +203,11 @@ function SponsorUsPage() {
 	}
 
 	function getSizeOfChildren(parentElement: HTMLElement){
-		let children = parentElement.children;
+		const children = parentElement.children;
 		if (children.length === 0) return 0;
 		
-		let firstChild = children[0].getBoundingClientRect();
-		let lastChild = children[children.length - 1].getBoundingClientRect();
+		const firstChild = children[0].getBoundingClientRect();
+		const lastChild = children[children.length - 1].getBoundingClientRect();
 		
 		return lastChild.right - firstChild.left;
 	}
@@ -215,11 +215,11 @@ function SponsorUsPage() {
 	function mobileLayout(){
 		if (window.innerWidth > window.innerHeight){
 			isMobileLayout = false;
-			let container1 = document.getElementById('container1')!;
+			const container1 = document.getElementById('container1')!;
 			container1.style.flexDirection = '';
 
 			Array.from(container1.children).forEach((child) => {
-				let childElement = child as HTMLElement;
+				const childElement = child as HTMLElement;
 				childElement.style.width = '';
 				childElement.style.height = '';
 				childElement.style.padding = '';
@@ -228,11 +228,11 @@ function SponsorUsPage() {
 
 		}else{
 			isMobileLayout = true;
-			let container1 = document.getElementById('container1')!;
+			const container1 = document.getElementById('container1')!;
 			container1.style.flexDirection = 'column';
 
 			Array.from(container1.children).forEach((child) => {
-				let childElement = child as HTMLElement;
+				const childElement = child as HTMLElement;
 				childElement.style.width = '100%';
 				childElement.style.height = 'auto';
 				childElement.style.padding = '7px';
@@ -252,9 +252,9 @@ function SponsorUsPage() {
     	}
 
 		viewingCurrentTier = tier;
-		let benefitsDiv = document.getElementById('benefits')!;
-		let currentBenefits = [];
-		let potentialBenefits = [];
+		const benefitsDiv = document.getElementById('benefits')!;
+		const currentBenefits = [];
+		const potentialBenefits = [];
 
 		const benefitCurrent = `${tw.benefitRow} text-[1.25em] leading-[140%] text-slate-100`;
 		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-100`;
@@ -263,12 +263,12 @@ function SponsorUsPage() {
 		if (isMobileLayout || tier == 'obsidian'){
 			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.25em] desktop:text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
-				let p = document.createElement('p');
+				const p = document.createElement('p');
 				p.textContent = name;
 				p.onclick = function(){scrollDocs(name)};
 
 				p.className = `my-[3px] ${benefitCurrent}`;
-				let tierValue = tiers[tier as keyof typeof tiers];
+				const tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
 						p.textContent+= ': ' + tierValue;
@@ -289,17 +289,17 @@ function SponsorUsPage() {
 				nextTier = "obsidian";
 			
 			benefitsDiv.innerHTML = '';
-			let titleBenefitContainer = document.createElement('div');
+			const titleBenefitContainer = document.createElement('div');
 			titleBenefitContainer.className = tw.benefitContainer;
-			let firstTier = document.createElement('h3');
+			const firstTier = document.createElement('h3');
 			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
 			firstTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
 
-			let arrow = document.createElement('span');
+			const arrow = document.createElement('span');
 			arrow.innerHTML = '&rarr;';
 			arrow.className = `justify-self-center text-[1.25em] leading-[140%] text-slate-100`;
 
-			let secondTier = document.createElement('h3');
+			const secondTier = document.createElement('h3');
 			secondTier.innerHTML = nextTier.charAt(0).toUpperCase() + nextTier.slice(1);
 			secondTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
 
@@ -309,32 +309,32 @@ function SponsorUsPage() {
 			benefitsDiv.appendChild(titleBenefitContainer);
 			
 			for (const [name, tiers] of Object.entries(listItems)) {
-				let benefitContainer = document.createElement('div');
+				const benefitContainer = document.createElement('div');
 				benefitContainer.className = tw.benefitContainer;
 				let nextTierNote = null;
-				let p = document.createElement('p');
+				const p = document.createElement('p');
 				p.textContent = name;
 				benefitContainer.onclick = function(){scrollDocs(name)};
 
 				p.className = `justify-self-center ${benefitCurrent}`;
-				let tierValue = tiers[tier as keyof typeof tiers];
+				const tierValue = tiers[tier as keyof typeof tiers];
 				if(tierValue != false){
 					if(tierValue !== true){
 						p.textContent+= ': ' + tierValue;
 						
-						let nextValue = tiers[nextTier as keyof typeof tiers];
+						const nextValue = tiers[nextTier as keyof typeof tiers];
 						if (nextTier!= 'obsidian' && nextTier != null && nextValue != false && nextValue != tierValue){
-							let nextTier = document.createElement('p');
+							const nextTier = document.createElement('p');
 							nextTier.className = `justify-self-center ${benefitAvailable}`;
 							
-							let promoter = tiers[tier+'promoter' as keyof typeof tiers] as string;
+							const promoter = tiers[tier+'promoter' as keyof typeof tiers] as string;
 							nextTier.textContent = promoter;
 							nextTierNote = nextTier;
 						}
 					}
 					benefitContainer.appendChild(p);
 					if(nextTierNote){
-						let arrow = document.createElement('span');
+						const arrow = document.createElement('span');
 						arrow.innerHTML = '&rarr;';
 						arrow.className = benefitArrow;
 
@@ -347,15 +347,15 @@ function SponsorUsPage() {
 					benefitContainer.appendChild(p);
 					potentialBenefits.push(benefitContainer);
 
-					let nextValue = tiers[nextTier as keyof typeof tiers];
+					const nextValue = tiers[nextTier as keyof typeof tiers];
 					if(tier != 'obsidian' && nextValue){
-						let arrow = document.createElement('span');
+						const arrow = document.createElement('span');
 						arrow.innerHTML = '&rarr;';
 						arrow.className = benefitArrow;
 
 						benefitContainer.appendChild(arrow);
 
-						let p = document.createElement('p');
+						const p = document.createElement('p');
 						p.className = `justify-self-center ${benefitCurrent}`;
 						p.textContent+= name;
 						benefitContainer.appendChild(p);
@@ -364,17 +364,17 @@ function SponsorUsPage() {
 			}
 		}
 
-		for(let benefit of currentBenefits){
+		for(const benefit of currentBenefits){
 			benefitsDiv.appendChild(benefit);
 		}
-		for(let benefit of potentialBenefits){
+		for(const benefit of potentialBenefits){
 			benefitsDiv.appendChild(benefit);
 		}
 	}
 
 	function changeTheme(theme: any){
 		return;
-		let root = document.documentElement;
+		const root = document.documentElement;
 
 		root.style.setProperty('--bg', themes[theme].bg);
 		root.style.setProperty('--light', themes[theme].light);
@@ -392,10 +392,10 @@ function SponsorUsPage() {
 	}
 
 	function scrollDocs(item:string){
-		let container = document.getElementById('docText');
+		const container = document.getElementById('docText');
 		let justFound = false;
 		Array.from(container!.children).forEach((child) => {
-			let childElement = child as HTMLElement;
+			const childElement = child as HTMLElement;
 			if (childElement.innerHTML == item){
 				justFound = true;
 				childElement.scrollIntoView({
@@ -417,7 +417,7 @@ function SponsorUsPage() {
 	}
 
 	function load(){
-		var size1 = getSizeOfChildren(document.getElementById('container1')!);
+		const size1 = getSizeOfChildren(document.getElementById('container1')!);
 		document.getElementById('container2')!.style.width = size1 + 'px';
 		document.getElementById('container3')!.style.width = size1 + 'px';
 		document.getElementById('container4')!.style.width = size1 + 'px';

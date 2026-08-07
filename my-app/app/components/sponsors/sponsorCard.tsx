@@ -87,7 +87,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     setImgY(0);
   }
 
-  let style =
+  const style =
     "w-[38vw] h-[38vw] md:w-[20vw] md:h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
@@ -97,11 +97,11 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     " " +
     hoverOpacity;
 
-  let sponsor_rank_style =
+  const sponsor_rank_style =
     "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " +
     text_color;
 
-  let sponsor_name_style =
+  const sponsor_name_style =
     "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " +
     text_color;
 

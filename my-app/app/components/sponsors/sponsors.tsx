@@ -16,7 +16,7 @@ export default function Sponsors() {
 		let w = (canvas.width = canvas.offsetWidth);
 		let h = (canvas.height = canvas.offsetHeight);
 
-		let drops = Array.from({ length: 150 }, () => ({
+		const drops = Array.from({ length: 150 }, () => ({
 			x: Math.random() * w,
 			y: Math.random() * h,
 			l: Math.random() * 50 + 30,
