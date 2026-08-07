@@ -23,6 +23,8 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-intersection-observer": "^10.0.2",
+    "react-multi-carousel": "^2.8.6",
+    "react-pdf": "^10.4.1",
     "three": "^0.182.0"
   },
   "devDependencies": {
