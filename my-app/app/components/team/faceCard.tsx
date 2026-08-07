@@ -99,6 +99,7 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 				>
 					{pos}
 				</b>
+				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 			</span>
 		</div>
 	);
