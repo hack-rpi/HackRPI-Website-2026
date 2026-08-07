@@ -106,6 +106,7 @@ export default function StackedCarousel() {
                 <div 
                   className="absolute inset-0 bg-white/2 backdrop-blur-md border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] pointer-events-none" 
                   style={{
+                    transform: 'translateZ(45px)',
                     background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)',
                   }}
                 />
