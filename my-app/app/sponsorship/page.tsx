@@ -1,14 +1,21 @@
 "use client";
 
 import "@/app/globals.css";
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import useMouseLogic from "./mouse";
 import next from "next";
+import dynamic from 'next/dynamic';
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
 import SponsorCard from "./sponsorCard";
 import Lenis from "lenis";
 import Link from "next/link";
+import { Document, Page, pdfjs } from 'react-pdf';
+
+const PDFViewer = dynamic(() => import('./PDFViewer'), {
+  ssr: false,
+  loading: () => <p className="text-center py-10">Loading PDF viewer...</p>,
+});
 
 const tw = {
 	container: "box-border desktop:px-[30px] py-0 flex flex-row justify-center m-7",
@@ -78,7 +85,7 @@ var listItems = {
 	},
 	"Host Fireside Chat": {
 		'bronze': false,
-		'silver': false,
+		'silver': true,
 		'gold': true,
 		'obsidian': true,
 	},
@@ -106,10 +113,10 @@ var listItems = {
 		'gold': false,
 		'obsidian': true,
 	},
-	"Optional Table Upgrade": {
-		'bronze': false,
-		'silver': false,
-		'gold': false,
+	"Company Table": {
+		'bronze': true,
+		'silver': true,
+		'gold': true,
 		'obsidian': true,
 	}
 }
@@ -163,6 +170,7 @@ var themes = {
 
 function SponsorUsPage() {
 	const { getPosition } = useMouseLogic();
+	const [numPages, setNumPages] = useState<number>();
 	var isMobileLayout = false;
 	var viewingCurrentTier = 'bronze';
 
@@ -555,18 +563,18 @@ function SponsorUsPage() {
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Opening Ceremony Demo</h3>
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
 
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Optional Table Upgrade</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>
+						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Table</h3>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We provide a table where your company can set up a presence, but will accomodate if you want to bring a custom booth/multiple table setup</p>
 					</div>
 				</div>
 			</div>
 
-			<iframe
+			{/* <iframe
 				className="mx-auto w-[90%] h-[120vh] py-10"
-				src="https://drive.google.com/file/d/1GCYJHNR37vq6_UT4v17lAOR4Cr4qUJcq/preview"
-				allow="autoplay"
-				sandbox="allow-scripts allow-same-origin allow-popups"
-			></iframe>
+				src="/sponsors/HackRPI_Sponsorship_Deck.pdf"
+			></iframe> */}
+			<PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
+				
 			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
 		</main>
 		<footer className="bg-gray-800">
