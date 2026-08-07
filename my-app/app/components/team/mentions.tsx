@@ -136,11 +136,11 @@ export default function Mentions() {
                 <Scene scrollData={scrollData}/>
             </div>
             <div className="flex-1 h-auto md:h-screen w-full text-center content-center grid gap-5 bg-gBlack pt-12 pb-20 md:py-0" id="mentions">
-					<span className="text-3xl md:text-4xl font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
+					<span className="text-3xl md:text-4xl text-white font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
 						Our Organizers ♡
 						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
 					</span>
-					<hr className='border my-1 mx-[10vw]'></hr>
+					<hr className='border my-1 mx-[10vw] text-white'></hr>
 					{mentions.map((m, i) => {
 					const cfg = deptConfig[m.dept];
 					return (
@@ -148,7 +148,7 @@ export default function Mentions() {
 							<b className="flex items-center gap-3 font-mono font-normal">
 							<span className="text-white">{m.name}</span>
 							<span
-									className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
+									className={`text-xs font-bold uppercase tracking-widest bg-linear-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
 									style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
 							>
 									{cfg.icon} {m.dept}

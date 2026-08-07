@@ -78,7 +78,7 @@ export default function StackedCarousel() {
       <div
         ref={containerRef}
         // Increased container track height slightly to prevent clipping 3D bounding transforms
-        className="flex h-[540px] items-center overflow-x-scroll pb-10 pt-10 px-[50vw] -ml-[80px] scrollbar-none snap-x snap-mandatory gap-20 select-none"
+        className="flex h-135 items-center overflow-x-scroll pb-10 pt-10 px-[50vw] -ml-20 scrollbar-none snap-x snap-mandatory gap-20 select-none"
         style={{ perspective: '1200px' }}
       >
         {CARDS.map((card, index) => {
@@ -89,11 +89,11 @@ export default function StackedCarousel() {
             /* 1. STATIC TRACKING SLOT */
             <div
               key={card.id}
-              className="w-40 h-[460px] shrink-0 snap-center relative flex items-center justify-center"
+              className="w-40 h-115 shrink-0 snap-center relative flex items-center justify-center"
             >
               {/* 2. VISUAL 3D CARD */}
               <div
-                className="absolute w-72 h-[460px] p-6 flex flex-col justify-between text-white transition-all duration-300 ease-out cursor-pointer origin-center"
+                className="absolute w-72 h-115 p-6 flex flex-col justify-between text-white transition-all duration-300 ease-out cursor-pointer origin-center"
                 style={{
                   transformStyle: 'preserve-3d',
                   transform: isCentered
@@ -104,8 +104,9 @@ export default function StackedCarousel() {
               >
                 {/* Glassmorphism Background Shell */}
                 <div 
-                  className="absolute inset-0 bg-white/[0.02] backdrop-blur-md border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] pointer-events-none" 
+                  className="absolute inset-0 bg-white/2 backdrop-blur-md border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] pointer-events-none" 
                   style={{
+                    transform: 'translateZ(45px)',
                     background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)',
                   }}
                 />
@@ -122,7 +123,7 @@ export default function StackedCarousel() {
                     {card.title}
                   </h3>
                   {/* Removed max-height block restraints to let text stream through completely */}
-                  <p className="text-sm text-white/60 font-normal leading-relaxed break-words">
+                  <p className="text-sm text-white/60 font-normal leading-relaxed wrap-break-word">
                     {card.body}
                   </p>
                 </div>

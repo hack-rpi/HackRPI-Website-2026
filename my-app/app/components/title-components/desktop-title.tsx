@@ -119,13 +119,13 @@ export default function DesktopTitleComponent() {
           />
         </div>
 
-        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pl-20">
+        <div className="relative z-10 w-fit max-w-[calc(100vw-2.5rem)] h-[50vh] p-0 flex flex-col pl-[clamp(1.5rem,5vw,5rem)]">
           <div
-            className="text-blue-200 text-[2.15rem] leading-none ml-3"
+            className="text-blue-200 text-[clamp(1.35rem,2.2vw,2.15rem)] leading-none ml-[clamp(0.35rem,0.8vw,0.75rem)]"
             style={{
               fontFamily: "Calibri, sans-serif",
               clipPath: "inset(0px 100% 0px 0px)",
-              paddingTop: "45px",
+              paddingTop: "clamp(2rem, 4.5vw, 45px)",
             }}
             id="title-animate"
           >
@@ -134,7 +134,7 @@ export default function DesktopTitleComponent() {
           </div>
 
           <div
-            className="text-white text-[12rem] font-bold leading-none tracking-tight"
+            className="text-white text-[clamp(7rem,12vw,12rem)] font-bold leading-none tracking-tight"
             style={{
               fontFamily: "Calibri, sans-serif",
               clipPath: "inset(0px 100% 0px 0px)",
@@ -146,12 +146,23 @@ export default function DesktopTitleComponent() {
           </div>
 
           <div
-            className="text-blue-200 text-[3.3rem] font-mono leading-none ml-auto mr-5"
+            className="text-blue-200 text-[clamp(2rem,3.3vw,3.3rem)] font-mono leading-none ml-auto mr-[clamp(1rem,1.4vw,1.25rem)]"
             style={{ clipPath: "inset(0px 100% 0px 0px)" }}
             id="title-animate"
           >
             IN THE CLOUDS
             <div className="text-animation-layer inline-block w-auto" />
+          </div>
+
+          <div className="ml-auto mr-[clamp(1rem,1.4vw,1.25rem)] mt-[clamp(0.8rem,1.8vw,1.5rem)]">
+            <Link
+              href="https://events.mlh.com/events/14390-hackrpi-2026"
+              className="block border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest hover:bg-yellow-100 hover:text-black transition-colors duration-300 px-[clamp(1.25rem,2vw,2rem)] py-[clamp(0.55rem,0.9vw,0.75rem)] text-[clamp(0.68rem,0.85vw,0.875rem)]"
+              style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
+              target="_blank"
+            >
+              Register Now ⇾
+            </Link>
           </div>
         </div>
 
@@ -189,16 +200,6 @@ export default function DesktopTitleComponent() {
           </div>
         </div>
 
-        <div className="absolute z-10 left-20" style={{ top: "49%", left: "37%" }}>
-          <Link
-            href="https://events.mlh.com/events/14390-hackrpi-2026"
-            className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
-            style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
-            target="_blank"
-          >
-            Register Now ⇾
-          </Link>
-        </div>
         
       </div>
     </>
