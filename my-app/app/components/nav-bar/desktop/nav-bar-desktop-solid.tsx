@@ -1,4 +1,3 @@
-import NextImg from "next/image";
 import { NavGroup } from "../nav-bar-links";
 // import logo from "@/public/Retro_HackRPI_Logo.png";
 // import RegistrationButton from "@/components/themed-components/registration-header-link";

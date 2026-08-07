@@ -99,7 +99,7 @@ const faqs: FAQ[] = [
 				<br />
 				You will be able to modify your submission until 11am. After 11 AM, no coding or changes to your project are allowed.
 				<br />
-				You will submit your project on Devpost. See our "Event Information" and "Resources" pages for more details.
+				You will submit your project on Devpost. See our &quot;Event Information&quot; and &quot;Resources&quot; pages for more details.
 			</p>
 	},
 	{

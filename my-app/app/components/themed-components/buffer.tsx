@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import "./buffer.css";
 
 interface ProceduralBufferProps {
@@ -17,12 +17,6 @@ export default function AestheticSectionBuffer({
   fillColor = "#ffffff", // Match this to the background of the section BELOW
   baseOpacity = 1,
 }: ProceduralBufferProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Define 3 distinct layered curves for a parallax depth effect
   const layers = useMemo(() => {
     return [
@@ -49,10 +43,6 @@ export default function AestheticSectionBuffer({
     ];
   }, []);
 
-  if (!isMounted) {
-    return <div className="w-full bg-transparent" style={{ height }} />;
-  }
-
   return (
     <div
       className="relative w-full overflow-hidden pointer-events-none select-none z-30"
@@ -78,8 +68,8 @@ export default function AestheticSectionBuffer({
             className="animate-wave-slow"
             style={{
               opacity: layer.opacity * baseOpacity,
-              ["--drift-duration" as any]: layer.duration,
-            }}
+              "--drift-duration": layer.duration,
+            } as React.CSSProperties & Record<"--drift-duration", string>}
           />
         ))}
       </svg>

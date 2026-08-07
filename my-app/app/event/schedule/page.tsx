@@ -3,11 +3,9 @@
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import { useEffect, useState } from "react";
 import type { Event, ScheduleData, ScheduleEventData } from "@/app/data/schedule";
-import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes, sundayTimes } from "@/app/data/schedule";
+import { SATURDAY_END, SATURDAY_START, SUNDAY_END, SUNDAY_START, saturdayTimes } from "@/app/data/schedule";
 
 import HappeningNow from "@/app/components/schedule/happening-now";
-import Schedule from "@/app/components/schedule/schedule";
-import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 import Link from "next/link";
 
 import Lenis from 'lenis';
@@ -53,9 +51,6 @@ const Footer = dynamic(() => import("@/app/components/footer/footer"), {
 
 export default function Page() {
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
-	const [allEvents, setAllEvents] = useState<Event[]>([]);
-	const [saturdayEvents, setSaturdayEvents] = useState<Event[]>([]);
-	const [sundayEvents, setSundayEvents] = useState<Event[]>([]);
 	const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
 	const [happeningNow, setHappeningNow] = useState<Event[]>([]);
 	const [modalEvent, setModalEvent] = useState<Event | null>(null);
@@ -121,32 +116,29 @@ export default function Page() {
 				...saturdayEvents,
 				...sundayEvents,
 			];
-			setSaturdayEvents(saturdayEvents);
-			setSundayEvents(sundayEvents);
-			setAllEvents(allEvents);
-
 			setHappeningNow(determineHappeningNow(allEvents));
 			setState("loaded");
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		};
+	};
+
+	useEffect(() => {
+		const fetchFrame = requestAnimationFrame(() => {
+			void fetchData();
+		});
 
 		const interval = setInterval(() => {
 			setCurrentDateTime(new Date());
 			// setCurrentDateTime(new Date("2026-11-07T14:45:45-05:00")); // NOTE: for testing purposes
 		}, 1000);
 
-		addEventListener("keydown", (event) => {
+		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
 				setModalEvent(null);
 			}
-		});
-
-		return () => clearInterval(interval);
-	};
-
-	useEffect(() => {
-		fetchData();
+		};
+		addEventListener("keydown", handleKeyDown);
 
 		// lenis scrolling
 		const lenis = new Lenis({
@@ -160,6 +152,13 @@ export default function Page() {
 		}
 
 		requestAnimationFrame(raf);
+
+		return () => {
+			cancelAnimationFrame(fetchFrame);
+			clearInterval(interval);
+			removeEventListener("keydown", handleKeyDown);
+			lenis.destroy();
+		};
 	}, []);
 
 	return (

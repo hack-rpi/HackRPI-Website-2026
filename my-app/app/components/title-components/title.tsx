@@ -1,7 +1,7 @@
 // my-app/app/components/title-components/title.tsx
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useSyncExternalStore } from "react";
 import DesktopTitleComponent from "./desktop-title";
 import MobileTitleComponent from "./mobile-title";
 
@@ -9,15 +9,21 @@ type Props = {
   onReady?: (variant: "desktop" | "mobile") => void;
 };
 
-export default function TitleComponent({ onReady }: Props) {
-  const [windowWidth, setWindowWidth] = useState(0);
+function subscribeToResize(onStoreChange: () => void) {
+  window.addEventListener("resize", onStoreChange);
+  return () => window.removeEventListener("resize", onStoreChange);
+}
 
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+function getWindowWidth() {
+  return window.innerWidth;
+}
+
+function getServerWindowWidth() {
+  return 0;
+}
+
+export default function TitleComponent({ onReady }: Props) {
+  const windowWidth = useSyncExternalStore(subscribeToResize, getWindowWidth, getServerWindowWidth);
 
   const variant = useMemo<"desktop" | "mobile" | null>(() => {
     if (windowWidth === 0) return null;

@@ -1,6 +1,5 @@
 'use client'
 
-import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 
 import Lenis from 'lenis';
@@ -10,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
 
 import { Canvas, useThree } from "@react-three/fiber";
-import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
+import { Center, useGLTF } from '@react-three/drei'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,55 +96,13 @@ function SceneTransition() {
 	)
 }
 
-export default function prizes() {
+export default function Prizes() {
 	const prizes = [
 		{ title: "title", description: "desc", prize: "$100", img: "" },
 		{ title: "title2", description: "desc2", prize: "$200", img: "" },
 		{ title: "title3", description: "desc3", prize: "$300", img: "" },
 		{ title: "title4", description: "desc4", prize: "$400", img: "" },
 	];
-
-	function textAnimation(id: string, speed: number = 1.0, delay: number = 0.0, effect: number = 0) {
-		// Pass an id for it to iterate though. It must have a child element like this:
-		// <div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
-
-		// The parent should be a span like this:
-		// <span className="text-xl font-mono relative w-fit mx-auto" id="text-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-
-		const elements = document.querySelectorAll(`[id="${arguments[0]}"]`);
-		if (elements === null) return;
-		const tl = gsap.timeline();
-		// console.log(elements)
-
-		// For each element, add animations for it to the timeline (queue) and then play them with offsets to make a nice cascading effect
-		if (effect == 0) {
-			elements.forEach((element) => {
-				const offset = Array.from(elements).indexOf(element) * (0.2 + delay);
-				if (element.firstElementChild?.tagName == "B") {
-					tl.to(element.children[1], { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
-					tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.6 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
-					tl.to(element.children[1], { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
-
-				} else if (element.firstElementChild !== null) {
-					tl.to(element.firstElementChild, { width: "100%", duration: 0.6 * speed, ease: "power1.inOut" }, offset);
-					tl.to(element, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.2 * speed);
-					tl.to(element.firstElementChild, { transform: "scale(0, 1)", duration: 0.7 * speed, ease: "power1.inOut" }, offset + 0.8 * speed);
-				}
-				else {
-					return;
-				}
-			});
-		} else if (effect == 1) {
-			elements.forEach((element) => {
-				// animation
-				// transform: translateY(50%); clip-path: inset(0px 0% 50% 0px);
-				Array.from(element.children).reverse().forEach((child) => {
-					const offset = Array.from(element.children).indexOf(child) * (0.2 + delay);
-					tl.fromTo(child, { transform: "translateY(100%)", clipPath: "inset(0px 0% 100% 0px)" }, { transform: "translateY(0%)", clipPath: "inset(0px 0% 0% 0px)", ease: "none", duration: 0.7 * speed, force3D: true }, offset);
-				});
-			});
-		}
-	}
 
 	useEffect(() => {
 
@@ -168,7 +125,6 @@ export default function prizes() {
 		// Get elements
 		const sectionPin = document.querySelector("#pin");
 		const majorPrizes = document.querySelector("#majorPrizes");
-		const otherPrizes = document.querySelector("#otherPrizes");
 		// bg colors to change
 		const landing = document.querySelector("#landing");
 		const spacer = document.querySelector("#spacer");

@@ -6,7 +6,6 @@ import ProjectDisplay from "@/app/components/prev-projects/project-display";
 import ProjectCarousel from "@/app/components/prev-projects/project-carousel";
 import { podiumPrizes } from "@/app/data/previous-prize-winners";
 import { carouselPrizes } from "@/app/data/previous-prize-winners";
-import Image from "next/image";
 
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";

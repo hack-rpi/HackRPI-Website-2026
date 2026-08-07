@@ -1,8 +1,5 @@
 'use client';
 
-import NavBar from "@/app/components/nav-bar/nav-bar";
-
-
 export default function Game() {
   return (<>
     {/* <NavBar /> */}

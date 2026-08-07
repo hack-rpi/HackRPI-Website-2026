@@ -1,9 +1,8 @@
 "use client";
 
 import "@/app/globals.css";
-import React, { use, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import useMouseLogic from "./mouse";
-import next from "next";
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
 import SponsorCard from "./sponsorCard";
@@ -114,57 +113,10 @@ const listItems = {
 	}
 }
 
-const themes = {
-	'default': {
-		bg: '#e0e0e0', //background
-		light: '#ffffff',
-		shadow: '#a6a6a6',
-
-		text: '#e0e0e0',
-		text2: '#e0e0e0',
-		text3: 'rgba(0,0,0,0.2)',
-		accent: ''
-	},
-	'bronze': {
-		fourth: '#e0e0e0',
-		second: '#DF7373',
-		bg: '#DA5552',
-		fifth: '#CC444B',
-		third: '#472836'
-
-
-		// second: '#D58936',
-		// third: '#A44200',
-		// fourth: '#69140E',
-		// fifth: '#3C1518'
-	},
-	'silver': {
-		bg: '#e0e0e0',
-		second: '#81726A',
-		third: '#68534D',
-		fourth: '#004E64',
-		fifth: '#042A2B'
-	},
-	'gold': {
-		bg: '#e0e0e0',
-		second: '#B6C8A9',
-		third: '#fca311',
-		fourth: '#14213d',
-		fifth: '#000000'
-	},
-	'obsidian': {
-		bg: '#e0e0e0',
-		second: '#D4CDF4',
-		third: '#7353BA',
-		fourth: '#2F195F',
-		fifth: '#0F1020'
-	},
-} as any;
-
 function SponsorUsPage() {
 	const { getPosition } = useMouseLogic();
-	let isMobileLayout = false;
-	let viewingCurrentTier = 'bronze';
+	const isMobileLayout = useRef(false);
+	const viewingCurrentTier = useRef('bronze');
 
 	function calculateShadows() {
 
@@ -178,7 +130,7 @@ function SponsorUsPage() {
 			const centerY = rect.top + rect.height / 2;
 
 			let { x, y } = getPosition();
-			if (isMobileLayout){
+			if (isMobileLayout.current){
 				x = 0;
 				y = 0;
 			};
@@ -214,7 +166,7 @@ function SponsorUsPage() {
 
 	function mobileLayout(){
 		if (window.innerWidth > window.innerHeight){
-			isMobileLayout = false;
+			isMobileLayout.current = false;
 			const container1 = document.getElementById('container1')!;
 			container1.style.flexDirection = '';
 
@@ -227,7 +179,7 @@ function SponsorUsPage() {
 			});
 
 		}else{
-			isMobileLayout = true;
+			isMobileLayout.current = true;
 			const container1 = document.getElementById('container1')!;
 			container1.style.flexDirection = 'column';
 
@@ -242,7 +194,7 @@ function SponsorUsPage() {
 	}
 
 	function updateBenefits(tier: string, shouldScroll = true){
-		changeTheme(tier);
+		changeTheme();
 
 		if (shouldScroll) {
 			document.getElementById("container2")!.scrollIntoView({
@@ -251,7 +203,7 @@ function SponsorUsPage() {
 			});
     	}
 
-		viewingCurrentTier = tier;
+		viewingCurrentTier.current = tier;
 		const benefitsDiv = document.getElementById('benefits')!;
 		const currentBenefits = [];
 		const potentialBenefits = [];
@@ -260,7 +212,7 @@ function SponsorUsPage() {
 		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-100`;
 		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-100";
 
-		if (isMobileLayout || tier == 'obsidian'){
+		if (isMobileLayout.current || tier == 'obsidian'){
 			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.25em] desktop:text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
 			for (const [name, tiers] of Object.entries(listItems)) {
 				const p = document.createElement('p');
@@ -372,23 +324,8 @@ function SponsorUsPage() {
 		}
 	}
 
-	function changeTheme(theme: any){
+	function changeTheme(){
 		return;
-		const root = document.documentElement;
-
-		root.style.setProperty('--bg', themes[theme].bg);
-		root.style.setProperty('--light', themes[theme].light);
-		root.style.setProperty('--shadow', themes[theme].shadow);
-
-		root.style.setProperty('--accent', themes[theme].accent);
-		root.style.setProperty('--text', themes[theme].text);
-		root.style.setProperty('--text2', themes[theme].text2);
-		root.style.setProperty('--text3', themes[theme].text3);
-
-		// console.log(themes['bronze'])
-		// console.log(themes[theme].bg)
-		// const value = getComputedStyle(root).getPropertyValue('--bg');
-		// console.log(value);
 	}
 
 	function scrollDocs(item:string){
@@ -423,7 +360,7 @@ function SponsorUsPage() {
 		document.getElementById('container4')!.style.width = size1 + 'px';
 		mobileLayout();
 		calculateShadows();
-		updateBenefits(viewingCurrentTier, false);
+		updateBenefits(viewingCurrentTier.current, false);
 	}
 
 	useEffect(() => {
@@ -526,7 +463,7 @@ function SponsorUsPage() {
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Alternatively we can have some at the check in desk to hand out</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Flier in Event Folder</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We'll include your flier in the event folder handed out to all participants at check in</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We&apos;ll include your flier in the event folder handed out to all participants at check in</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Social Media Advertising</h3>
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
@@ -543,7 +480,7 @@ function SponsorUsPage() {
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Host a Workshop</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company&apos;s products for any interested students from Rensselaer</p>
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">This can occur before as a separate HackRPI event or during the main hackathon</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Promotional Mail to Hackers</h3>
@@ -553,7 +490,7 @@ function SponsorUsPage() {
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your booth/table will be closer to the entrance and area where the majority of participants are</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Opening Ceremony Demo</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
+						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">During our opening ceremony, we&apos;ll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
 
 						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Optional Table Upgrade</h3>
 						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We provide a table but will accomodate if you want to bring a custom booth/multiple table setup</p>

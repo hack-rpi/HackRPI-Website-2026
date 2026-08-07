@@ -20,19 +20,10 @@ import { textAnimation } from "@/lib/text-animation";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomeClient() {
-  const [Navbar, setNavbar] = useState<ReactNode>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  // Initialize client flag
-  useEffect(() => {
-    setIsClient(true);
-    setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-  }, []);
+  const [Navbar, setNavbar] = useState<ReactNode>(<NavBar showOnScroll={true} variant={1}/>);
 
   // Setup Lenis and GSAP animations
   useEffect(() => {
-    if (!isClient) return;
-    
     // Delay setup to ensure DOM is fully hydrated
     const setupTimer = setTimeout(() => {
       try {
@@ -134,14 +125,14 @@ export default function HomeClient() {
     }, 100);
 
     return () => clearTimeout(setupTimer);
-  }, [isClient]);
+  }, []);
 
   return (
     <>
-      {isClient && Navbar}
+      {Navbar}
       <div className="w-full overflow-hidden">
         <TitleComponent
-          onReady={(variant) => {
+          onReady={() => {
             // Runs once the chosen title variant is mounted/rendered
             textAnimation("title-animate", 0.9, 0.0, 0);
             textAnimation("links-animate", 0.5, 0.0, 0);

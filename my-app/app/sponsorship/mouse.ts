@@ -9,7 +9,7 @@ export default function useMouseLogic() {
   const clientCoords = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleUpdate = (ev: any) => {
+    const handleUpdate = (ev: Event) => {
       // If it's a movement, record the viewport position
       if (ev instanceof MouseEvent) {
         clientCoords.current = { x: ev.clientX, y: ev.clientY };

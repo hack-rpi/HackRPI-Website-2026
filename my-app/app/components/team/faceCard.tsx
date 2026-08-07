@@ -1,14 +1,19 @@
-import Lenis from 'lenis'
 import React, { useState } from "react";
 
 // https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
 
-export default function FaceCard({ size, left, top, img, name, pos, gradientClass }: any) {
-	let bg_color, text_color;
+interface FaceCardProps {
+	size: number;
+	left: number;
+	top: number;
+	img: string;
+	name: string;
+	pos: string;
+	gradientClass: string;
+}
+
+export default function FaceCard({ size, left, top, img, name, pos, gradientClass }: FaceCardProps) {
 	const shadowColor = "0,0,0"; // default RGB
-
-	bg_color = " bg-gradient-to-br from-white/5 to-transparent border border-white/20";
-
 
 	const [rotateX, setRotateX] = useState(0);
 	const [rotateY, setRotateY] = useState(0);
@@ -61,11 +66,6 @@ export default function FaceCard({ size, left, top, img, name, pos, gradientClas
 		setRotateY(0);
 		setShadow(`0px 20px 40px rgba(${shadowColor},0.35)`);
 	}
-
-	const style =" transition-transform transition-all duration-400 ease-out";
-
-	const sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
-	const sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
 
 	return (
 		<div className={"absolute transform-gpu transform-3d duration-400 p-5 ease-out"}

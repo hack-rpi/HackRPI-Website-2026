@@ -1,14 +1,11 @@
 "use client"
 
-import { Metadata } from 'next';
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
-import HackRPILink from '@/app/components/themed-components/hackrpi-link';
 
 import "./event.css"
 import Cover from './cover';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import Lenis from 'lenis';
 import { useEffect } from "react";
@@ -45,9 +42,9 @@ export default function Event() {
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
             your project idea, or navigating the challenges of a hackathon, our experienced
-            mentors are here to support you every step of the way. With their expertise, you'll
+            mentors are here to support you every step of the way. With their expertise, you&apos;ll
             be able to overcome obstacles, learn new skills, and maximize your hackathon experience.
-            Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
+            Don&apos;t hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2>Event Discord</h2>
@@ -81,7 +78,7 @@ export default function Event() {
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
               present your project to our panel of industry professionals,
-              professors, alumni, and fellow students. They'll evaluate your work based on these criteria:
+              professors, alumni, and fellow students. They&apos;ll evaluate your work based on these criteria:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">

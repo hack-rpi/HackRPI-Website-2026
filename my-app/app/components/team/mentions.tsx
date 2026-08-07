@@ -5,11 +5,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
 
-import type { Group } from "three";
-
 import type { PointLight } from "three";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Center, OrbitControls, useGLTF } from '@react-three/drei'
 
 const mentions = [
   { name: "Ryan Bennett", dept: "Logistics" },

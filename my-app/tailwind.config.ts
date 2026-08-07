@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
+import daisyui from "daisyui";
 
 const config: Config = {
 	
@@ -92,7 +93,7 @@ const config: Config = {
 		},
 	},
 	plugins: [
-		require("daisyui"),
+		daisyui,
 		plugin(function ({ addUtilities }) {
 			const newUtilities = {
 				".description-box": {

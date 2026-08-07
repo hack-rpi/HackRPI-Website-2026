@@ -1,6 +1,5 @@
 
 import SponsorCard from './sponsorCard';
-import ShinyCard from '../shinyCard';
 import sponsors from '../../../public/sponsors/sponsors.json';
 import { useRef, useEffect } from 'react';
 

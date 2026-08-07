@@ -14,8 +14,8 @@ export default function LastYearCollage() {
 				if (!res.ok) throw new Error(`HTTP ${res.status}`);
 				const data = await res.json();
 				setPhotos(data.photos ?? []);
-			} catch (e: any) {
-				setError(e?.message || "Failed to load photos");
+			} catch (e: unknown) {
+				setError(e instanceof Error ? e.message : "Failed to load photos");
 			} finally {
 				setLoading(false);
 			}

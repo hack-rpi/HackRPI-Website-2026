@@ -1,11 +1,15 @@
 'use-client';
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { text } from "stream/consumers";
 
+interface SponsorCardProps {
+  name: string;
+  tier: string;
+  image?: string;
+  link: string;
+}
 
-export default function SponsorCard({ name, tier, image, link }: any) {
+export default function SponsorCard({ name, tier, image, link }: SponsorCardProps) {
   let bg_color, text_color, opacity, hoverOpacity;
   let shadowColor = "0,0,0";
 

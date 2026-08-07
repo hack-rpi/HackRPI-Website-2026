@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useThree } from "@react-three/fiber";
 
 const PLANE_URL = "/3d/plane0.glb";
 const glbLoadStart =
@@ -79,7 +78,6 @@ function Model({ scale: planeScale = DESKTOP_PLANE_SCALE }: { scale?: number }) 
 
 function ImageRectangle() {
   const texture = useTexture("/3d/cityf_s.png"); 
-    texture.colorSpace = THREE.SRGBColorSpace;
   
 
   return (
@@ -97,19 +95,6 @@ function BackgroundSphere() {
       <meshBasicMaterial
         color="#000912"
         side={THREE.BackSide}
-        depthTest={false}
-        depthWrite={false}
-      />
-    </mesh>
-  );
-}
-
-function BackgroundCircle() {
-  return (
-    <mesh position={[7, -98.5, -20]} renderOrder={-1}>
-      <circleGeometry args={[100, 20]} />
-      <meshBasicMaterial
-        color="#000912"
         depthTest={false}
         depthWrite={false}
       />

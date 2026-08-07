@@ -1,13 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
 import "@/app/globals.css";
 import LastYearCollage from "@/app/components/prev-projects/LastYearCollage";
-import Image from "next/image";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
-import Lenis from 'lenis';
-import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 export default function PastYearProjects() {
   return (

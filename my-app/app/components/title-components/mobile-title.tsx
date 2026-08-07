@@ -1,20 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Canvas } from "@react-three/offscreen";
-import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from 'next/link';
 import ParallaxClouds from "./parallaxCloudsMobile";
 import SkyCountdownOverlay from "./countdown";
 
-type SceneProps = {
-  centered?: boolean;
-};
-
 export default function MobileTitleComponent() {
-
-	const [isLoading, setIsLoading] = useState(true);
 	
 	const worker = useMemo(
 		() =>
@@ -31,7 +24,7 @@ export default function MobileTitleComponent() {
 			<div className="absolute inset-0">
 				<Canvas
 					worker={worker}
-					fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
+					fallback={<SceneOnLoad />}
 					camera={{ position: [0, 0, 6], fov: 55 }}
 				/>
 			</div>

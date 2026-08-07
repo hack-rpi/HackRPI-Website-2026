@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { NavGroup } from "./nav-bar-links";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
 import MobileNavBar from "./mobile/nav-bar-mobile";
@@ -9,11 +9,24 @@ import linkData from "@/app/data/links.json";
 
 export const links: NavGroup[] = linkData;
 
+function subscribeToResize(onStoreChange: () => void) {
+	window.addEventListener("resize", onStoreChange);
+	return () => window.removeEventListener("resize", onStoreChange);
+}
+
+function getWindowWidth() {
+	return window.innerWidth;
+}
+
+function getServerWindowWidth() {
+	return 0;
+}
+
 export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolean, variant?: number}) {
 	variant = variant ?? 0;
 
 	const [showNav, setShowNav] = useState(false);
-	const [windowWidth, setWindowWidth] = useState(0);
+	const windowWidth = useSyncExternalStore(subscribeToResize, getWindowWidth, getServerWindowWidth);
 	/*const [isDarkMode, setIsDarkMode] = useState(
 		typeof window !== "undefined" &&
 			(localStorage.getItem("theme") === "dark" ||
@@ -24,8 +37,6 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 
 	// Add event listener to the window to update the scrollY state
 	useEffect(() => {
-		setWindowWidth(window.innerWidth);
-
 		const storedTheme = localStorage.getItem("theme");
 		if (storedTheme === "dark") {
 			document.documentElement.classList.add("dark");
@@ -37,34 +48,12 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		const handleScroll = () => {
 			setShowNav(window.scrollY > scrollThreshold);
 		};
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth);
-		};
 		window.addEventListener("scroll", handleScroll);
-		window.addEventListener("resize", handleResize);
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
-			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-
-	useEffect(() => {
-		const storedTheme = localStorage.getItem("theme");
-		if (storedTheme === "dark") {
-			document.documentElement.classList.add("dark");
-		}
-	}, []);
-
-	const toggleDarkMode = () => {
-		if (document.documentElement.classList.contains("dark")) {
-			document.documentElement.classList.remove("dark");
-			localStorage.setItem("theme", "light");
-		} else {
-			document.documentElement.classList.add("dark");
-			localStorage.setItem("theme", "dark");
-		}
-	};
 
 	if (windowWidth === 0) return;
 

@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-export default function SponsorCard({ tier, amount }: any) {
+interface SponsorCardProps {
+  tier: string;
+  amount: string;
+  className?: string;
+}
+
+export default function SponsorCard({ tier, amount, className = "" }: SponsorCardProps) {
   let bg_color, text_color;
   let shadowColor = "0,0,0"; // default RGB
 
@@ -77,11 +83,9 @@ export default function SponsorCard({ tier, amount }: any) {
     text_color +
     " transition-transform text-center flex items-center justify-center transition-all duration-400 ease-out";
 
-  const sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
-  const sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color; 
   return (
 
-  <div className="desktop:m-6 flex flex-col items-center group perspective-[1000px]">
+  <div className={`desktop:m-6 flex flex-col items-center group perspective-[1000px] ${className}`}>
     <div
       className={style + " relative overflow-hidden border-3 transform-gpu transform-3d flex flex-col"}
       onMouseMove={handleMove}

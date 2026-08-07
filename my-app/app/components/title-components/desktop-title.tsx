@@ -2,7 +2,6 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { Canvas } from "@react-three/offscreen";
-import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from "next/link";
 import SkyCountdown from "./countdown";
