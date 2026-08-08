@@ -45,11 +45,11 @@ export default function AestheticSectionBuffer({
 
   return (
     <div
-      className="relative w-full overflow-hidden pointer-events-none select-none z-30"
+      className="pointer-events-none relative z-30 w-full overflow-hidden select-none"
       style={{
         height,
         // Negative margin pull prevents micro-gaps caused by sub-pixel rendering browser bugs
-        marginBottom: "-2px", 
+        marginBottom: "-2px",
       }}
     >
       {/* We use a viewBox of 0 0 200 100, but make the width 200% 
@@ -58,7 +58,7 @@ export default function AestheticSectionBuffer({
       <svg
         viewBox="0 0 200 100"
         preserveAspectRatio="none"
-        className="absolute bottom-0 left-0 h-full w-[200%] buffer-blend"
+        className="buffer-blend absolute bottom-0 left-0 h-full w-[200%]"
       >
         {layers.map((layer) => (
           <path
@@ -66,10 +66,12 @@ export default function AestheticSectionBuffer({
             d={layer.path}
             fill={fillColor}
             className="animate-wave-slow"
-            style={{
-              opacity: layer.opacity * baseOpacity,
-              "--drift-duration": layer.duration,
-            } as React.CSSProperties & Record<"--drift-duration", string>}
+            style={
+              {
+                opacity: layer.opacity * baseOpacity,
+                "--drift-duration": layer.duration,
+              } as React.CSSProperties & Record<"--drift-duration", string>
+            }
           />
         ))}
       </svg>

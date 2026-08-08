@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 export default function useMouseLogic() {
-  // We use a Ref so the values are available to JS instantly 
+  // We use a Ref so the values are available to JS instantly
   // without waiting for a React render cycle.
   const mouseCoords = useRef({ x: 0, y: 0 });
   const clientCoords = useRef({ x: 0, y: 0 });
@@ -14,14 +14,14 @@ export default function useMouseLogic() {
       if (ev instanceof MouseEvent) {
         clientCoords.current = { x: ev.clientX, y: ev.clientY };
       }
-      
+
       // Calculate document position (Scroll + Viewport)
       mouseCoords.current = {
         // x: clientCoords.current.x + window.scrollX,
         // y: clientCoords.current.y + window.scrollY
 
         x: clientCoords.current.x,
-        y: clientCoords.current.y
+        y: clientCoords.current.y,
       };
     };
 

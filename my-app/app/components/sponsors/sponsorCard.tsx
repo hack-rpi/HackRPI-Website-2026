@@ -1,4 +1,4 @@
-'use-client';
+"use-client";
 
 import React, { useState } from "react";
 
@@ -14,7 +14,8 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
   let shadowColor = "0,0,0";
 
   if (tier === "obsidian") {
-    bg_color = "bg-purple-700/25 bg-gradient-to-br from-white/25 to-transparent border-purple-200/20";
+    bg_color =
+      "bg-purple-700/25 bg-gradient-to-br from-white/25 to-transparent border-purple-200/20";
     text_color = "text-purple-300";
     shadowColor = "147,51,234";
     opacity = "opacity-70";
@@ -78,9 +79,7 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
     const blur = 30 + distance * 40;
     const opacity = 0.25 + distance * 0.4;
 
-    setShadow(
-      `${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`
-    );
+    setShadow(`${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`);
   }
 
   function handleLeave() {
@@ -110,41 +109,47 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
     text_color;
 
   return (
-    <a href = {link} target="_blank" rel="noopener noreferrer m-5"> 
-    <div className="m-3 flex flex-col items-center group relative" style={{ perspective: "800px" }}>
-
-      <span className={sponsor_name_style}>{name}</span>
-
-      <div className="absolute -inset-[10px] z-10" onMouseMove={handleMove} onMouseLeave={handleLeave} />
-
+    <a href={link} target="_blank" rel="noopener noreferrer m-5">
       <div
-        className={style + " m-4 relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
-        style={{
+        className="group relative m-3 flex flex-col items-center"
+        style={{ perspective: "800px" }}
+      >
+        <span className={sponsor_name_style}>{name}</span>
+
+        <div
+          className="absolute -inset-[10px] z-10"
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+        />
+
+        <div
+          className={
+            style +
+            " relative m-4 transform-gpu overflow-hidden border-3 [transform-style:preserve-3d]"
+          }
+          style={{
             transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
             boxShadow: shadow,
-            perspective: "800px"
-        }}
-      > 
+            perspective: "800px",
+          }}
+        >
           <div className="flex flex-col items-center justify-center gap-2">
-            
             {image && (
               <img
                 src={image}
                 alt={name}
-                className="absolute inset-0 w-full h-full object-contain p-7 transition-transform duration-200 ease-out"
+                className="absolute inset-0 h-full w-full object-contain p-7 transition-transform duration-200 ease-out"
                 style={{
                   transform: `translateX(${imgX}px) translateY(${imgY}px) scale(1.05)`,
-                  perspective: "800px"
+                  perspective: "800px",
                 }}
               />
             )}
-             
           </div>
-           
-      </div>
+        </div>
 
-      <span className={sponsor_rank_style}>{tier}</span>
-    </div>
+        <span className={sponsor_rank_style}>{tier}</span>
+      </div>
     </a>
   );
 }

@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+.pnp
+.pnp.*
+.yarn
+
+# generated outputs
+.next
+out
+build
+coverage
+*.tsbuildinfo
+next-env.d.ts
+
+# environment and local service files
+.env*
+config.env
+.vercel
+
+# package-manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*

@@ -14,12 +14,12 @@ export default function SponsorCard({ tier, amount, className = "" }: SponsorCar
     bg_color =
       "bg-slate-900/30 bg-gradient-to-br from-white/10 to-transparent border border-white/20";
     text_color = "text-purple-300";
-    shadowColor = "147,51,234"; 
+    shadowColor = "147,51,234";
   } else if (tier === "Gold") {
     bg_color =
       "bg-yellow-100/30 bg-gradient-to-br from-white/40 to-transparent border border-white/20";
     text_color = "text-yellow-100";
-    shadowColor = "234,179,8"; 
+    shadowColor = "234,179,8";
   } else if (tier === "Silver") {
     bg_color =
       "bg-blue-600/30 bg-gradient-to-br from-white/75 to-transparent border border-white/20";
@@ -29,7 +29,7 @@ export default function SponsorCard({ tier, amount, className = "" }: SponsorCar
     bg_color =
       "bg-orange-700/30 bg-gradient-to-br from-white/100 to-transparent border border-white/20";
     text_color = "text-orange-500";
-    shadowColor = "239,68,68"; 
+    shadowColor = "239,68,68";
   } else {
     bg_color =
       "bg-grey-500/30 bg-gradient-to-br from-white/5 to-transparent border border-white/20";
@@ -38,37 +38,33 @@ export default function SponsorCard({ tier, amount, className = "" }: SponsorCar
 
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
-  const [shadow, setShadow] = useState(
-    `0px 20px 40px rgba(${shadowColor},0.35)`
-  );
+  const [shadow, setShadow] = useState(`0px 20px 40px rgba(${shadowColor},0.35)`);
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
-  const rect = e.currentTarget.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
 
-  const x = e.clientX - rect.left + 10;
-  const y = e.clientY - rect.top + 10
-  
-  let percentX = (x / rect.width - 0.5) * 2;
-  let percentY = (y / rect.height - 0.5) * 2;
+    const x = e.clientX - rect.left + 10;
+    const y = e.clientY - rect.top + 10;
 
-  if (Math.abs(percentX) < 0.05) percentX = 0;
-  if (Math.abs(percentY) < 0.05) percentY = 0;
+    let percentX = (x / rect.width - 0.5) * 2;
+    let percentY = (y / rect.height - 0.5) * 2;
 
-  // 3D tilt
-  setRotateY(percentX * 25);
-  setRotateX(-percentY * 25);
+    if (Math.abs(percentX) < 0.05) percentX = 0;
+    if (Math.abs(percentY) < 0.05) percentY = 0;
 
-  // dynamic colored glow
-  const shadowX = -percentX * 30;
-  const shadowY = -percentY * 30;
+    // 3D tilt
+    setRotateY(percentX * 25);
+    setRotateX(-percentY * 25);
 
-  const distance = Math.sqrt(percentX * percentX + percentY * percentY);
-  const blur = 30 + distance * 40;
-  const opacity = 0.25 + distance * 0.4;
+    // dynamic colored glow
+    const shadowX = -percentX * 30;
+    const shadowY = -percentY * 30;
 
-  setShadow(
-    `${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`
-  );
-}
+    const distance = Math.sqrt(percentX * percentX + percentY * percentY);
+    const blur = 30 + distance * 40;
+    const opacity = 0.25 + distance * 0.4;
+
+    setShadow(`${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`);
+  }
 
   function handleLeave() {
     setRotateX(0);
@@ -84,20 +80,23 @@ export default function SponsorCard({ tier, amount, className = "" }: SponsorCar
     " transition-transform text-center flex items-center justify-center transition-all duration-400 ease-out";
 
   return (
-
-  <div className={`desktop:m-6 flex flex-col items-center group perspective-[1000px] ${className}`}>
     <div
-      className={style + " relative overflow-hidden border-3 transform-gpu transform-3d flex flex-col"}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{
-        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        boxShadow: shadow
-      }}
+      className={`group flex flex-col items-center perspective-[1000px] desktop:m-6 ${className}`}
     >
-      <h1 className="text-[2em]">{tier}</h1>
-      <h2 className="text-[1.75em]">{amount}</h2>
+      <div
+        className={
+          style + " relative flex transform-gpu flex-col overflow-hidden border-3 transform-3d"
+        }
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        style={{
+          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          boxShadow: shadow,
+        }}
+      >
+        <h1 className="text-[2em]">{tier}</h1>
+        <h2 className="text-[1.75em]">{amount}</h2>
+      </div>
     </div>
-  </div>
-);
+  );
 }

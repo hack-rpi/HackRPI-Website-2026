@@ -27,9 +27,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/HackRPI_Favicon.png"></link>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-gBlack antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-gBlack antialiased`}>
         {children}
       </body>
     </html>

@@ -7,7 +7,7 @@ import { textAnimation } from "@/lib/text-animation";
 
 import type { PointLight } from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Center, OrbitControls, useGLTF } from '@react-three/drei'
+import { Center, OrbitControls, useGLTF } from "@react-three/drei";
 
 const mentions = [
   { name: "Ryan Bennett", dept: "Logistics" },
@@ -21,143 +21,177 @@ const mentions = [
 ];
 
 const deptConfig: Record<string, { icon: string; gradient: string; shadow: string }> = {
-  Logistics:   { icon: "☀︎", gradient: "from-yellow-300 via-amber-400 to-yellow-600",   shadow: "rgba(218,165,32,0.4)" },
-  Finance:     { icon: "🌧", gradient: "from-emerald-300 via-green-400 to-emerald-600", shadow: "rgba(85,187,34,0.4)" },
-  Sponsorship: { icon: "🌡", gradient: "from-cyan-300 via-sky-400 to-cyan-600",         shadow: "rgba(0,196,196,0.4)" },
-  Technology:  { icon: "☁︎", gradient: "from-violet-300 via-purple-500 to-violet-700",  shadow: "rgba(166,77,255,0.4)" },
-  Marketing:   { icon: "★",  gradient: "from-orange-300 via-orange-500 to-orange-700",  shadow: "rgba(255,119,0,0.4)" },
-  Outreach:    { icon: "☂",  gradient: "from-pink-300 via-rose-500 to-pink-700",        shadow: "rgba(255,51,153,0.4)" },
+  Logistics: {
+    icon: "☀︎",
+    gradient: "from-yellow-300 via-amber-400 to-yellow-600",
+    shadow: "rgba(218,165,32,0.4)",
+  },
+  Finance: {
+    icon: "🌧",
+    gradient: "from-emerald-300 via-green-400 to-emerald-600",
+    shadow: "rgba(85,187,34,0.4)",
+  },
+  Sponsorship: {
+    icon: "🌡",
+    gradient: "from-cyan-300 via-sky-400 to-cyan-600",
+    shadow: "rgba(0,196,196,0.4)",
+  },
+  Technology: {
+    icon: "☁︎",
+    gradient: "from-violet-300 via-purple-500 to-violet-700",
+    shadow: "rgba(166,77,255,0.4)",
+  },
+  Marketing: {
+    icon: "★",
+    gradient: "from-orange-300 via-orange-500 to-orange-700",
+    shadow: "rgba(255,119,0,0.4)",
+  },
+  Outreach: {
+    icon: "☂",
+    gradient: "from-pink-300 via-rose-500 to-pink-700",
+    shadow: "rgba(255,51,153,0.4)",
+  },
 };
-
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-	const { scene } = useGLTF('/3d/trophy.glb');
-	const clonedScene = useMemo(() => scene.clone(), [scene]);
-	return <Center><primitive object={clonedScene} /></Center>;
+  const { scene } = useGLTF("/3d/trophy.glb");
+  const clonedScene = useMemo(() => scene.clone(), [scene]);
+  return (
+    <Center>
+      <primitive object={clonedScene} />
+    </Center>
+  );
 }
 
 function MovingLight({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
-    const lightRef = useRef<PointLight>(null);
+  const lightRef = useRef<PointLight>(null);
 
-    // useFrame runs on every single 3D render frame loop
-    useFrame(() => {
-        if (lightRef.current) {
-            // Constantly read the position from our GSAP-animated object
-            lightRef.current.position.x = scrollData.current.x;
-        }
-    });
+  // useFrame runs on every single 3D render frame loop
+  useFrame(() => {
+    if (lightRef.current) {
+      // Constantly read the position from our GSAP-animated object
+      lightRef.current.position.x = scrollData.current.x;
+    }
+  });
 
-    return (
-        <pointLight 
-            ref={lightRef}
-            position={[100, 0, 5]} 
-            intensity={5.0} 
-            distance={0} 
-            decay={1}
-        />
-    );
+  return (
+    <pointLight ref={lightRef} position={[100, 0, 5]} intensity={5.0} distance={0} decay={1} />
+  );
 }
 
 function Scene({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
-    return (
-        <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
-            <ambientLight intensity={0.3} />
+  return (
+    <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+      <ambientLight intensity={0.3} />
 
-            <directionalLight 
-                position={[5, 10, 5]} 
-                intensity={1.5} 
-                castShadow 
-            />
+      <directionalLight position={[5, 10, 5]} intensity={1.5} castShadow />
 
-            {/* Render the self-updating light */}
-            <MovingLight scrollData={scrollData} />
+      {/* Render the self-updating light */}
+      <MovingLight scrollData={scrollData} />
 
-            <hemisphereLight color={"#ffffff"} groundColor={"#444444"} intensity={0.4} />
+      <hemisphereLight color={"#ffffff"} groundColor={"#444444"} intensity={0.4} />
 
-            <Model/>
-            <OrbitControls enableZoom={false} />
-        </Canvas>
-    )
+      <Model />
+      <OrbitControls enableZoom={false} />
+    </Canvas>
+  );
 }
 
 export default function Mentions() {
-	const mentionsAnimatedRef = useRef(false);
-    const scrollData = useRef({ x: 100 });
+  const mentionsAnimatedRef = useRef(false);
+  const scrollData = useRef({ x: 100 });
 
-	useEffect(() => {
-		const ctx = gsap.context(() => {
-			const sectionPin = document.querySelector("#pin");
-			const mentionsContainer = document.querySelector("#mentions-container");
-			if (!mentionsContainer) return;
-			const scrollWidth = sectionPin
-				? sectionPin.scrollWidth - document.documentElement.clientWidth
-				: 0;
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const sectionPin = document.querySelector("#pin");
+      const mentionsContainer = document.querySelector("#mentions-container");
+      if (!mentionsContainer) return;
+      const scrollWidth = sectionPin
+        ? sectionPin.scrollWidth - document.documentElement.clientWidth
+        : 0;
 
-			if (!mentions) return;
+      if (!mentions) return;
 
-			ScrollTrigger.create({
-				trigger: mentionsContainer,
-				start: "20% bottom",
-				end: () => "+=" + scrollWidth,
-				onEnter: () => {
-					if (!mentionsAnimatedRef.current) {
-						mentionsAnimatedRef.current = true;
-						textAnimation("mentions-animate", 0.6);
-					}
-				},
-			});
+      ScrollTrigger.create({
+        trigger: mentionsContainer,
+        start: "20% bottom",
+        end: () => "+=" + scrollWidth,
+        onEnter: () => {
+          if (!mentionsAnimatedRef.current) {
+            mentionsAnimatedRef.current = true;
+            textAnimation("mentions-animate", 0.6);
+          }
+        },
+      });
 
-			gsap.timeline({
-				scrollTrigger: {
-					trigger: "#trophy-canvas",
-					start: "top 100%", 
-					end: "bottom top", 
-					scrub: true,
-				},
-			}).to(scrollData.current, {
-                x: -100,
-                ease: "none"
-            });
-		});
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: "#trophy-canvas",
+            start: "top 100%",
+            end: "bottom top",
+            scrub: true,
+          },
+        })
+        .to(scrollData.current, {
+          x: -100,
+          ease: "none",
+        });
+    });
 
-		return () => ctx.revert();
-	}, []);
+    return () => ctx.revert();
+  }, []);
 
-	return (
-    <div className="h-auto will-change-transform translate-z-0 bg-white" id="mentions-container">
-        <div className="flex h-[3vh] md:h-[10vh] gap-0 bg-gBlack"></div>
-        <div className="flex flex-col md:flex-row h-auto md:h-[120vh] gap-0 bg-gBlack">
-            <div className="flex-1 h-[50vh] md:h-[90vh] items-center justify-center text-4xl text-center flex"
-                id="trophy-canvas" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
-                <Scene scrollData={scrollData}/>
-            </div>
-            <div className="flex-1 h-auto md:h-screen w-full text-center content-center grid gap-5 bg-gBlack pt-12 pb-20 md:py-0" id="mentions">
-					<span className="text-3xl md:text-4xl text-white font-mono relative w-fit mx-auto" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-						Our Organizers ♡
-						<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
-					</span>
-					<hr className='border my-1 mx-[10vw] text-white'></hr>
-					{mentions.map((m, i) => {
-					const cfg = deptConfig[m.dept];
-					return (
-						<span key={i} className="text-base md:text-xl font-mono relative w-fit mx-auto flex items-center gap-3" id="mentions-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-							<b className="flex items-center gap-3 font-mono font-normal">
-							<span className="text-white">{m.name}</span>
-							<span
-									className={`text-xs font-bold uppercase tracking-widest bg-linear-to-b ${cfg.gradient} bg-clip-text text-transparent flex items-center gap-1`}
-									style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
-							>
-									{cfg.icon} {m.dept}
-							</span>
-							</b>
-							<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
-						</span>
-					);
-					})}
-            </div>
+  return (
+    <div className="h-auto translate-z-0 bg-white will-change-transform" id="mentions-container">
+      <div className="flex h-[3vh] gap-0 bg-gBlack md:h-[10vh]"></div>
+      <div className="flex h-auto flex-col gap-0 bg-gBlack md:h-[120vh] md:flex-row">
+        <div
+          className="flex h-[50vh] flex-1 items-center justify-center text-center text-4xl md:h-[90vh]"
+          id="trophy-canvas"
+          style={{ transformOrigin: "center", transformBox: "fill-box" }}
+        >
+          <Scene scrollData={scrollData} />
         </div>
+        <div
+          className="grid h-auto w-full flex-1 content-center gap-5 bg-gBlack pt-12 pb-20 text-center md:h-screen md:py-0"
+          id="mentions"
+        >
+          <span
+            className="relative mx-auto w-fit font-mono text-3xl text-white md:text-4xl"
+            id="mentions-animate"
+            style={{ clipPath: "inset(0px 100% 0px 0px)" }}
+          >
+            Our Organizers ♡
+            <div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
+          </span>
+          <hr className="mx-[10vw] my-1 border text-white"></hr>
+          {mentions.map((m, i) => {
+            const cfg = deptConfig[m.dept];
+            return (
+              <span
+                key={i}
+                className="relative mx-auto flex w-fit items-center gap-3 font-mono text-base md:text-xl"
+                id="mentions-animate"
+                style={{ clipPath: "inset(0px 100% 0px 0px)" }}
+              >
+                <b className="flex items-center gap-3 font-mono font-normal">
+                  <span className="text-white">{m.name}</span>
+                  <span
+                    className={`bg-linear-to-b text-xs font-bold tracking-widest uppercase ${cfg.gradient} flex items-center gap-1 bg-clip-text text-transparent`}
+                    style={{ filter: `drop-shadow(0 0 6px ${cfg.shadow})` }}
+                  >
+                    {cfg.icon} {m.dept}
+                  </span>
+                </b>
+                <div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
+              </span>
+            );
+          })}
+        </div>
+      </div>
     </div>
-	);
-};
+  );
+}
