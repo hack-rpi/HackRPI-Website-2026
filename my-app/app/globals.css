@@ -26,6 +26,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.mobile-navigation .mobile-nav-button,
+.mobile-navigation .mobile-nav-sub-link {
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+.mobile-navigation .mobile-nav-submenu {
+  background-color: #e0f2fe;
+  color: #1e293b;
+}
+
+.mobile-navigation .mobile-nav-button:hover,
+.mobile-navigation .mobile-nav-sub-link:hover {
+  background-color: #f0f9ff;
+}
+
 
 /* 
 To make the text animation, ease in width from 0 -> 100%, then ease tranform (1, 1) -> (0, 1) 

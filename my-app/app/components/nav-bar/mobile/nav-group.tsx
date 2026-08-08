@@ -20,8 +20,8 @@ export default function NavGroup({
                 target={links[0].new_tab ? "_blank" : undefined}
                 onClick={onLinkClick}
                 className="
-                    w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
-                    bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
+                    mobile-nav-button w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
+                    bg-size-[0%_4px] bg-no-repeat bg-bottom-left
                     bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]
                 "
             >
@@ -37,8 +37,8 @@ export default function NavGroup({
 		>
 			<div
 				className={`relative w-11/12 flex items-center justify-between h-12
-					text-2xl bg-base-100 z-5 rounded-t pl-2 collapse-arrow ${
-					clicked ? "bg-size-[100%_4px] bg-base-300" : "bg-base-100 bg-size-[0%_4px]"
+					mobile-nav-button text-2xl z-5 rounded-t pl-2 collapse-arrow ${
+					clicked ? "bg-size-[100%_4px]" : "bg-size-[0%_4px]"
 				} bg-no-repeat bg-linear-to-r from-sky-500 to-hackrpi-clouds-green bg-bottom-left
 				motion-safe:hover:bg-size-[100%_4px] transition-all duration-200`}
 			>
@@ -55,7 +55,7 @@ export default function NavGroup({
 				</svg>
 			</div>
 			<div
-				className={`bg-base-200 flex flex-col w-11/12 overflow-hidden  ${
+				className={`mobile-nav-submenu flex flex-col w-11/12 overflow-hidden  ${
 					clicked ? "translate-y-0 h-fit " : "-translate-y-full h-0 "
 				} transition-all duration-200 rounded-b`}
 			>
@@ -72,7 +72,7 @@ export default function NavGroup({
 function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
 	return (
 		<NextLink
-			className="w-full px-1 bg-opacity-0 bg-base-100 hover:bg-base-100/50 text-2xl transition-all"
+			className="mobile-nav-sub-link w-full px-1 text-2xl transition-all"
 			href={href}
 			onClick={onClick}
 		>
