@@ -1,28 +1,16 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { Canvas } from "@react-three/offscreen";
-import Scene from "@/app/components/title-components/three/Scene";
-import SceneOnLoad from "@/app/components/title-components/three/Scene";
+import React, { useState, useEffect } from 'react';
+import PlaneScene from "./three/Scene";
 import Link from "next/link";
-import SkyCountdown from "./countdown";
+import "@/app/globals.css";
+// import MapTerrain from './mapTerrain';
 
-export default function DesktopTitleComponent() {
-  // State to manage the loading overlay
-  const [isLoading, setIsLoading] = useState(true);
+import dynamic from "next/dynamic";
+const MapTerrain = dynamic(() => import("./mapTerrain"), { ssr: false });
 
-  const worker = useMemo(
-    () =>
-      new Worker(
-        new URL("@/app/components/title-components/three/worker.tsx", import.meta.url),
-        {
-          type: "module",
-        }
-      ),
-    []
-  );
 
-  const linkItems = [
+const linkItems = [
     { label: "Event", href: "/event" },
     { label: "Schedule", href: "/event/schedule" },
     //{ label: "Prizes", href: "/prizes" },
@@ -31,176 +19,103 @@ export default function DesktopTitleComponent() {
     { label: "Discord", href: "https://discord.gg/" },
   ];
 
-  useEffect(() => {
-    if (!worker) return;
+export default function DesktopTitleComponent() {
 
-    const handleWorkerMessage = (event: MessageEvent) => {
-      if (event.data?.type === "three-scene-ready") {
-        setIsLoading(false);
-      }
+    const showLayout = false ? "" : "transparent";
+    const textSize1 = "text-[30px]";
+    const textColor = "#333333";
+    const showTextScrollPosition = 10;
+    const margin = "p-0"
+
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => { setScrollY(window.scrollY); };
+        window.addEventListener('scroll', handleScroll, { passive: true });        
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const splitLabel = (label: string) => {
+        const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
+        return Array.from(segmenter.segment(label), (segment) => segment.segment);
     };
-    worker.addEventListener("message", handleWorkerMessage);
-    return () => worker.removeEventListener("message", handleWorkerMessage);
-  }, [worker]);
 
-  const splitLabel = (label: string) => {
-    const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
-    return Array.from(segmenter.segment(label), (segment) => segment.segment);
-  };
+    return (<>
+        <img src="https://picsum.photos/600/400" className="absolute w-full h-full object-cover"/>
+        {/* <MapTerrain/> */}
+        <PlaneScene scrollY={scrollY}/>
+        <div className={`w-full h-screen flex flex-col fixed z-1
+            transition-opacity duration-300 ease-in-out ${(scrollY < showTextScrollPosition) ? 'opacity-100' : 'opacity-0'}
+        `} 
+        style={{color: textColor}}>
+            {/* Top Section - IMAGE */}
+            <div className="relative w-full h-[55vh] flex justify-center items-center text-lg tracking-wider" style={{backgroundColor: showLayout}}> 
+                <h1 className="absolute bottom-4 right-4 text-[100px]">
+                    HackRPI In The Clouds
+                </h1>
+            </div>
 
-  return (
-    <>
-      {/* LOADING OVERLAY */}
-      <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden flex items-center justify-center bg-black/10">
-        <div className={`whiteCover ${!isLoading ? 'clear' : ''}`}></div>
-        
-        {/* ================= LEFT CLOUD CONTAINER ================= */}
-        <div className={`cloud-container-left ${!isLoading ? 'exited' : ''}`}>
-          <div style={{left: "-50%", top: "-50%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(7)"}} src="/cover/cloud1.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-          <div style={{left: "-20%", top: "0%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(5)"}} src="/cover/cloud3.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-          <div style={{left: "-40%", top: "33%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(6)"}} src="/cover/cloud4.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-        </div>
+            {/* Bottom Section - TEXT & LINKS */}
+            <div className="w-full h-[45vh] bg-white flex items-end p-6 gap-4 box-border" style={{backgroundColor: showLayout}}>
+                {/* Box 1 - Small light blue card at top left */}
+                <h1 className={`w-[14%] h-[50%] self-start mr-[8%] bg-[#e1f8ff] rounded-xl flex justify-start items-start ${margin} whitespace-nowrap ${textSize1}`} style={{backgroundColor: showLayout}}>
+                    Nov. 7-8
+                </h1>
 
-        {/* ================= RIGHT CLOUD CONTAINER ================= */}
-        <div className={`cloud-container-right ${!isLoading ? 'exited' : ''}`}>
-          <div style={{right: "-50%", top: "-30%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(6)"}} src="/cover/cloud2.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-          <div style={{right: "-40%", top: "0%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(6)"}} src="/cover/cloud5.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-          <div style={{right: "-30%", top: "30%"}} className="cloud-layer cloud-l1-wrapper">
-            <img style={{transform: "scale(5)"}} src="/cover/cloud6.png" className="cloud-l1-img" alt="Left Cloud" /></div>
-        </div>
+                {/* Box 2 - Tall light blue card */}
+                <div className={`w-[14%] h-[100%] bg-[#e1f8ff] rounded-xl flex flex-col justify-between items-start ${margin} ${textSize1}`} style={{backgroundColor: showLayout}}>
+                    <h1>Troy, NY</h1>
+                    <Link
+                        href="https://events.mlh.com/events/14390-hackrpi-2026"
+                        className={`block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300
+                         ${(scrollY < showTextScrollPosition) ? 'pointer-events-auto' : 'pointer-events-none'} `}
+                        style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
+                        target="_blank"
+                    >
+                        Register ⇾
+                    </Link>
+                    
+                </div>
 
+                {/* Box 3 - Wide light blue card */}
+                <p className="flex-1 h-[75%] bg-[#e1f8ff] rounded-xl flex justify-center items-center p-8" style={{backgroundColor: showLayout}}>
+                    Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah 
+                    Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah 
+                    Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah Blah blah 
+                    <br/>
+                    <br/>
+                    Blah Blah
+                </p>
 
-
-        {/* ================= LOADING TEXT OVERLAY ================= */}
-        <div
-          className={`relative z-10 flex flex-col items-center justify-center transition-opacity duration-1000 ${
-            isLoading ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <h1 
-            className="text-gray-500 text-7xl md:text-[10rem] font-bold tracking-tighter leading-none select-none"
-            style={{ fontFamily: "Calibri, sans-serif" }}
-          >
-            HACKRPI
-          </h1>
-          
-          {/* Wave Text Effect */}
-          <div className="text-gray-400 text-2xl md:text-4xl mt-4 tracking-widest font-mono uppercase select-none flex gap-[0.2em]">
-            {"loading...".split("").map((char, index) => (
-              <span
-                key={index}
-                className="animate-wave-pulse"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-
-
-      {/* MAIN SITE CONTENT */}
-      {/* (Your original code remains completely untouched below here) */}
-      <div className="relative w-full h-screen bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
-        <SkyCountdown/>
-        <div className="absolute inset-0">
-          <Canvas
-            worker={worker}
-            // fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
-            fallback={<SceneOnLoad />}
-            camera={{ position: [0, 0, 6], fov: 55 }}
-          />
-        </div>
-
-        <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pl-20">
-          <div
-            className="text-blue-200 text-[2.15rem] leading-none ml-3"
-            style={{
-              fontFamily: "Calibri, sans-serif",
-              clipPath: "inset(0px 100% 0px 0px)",
-              paddingTop: "45px",
-            }}
-            id="title-animate"
-          >
-            November 7, 8th • Troy, NY
-            <div className="text-animation-layer inline-block w-auto" />
-          </div>
-
-          <div
-            className="text-white text-[12rem] font-bold leading-none tracking-tight"
-            style={{
-              fontFamily: "Calibri, sans-serif",
-              clipPath: "inset(0px 100% 0px 0px)",
-            }}
-            id="title-animate"
-          >
-            HackRPI
-            <div className="text-animation-layer inline-block w-auto" />
-          </div>
-
-          <div
-            className="text-blue-200 text-[3.3rem] font-mono leading-none ml-auto mr-5"
-            style={{ clipPath: "inset(0px 100% 0px 0px)" }}
-            id="title-animate"
-          >
-            IN THE CLOUDS
-            <div className="text-animation-layer inline-block w-auto" />
-          </div>
-        </div>
-
-        <div className="relative z-10 w-fit p-0 flex flex-col pl-20 justify-end pb-10">
-          <div
-            className="text-blue-200 text-[2.45rem] leading-none ml-3"
-            style={{
-              fontFamily: "Calibri, sans-serif",
-              clipPath: "inset(0px 100% 0px 0px)",
-              paddingTop: "30px",
-              filter: "drop-shadow(2px 4px 6px black)",
-            }}
-            id="links-animate"
-          >
-            <div className="text-animation-layer inline-block w-auto" />
-            {linkItems.map(({ label, href }) => (
-              <Link
-                key={label}
-                className="norris-line block w-fit"
-                data-text={label}
-                href={href}
-              >
-                {splitLabel(label).map((char, index) => (
-                  <span
-                    key={`${label}-${index}`}
-                    className="norris-char"
-                    data-char={char}
-                    style={{ ["--index" as string]: index }}
-                  >
-                    {char}
-                  </span>
-                ))}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="absolute z-10 left-20" style={{ top: "49%", left: "37%" }}>
-          <Link
-            href="https://events.mlh.com/events/14390-hackrpi-2026"
-            className="block px-8 py-3 border border-yellow-100 font-semibold text-yellow-100 font-mono uppercase tracking-widest text-sm hover:bg-yellow-100 hover:text-black transition-colors duration-300"
-            style={{ boxShadow: "0 0 20px rgba(254,252,232,0.15), inset 0 0 20px rgba(254,252,232,0.3)" }}
-            target="_blank"
-          >
-            Register Now ⇾
-          </Link>
+                {/* Box 4 - Light red links card */}
+                <div className={`w-[14%] h-[55%] bg-[#ffc8c8] overflow-visible rounded-xl flex flex-col justify-end items-end ${margin} gap-1 ${textSize1}`} style={{backgroundColor: showLayout}}>
+                    {linkItems.map((item, index) => (
+                        <Link
+                            key={index}
+                            href={item.href}
+                            className={`norris-line inline-flex flex-row items-center w-fit whitespace-nowrap outline-none shrink-0 leading-none`}
+                            style={{height: "0.8em"}}
+                        >
+                            {splitLabel(item.label).map((char, index) => (
+                                <span
+                                    key={`${item.label}-${index}`}
+                                    className="norris-char h1"
+                                    data-char={char === " " ? "\u00A0" : char}
+                                    style={{ "--index": index } as React.CSSProperties}
+                                >
+                                    {char === " " ? "\u00A0" : char}
+                                </span>
+                            ))}
+                        </Link>
+                    ))}
+                    
+                </div>
+            </div>
         </div>
         
-      </div>
-    </>
-  );
+        <div style={{marginBottom: "500%"}}></div>
+    </>);
 }

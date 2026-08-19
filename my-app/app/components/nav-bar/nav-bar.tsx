@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { NavGroup } from "./nav-bar-links";
 import DesktopNavBar from "./desktop/nav-bar-desktop";
 import MobileNavBar from "./mobile/nav-bar-mobile";
-import DesktopNavBarDarker from "./desktop/nav-bar-desktop-darker";
+import { DesktopNavBarDarker, DesktopNavBarHero } from "./desktop/nav-bar-desktop-darker";
 import linkData from "@/app/data/links.json";
 
 export const links: NavGroup[] = linkData;
@@ -35,7 +35,7 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 
 		const scrollThreshold = window.innerHeight - navHeight;
 		const handleScroll = () => {
-			setShowNav(window.scrollY > scrollThreshold);
+				setShowNav(window.scrollY > scrollThreshold);
 		};
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth);
@@ -77,6 +77,12 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 		return (
 			<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
 				<DesktopNavBarDarker links={links} />
+			</nav>
+		)
+	}else if (variant === 2) {
+		return (
+			<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
+				<DesktopNavBarHero links={links} />
 			</nav>
 		)
 	}

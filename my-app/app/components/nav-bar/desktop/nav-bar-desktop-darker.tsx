@@ -4,8 +4,10 @@ import logo from "@/public/HackRPI_Logo_Light.png";
 // import RegistrationButton from "@/components/themed-components/registration-header-link";
 
 import Link from "next/link";
+import NextLink from "next/link";
 import { Link as lin } from "../nav-bar-links";
 import MlhBanner from "../../mlh-banner/mlh-banner";
+import { useState } from "react";
 
 function NavLink({href, children, new_tab, onClick}: {
 	href: string;
@@ -42,7 +44,7 @@ function NavLink({href, children, new_tab, onClick}: {
 	);
 }
 
-					function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
+function NavGroupComponent({ name, links }: { name: string; links: lin[] }) {
 	if (links.length == 1) {
 		if (links[0].new_tab) {
 			return (
@@ -105,7 +107,7 @@ function NavLink({href, children, new_tab, onClick}: {
 	);
 }
 
-export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
+export function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
   return (
 		<>
     {/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/}
@@ -142,3 +144,63 @@ export default function DesktopNavBarDarker({ links }: { links: NavGroup[] }) {
 		</>
   );
 }
+
+export function DesktopNavBarHero({ links }: { links: NavGroup[] }) {
+	return (
+    <>
+		<header 
+			className="sticky top-0 z-50 w-full border-none bg-gradient-to-b from-slate-950/20 via-slate-950/10 to-transparent backdrop-blur-xl transition-all duration-300"
+			style={{
+			WebkitMaskImage: "linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.78) 70%, rgba(0, 0, 0, 0) 100%)",
+			maskImage: "linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0) 100%)",
+			}}
+		>
+			<nav
+				role="navigation"
+				aria-label="Main Navigation"
+				className="mx-auto flex h-18 max-w-7xl items-center justify-between pr-6 pl-0 md:pr-12 md:pl-0"
+			>
+				{/* Logo Section */}
+				<div className="flex items-center">
+					<Link
+						href="/"
+						className="group relative flex items-center py-2 transition-transform duration-300 ease-out hover:scale-105"
+					>
+					<NextImg
+						alt="HackRPI Logo"
+						aria-label="Homepage"
+						src={logo}
+						className="w-[18vh] max-w-[165px] h-auto object-contain transition-all duration-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_0_18px_rgba(168,85,247,0.5)]"
+						loading="eager"
+						preload={true}
+					/>
+					</Link>
+				</div>
+
+				{/* Navigation Links Group */}
+				<div className="hidden md:flex absolute inset-x-0 justify-center items-center gap-8 lg:gap-12 pointer-events-none">
+					{links.map((link) => {
+						const target = link.links?.[0];
+						const href = typeof target === "string" ? target : target?.href || "#";
+
+						return (
+						<Link
+							key={link.name}
+							href={href}
+							className="pointer-events-auto py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+						>
+							{link.name}
+						</Link>
+						);
+					})}
+				</div>
+
+			</nav>
+		</header>
+      <MlhBanner src="/mlh-badges/mlh-trust-badge-2027-dark.svg" />
+    </>
+  );
+}
+
+
+export default DesktopNavBarDarker;

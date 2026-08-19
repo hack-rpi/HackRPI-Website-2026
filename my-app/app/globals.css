@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -30,7 +33,32 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+@layer base {
+  /* Set Sugo Pro Display as default font for body & headings */
+  body {
+    font-family: var(--font-sugo-display), sans-serif;
+    font-weight: 400;
+  }
+
+  /* Main Headings */
+  h1, .h1 {
+    font-family: var(--font-sugo-display), sans-serif;
+    font-weight: 800;
+    line-height: 0.8;
+  }
+
+  /* Subheadings: Louiseville */
+  h2, h3, h4, h5, h6 {
+    font-family: var(--font-louisville), serif;
+  }
+
+  /* Paragraphs & Text Content: Calps Regular */
+  p, span, li, a, label {
+    font-family: var(--font-calps), sans-serif;
+  }
 }
 
 
@@ -38,6 +66,39 @@ body {
 To make the text animation, ease in width from 0 -> 100%, then ease tranform (1, 1) -> (0, 1) 
 Also for the text, it is needed to have its opacity 0 then put to 1 once the width is 100%
 */
+
+/* Container for each character */
+@layer components {
+  .norris-line {
+    @apply inline-flex relative overflow-hidden;
+  }
+
+  .norris-char {
+    position: relative;
+    display: inline-flex;
+    overflow: visible;
+    height: 1em;
+    line-height: 1em;
+    vertical-align: top;
+    transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    transition-delay: calc(var(--index) * 35ms);
+  }
+
+  .norris-char::after {
+    content: attr(data-char);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    color: inherit; /* Hover text color */
+  }
+
+  .norris-line:hover .norris-char {
+    transform: translateY(-100%);
+  }
+}
+
 .text-animation-layer {
   position: absolute;
   top: 0px;
