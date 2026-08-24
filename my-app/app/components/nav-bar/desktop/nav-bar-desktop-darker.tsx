@@ -197,7 +197,7 @@ export function DesktopNavBarHero({ links }: { links: NavGroup[] }) {
 
 			</nav>
 		</header>
-      <MlhBanner src="/mlh-badges/mlh-trust-badge-2027-dark.svg" />
+      <MlhBanner src="/mlh-badges/mlh-trust-badge-2027-black.svg" />
     </>
   );
 }

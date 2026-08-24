@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import * as THREE from "three";
@@ -259,6 +259,16 @@ export function ProceduralCity({
     buildings.current = list;
   }, [gridWidth, gridDepth, tileSize]);
 
+    useEffect(() => {
+        const textures = textureStyles;
+        return () => {
+            textures.forEach(({ map, emissiveMap }) => {
+            map.dispose();
+            emissiveMap.dispose();
+            });
+        };
+    }, [textureStyles]);
+
   useLayoutEffect(() => {
     buildings.current.forEach((b, i) => {
       const mesh = meshRefs[b.styleGroup]?.current;
@@ -276,6 +286,7 @@ export function ProceduralCity({
     meshRefs.forEach((ref) => {
       if (ref.current) {
         ref.current.instanceMatrix.needsUpdate = true;
+        ref.current.count = buildings.current.length;
         if (ref.current.instanceColor) ref.current.instanceColor.needsUpdate = true;
       }
     });
@@ -402,9 +413,9 @@ export function ProceduralCity({
           <meshStandardMaterial
             map={style.map}
             emissiveMap={style.emissiveMap}
-            emissive={new THREE.Color("#ffffff")}
+            emissive={new THREE.Color("#ffffffce")}
             emissiveIntensity={0.8}
-            transparent={true}
+            transparent={false}
             roughness={0.25}
             metalness={0.75}
             envMapIntensity={1.5}
@@ -432,29 +443,5 @@ export function ProceduralCity({
         <meshStandardMaterial color="#0c0e12" roughness={0.8} metalness={0.2} />
       </instancedMesh>
     </group>
-  );
-}
-
-export function CityLighting() {
-  return (
-    <>
-      <fogExp2 attach="fog" args={["#020408", 0.017]} />
-
-      <directionalLight
-        position={[40, 60, 30]}
-        intensity={2.8}
-        color="#ffe2b3"
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-near={10}
-        shadow-camera-far={120}
-        shadow-bias={-0.0005}
-      />
-
-      <directionalLight position={[-30, 40, -30]} intensity={1.2} color="#4075b0" />
-      <ambientLight intensity={0.25} color="#0a1020" />
-      <Environment preset="city" />
-    </>
   );
 }

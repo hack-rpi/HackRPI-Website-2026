@@ -4,33 +4,34 @@ import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { PerspectiveCamera, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { ProceduralCity, CityLighting } from "./ProceduralCity";
+import { ProceduralCity } from "./ProceduralCity";
 
 const PLANE_URL = "/3d/plane0.glb";
 useGLTF.preload(PLANE_URL);
 
+const scrollMultiplier = 2;
 export const PlanePivots: CameraPivot[] = [
   { position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 0 },
-  { position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300 },
-  { position: [0, 0.2, 0], rotation: [-0.15, 0, Math.PI / 4], fov: 50, scrollPosition: 400 },
-  { position: [0, -0.8, 0], rotation: [Math.PI / 2, 0, Math.PI * 0.85], fov: 50, scrollPosition: 1000 },
-  { position: [0, -3, 0], rotation: [Math.PI / 2, 0, Math.PI * 1.5], fov: 50, scrollPosition: 1200 },
-  { position: [0, -8, 0], rotation: [Math.PI / 2, 0, 2*Math.PI], fov: 50, scrollPosition: 1400 },
-  { position: [0, -20, 0], rotation: [Math.PI / 2, 0.2, 0.5], fov: 50, scrollPosition: 1600 },
-  { position: [0, -80, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000 },
+  { position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300*scrollMultiplier },
+  { position: [0, 0.2, 0], rotation: [-0.15, 0, Math.PI / 4], fov: 50, scrollPosition: 400*scrollMultiplier },
+  { position: [0, -0.8, 0], rotation: [Math.PI / 2, 0, Math.PI * 0.85], fov: 50, scrollPosition: 1000*scrollMultiplier },
+  { position: [0, -3, 0], rotation: [Math.PI / 2, 0, Math.PI * 1.5], fov: 50, scrollPosition: 1200*scrollMultiplier },
+  { position: [0, -8, 0], rotation: [Math.PI / 2, 0, 2*Math.PI], fov: 50, scrollPosition: 1400*scrollMultiplier },
+  { position: [0, -20, 0], rotation: [Math.PI / 2, 0.2, 0.5], fov: 50, scrollPosition: 1600*scrollMultiplier },
+  { position: [0, -80, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier },
 ];
 
 const CameraPivots: CameraPivot[] = [
     { position: [3.5, 1, 0.944], rotation: [-Math.PI / 2, 0, Math.PI + 0.113], fov: 50, scrollPosition: 0 } as const,
-    { position: [.5, 10, 0], rotation: [-Math.PI / 2, 0, Math.PI + 0.113], fov: 50, scrollPosition: 200 } as const,
+    { position: [.5, 10, 0], rotation: [-Math.PI / 2, 0, Math.PI + 0.113], fov: 50, scrollPosition: 200*scrollMultiplier } as const,
 
-    { position: [-2, 8, -3], rotation: [-Math.PI / 2, 0.1, Math.PI], fov: 50, scrollPosition: 400 } as const,
-    { position: [-0.5, 5, -3], rotation: [-Math.PI / 2, 0.1, Math.PI], fov: 50, scrollPosition: 600 } as const,
+    { position: [-2, 8, -3], rotation: [-Math.PI / 2, 0.1, Math.PI], fov: 50, scrollPosition: 400*scrollMultiplier } as const,
+    { position: [-0.5, 5, -3], rotation: [-Math.PI / 2, 0.1, Math.PI], fov: 50, scrollPosition: 600*scrollMultiplier } as const,
 
-    { position: [10, -0.5, 2], rotation: [0, Math.PI/2, 0], fov: 50, scrollPosition: 700 } as const, 
-    { position: [10, -0.5, 2], rotation: [0, Math.PI/2, 0], fov: 50, scrollPosition: 1000 } as const, 
-    { position: [35, -20, -5], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1200 } as const,
-    { position: [40, -22, -10], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1480 } as const,
+    { position: [10, -0.5, 2], rotation: [0, Math.PI/2, 0], fov: 50, scrollPosition: 700*scrollMultiplier } as const, 
+    { position: [10, -0.5, 2], rotation: [0, Math.PI/2, 0], fov: 50, scrollPosition: 1000*scrollMultiplier } as const, 
+    { position: [35, -20, -5], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1200*scrollMultiplier } as const,
+    { position: [40, -22, -10], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1480*scrollMultiplier } as const,
 ];
 
 const _planeResult = {
@@ -324,17 +325,30 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 export default function PlaneScene({scrollY}: {scrollY: number}) {
   console.log(scrollY)
 
-    return (
-        <div className="w-full h-screen fixed z-0">
+  return (
+      <div className="w-full h-screen fixed z-0">
         <Canvas shadows>
-            {/* <PerspectiveCamera makeDefault position={camera.position} rotation={camera.rotation} fov={camera.fov} /> */}
             <CameraRig scrollY={scrollY} />
 
-            <CityLighting />
-            {/* <ambientLight color="#ffffff" intensity={0.5} />
-            <directionalLight color="#ffedb7" position={[4, 4, 5]} intensity={1} /> */}
+            <fogExp2 attach="fog" args={["#020408", 0.017]} />
 
-            {scrollY < 1180 ? 
+            <directionalLight
+              position={[40, 60, 30]}
+              intensity={0.7}
+              color="#ffe2b3"
+              castShadow
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+              shadow-camera-near={10}
+              shadow-camera-far={120}
+              shadow-bias={-0.0005}
+            />
+
+            <directionalLight position={[-30, 40, -30]} intensity={0.9} color="#496b91" />
+            <ambientLight intensity={0.25} color="#262931" />
+            {/* <Environment preset="city" /> */}
+
+            {scrollY < 1180*scrollMultiplier ? 
             <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
             : <></>}
             
@@ -342,6 +356,6 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
             {/* 3D Plane */}
             <PlaneModel scrollY={scrollY} />
         </Canvas>
-        </div>
+      </div>
     );
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function MlhBanner({src} : {src: string}) {
-  src = "/mlh-badges/mlh-trust-badge-2027-white.svg";
+//   src = "/mlh-badges/mlh-trust-badge-2027-white.svg";
 	return (
 		<div>
 			<Link
