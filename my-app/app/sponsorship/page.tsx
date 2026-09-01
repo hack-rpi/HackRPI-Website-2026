@@ -607,40 +607,29 @@ function SponsorUsPage() {
           </div>
         </div>
 
-        {/* <iframe
+			<iframe
 				className="mx-auto w-[90%] h-[120vh] py-10"
-				src="/sponsors/HackRPI_Sponsorship_Deck.pdf"
-			></iframe> */}
-        <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
-
-        <div className="h-[30vh] bg-hackrpi-clouds-dark-blue"></div>
-      </main>
-      <footer className="bg-gray-800">
-        <div
-          className="h-[10vh] w-full bg-hackrpi-clouds-dark-blue"
-          style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }}
-          id="footer-ellipse"
-        ></div>
-        <Footer />
-      </footer>
-      <style jsx global>{`
-        @keyframes tempBlur {
-          0% {
-            filter: blur(0px);
-          }
-          10% {
-            filter: blur(5px);
-          }
-          80% {
-            filter: blur(0px);
-          }
-          100% {
-            filter: blur(0px);
-          }
-        }
-      `}</style>
-    </>
-  );
+				src="https://drive.google.com/file/d/1BDj3qfGiU0tNfEeEDE9UCeRUIvoqoD-k/preview"
+				title="HackRPI Sponsorship Deck"
+				allow="autoplay"
+			></iframe>
+			{/* <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" /> */}
+				
+			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
+		</main>
+		<footer className="bg-gray-800">
+			<div className="w-full h-[10vh] bg-hackrpi-clouds-dark-blue" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+			<Footer/>
+		</footer>
+		<style jsx global>{`
+			@keyframes tempBlur {
+				0% { filter: blur(0px); }
+				10% { filter: blur(5px); }
+				80% { filter: blur(0px); }
+				100% { filter: blur(0px); }
+			}
+		`}</style>
+	</>);
 }
 
 export default SponsorUsPage;
