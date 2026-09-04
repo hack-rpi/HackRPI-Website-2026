@@ -3,17 +3,11 @@
 import "@/app/globals.css";
 import React, { useEffect, useRef } from "react";
 import useMouseLogic from "./mouse";
-import dynamic from "next/dynamic";
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
 import SponsorCard from "./sponsorCard";
 import Lenis from "lenis";
 import Link from "next/link";
-
-const PDFViewer = dynamic(() => import("./PDFViewer"), {
-  ssr: false,
-  loading: () => <p className="py-10 text-center">Loading PDF viewer...</p>,
-});
 
 const tw = {
   container: "box-border desktop:px-[30px] py-0 flex flex-row justify-center m-7",
@@ -613,8 +607,6 @@ function SponsorUsPage() {
 				title="HackRPI Sponsorship Deck"
 				allow="autoplay"
 			></iframe>
-			{/* <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" /> */}
-				
 			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
 		</main>
 		<footer className="bg-gray-800">
