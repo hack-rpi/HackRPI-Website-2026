@@ -1,18 +1,18 @@
 import { type Event } from "@/app/data/schedule";
 
 export function arrangeEvents(events: Event[]): Event[][] {
-	if (events.length === 0) {
-		return [];
-	}
+  if (events.length === 0) {
+    return [];
+  }
 
-	let placedEvents: Event[][] = [];
+  const placedEvents: Event[][] = [];
 
-	for (let i = 1; i <= 4; i++) {
-		let col = events.filter((event) => event.column === i);
-		placedEvents.push(col);
-	}
+  for (let i = 1; i <= 4; i++) {
+    const col = events.filter((event) => event.column === i);
+    placedEvents.push(col);
+  }
 
-	return placedEvents;
+  return placedEvents;
 }
 
 // export function arrangeEvents(events: Event[]): Event[][] {

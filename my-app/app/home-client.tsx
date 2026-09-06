@@ -3,7 +3,7 @@
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
-import Buffer from "@/app/components/themed-components/buffer"
+import Buffer from "@/app/components/themed-components/buffer";
 import AboutUs from "@/app/components/about-us/about-us";
 import FAQPage from "@/app/components/faq/faq";
 import Sponsors from "@/app/components/sponsors/sponsors";
@@ -11,7 +11,7 @@ import TeamComponent from "@/app/components/team/team";
 import Mentions from "@/app/components/team/mentions";
 import FinalMessage from "@/app/components/final-message/final-message";
 
-import Lenis from 'lenis';
+import Lenis from "lenis";
 import { ReactNode, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,19 +20,10 @@ import { textAnimation } from "@/lib/text-animation";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomeClient() {
-  const [Navbar, setNavbar] = useState<ReactNode>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  // Initialize client flag
-  useEffect(() => {
-    setIsClient(true);
-    setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-  }, []);
+  const [Navbar, setNavbar] = useState<ReactNode>(<NavBar showOnScroll={true} variant={1} />);
 
   // Setup Lenis and GSAP animations
   useEffect(() => {
-    if (!isClient) return;
-    
     // Delay setup to ensure DOM is fully hydrated
     const setupTimer = setTimeout(() => {
       try {
@@ -83,7 +74,7 @@ export default function HomeClient() {
           footerTl.fromTo(
             footerEl,
             { clipPath: "ellipse(70% 0% at 50% -10%)" },
-            { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
+            { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" },
           );
         }
 
@@ -93,17 +84,17 @@ export default function HomeClient() {
           start: "top top",
           end: "bottom top",
           onEnter: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
+            setNavbar(<NavBar showOnScroll={true} />);
           },
           onEnterBack: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
+            setNavbar(<NavBar showOnScroll={true} />);
           },
           onLeave: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+            setNavbar(<NavBar showOnScroll={true} variant={1} />);
           },
           onLeaveBack: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          }
+            setNavbar(<NavBar showOnScroll={true} variant={1} />);
+          },
         });
 
         ScrollTrigger.create({
@@ -111,17 +102,17 @@ export default function HomeClient() {
           start: "top top",
           end: "bottom top",
           onEnter: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
+            setNavbar(<NavBar showOnScroll={true} />);
           },
           onEnterBack: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
+            setNavbar(<NavBar showOnScroll={true} />);
           },
           onLeave: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+            setNavbar(<NavBar showOnScroll={true} variant={1} />);
           },
           onLeaveBack: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          }
+            setNavbar(<NavBar showOnScroll={true} variant={1} />);
+          },
         });
 
         return () => {
@@ -134,14 +125,14 @@ export default function HomeClient() {
     }, 100);
 
     return () => clearTimeout(setupTimer);
-  }, [isClient]);
+  }, []);
 
   return (
     <>
-      {isClient && Navbar}
+      {Navbar}
       <div className="w-full overflow-hidden">
         <TitleComponent
-          onReady={(variant) => {
+          onReady={() => {
             // Runs once the chosen title variant is mounted/rendered
             textAnimation("title-animate", 0.9, 0.0, 0);
             textAnimation("links-animate", 0.5, 0.0, 0);
@@ -150,14 +141,18 @@ export default function HomeClient() {
         <AboutUs />
         <div id="switch-light">
           <FAQPage />
-          <Buffer fillColor="#5f6b7a"/>
+          <Buffer fillColor="#5f6b7a" />
           <Sponsors />
         </div>
         <TeamComponent />
         <Mentions />
         <footer id="switch-light-2" className="bg-white">
-          <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
-          <FinalMessage/>
+          <div
+            className="h-[10vh] w-full bg-gBlack"
+            style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }}
+            id="footer-ellipse"
+          ></div>
+          <FinalMessage />
           <Footer />
         </footer>
       </div>

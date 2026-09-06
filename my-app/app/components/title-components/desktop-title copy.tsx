@@ -11,7 +11,7 @@ export default function DesktopTitleComponent() {
       new Worker(new URL("@/app/components/title-components/three/worker.tsx", import.meta.url), {
         type: "module",
       }),
-    []
+    [],
   );
 
   const linkItems = [
@@ -28,21 +28,18 @@ export default function DesktopTitleComponent() {
     return Array.from(segmenter.segment(label), (segment) => segment.segment);
   };
 
-  return ( //  bg-[#00152b] THIS IS TEMP WHILE I SORT OUT 3D MODEL LOADING
+  return (
+    //  bg-[#00152b] THIS IS TEMP WHILE I SORT OUT 3D MODEL LOADING
     // bg-[url('/3d/placeholder.png')]
-  // Or i could just render a view of it since its the same sin wave motion and slap it on the background
-    <div className="relative w-full h-screen bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-5 overflow-hidden">
+    // Or i could just render a view of it since its the same sin wave motion and slap it on the background
+    <div className="relative h-screen w-full overflow-hidden bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-5">
       <div className="absolute inset-0">
-        <Canvas
-          worker={worker}
-          fallback={<Scene />}
-          camera={{ position: [0, 0, 6], fov: 55 }}
-        />
+        <Canvas worker={worker} fallback={<Scene />} camera={{ position: [0, 0, 6], fov: 55 }} />
       </div>
 
-      <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-30 pl-20">
+      <div className="relative z-10 flex h-[50vh] w-fit flex-col p-0 pt-30 pl-20">
         <div
-          className="text-blue-200 text-[2.15rem] leading-none ml-3"
+          className="ml-3 text-[2.15rem] leading-none text-blue-200"
           style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="title-animate"
         >
@@ -51,7 +48,7 @@ export default function DesktopTitleComponent() {
         </div>
 
         <div
-          className="text-[12rem] font-bold leading-none tracking-tight"
+          className="text-[12rem] leading-none font-bold tracking-tight"
           style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="title-animate"
         >
@@ -60,7 +57,7 @@ export default function DesktopTitleComponent() {
         </div>
 
         <div
-          className="text-blue-200 text-[3.3rem] font-mono leading-none ml-auto mr-5"
+          className="mr-5 ml-auto font-mono text-[3.3rem] leading-none text-blue-200"
           style={{ clipPath: "inset(0px 100% 0px 0px)" }}
           id="title-animate"
         >
@@ -69,9 +66,9 @@ export default function DesktopTitleComponent() {
         </div>
       </div>
 
-      <div className="relative z-10 w-fit h-[50vh] p-0 flex flex-col pt-10 pl-20">
+      <div className="relative z-10 flex h-[50vh] w-fit flex-col p-0 pt-10 pl-20">
         <div
-          className="text-blue-200 text-[2.45rem] leading-none ml-3"
+          className="ml-3 text-[2.45rem] leading-none text-blue-200"
           style={{ fontFamily: "Calibri, sans-serif", clipPath: "inset(0px 100% 0px 0px)" }}
           id="links-animate"
         >
@@ -79,7 +76,12 @@ export default function DesktopTitleComponent() {
           {linkItems.map(({ label, href }) => (
             <Link key={label} className="norris-line block w-fit" data-text={label} href={href}>
               {splitLabel(label).map((char, index) => (
-                <span key={`${label}-${index}`} className="norris-char" data-char={char} style={{ ["--index" as string]: index }}>
+                <span
+                  key={`${label}-${index}`}
+                  className="norris-char"
+                  data-char={char}
+                  style={{ ["--index" as string]: index }}
+                >
                   {char}
                 </span>
               ))}

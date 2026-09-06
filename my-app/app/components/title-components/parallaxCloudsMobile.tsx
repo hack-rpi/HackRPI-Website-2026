@@ -26,6 +26,11 @@ const CLOUD_IMAGES = [
   "/parallax/cloud11.png",
 ];
 
+function seededRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 export default function DynamicCloudOverlay() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -36,57 +41,58 @@ export default function DynamicCloudOverlay() {
   }, []);
 
   const clouds = useMemo(() => {
-  const cloudCount = 14;
-  const generatedClouds: Cloud[] = [];
-  const slotWidth = 100 / cloudCount;
+    const cloudCount = 14;
+    const generatedClouds: Cloud[] = [];
+    const slotWidth = 100 / cloudCount;
 
-  // Shuffle slot order so depth/size/zIndex don't correlate with left-to-right position
-  const slotIndices = Array.from({ length: cloudCount }, (_, i) => i);
-  for (let i = slotIndices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [slotIndices[i], slotIndices[j]] = [slotIndices[j], slotIndices[i]];
-  }
+    // Shuffle slot order so depth/size/zIndex don't correlate with left-to-right position
+    const slotIndices = Array.from({ length: cloudCount }, (_, i) => i);
+    for (let i = slotIndices.length - 1; i > 0; i--) {
+      const j = Math.floor(seededRandom(i + 1) * (i + 1));
+      [slotIndices[i], slotIndices[j]] = [slotIndices[j], slotIndices[i]];
+    }
 
-  for (let i = 0; i < cloudCount; i++) {
-    const depth = Math.random();
+    for (let i = 0; i < cloudCount; i++) {
+      const seed = i + 1;
+      const depth = seededRandom(seed * 2);
 
-    const slotStart = slotIndices[i] * slotWidth;
-    const xOffset = slotStart + Math.random() * slotWidth;
-    const left = `${xOffset}%`;
+      const slotStart = slotIndices[i] * slotWidth;
+      const xOffset = slotStart + seededRandom(seed * 3) * slotWidth;
+      const left = `${xOffset}%`;
 
-    const randomY =
-      (2 * window.innerHeight) / 5 + Math.random() * ((2.5 * window.innerHeight) / 5);
-    const top = `${randomY}px`;
+      const randomY =
+        (2 * window.innerHeight) / 5 + seededRandom(seed * 5) * ((2.5 * window.innerHeight) / 5);
+      const top = `${randomY}px`;
 
-    const size = Math.floor(96 + (1 - depth) * 200 + Math.random() * 40);
+      const size = Math.floor(96 + (1 - depth) * 200 + seededRandom(seed * 7) * 40);
 
-    const opacityVariance = (Math.random() - 0.5) * 0.2;
-    const opacity = Math.max(0.2, Math.min(0.8, (1 - depth) * 0.5 + 0.15 + opacityVariance));
+      const opacityVariance = (seededRandom(seed * 11) - 0.5) * 0.2;
+      const opacity = Math.max(0.2, Math.min(0.8, (1 - depth) * 0.5 + 0.15 + opacityVariance));
 
-    const speed = 0.35 + depth * 0.55;
-    const zIndex = Math.floor(10 + depth * 10);
+      const speed = 0.35 + depth * 0.55;
+      const zIndex = Math.floor(10 + depth * 10);
 
-    const src = CLOUD_IMAGES[Math.floor(Math.random() * CLOUD_IMAGES.length)];
-    const flip = Math.random() < 0.5 ? -1 : 1;
+      const src = CLOUD_IMAGES[Math.floor(seededRandom(seed * 13) * CLOUD_IMAGES.length)];
+      const flip = seededRandom(seed * 17) < 0.5 ? -1 : 1;
 
-    generatedClouds.push({
-      id: i,
-      left,
-      top,
-      size,
-      opacity,
-      speed,
-      zIndex,
-      src,
-      flip,
-    });
-  }
+      generatedClouds.push({
+        id: i,
+        left,
+        top,
+        size,
+        opacity,
+        speed,
+        zIndex,
+        src,
+        flip,
+      });
+    }
 
-  return generatedClouds;
-}, []);
+    return generatedClouds;
+  }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       {clouds.map((cloud) => (
         <div
           key={cloud.id}
@@ -105,7 +111,7 @@ export default function DynamicCloudOverlay() {
             src={cloud.src}
             alt=""
             style={{ width: `${cloud.size}px`, height: "auto" }}
-            className="bg-transparent block"
+            className="block bg-transparent"
           />
         </div>
       ))}

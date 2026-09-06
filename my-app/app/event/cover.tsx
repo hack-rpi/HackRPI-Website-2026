@@ -1,43 +1,45 @@
-"use client"
+"use client";
 
-import { /*JSX,*/ useEffect, useRef } from 'react';
-import React from 'react';
-import "./event.css"
+import { /*JSX,*/ useEffect, useRef } from "react";
+import React from "react";
+import "./event.css";
 
-export default function Cover(){
-  
+export default function Cover() {
   const map = useRef<HTMLIFrameElement>(null);
   const coverText = [
-    {value: "Darrin Communications Center", type: "h1"},
-    {value: "Rensselaer Polytechnic Institute", type: "h2"},
-    {value: "Troy, NY 12180", type: "p"},
-    {value: "    ", type: "span"},
+    { value: "Darrin Communications Center", type: "h1" },
+    { value: "Rensselaer Polytechnic Institute", type: "h2" },
+    { value: "Troy, NY 12180", type: "p" },
+    { value: "    ", type: "span" },
 
-    {value: "Free Parking", type: "h1"},
-    {value: "North Lot, Troy, NY 12180", type: "p"},
-    {value: "   ", type: "span"},
+    { value: "Free Parking", type: "h1" },
+    { value: "North Lot, Troy, NY 12180", type: "p" },
+    { value: "   ", type: "span" },
 
-    {value: "Check In", type: "h1"},
-    {value: "Come check in at our entrance table inside!", type: "p"},
-    {value: "Participants will get wrist bands for food and activities", type: "p"},
-    {value: "   ", type: "span"},
-    {value: "   ", type: "span"},
-    {value: "   ", type: "span"},
+    { value: "Check In", type: "h1" },
+    { value: "Come check in at our entrance table inside!", type: "p" },
+    { value: "Participants will get wrist bands for food and activities", type: "p" },
+    { value: "   ", type: "span" },
+    { value: "   ", type: "span" },
+    { value: "   ", type: "span" },
 
-    {value: "Scroll down for more information.", type: "p"},
-  ]
+    { value: "Scroll down for more information.", type: "p" },
+  ];
 
-  useEffect(()=>{
-    if(map.current)
-      map.current.style.animation = "zoomOut 1s ease-out 0s 1 normal forwards"; //"zoomOut 0.5s ease-out 0s 1 normal forwards";
-    if(map.current)
-      console.log(map.current.style.animation);
-  },[])
+  useEffect(() => {
+    if (map.current) map.current.style.animation = "zoomOut 1s ease-out 0s 1 normal forwards"; //"zoomOut 0.5s ease-out 0s 1 normal forwards";
+    if (map.current) console.log(map.current.style.animation);
+  }, []);
 
   return (
     <div className="flex flex-col desktop:flex-row">
       <div className="mapContainer">
-        <iframe ref={map} loading="lazy" allowFullScreen src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"></iframe>
+        <iframe
+          ref={map}
+          loading="lazy"
+          allowFullScreen
+          src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"
+        ></iframe>
       </div>
       <div className="coverTextContainer bg-linear-to-b from-black to-purple-300">
         <div className="coverBackimg"></div>
@@ -46,9 +48,13 @@ export default function Cover(){
           //I know this is now broken but I want it to build sry
 
           return (
-            <div key={i} className="fade-item lineItem text-xl" style={{ '--i': i } as React.CSSProperties}>
+            <div
+              key={i}
+              className="fade-item lineItem text-xl"
+              style={{ "--i": i } as React.CSSProperties}
+            >
               {/* {text.value} */}
-              {text.value.split('').map((letter, index) => {
+              {text.value.split("").map((letter, index) => {
                 return (
                   <div className="funLetter" key={index}>
                     {letter === " " ? "\u00A0" : letter}

@@ -1,12 +1,12 @@
 const WordSplitter = ({ text }: { text: string }) => {
-  const words = text.split('');
+  const words = text.split("");
 
   return (
     <div>
       {words.map((word, index) => (
         <span key={index}>
           {word}
-          {index < words.length - 1 ? '' : ' '}
+          {index < words.length - 1 ? "" : " "}
         </span>
       ))}
     </div>

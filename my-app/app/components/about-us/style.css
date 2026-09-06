@@ -4,16 +4,16 @@
   width: 70vw;
   max-width: 800px;
   /* Adds space specifically on top so the popped out letter stays visible */
-  padding-top: 40vw; 
+  padding-top: 40vw;
   perspective: 1500px;
   cursor: pointer;
 }
 
 @media (max-width: 767px) {
   .envelope-container {
-    width: 80vw;       /* wider than the base 70vw */
+    width: 80vw; /* wider than the base 70vw */
     max-width: 480px;
-    padding-top: 30vw;  /* scale this down proportionally too, or the pop-out space gets oversized */
+    padding-top: 30vw; /* scale this down proportionally too, or the pop-out space gets oversized */
     margin-top: 350px;
   }
 }
@@ -55,7 +55,7 @@
   z-index: 2;
   will-change: transform;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-  overflow-y:hidden;
+  overflow-y: hidden;
 }
 
 @media (max-width: 767px) {
@@ -86,7 +86,7 @@
   width: 100%;
   height: 51%;
   background-color: #475569;
-  z-index: 4; 
+  z-index: 4;
   transform-origin: top center;
   will-change: transform;
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);

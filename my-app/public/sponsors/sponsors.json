@@ -1,22 +1,18 @@
 {
-	"OBSIDIAN": [
-  ],
-	"GOLD": [
-	],
-	"SILVER": [
-	],
-	"BRONZE": [
-	],
-	"COLLABORATORS": [
+  "OBSIDIAN": [],
+  "GOLD": [],
+  "SILVER": [],
+  "BRONZE": [],
+  "COLLABORATORS": [
     {
       "name": "Pure Buttons",
       "logoPath": "Pure-Buttons.svg",
       "url": "https://hackp.ac/mlh-standoutstickers-hackathons"
-	  },
-	  {
+    },
+    {
       "name": "GitHub",
       "logoPath": "github-logo.svg",
       "url": "https://github.com/"
-	  }
-	]
+    }
+  ]
 }

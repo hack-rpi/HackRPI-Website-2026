@@ -48,8 +48,9 @@ Take a look at our open issues on our [issues page](https://github.com/hack-rpi/
 Once you are satisfied with your feature and are ready to merge your changes into the rest of the codebase please follow the following steps.
 
 1. Run `npm run build` to verify that the build passes.
-1. Run `npx prettier --write .` to format your code to the same style as the rest of the repository
-1. Run `npx eslint .eslintrc.js` to run linting checks to ensure a uniform code style and catch potential bugs.
+1. Run `npm run format` to format your code to the same style as the rest of the repository
+   * If you just want to check formatting, run `npm run format:check`.
+1. Run `npm run lint` to run linting checks to ensure a uniform code style and catch potential bugs.
 1. Test your code thoroughly to ensure it looks and works well on mobile and on desktop.
 1. Open a pull request into the main branch to get your code reviewed and merged.
 
