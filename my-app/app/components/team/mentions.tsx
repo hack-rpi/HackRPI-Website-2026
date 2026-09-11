@@ -35,7 +35,7 @@ const deptConfig: Record<string, { icon: string; gradient: string; shadow: strin
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-	const { scene } = useGLTF('/3d/trophy.glb');
+	const { scene } = useGLTF('/3d/trophy-reduced.glb');
 	const clonedScene = useMemo(() => scene.clone(), [scene]);
 	return <Center><primitive object={clonedScene} /></Center>;
 }
