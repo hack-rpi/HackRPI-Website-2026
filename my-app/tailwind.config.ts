@@ -10,6 +10,9 @@ const config: Config = {
 	],
 	theme: {
 		fontFamily: {
+			sugo: ["var(--font-sugo-display)", "sans-serif"],
+			louisville: ["var(--font-louisville)", "serif"],
+			calps: ["var(--font-calps)", "sans-serif"],
 			sans: ["Helvetica", "Arial", "sans-serif"],
 			retro: ["Silkscreen", "serif"],
 			modern: ["Audiowide", "serif"],

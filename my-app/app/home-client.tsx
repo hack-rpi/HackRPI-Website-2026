@@ -26,7 +26,7 @@ export default function HomeClient() {
   // Initialize client flag
   useEffect(() => {
     setIsClient(true);
-    setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+    setNavbar(<NavBar showOnScroll={false} variant={2}/>);
   }, []);
 
   // Setup Lenis and GSAP animations
@@ -56,18 +56,18 @@ export default function HomeClient() {
           : 0;
 
         // animate speech text
-        ScrollTrigger.create({
-          trigger: "#winner-animate",
-          start: "top bottom",
-          end: () => "+=" + scrollWidth,
-          onEnter: () => {
-            let HA2 = false;
-            if (!HA2) {
-              textAnimation("winner-animate", 1.5, 0.05);
-              HA2 = true;
-            }
-          },
-        });
+        // ScrollTrigger.create({
+        //   trigger: "#winner-animate",
+        //   start: "top bottom",
+        //   end: () => "+=" + scrollWidth,
+        //   onEnter: () => {
+        //     let HA2 = false;
+        //     if (!HA2) {
+        //       textAnimation("winner-animate", 1.5, 0.05);
+        //       HA2 = true;
+        //     }
+        //   },
+        // });
 
         // animate effect in footer
         const footerEl = document.querySelector("#footer-ellipse");
@@ -88,41 +88,41 @@ export default function HomeClient() {
         }
 
         // switch navbar styling
-        ScrollTrigger.create({
-          trigger: "#switch-light",
-          start: "top top",
-          end: "bottom top",
-          onEnter: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
-          },
-          onEnterBack: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
-          },
-          onLeave: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          },
-          onLeaveBack: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          }
-        });
+        // ScrollTrigger.create({
+        //   trigger: "#switch-light",
+        //   start: "top top",
+        //   end: "bottom top",
+        //   onEnter: () => {
+        //     setNavbar(<NavBar showOnScroll={true}/>);
+        //   },
+        //   onEnterBack: () => {
+        //     setNavbar(<NavBar showOnScroll={true}/>);
+        //   },
+        //   onLeave: () => {
+        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+        //   },
+        //   onLeaveBack: () => {
+        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+        //   }
+        // });
 
-        ScrollTrigger.create({
-          trigger: "#switch-light-2",
-          start: "top top",
-          end: "bottom top",
-          onEnter: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
-          },
-          onEnterBack: () => {
-            setNavbar(<NavBar showOnScroll={true}/>);
-          },
-          onLeave: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          },
-          onLeaveBack: () => {
-            setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-          }
-        });
+        // ScrollTrigger.create({
+        //   trigger: "#switch-light-2",
+        //   start: "top top",
+        //   end: "bottom top",
+        //   onEnter: () => {
+        //     setNavbar(<NavBar showOnScroll={true}/>);
+        //   },
+        //   onEnterBack: () => {
+        //     setNavbar(<NavBar showOnScroll={true}/>);
+        //   },
+        //   onLeave: () => {
+        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+        //   },
+        //   onLeaveBack: () => {
+        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
+        //   }
+        // });
 
         return () => {
           ScrollTrigger.killAll();
@@ -140,14 +140,15 @@ export default function HomeClient() {
     <>
       {isClient && Navbar}
       <div className="w-full overflow-hidden">
-        <TitleComponent
+        <TitleComponent/>
+        {/* <TitleComponent
           onReady={(variant) => {
             // Runs once the chosen title variant is mounted/rendered
             textAnimation("title-animate", 0.9, 0.0, 0);
             textAnimation("links-animate", 0.5, 0.0, 0);
           }}
-        />
-        <AboutUs />
+        /> */}
+        {/* <AboutUs />
         <div id="switch-light">
           <FAQPage />
           <Buffer fillColor="#5f6b7a"/>
@@ -159,7 +160,7 @@ export default function HomeClient() {
           <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
           <FinalMessage/>
           <Footer />
-        </footer>
+        </footer> */}
       </div>
     </>
   );
