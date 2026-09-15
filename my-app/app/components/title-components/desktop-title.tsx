@@ -61,8 +61,8 @@ export default function DesktopTitleComponent() {
 
             {/* Bottom Section - TEXT & LINKS */}
             <div className="relative w-full h-[45vh] bg-white flex items-end p-6 gap-4 box-border" style={{backgroundColor: showLayout}}>
-                <Countdown center={false}
-                    />
+                {//<Countdown center={false}/>
+                }
                 {/* Box 1 - Small light blue card at top left */}
                 <h1 className={`w-[14%] h-[50%] self-start mr-[8%] bg-[#e1f8ff] rounded-xl flex justify-start items-start ${margin} whitespace-nowrap ${textSize1}`} style={{backgroundColor: showLayout}}>
                     Nov. 7-8

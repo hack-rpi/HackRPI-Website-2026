@@ -127,8 +127,10 @@ function RPIModel(){
     if (groupRef.current) {
       //console.log(model1.position);
       groupRef.current!.position.z-=speed;
-      if(groupRef.current!.position.z<-250){
+      groupRef.current!.position.y+=0.051*speed;
+      if(groupRef.current!.position.z<-241){
         groupRef.current!.position.z=0;
+        groupRef.current!.position.y=0.00;
       }
       //console.log(groupRef.current!.position.z);
 
