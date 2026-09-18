@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PlaneScene from "./three/Scene";
 import Link from "next/link";
+import Countdown from "./countdown";
 import "@/app/globals.css";
 // import MapTerrain from './mapTerrain';
 
@@ -44,7 +45,7 @@ export default function DesktopTitleComponent() {
     };
 
     return (<>
-        <img src="https://picsum.photos/600/400" className="absolute w-full h-full object-cover"/>
+        {/*<img src="https://picsum.photos/600/400" className="absolute w-full h-full object-cover"/>*/}
         {/* <MapTerrain/> */}
         <PlaneScene scrollY={scrollY}/>
         <div className={`w-full h-screen flex flex-col fixed z-1
@@ -59,12 +60,14 @@ export default function DesktopTitleComponent() {
             </div>
 
             {/* Bottom Section - TEXT & LINKS */}
-            <div className="w-full h-[45vh] bg-white flex items-end p-6 gap-4 box-border" style={{backgroundColor: showLayout}}>
+            <div className="relative w-full h-[45vh] bg-white flex items-end p-6 gap-4 box-border" style={{backgroundColor: showLayout}}>
+                {//<Countdown center={false}/>
+                }
                 {/* Box 1 - Small light blue card at top left */}
                 <h1 className={`w-[14%] h-[50%] self-start mr-[8%] bg-[#e1f8ff] rounded-xl flex justify-start items-start ${margin} whitespace-nowrap ${textSize1}`} style={{backgroundColor: showLayout}}>
                     Nov. 7-8
                 </h1>
-
+                
                 {/* Box 2 - Tall light blue card */}
                 <div className={`w-[14%] h-[100%] bg-[#e1f8ff] rounded-xl flex flex-col justify-between items-start ${margin} ${textSize1}`} style={{backgroundColor: showLayout}}>
                     <h1>Troy, NY</h1>

@@ -1,15 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, Suspense, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { PerspectiveCamera, useGLTF, useProgress, Clone } from "@react-three/drei";
 import * as THREE from "three";
 import { ProceduralCity } from "./ProceduralCity";
 
+const RPI_URL = "/3d/rpiPair.glb";
+const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
+const RPI_TILE_URL = "/3d/rpiHighResTrimmed.glb";
 const PLANE_URL = "/3d/plane0.glb";
-useGLTF.preload(PLANE_URL);
+//useGLTF.preload(PLANE_URL);
+//useGLTF.preload(RPI_URL);
 
-const scrollMultiplier = 2;
+const scrollMultiplier = 1;
 export const PlanePivots: CameraPivot[] = [
   { position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 0 },
   { position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300*scrollMultiplier },
@@ -51,7 +55,8 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
     if (modelRef.current) {
       // Re-uses camera spline logic, but writes results into _planeResult
       const planeTransform = getCurrentCamera(scrollY, PlanePivots, planeCurve, [0, 0, 0], _planeResult);
-
+      const forward = new THREE.Vector3();
+      //console.log(scene.getWorldDirection(forward));
       modelRef.current.position.set(...planeTransform.position);
       modelRef.current.quaternion.copy(_planeResult.quaternion);
     }
@@ -63,6 +68,109 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
       object={scene}
       scale={scale}
     />
+  );
+}
+
+function RPIModel(){
+  const { scene : model } = useGLTF(RPI_URL);
+  const { scene : outerModel1 } = useGLTF(RPI_OUTER_URL);
+
+  const model1 = useRef<THREE.Group>(null);
+  //const model2 = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
+
+
+
+  // controls speed of sliding: deafult = 0.1
+  const speed = .2;
+
+  useEffect(() => {
+
+    
+
+    if (groupRef.current) 
+    {
+      model1.current!.position.set(-10, -82, 70);
+      model1.current!.rotation.y = 1.875;
+      console.log(model1.current!.position);
+      outerModel1.position.set(-6, -82, 70);
+      outerModel1.rotation.y = 1.875;
+      //model2.current!.position.set(-6, -90, 310);
+      //model2.current!.rotation.y = 1.875;
+
+      
+      (window as any).group = groupRef.current;
+    }
+    
+    (window as any).moveGroup = (x: number, y: number, z: number, theta: number) => {
+      groupRef.current?.position.set(x, y, z);
+      groupRef.current!.rotation.y = theta;
+      console.log("Model position:", groupRef.current?.position); };
+    (window as any).moveModel1 = (x: number, y: number, z: number, theta: number) => {
+      model1.current!.position.set(x, y, z);
+      model1.current!.rotation.y = theta;
+      console.log("Model position:", model1.current!.position); };
+    (window as any).moveModel2 = (x: number, y: number, z: number, theta: number) => {
+      model2.current!.position.set(x, y, z);
+      model2.current!.rotation.y = theta;
+      console.log("Model position:", model2.current!.position); };
+    (window as any).model = model1;
+  }, [model1]);
+
+
+  useFrame((delta) => {
+    //if (planeRef.current) {
+    //  const direction = new THREE.Vector3();
+    //  planeRef.current.getWorldDirection(direction);
+    //  console.log(direction);
+    //}
+    if (groupRef.current) {
+      //console.log(model1.position);
+      groupRef.current!.position.z-=speed;
+      groupRef.current!.position.y+=0.051*speed;
+      if(groupRef.current!.position.z<-241){
+        groupRef.current!.position.z=0;
+        groupRef.current!.position.y=0.00;
+      }
+      //console.log(groupRef.current!.position.z);
+
+      
+      
+      //console.log(groupRef.current.position);
+      /*if (tileUpdate<=0){
+        tileUpdate = 240;
+        if (currTile = 1){
+          currTile = 2;
+          model1.position.add(new THREE.Vector3(0,-8,370));
+          console.log("tile1->tile2")
+        }
+        else if (currTile = 2){
+          currTile = 1;
+          model2.position.add(new THREE.Vector3(0,-8,370));
+          console.log("tile2->tile1")
+        }
+      }*/
+      //console.log(groupRef.current!.position.z);
+    }
+  });
+  return (
+    <group ref={groupRef}>
+      <Clone
+        ref={model1}
+        object={model}
+        position={[0, 0, 0]}
+      />
+
+      {/*<Clone
+        ref={model2}
+        object={model}
+        position={[5, 0, 0]}
+      />*/
+      }
+      {//<primitive object={outerModel1} />
+      }
+      {/*<primitive object={model2} />*/}
+    </group>
   );
 }
 
@@ -313,7 +421,7 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 
   camera.position.set(...target.position);
   camera.rotation.set(...target.rotation);
-
+  //console.log(camera.position);
   if ('fov' in camera && camera.fov !== target.fov) {
     camera.fov = target.fov;
     camera.updateProjectionMatrix();
@@ -323,15 +431,15 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 }
 
 export default function PlaneScene({scrollY}: {scrollY: number}) {
-  console.log(scrollY)
-
+  //console.log(scrollY)
   return (
       <div className="w-full h-screen fixed z-0">
         <Canvas shadows>
-            <CameraRig scrollY={scrollY} />
-
-            <fogExp2 attach="fog" args={["#020408", 0.017]} />
-
+            {<CameraRig scrollY={scrollY} />
+            }
+            <color attach="background" args={["#000000"]} />
+            {<fogExp2 attach="fog" args={["#000000", 0.005]} />
+            }
             <directionalLight
               position={[40, 60, 30]}
               intensity={0.7}
@@ -347,14 +455,19 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
             <directionalLight position={[-30, 40, -30]} intensity={0.9} color="#496b91" />
             <ambientLight intensity={0.25} color="#262931" />
             {/* <Environment preset="city" /> */}
-
-            {scrollY < 1180*scrollMultiplier ? 
-            <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
-            : <></>}
+            
+            
+            {//{scrollY < 1180*scrollMultiplier ? 
+            //<ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
+            //: <></>}
+            }
             
 
             {/* 3D Plane */}
             <PlaneModel scrollY={scrollY} />
+            <Suspense>
+              {<RPIModel/>}
+            </Suspense>
         </Canvas>
       </div>
     );
