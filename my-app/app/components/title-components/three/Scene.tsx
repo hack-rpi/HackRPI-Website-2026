@@ -6,7 +6,7 @@ import { PerspectiveCamera, useGLTF, useProgress, Clone } from "@react-three/dre
 import * as THREE from "three";
 import { ProceduralCity } from "./ProceduralCity";
 
-const RPI_URL = "/3d/rpiPair.glb";
+const RPI_URL = "/3d/rpiPairWOuter.glb";
 const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
 const RPI_TILE_URL = "/3d/rpiHighResTrimmed.glb";
 const PLANE_URL = "/3d/plane0.glb";
@@ -110,11 +110,7 @@ function RPIModel(){
       model1.current!.position.set(x, y, z);
       model1.current!.rotation.y = theta;
       console.log("Model position:", model1.current!.position); };
-    (window as any).moveModel2 = (x: number, y: number, z: number, theta: number) => {
-      model2.current!.position.set(x, y, z);
-      model2.current!.rotation.y = theta;
-      console.log("Model position:", model2.current!.position); };
-    (window as any).model = model1;
+
   }, [model1]);
 
 
