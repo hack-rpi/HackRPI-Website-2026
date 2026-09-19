@@ -48,11 +48,11 @@ const _planeResult = {
 function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number }) {
   const { scene } = useGLTF(PLANE_URL);
   const modelRef = useRef<THREE.Object3D>(null);
-
   const planeCurve = useMemo(() => buildCameraCurve(PlanePivots), []);
 
   useFrame(() => {
     if (modelRef.current) {
+      console.log(scrollY+" "+window.scrollY);
       // Re-uses camera spline logic, but writes results into _planeResult
       const planeTransform = getCurrentCamera(scrollY, PlanePivots, planeCurve, [0, 0, 0], _planeResult);
       const forward = new THREE.Vector3();
@@ -73,7 +73,6 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
 
 function RPIModel(){
   const { scene : model } = useGLTF(RPI_URL);
-  const { scene : outerModel1 } = useGLTF(RPI_OUTER_URL);
 
   const model1 = useRef<THREE.Group>(null);
   //const model2 = useRef<THREE.Group>(null);
@@ -81,36 +80,15 @@ function RPIModel(){
 
 
 
-  // controls speed of sliding: deafult = 0.1
+  // controls speed of sliding: deafult = 0.2
   const speed = .2;
 
   useEffect(() => {
-
-    
-
     if (groupRef.current) 
     {
       model1.current!.position.set(-10, -82, 70);
-      model1.current!.rotation.y = 1.875;
-      console.log(model1.current!.position);
-      outerModel1.position.set(-6, -82, 70);
-      outerModel1.rotation.y = 1.875;
-      //model2.current!.position.set(-6, -90, 310);
-      //model2.current!.rotation.y = 1.875;
-
-      
-      (window as any).group = groupRef.current;
+      model1.current!.rotation.y = 1.875; 
     }
-    
-    (window as any).moveGroup = (x: number, y: number, z: number, theta: number) => {
-      groupRef.current?.position.set(x, y, z);
-      groupRef.current!.rotation.y = theta;
-      console.log("Model position:", groupRef.current?.position); };
-    (window as any).moveModel1 = (x: number, y: number, z: number, theta: number) => {
-      model1.current!.position.set(x, y, z);
-      model1.current!.rotation.y = theta;
-      console.log("Model position:", model1.current!.position); };
-
   }, [model1]);
 
 
@@ -124,8 +102,8 @@ function RPIModel(){
       //console.log(model1.position);
       groupRef.current!.position.z-=speed;
       groupRef.current!.position.y+=0.051*speed;
-      if(groupRef.current!.position.z<-241){
-        groupRef.current!.position.z=0;
+      if(groupRef.current!.position.z<-261){
+        groupRef.current!.position.z=-20;
         groupRef.current!.position.y=0.00;
       }
       //console.log(groupRef.current!.position.z);
@@ -215,6 +193,56 @@ const _p1 = new THREE.Vector3();
 const _p2 = new THREE.Vector3();
 const _p3 = new THREE.Vector3();
 
+/*
+type slowInterval = {
+  begin: number;
+  end: number;
+  scale: number
+};
+//put all the raw scoll values that you want to slow
+const slowZones : slowInterval[] = [
+  {begin: 200 , end: 400, scale: 0.1}, 
+  {begin: 600 , end: 800, scale: 0.1}
+];
+//returns adjusted intervals based on the slowdown of prior intervals
+function getAdjustedSlowIntervals(intervals: slowInterval[]){
+  let offset = 0;
+  let answer : slowInterval[] =[];
+  for(const slowInterval of intervals){
+    answer.push({begin:slowInterval.begin+offset,end:slowInterval.end+offset,scale:slowInterval.scale})
+    let currOffset = (slowInterval.end-slowInterval.begin)*(1-slowInterval.scale);
+    offset+=currOffset;
+  }
+  return answer;
+}
+//scales scroll based on slowIntervals
+function getScaledScroll(trueScroll: number)
+{
+  let output = 0;
+  let current = 0;
+  for (const slowInterval of getAdjustedSlowIntervals(slowZones)){
+    if (scrollY <= slowInterval.begin) {
+      output += scrollY - current;
+      return output;
+      }
+
+    output += slowInterval.begin - current;
+
+
+    if (scrollY <= slowInterval.end) {
+      output += (scrollY - slowInterval.begin) * slowInterval.scale;
+      return output;
+    }
+    
+    output += (slowInterval.end - slowInterval.begin) * slowInterval.scale;
+    current = slowInterval.end;
+
+  }
+  
+  output += scrollY - current;
+  return output;
+}
+*/
 /**
  * Centripetal Catmull-Rom spline evaluation (alpha = 0.5)
  * Guarantees C1 smooth curves while strictly passing through p1 at t=0 and p2 at t=1.
@@ -427,7 +455,6 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 }
 
 export default function PlaneScene({scrollY}: {scrollY: number}) {
-  //console.log(scrollY)
   return (
       <div className="w-full h-screen fixed z-0">
         <Canvas shadows>
