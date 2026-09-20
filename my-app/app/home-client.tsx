@@ -146,7 +146,7 @@ export default function HomeClient() {
   }, [isClient]);
 
   return (
-    <div className = "bg-black scrollbar-hide">
+    <div className = "bg-black overflow-y-scroll scrollbar-hide">
       <div className={`bg-black transition-opacity duration-3000 ease-in ${loaded ? "opacity-100" : "opacity-0"}`}>
         {isClient && Navbar}
         <div className="w-full overflow-hidden bg-black">
