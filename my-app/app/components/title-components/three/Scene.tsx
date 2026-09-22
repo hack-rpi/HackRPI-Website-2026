@@ -19,6 +19,7 @@ const scrollMultiplier = 1;
 export const PlanePivots: CameraPivot[] = [
 	{ position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 0 },
 	{ position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300*scrollMultiplier },
+
 	{ position: [0, 0.2, 0], rotation: [-0.15, 0, Math.PI / 4], fov: 50, scrollPosition: 400*scrollMultiplier },
 	{ position: [0, -0.8, 0], rotation: [Math.PI / 2, 0, Math.PI * 0.85], fov: 50, scrollPosition: 1000*scrollMultiplier },
 	{ position: [0, -3, 0], rotation: [Math.PI / 2, 0, Math.PI * 1.5], fov: 50, scrollPosition: 1200*scrollMultiplier },
