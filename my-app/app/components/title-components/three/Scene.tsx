@@ -505,14 +505,16 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 				<ambientLight intensity={0.25} color="#262931" />
 				{/* <Environment preset="city" /> */}
 
-				
+				{scrollY < 1180*scrollMultiplier ? 
+					// <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
+					<Suspense>
+						<RPIModel/>
+					</Suspense>
+				: <></>}
 				
 
 				{/* 3D Plane */}
 				<PlaneModel scrollY={scrollY} />
-        <Suspense>
-          <RPIModel/>
-        </Suspense>
 			</Canvas>
 		</div>
 	);
