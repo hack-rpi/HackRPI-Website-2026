@@ -6,7 +6,7 @@ import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from 'next/link';
 import ParallaxClouds from "./parallaxCloudsMobile";
-import SkyCountdownOverlay from "./countdown";
+import SkyCountdownOverlay from "./countdown DEPRECATED";
 
 type SceneProps = {
   centered?: boolean;

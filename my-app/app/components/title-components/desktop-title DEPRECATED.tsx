@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/offscreen";
 import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from "next/link";
-import SkyCountdown from "./countdown";
+import SkyCountdown from "./countdown DEPRECATED";
 
 export default function DesktopTitleComponent() {
   // State to manage the loading overlay

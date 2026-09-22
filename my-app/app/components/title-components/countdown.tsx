@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+'use client';
 
-interface TimeLeft {
+import { useState, useEffect } from 'react';
+
+export interface TimeLeft {
   days: number;
   hours: number;
   minutes: number;
@@ -90,20 +92,25 @@ function SevenSegmentDigit({ digit }: SevenSegmentDigitProps) {
   );
 }
 
-export default function SkyCountdownOverlay({center = false}:{center?: boolean}) {
-  // Target date: November 7th, 2026 09:00:00
-  const targetDate = new Date('2026-11-07T09:00:00').getTime();
-  
+export interface CountdownResult {
+  timeLeft: TimeLeft | null;
+  isPast: boolean;
+}
+
+export function useCountDown(targetDateString: string): CountdownResult {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isPast, setIsPast] = useState(false);
 
   useEffect(() => {
+    const targetDate = new Date(targetDateString).getTime();
+
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
       const difference = targetDate - now;
 
       if (difference <= 0) {
         setIsPast(true);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
 
