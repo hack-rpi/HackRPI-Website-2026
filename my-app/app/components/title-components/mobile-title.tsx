@@ -31,7 +31,7 @@ export default function MobileTitleComponent() {
 			<div className="absolute inset-0">
 				<Canvas
 					worker={worker}
-					fallback={<SceneOnLoad scrollY={0} />}
+					fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
 					camera={{ position: [0, 0, 6], fov: 55 }}
 				/>
 			</div>
