@@ -158,19 +158,18 @@ export default function HomeClient() {
               textAnimation("links-animate", 0.5, 0.0, 0);
             }}
           /> */}
-          {/* <AboutUs />
+          {/*<AboutUs />
           <div id="switch-light">
             <FAQPage />
-            <Buffer fillColor="#5f6b7a"/>
-            <Sponsors />
-          </div>
+            <Buffer fillColor="#5f6b7a"/>*/}
+          <Sponsors />
           <TeamComponent />
           <Mentions />
           <footer id="switch-light-2" className="bg-white">
             <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
             <FinalMessage/>
             <Footer />
-          </footer> */}
+          </footer> 
         </div>
       </div>
     </div>

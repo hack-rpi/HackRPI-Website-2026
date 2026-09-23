@@ -94,7 +94,7 @@ export default function DesktopTitleComponent() {
         <HeroScene scrollY={scrollY} variation={2} startShowPosition={400} hideShowPosition={600} />
         <HeroScene scrollY={scrollY} variation={3} startShowPosition={700} hideShowPosition={1000} />
         
-        <div style={{marginBottom: "500%"}}></div>
+        <div style={{marginBottom: "140%"}}></div>
     </>);
 }
 

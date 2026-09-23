@@ -487,7 +487,7 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 
 				<CameraRig scrollY={scrollY} />
 
-				<fogExp2 attach="fog" args={["#020408", 0.007]} />
+				<fogExp2 attach="fog" args={["#000000", 0.007]} />
 
 				<directionalLight
 					position={[40, 60, 30]}
