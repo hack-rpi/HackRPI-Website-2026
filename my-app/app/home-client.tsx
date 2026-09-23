@@ -13,6 +13,7 @@ import FinalMessage from "@/app/components/final-message/final-message";
 
 import Lenis from 'lenis';
 import { ReactNode, useEffect, useState } from "react";
+import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
@@ -22,6 +23,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HomeClient() {
   const [Navbar, setNavbar] = useState<ReactNode>(null);
   const [isClient, setIsClient] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const { active, progress } = useProgress();
+
+  useEffect(() => {
+    if (!active && progress >= 100) {
+      setLoaded(true);
+    }
+  }, [active, progress]);
 
   // Initialize client flag
   useEffect(() => {
@@ -137,31 +146,32 @@ export default function HomeClient() {
   }, [isClient]);
 
   return (
-    <>
-      {isClient && Navbar}
-      <div className="w-full overflow-hidden">
-        <TitleComponent/>
-        {/* <TitleComponent
-          onReady={(variant) => {
-            // Runs once the chosen title variant is mounted/rendered
-            textAnimation("title-animate", 0.9, 0.0, 0);
-            textAnimation("links-animate", 0.5, 0.0, 0);
-          }}
-        /> */}
-        {/* <AboutUs />
-        <div id="switch-light">
-          <FAQPage />
-          <Buffer fillColor="#5f6b7a"/>
+    <div className = "bg-black overflow-y-scroll scrollbar-hide">
+      <div className={`bg-black transition-opacity duration-3000 ease-in ${loaded ? "opacity-100" : "opacity-0"}`}>
+        {isClient && Navbar}
+        <div className="w-full overflow-hidden bg-black">
+          <TitleComponent/>
+          {/* <TitleComponent
+            onReady={(variant) => {
+              // Runs once the chosen title variant is mounted/rendered
+              textAnimation("title-animate", 0.9, 0.0, 0);
+              textAnimation("links-animate", 0.5, 0.0, 0);
+            }}
+          /> */}
+          {/*<AboutUs />
+          <div id="switch-light">
+            <FAQPage />
+            <Buffer fillColor="#5f6b7a"/>*/}
           <Sponsors />
+          <TeamComponent />
+          <Mentions />
+          <footer id="switch-light-2" className="bg-white">
+            <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
+            <FinalMessage/>
+            <Footer />
+          </footer> 
         </div>
-        <TeamComponent />
-        <Mentions />
-        <footer id="switch-light-2" className="bg-white">
-          <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
-          <FinalMessage/>
-          <Footer />
-        </footer> */}
       </div>
-    </>
+    </div>
   );
 }

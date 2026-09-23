@@ -1,20 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, Suspense, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { PerspectiveCamera, useGLTF, useProgress, Clone } from "@react-three/drei";
 import * as THREE from "three";
 import { ProceduralCity } from "./ProceduralCity";
 import { Letter3D } from "./Letters3D";
 import { useCountDown } from "../countdown";
 
+const RPI_URL = "/3d/rpiPairWOuter.glb";
+const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
+const RPI_TILE_URL = "/3d/rpiHighResTrimmed.glb";
 const PLANE_URL = "/3d/plane0.glb";
-useGLTF.preload(PLANE_URL);
+//useGLTF.preload(PLANE_URL);
+//useGLTF.preload(RPI_URL);
 
-const scrollMultiplier = 2;
+const scrollMultiplier = 1;
 export const PlanePivots: CameraPivot[] = [
 	{ position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 0 },
 	{ position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300*scrollMultiplier },
+
 	{ position: [0, 0.2, 0], rotation: [-0.15, 0, Math.PI / 4], fov: 50, scrollPosition: 400*scrollMultiplier },
 	{ position: [0, -0.8, 0], rotation: [Math.PI / 2, 0, Math.PI * 0.85], fov: 50, scrollPosition: 1000*scrollMultiplier },
 	{ position: [0, -3, 0], rotation: [Math.PI / 2, 0, Math.PI * 1.5], fov: 50, scrollPosition: 1200*scrollMultiplier },
@@ -68,6 +73,83 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
 	);
 }
 
+function RPIModel(){
+  const { scene : model } = useGLTF(RPI_URL);
+
+  const model1 = useRef<THREE.Group>(null);
+  //const model2 = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
+
+
+
+  // controls speed of sliding: deafult = 0.2
+  const speed = .2;
+
+  useEffect(() => {
+    if (groupRef.current) 
+    {
+      model1.current!.position.set(-10, -82, 70);
+      model1.current!.rotation.y = 1.875; 
+    }
+  }, [model1]);
+
+
+  useFrame((delta) => {
+    //if (planeRef.current) {
+    //  const direction = new THREE.Vector3();
+    //  planeRef.current.getWorldDirection(direction);
+    //  console.log(direction);
+    //}
+    if (groupRef.current) {
+      //console.log(model1.position);
+      groupRef.current!.position.z-=speed;
+      groupRef.current!.position.y+=0.051*speed;
+      if(groupRef.current!.position.z<-261){
+        groupRef.current!.position.z=-20;
+        groupRef.current!.position.y=0.00;
+      }
+      //console.log(groupRef.current!.position.z);
+
+      
+      
+      //console.log(groupRef.current.position);
+      /*if (tileUpdate<=0){
+        tileUpdate = 240;
+        if (currTile = 1){
+          currTile = 2;
+          model1.position.add(new THREE.Vector3(0,-8,370));
+          console.log("tile1->tile2")
+        }
+        else if (currTile = 2){
+          currTile = 1;
+          model2.position.add(new THREE.Vector3(0,-8,370));
+          console.log("tile2->tile1")
+        }
+      }*/
+      //console.log(groupRef.current!.position.z);
+    }
+  });
+  return (
+    <group ref={groupRef}>
+      <Clone
+        ref={model1}
+        object={model}
+        position={[0, 0, 0]}
+      />
+
+      {/*<Clone
+        ref={model2}
+        object={model}
+        position={[5, 0, 0]}
+      />*/
+      }
+      {//<primitive object={outerModel1} />
+      }
+      {/*<primitive object={model2} />*/}
+    </group>
+  );
+}
+
 export type CameraPivot = {
 	scrollPosition: number;
 	position: readonly [number, number, number] | [number, number, number];
@@ -113,6 +195,56 @@ const _p1 = new THREE.Vector3();
 const _p2 = new THREE.Vector3();
 const _p3 = new THREE.Vector3();
 
+/*
+type slowInterval = {
+  begin: number;
+  end: number;
+  scale: number
+};
+//put all the raw scoll values that you want to slow
+const slowZones : slowInterval[] = [
+  {begin: 200 , end: 400, scale: 0.1}, 
+  {begin: 600 , end: 800, scale: 0.1}
+];
+//returns adjusted intervals based on the slowdown of prior intervals
+function getAdjustedSlowIntervals(intervals: slowInterval[]){
+  let offset = 0;
+  let answer : slowInterval[] =[];
+  for(const slowInterval of intervals){
+    answer.push({begin:slowInterval.begin+offset,end:slowInterval.end+offset,scale:slowInterval.scale})
+    let currOffset = (slowInterval.end-slowInterval.begin)*(1-slowInterval.scale);
+    offset+=currOffset;
+  }
+  return answer;
+}
+//scales scroll based on slowIntervals
+function getScaledScroll(trueScroll: number)
+{
+  let output = 0;
+  let current = 0;
+  for (const slowInterval of getAdjustedSlowIntervals(slowZones)){
+    if (scrollY <= slowInterval.begin) {
+      output += scrollY - current;
+      return output;
+      }
+
+    output += slowInterval.begin - current;
+
+
+    if (scrollY <= slowInterval.end) {
+      output += (scrollY - slowInterval.begin) * slowInterval.scale;
+      return output;
+    }
+    
+    output += (slowInterval.end - slowInterval.begin) * slowInterval.scale;
+    current = slowInterval.end;
+
+  }
+  
+  output += scrollY - current;
+  return output;
+}
+*/
 /**
  * Centripetal Catmull-Rom spline evaluation (alpha = 0.5)
  * Guarantees C1 smooth curves while strictly passing through p1 at t=0 and p2 at t=1.
@@ -355,7 +487,7 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 
 				<CameraRig scrollY={scrollY} />
 
-				<fogExp2 attach="fog" args={["#020408", 0.017]} />
+				<fogExp2 attach="fog" args={["#000000", 0.007]} />
 
 				<directionalLight
 					position={[40, 60, 30]}
@@ -374,7 +506,10 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 				{/* <Environment preset="city" /> */}
 
 				{scrollY < 1180*scrollMultiplier ? 
-					<ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
+					// <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
+					<Suspense>
+						<RPIModel/>
+					</Suspense>
 				: <></>}
 				
 
