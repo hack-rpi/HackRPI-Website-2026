@@ -65,18 +65,18 @@ export default function HomeClient() {
           : 0;
 
         // animate speech text
-        // ScrollTrigger.create({
-        //   trigger: "#winner-animate",
-        //   start: "top bottom",
-        //   end: () => "+=" + scrollWidth,
-        //   onEnter: () => {
-        //     let HA2 = false;
-        //     if (!HA2) {
-        //       textAnimation("winner-animate", 1.5, 0.05);
-        //       HA2 = true;
-        //     }
-        //   },
-        // });
+        ScrollTrigger.create({
+           trigger: "#winner-animate",
+           start: "top bottom",
+           end: () => "+=" + scrollWidth,
+           onEnter: () => {
+             let HA2 = false;
+             if (!HA2) {
+               textAnimation("winner-animate", 1.5, 0.05);
+               HA2 = true;
+             }
+         },
+        });
 
         // animate effect in footer
         const footerEl = document.querySelector("#footer-ellipse");
