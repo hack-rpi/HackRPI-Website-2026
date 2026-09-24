@@ -34,9 +34,9 @@ export default function Event() {
       <NavBar showOnScroll={false} variant={2} />
       <Cover/>
 
-      <main className = "flex flex-col w-full">
+      <main className = "flex flex-col w-full eventPageBG">
 				{/* Mentoring information */}
-        <div className="w-full h-auto bg-linear-to-b from-purple-300 to-24% to-sky-500 flex flex-col desktop:flex-row text-white pt-10">
+        <div className="w-full h-auto flex flex-col desktop:flex-row text-white pt-10">
           <div className="w-full desktop:w-[10%] flex flex-col items-center justify-center p-5">
             <h1>Need Help?</h1>
           </div>
@@ -70,11 +70,7 @@ export default function Event() {
         </div>
 
 				{/* Project submission and judging */}
-        <div className="
-          w-full h-auto
-          bg-linear-to-b from-sky-500 from-80% to-hackrpi-clouds-green
-          text-white p-5 flex flex-col items-center pb-20
-        ">
+        <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-20 ">
           <h1 className="text-center">Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
             <h2 className="text-center">JUDGING CRITERIA</h2>
@@ -87,7 +83,7 @@ export default function Event() {
             <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">
 							{/* Practicality & Utility Card */}
 							<div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
+                group relative criteriaBG
                 border-2 border-hackrpi-pink/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-pink
               ">
@@ -107,7 +103,7 @@ export default function Event() {
 
 							{/* Creativity Card */}
 							<div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
+                group relative criteriaBG
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
               ">
@@ -127,7 +123,7 @@ export default function Event() {
 
 							{/* Technical Difficulty Card */}
               <div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
+                group relative criteriaBG
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
               ">								
@@ -147,7 +143,7 @@ export default function Event() {
 
 							{/* Effort Card */}
 							<div className="
-                group relative bg-linear-to-br from-purple-500 to-sky-500
+                group relative criteriaBG
                 border-2 border-hackrpi-light-purple/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
               ">
@@ -202,7 +198,7 @@ export default function Event() {
 													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="text-purple-500 hover:text-pink-500 underline transition-colors"
+													className="text-purple-800 hover:text-pink-800 underline transition-colors"
 												>
 													Sign up for a Devpost account
 												</Link>{" "}
@@ -336,7 +332,7 @@ export default function Event() {
         </div>
       </main>
       <footer className="bg-white">
-				<div className="w-full h-[10vh] bg-hackrpi-clouds-green" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+				<div className="w-full h-[10vh] eventPageEnd" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
         <Footer />
       </footer>
 		</>

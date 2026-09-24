@@ -113,3 +113,21 @@ h1{
   animation: fadeUp 0.6s ease-out forwards;
   animation-delay: calc(var(--i) * 0.1s);
 }
+
+.eventPageBG{
+  background: linear-gradient(
+    to bottom,
+    #744d9e 0%,         /* Tailwind purple-300 */
+    #0f77a7 50%,        /* Tailwind sky-500 */
+    /*#0ea5e9 80%,*/        /* Tailwind sky-500 */
+    /* var(--hackrpi-clouds-green, #10b981) 100% */
+    var(--hackrpi-clouds-dark-blue, #1e3a8a) 100%
+  );
+}
+.eventPageEnd{
+  background-color:var(--hackrpi-clouds-dark-blue, #1e3a8a);
+}
+
+.criteriaBG{
+  background-color:var(--color-hackrpi-clouds-dark-blue);
+}
