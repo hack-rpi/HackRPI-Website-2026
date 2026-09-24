@@ -80,14 +80,15 @@ h1{
   filter: brightness(0.5) blur(4px);
 }
 
-.coverTextContainer{
+.coverTextContainer {
   bottom: 0;
   transform: translateY(-50%);
   margin-right: 20px;
-  position:absolute;
-  right:0;
+  position: absolute;
+  right: 0;
   max-width: 50vw;
-  /* width:100%; */
+  min-width: 200px;
+  max-height: 50vh;
   padding: 20px;
   justify-items: center;
   align-content: center;
@@ -95,6 +96,21 @@ h1{
 
   background-color: rgba(82, 80, 80, 0.702);
   border-radius: 10px;
+
+  /* 1. Define container context */
+  container-type: inline-size;
+  container-name: coverContainer;
+}
+
+/* 2. Scale text based on container width */
+.coverTextContainer h1 {
+  /* clamp(MIN, VAL, MAX) -> 5cqw = 5% of .coverTextContainer width */
+  font-size: clamp(1.2rem, 8cqw, 3.5rem);
+  line-height: 1.1;
+}
+
+.coverTextContainer p {
+  font-size: clamp(0.875rem, 3.5cqw, 1.25rem);
 }
 
 @keyframes fadeUp {
