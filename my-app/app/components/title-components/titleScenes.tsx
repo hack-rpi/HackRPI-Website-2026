@@ -24,7 +24,7 @@ export function Variation1({show}:{show: boolean}){
     const textColor = "#c5c5c5";
 
     return (<>
-        <div className={`w-full h-screen flex flex-col fixed z-1
+        <div className={`w-full h-screen flex flex-col fixed z-1 pointer-events-none
             transition-opacity duration-300 ease-in-out ${show ? 'opacity-100' : 'opacity-0'}
         `} style={{color: textColor}}>
             {/* Top Section - IMAGE */}
@@ -104,7 +104,7 @@ export function Variation2({show}:{show: boolean}){
 
     return (<>
         <div 
-            className={`w-full h-screen flex flex-col items-center justify-center fixed z-10 transition-opacity duration-300 ease-in-out ${show ? 'opacity-100' : 'opacity-0'}`} 
+            className={`pointer-events-none w-full h-screen flex flex-col items-center justify-center fixed z-10 transition-opacity duration-300 ease-in-out ${show ? 'opacity-100' : 'opacity-0'}`} 
             style={{ color: textColor, backgroundColor: showLayout }}
         >
             {isPast ? (
