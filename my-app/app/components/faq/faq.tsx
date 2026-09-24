@@ -15,8 +15,6 @@ const CARDS = [
     color: 'bg-zinc-800' },
   { id: 6, title: 'How do I register?', body: 'You can click here to register with Major League Hacking (MLH)', 
     color: 'bg-zinc-800' },
-  { id: 7, title: 'Who can participate?', body: 'All college, university, or high school students (see next question) are welcome to participate! Whether you are a hackathon veteran or this is your first hackathon, this is a great opportunity to learn, experiment with new technologies, and grow your skills. Our team of experienced mentors is here to help you in every step of the way, and we have workshops designed to introduce you to new skills and technologies you may want to use for your project.', 
-    color: 'bg-zinc-800' },
   { id: 8, title: "I'm under 18, can I still participate?", body: 'Students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms. Students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.', 
     color: 'bg-zinc-800' },
   { id: 9, title: 'Do I have to be an RPI student?', body: 'No! HackRPI is open to students of all experience levels, and students from all colleges and universities are welcome to attend. Did you know that students from over 25 other colleges attended HackRPI 2025?!', 
