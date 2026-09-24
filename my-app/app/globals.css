@@ -61,9 +61,11 @@ html::-webkit-scrollbar {
     line-height: 0.8;
   }
 
-  /* Subheadings: Louiseville */
+  /* Subheadings: OMN */
   h2, h3, h4, h5, h6 {
-    font-family: var(--font-louisville), serif;
+    font-family: var(--font-OMN), serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
   }
 
   /* Paragraphs & Text Content: Calps Regular */

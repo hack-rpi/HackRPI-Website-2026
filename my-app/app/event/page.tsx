@@ -31,7 +31,7 @@ export default function Event() {
 
   return (
 		<> 
-      <NavBar showOnScroll={false} />
+      <NavBar showOnScroll={false} variant={2} />
       <Cover/>
 
       <main className = "flex flex-col w-full">
@@ -41,7 +41,7 @@ export default function Event() {
             <h1>Need Help?</h1>
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2>Mentoring Information</h2>
+            <h2>MENTORING INFORMATION</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
             your project idea, or navigating the challenges of a hackathon, our experienced
@@ -50,7 +50,7 @@ export default function Event() {
             Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2>Event Discord</h2>
+            <h2>EVENT DISCORD</h2>
             {/*Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.*/} Stay on the lookout - link coming soon!
@@ -77,7 +77,7 @@ export default function Event() {
         ">
           <h1 className="text-center">Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
-            <h2 className="text-center">Judging Criteria</h2>
+            <h2 className="text-center">JUDGING CRITERIA</h2>
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
               present your project to our panel of industry professionals,
@@ -170,7 +170,7 @@ export default function Event() {
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
 						<div className="text-center mb-12">
-							<h2>Project Submission</h2>
+							<h2>PROJECT SUBMISSION</h2>
 							<p>Submit your project through Devpost and showcase your amazing work!</p>
 						</div>
 
