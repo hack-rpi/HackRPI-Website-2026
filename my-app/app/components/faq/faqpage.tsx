@@ -1,10 +1,8 @@
-"use client";
+'use client';
 
-import { ReactNode, Children, useState } from "react";
+import Faqspinner from "./faq";
+import QnA from "./qna";
 
-interface CarouselProps {
-  children: ReactNode[];
-}
 const CARDS = [
   { id: 1, title: 'What is HackRPI?', body: 'HackRPI is a 24-hour hackathon where teams of 1-4 come together to create tech projects from scratch. Students design, build, and present software and/or hardware solutions based on our theme, In The Clouds, with the best projects earning big prizes.', 
     color: 'bg-zinc-800' },
@@ -38,15 +36,11 @@ const CARDS = [
     color: 'bg-zinc-800' },
 ];
 
-export default function Carousel({ children }: CarouselProps) {
+export default function StackedCarousel() {
 
   return (
-      <div className="flex mx-auto flex-wrap justify-evenly">
-          {Children.map(children, (child) => (
-            <div className="w-9/30 min-w-[150px] my-10">
-              {child} 
-            </div>
-          ))}
-      </div>
+        <Faqspinner>
+            {CARDS.map((card, index) => {return <QnA title = {card.title} content={card.body} defaultOpen={false} />})}
+        </Faqspinner>
   );
 }
