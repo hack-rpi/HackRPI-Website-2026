@@ -12,7 +12,7 @@ export default function QnA({title, content, defaultOpen = false }: FAQ) {
   const contentId = React.useId();
 
   return (
-    <div className="border-2 border-white">
+    <div className="">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

@@ -5,7 +5,7 @@ import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
 import Buffer from "@/app/components/themed-components/buffer"
 import AboutUs from "@/app/components/about-us/about-us";
-import FAQPage from "@/app/components/faq/faq";
+import FAQPage from "@/app/components/faq/faqpage";
 import Sponsors from "@/app/components/sponsors/sponsors";
 import TeamComponent from "@/app/components/team/team";
 import Mentions from "@/app/components/team/mentions";
@@ -162,6 +162,7 @@ export default function HomeClient() {
           <div id="switch-light">
             <FAQPage />
             <Buffer fillColor="#5f6b7a"/>*/}
+          <FAQPage />
           <Sponsors />
           <TeamComponent />
           <Mentions />
