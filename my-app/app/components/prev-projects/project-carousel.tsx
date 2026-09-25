@@ -1,3 +1,4 @@
+import { div } from "framer-motion/client";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -19,7 +20,7 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 	};
 
 	return (
-		<div className="w-full my-10" style={{ zIndex: 1 }}>
+		<div className="w-full" style={{ zIndex: 1 }}>
 			<Carousel
 				swipeable={true}
 				draggable={true}
@@ -31,7 +32,25 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 				containerClass="w-full h-fit rounded-md mb-2"
 			>
 				{projects.map((project, index) => (
-					<div className="items-center flex-col w-full h-fit flex justify-center my-4" key={index}>
+					<div className="w-3/4 flex flex-col justify-center my-10 mx-25">
+						<h1 className="mx-auto my-5 text-4xl">{project.prizeCategory}</h1>
+						<div className="flex">
+							<div className="w-1/2 text-xl">
+								<img className="aspect-3/2 object-cover" src={project.imageUrl} />
+							</div>
+							<div className="w-1/2 mx-10 text-xl flex flex-col">
+								<p className="mx-auto my-1 text-4xl">{project.title}</p>
+								<p className="mx-auto my-1 text-base">{project.authors.join(", \n")}</p>
+								<p>{project.description}</p>
+							</div>
+						</div>
+					</div>
+				))}
+			</Carousel>
+		</div>
+	);
+}
+/*<div className="items-center flex-col w-full h-fit flex justify-center my-4" key={index}>
 						<h1 className="text-ellipsis w-full text-center text-xl xs:text-2xl sm:text-3xl font-bold font-sans p-1">
 							{project.prizeCategory}
 						</h1>
@@ -50,9 +69,4 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 							<div className="absolute sm:w-3/4 -top-50 flex-col w-full pl-4 mt-2 text-center"></div>
 							<p className="w-full px-4 font-sans text-center my-2">{project.description}</p>
 						</div>
-					</div>
-				))}
-			</Carousel>
-		</div>
-	);
-}
+					</div>*/

@@ -22,7 +22,7 @@ export default function HackRPILink({
 		>
 			{children}
 			<svg
-				className="absolute top-1 right-1 group-hover:fill-yellow-500 fill-purple-500 transition-colors duration-0"
+				className="absolute top-1 right-1 group-hover:fill-yellow-500 fill-purple-500 transition-colors duration-500"
 				xmlns="http://www.w3.org/2000/svg"
 				width="15"
 				height="15"

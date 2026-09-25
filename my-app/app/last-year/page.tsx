@@ -36,9 +36,9 @@ export default function PastYearProjects() {
 		<>
 			<NavBar showOnScroll={false}/>
 			<main className="
-				w-full pt-[8vh] flex items-center justify-center
-				flex-col bg-linear-to-b from-sky-500 via-purple-500 to-purple-800 pb-20
-			" id="winners">
+				w-full pt-[8vh] flex items-center justify-center pb-20 flex-col
+				bg-linear-to-b from-orange-500 via-purple-500 via-60% to-purple-800"
+			id="winners">
 				<h2 className="text-3xl font-bold text-center p-5 m-5">Previous Projects from HackRPI 2025</h2>
 				<div className="w-11/12 lg:w-3/4 xl:w-2/3 flex flex-col items-center justify-center">
 					<div className="grid grid-cols-1 gap-8 mx-auto">
@@ -52,10 +52,14 @@ export default function PastYearProjects() {
 						))}
 					</div>
 					<hr className="my-8 border-t border-gray-200 w-full desktop:w-1/2 " />
-					<ProjectCarousel projects={carouselPrizes} />
+					<div className="w-full">
+						{/*<img className="absolute z-10" src={"/last-year/2025_carousel_frame.png"} />
+						attempt at a frame looked kinda ugly but I will leave it here incase someone more talented gets assigned to this next year! Thats also why there is like a random div here for no reason*/}
+						<ProjectCarousel projects={carouselPrizes} />
+					</div>
 					<HackRPILink
 						href="https://hackrpi-2025.devpost.com/project-gallery"
-						className="text-primary text-xl lg:text-2xl px-5 py-2 mt-2 mb-20"
+						className="text-primary text-xl lg:text-2xl px-5 py-2 mt-2 mb-20 bg-purple-900"
 					>
 						See all projects!
 					</HackRPILink>
