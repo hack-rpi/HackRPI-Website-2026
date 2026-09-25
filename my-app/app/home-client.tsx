@@ -162,15 +162,18 @@ export default function HomeClient() {
           <div id="switch-light">
             <FAQPage />
             <Buffer fillColor="#5f6b7a"/>*/}
-          <FAQPage />
-          <Sponsors />
-          <TeamComponent />
-          <Mentions />
-          <footer id="switch-light-2" className="bg-white">
-            <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
-            <FinalMessage/>
-            <Footer />
-          </footer> 
+            <div className="z-10 relative">
+              <FAQPage />
+              <Sponsors />
+              <TeamComponent />
+              <Mentions />
+              <footer id="switch-light-2" className="bg-white">
+                <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
+                <FinalMessage/>
+                <Footer />
+              </footer> 
+            </div>
+          
         </div>
       </div>
     </div>
