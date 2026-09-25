@@ -6,7 +6,7 @@ import Scene from "@/app/components/title-components/three/Scene";
 import SceneOnLoad from "@/app/components/title-components/three/Scene";
 import Link from 'next/link';
 import ParallaxClouds from "./parallaxCloudsMobile";
-import SkyCountdownOverlay from "./countdown";
+import SkyCountdownOverlay from "./countdown DEPRECATED";
 
 type SceneProps = {
   centered?: boolean;
@@ -31,7 +31,7 @@ export default function MobileTitleComponent() {
 			<div className="absolute inset-0">
 				<Canvas
 					worker={worker}
-					fallback={<SceneOnLoad onLoaded={() => setIsLoading(false)} />}
+					fallback={<SceneOnLoad scrollY={0} />}
 					camera={{ position: [0, 0, 6], fov: 55 }}
 				/>
 			</div>

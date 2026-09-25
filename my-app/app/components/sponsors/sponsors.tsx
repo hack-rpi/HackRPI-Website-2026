@@ -83,7 +83,7 @@ export default function Sponsors() {
 				className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
 			/>
 			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">Thank you to our sponsors that make HackRPI possible!</h2>
-			{/* <div className = "flex flex-row justify-center flex-wrap gap-10">
+			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.OBSIDIAN.map((sponsor, index) => (
 					<SponsorCard
 						key={index}
@@ -126,13 +126,24 @@ export default function Sponsors() {
 						link={sponsor.url}
 					/>
 				))}
-			</div> */}
+			</div>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.COLLABORATORS.map((sponsor, index) => (
 					<SponsorCard
 						key={index}
 						name={sponsor.name}
 						tier={"collaborator"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+			</div>
+			<div className = "flex flex-row justify-center flex-wrap gap-10">
+				{sponsors.TRACKS.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"track"}
 						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
 						link={sponsor.url}
 					/>

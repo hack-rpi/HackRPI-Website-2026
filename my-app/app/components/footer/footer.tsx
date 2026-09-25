@@ -68,7 +68,7 @@ export default function Footer() {
 						<span className="text-white text-lg desktop:text-2xl">110 8th St, Troy, NY 12180</span>
 						<div className="mt-6 flex items-center justify-center gap-4 text-blue-200">
 							<Link
-								href="https://discord.com/invite/BkDVUmrufa"
+								href="https://discord.gg/ZcKXwk7Bx2"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="Discord"

@@ -1,22 +1,89 @@
 {
 	"OBSIDIAN": [
-  ],
+		{
+			"name": "Severino Center",
+			"logoPath": "Severino.jpg",
+			"url": "https://severinocenter.rpi.edu/"
+		},{
+			"name": "Nuvalence",
+			"logoPath": "Nuvalence.png",
+			"url": "https://nuvalence.io/"
+		}
+  	],
 	"GOLD": [
+		
 	],
 	"SILVER": [
+		{
+			"name": "Velan Studios",
+			"logoPath": "Velan_Studios_Logo.png",
+			"url": "https://velanstudios.com/"
+		}
 	],
 	"BRONZE": [
+		{
+			"name": "GlobalFoundries",
+			"logoPath": "GlobalFoundries.png",
+			"url": "https://gf.com/"
+		}
 	],
 	"COLLABORATORS": [
-    {
-      "name": "Pure Buttons",
-      "logoPath": "Pure-Buttons.svg",
-      "url": "https://hackp.ac/mlh-standoutstickers-hackathons"
-	  },
-	  {
-      "name": "GitHub",
-      "logoPath": "github-logo.svg",
-      "url": "https://github.com/"
-	  }
+    	{
+			"name": "Pure Buttons",
+			"logoPath": "Pure-Buttons.svg",
+			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
+	  	},
+	  	{
+			"name": "GitHub",
+			"logoPath": "github-logo.svg",
+			"url": "https://github.com/"
+	  	},
+
+
+
+		{
+			"name": "Chick Fil - A",
+			"logoPath": "chicky.svg",
+			"url": "https://www.chickfila.com/"
+		},{
+			"name": "Chipolte",
+			"logoPath": "Chipotle.svg",
+			"url": "https://www.chipotle.com/"
+		},{
+			"name": "Starbucks",
+			"logoPath": "Starbs.svg",
+			"url": "https://www.starbucks.com/"
+		},{
+			"name": "Awake Chocolate",
+			"logoPath": "Awake_Chocolate.png",
+			"url": "https://awakechocolate.com/"
+		},{
+			"name": "Hannaford",
+			"logoPath": "hannaford.svg",
+			"url": "https://www.hannaford.com/"
+		},{
+			"name": "Monster Energy",
+			"logoPath": "MonsterEnergy.png",
+			"url": "https://www.monsterenergy.com/"
+		},{
+			"name": "Taichi Bubble Tea",
+			"logoPath": "Taichi.png",
+			"url": "https://www.taichibubbletea.com/"
+		}
+	],
+	"TRACKS": [
+		{
+			"name": "Lally CEMET",
+			"logoPath": "RPI_Logo_White.svg",
+			"url": ""
+		},{
+			"name": "Databricks",
+			"logoPath": "databricks.svg",
+			"url": "https://www.databricks.com/"
+		},{
+			"name": "ElevenLabs",
+			"logoPath": "elevenlabs.svg",
+			"url": "https://www.elevenlabs.io/"
+		}
 	]
 }

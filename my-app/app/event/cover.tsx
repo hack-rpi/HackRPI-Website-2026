@@ -9,7 +9,7 @@ export default function Cover(){
   const map = useRef<HTMLIFrameElement>(null);
   const coverText = [
     {value: "Darrin Communications Center", type: "h1"},
-    {value: "Rensselaer Polytechnic Institute", type: "h2"},
+    {value: "Rensselaer Polytechnic Institute ", type: "p"},
     {value: "Troy, NY 12180", type: "p"},
     {value: "    ", type: "span"},
 
@@ -17,14 +17,8 @@ export default function Cover(){
     {value: "North Lot, Troy, NY 12180", type: "p"},
     {value: "   ", type: "span"},
 
-    {value: "Check In", type: "h1"},
-    {value: "Come check in at our entrance table inside!", type: "p"},
-    {value: "Participants will get wrist bands for food and activities", type: "p"},
-    {value: "   ", type: "span"},
-    {value: "   ", type: "span"},
-    {value: "   ", type: "span"},
-
-    {value: "Scroll down for more information.", type: "p"},
+    {value: "Check in", type: "h1"},
+    {value: "at our table inside for a wrist band for food and activites!", type: "p"},
   ]
 
   useEffect(()=>{
@@ -39,22 +33,32 @@ export default function Cover(){
       <div className="mapContainer">
         <iframe ref={map} loading="lazy" allowFullScreen src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"></iframe>
       </div>
-      <div className="coverTextContainer bg-linear-to-b from-black to-purple-300">
-        <div className="coverBackimg"></div>
+      <div className="coverTextContainer z-1">
+        {/* <div className="coverBackimg"></div> */}
         {coverText.map((text, i) => {
           //const Tag: JSX.Element = text.type;// as keyof JSX.IntrinsicElements;
           //I know this is now broken but I want it to build sry
 
+          if(text.type === "h1"){
+            return (<h1 key={i} className="fade-item lineItem text-base" style={{ '--i': i } as React.CSSProperties}>{text.value}</h1>);
+          }else if(text.type === "h2"){
+            return (<h2 key={i} className="fade-item lineItem text-xs" style={{ '--i': i } as React.CSSProperties}>{text.value}</h2>);
+          }else if(text.type === "p"){
+            return (<p key={i} className="fade-item lineItem text-xs" style={{ '--i': i } as React.CSSProperties}>{text.value}</p>);
+          }else if(text.type === "span"){
+            return (<span key={i} className="fade-item lineItem text-xs" style={{ '--i': i } as React.CSSProperties}>{text.value}</span>);
+          }
+
           return (
             <div key={i} className="fade-item lineItem text-xl" style={{ '--i': i } as React.CSSProperties}>
-              {/* {text.value} */}
-              {text.value.split('').map((letter, index) => {
+              {text.value}
+              {/* {text.value.split('').map((letter, index) => {
                 return (
                   <div className="funLetter" key={index}>
                     {letter === " " ? "\u00A0" : letter}
                   </div>
                 );
-              })}
+              })} */}
             </div>
           );
         })}

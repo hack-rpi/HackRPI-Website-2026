@@ -33,11 +33,21 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     shadowColor = "239,68,68";
     opacity = "opacity-95";
     hoverOpacity = "hover:opacity-100";
-  } else {
+  } else if (tier == "collaborator") {
     bg_color = "bg-white/20 bg-gradient-to-br from-white/35 to-white/10 border-white/25";
     text_color = "text-grey-600";
     shadowColor = "255,255,255";
     opacity = "opacity-95";
+  }else if (tier == "track") {
+    bg_color = "bg-gray-800/20 bg-gradient-to-br from-gray-700/30 to-gray-900/10 border-gray-600/30 backdrop-blur-sm";
+    text_color = "text-gray-400";
+    shadowColor = "31,41,55"; // #1f2937
+    opacity = "opacity-95";
+  }else{
+    bg_color = "bg-white/5 bg-gradient-to-br from-white/10 to-transparent border-white/15 backdrop-blur-md";
+    text_color = "text-gray-200";
+    shadowColor = "0,0,0";
+    opacity = "opacity-75";
   }
 
   const [rotateX, setRotateX] = useState(0);
