@@ -40,7 +40,9 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 							</div>
 							<div className="w-1/2 mx-10 text-xl flex flex-col">
 								<p className="mx-auto my-1 text-4xl">{project.title}</p>
+								<hr />
 								<p className="mx-auto my-1 text-base">{project.authors.join(", \n")}</p>
+								<hr />
 								<p>{project.description}</p>
 							</div>
 						</div>
