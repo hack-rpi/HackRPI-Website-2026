@@ -458,7 +458,7 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 
 
 export default function PlaneScene({scrollY}: {scrollY: number}) {
-	console.log(scrollY)
+	// console.log(scrollY)
 	const { timeLeft, isPast } = useCountDown('2026-11-07T09:00:00');
 
 	let TextBoard1 = [
@@ -470,10 +470,27 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 	]
 	let board1Shift = -1 * (Math.max(0, scrollY-1240) / (1267-1240));
 
+	let mapDisappear = (1180*scrollMultiplier);
+	let intensity;
+	if(scrollY <= mapDisappear){
+		intensity = Math.min(Math.max(0, (scrollY+100 - mapDisappear)/100), 1)
+	}else{
+		intensity = Math.min(Math.max(0, 1-((scrollY - mapDisappear)/100)), 1)
+	}
+
+	let fogColor = new THREE.Color("#000000");
+	if(scrollY > mapDisappear){
+		const targetColor = new THREE.Color("#5f6b7a");
+		fogColor.lerp(targetColor, Math.min(1, (scrollY - mapDisappear) /100));
+	}
+
+	const fogExposure = 0.007 + 0.02 * intensity;
+
 
 	return (
 		<div className="w-full h-screen fixed z-0">
 			<Canvas shadows>
+				<color attach="background" args={[fogColor]} />
 				{/* {(timeLeft && scrollY < 1267) ? (<>
 					<Letter3D content={TextBoard1[0]} centered={false} billboard={true} font={1} pos={[-1+board1Shift,-6,-2]} rot={[Math.PI/2,Math.PI,0]}/>
 					<Letter3D content={TextBoard1[1]} centered={false} billboard={true} font={1}  pos={[-2,-6,-3.5]} rot={[Math.PI/2,Math.PI,0]}/>
@@ -486,8 +503,6 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 				
 
 				<CameraRig scrollY={scrollY} />
-
-				<fogExp2 attach="fog" args={["#000000", 0.007]} />
 
 				<directionalLight
 					position={[40, 60, 30]}
@@ -504,6 +519,9 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 				<directionalLight position={[-30, 40, -30]} intensity={0.9} color="#496b91" />
 				<ambientLight intensity={0.25} color="#262931" />
 				{/* <Environment preset="city" /> */}
+
+				
+				<fogExp2 attach="fog" args={[fogColor, fogExposure]} />
 
 				{scrollY < 1180*scrollMultiplier ? 
 					// <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />

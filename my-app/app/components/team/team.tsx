@@ -9,74 +9,81 @@ import FaceCard from "./faceCard";
 gsap.registerPlugin(ScrollTrigger);
 
 
+// Note: Use group photo 2.
+
 const teamMembers = [
 	{
-		img: '/team/tobias.jpg',
+		img: '/team/F267/Tobias.jpg',
 		name: 'Tobias Manayath',
 		pos: 'President',
-		gradientClass: 'from-blue-400 via-indigo-500 to-blue-700'
+		gradientClass: 'from-blue-400 via-indigo-500 to-blue-700',
+		zoom: 1.7,
+		xOffset: -23,
+		yOffset: 40
 	},
 	{
-		img: '/team/jackson.jpg',
+		img: '/team/F267/Jackson.jpg',
 		name: 'Jackson Baimel',
 		pos: 'Vice President',
-		gradientClass: 'from-red-400 via-rose-500 to-red-700'
+		gradientClass: 'from-red-400 via-rose-500 to-red-700',
+		zoom: 1.35,
+		xOffset: -1,
+		yOffset: 25
 	},
 	{
-		img: '/team/lalaJR.jpg',
+		img: '/team/F267/Lala.jpg',
 		name: 'Lala Liu',
 		pos: 'Director of Logistics',
-		gradientClass: 'from-yellow-300 via-amber-400 to-yellow-600'
+		gradientClass: 'from-yellow-300 via-amber-400 to-yellow-600',
+		zoom: 1.2,
+		xOffset: -10,
+		yOffset: 30
 	},
 	{
-		img: '/team/devanJR.jpg',
+		img: '/team/F267/Devan4.jpg',
 		name: 'Devan Patel',
 		pos: 'Director of Finance',
-		gradientClass: 'from-emerald-300 via-green-400 to-emerald-600'
+		gradientClass: 'from-emerald-300 via-green-400 to-emerald-600',
+		zoom: 1.50,
+		xOffset: -20,
+		yOffset: 65
 	},
 	{
-		img: '/team/EthanJR.png',
+		img: '/team/F267/Ethan.jpg',
 		name: 'Ethan Kusse',
 		pos: 'Director of Sponsorship',
-		gradientClass: 'from-cyan-300 via-sky-400 to-cyan-600'
+		gradientClass: 'from-cyan-300 via-sky-400 to-cyan-600',
+		zoom: 1.7,
+		xOffset: -9,
+		yOffset: 95
 	},
 	{
-		img: '/team/Caleb.jpg',
+		img: '/team/F267/Caleb3.jpg', // 3 or 10
 		name: 'Caleb Liu',
 		pos: 'Director of Technology',
-		gradientClass: 'from-violet-300 via-purple-500 to-violet-700'
+		gradientClass: 'from-violet-300 via-purple-500 to-violet-700',
+		zoom: 1.5,
+		xOffset: 1,
+		yOffset: 40
 	},
 	{
-		img: '/team/jodieJR.jpg',
+		img: '/team/F267/Jodie.jpg',
 		name: 'Jodie Cho',
 		pos: 'Director of Marketing',
-		gradientClass: 'from-orange-300 via-orange-500 to-orange-700'
+		gradientClass: 'from-orange-300 via-orange-500 to-orange-700',
+		zoom: 1.9,
+		xOffset: -11,
+		yOffset: 10
 	},
 	{
-		img: '/team/matt.jpg',
+		img: '/team/F267/Matt.jpg',
 		name: 'Matthew Treanor',
 		pos: 'Director of Outreach',
-		gradientClass: 'from-pink-300 via-rose-500 to-pink-700'
+		gradientClass: 'from-pink-300 via-rose-500 to-pink-700',
+		zoom: 1.6,
+		xOffset: -22,
+		yOffset: 30
 	},
-];
-
-const topOffsets = [45, 35, 25, 30, 45, 30, 40];
-const parallaxPositions = [
-	{ top: 10, left: 50, size: 1.02 },
-	{ top: 55, left: 72, size: 0.85 },
-	{ top: 5, left: 94, size: 1.105 },
-	{ top: 60, left: 116, size: 0.935 },
-	{ top: 15, left: 138, size: 1.02 },
-	{ top: 50, left: 160, size: 1.19 },
-	{ top: 8, left: 182, size: 0.986 },
-	{ top: 55, left: 204, size: 1.054 },
-	{ top: 20, left: 226, size: 1.02 },
-	{ top: 58, left: 248, size: 1.156 },
-	{ top: 12, left: 270, size: 0.952 },
-	{ top: 48, left: 292, size: 1.088 },
-	{ top: 22, left: 314, size: 1.037 },
-	{ top: 52, left: 336, size: 1.003 },
-	{ top: 18, left: 358, size: 1.071 },
 ];
 
 export default function Team() {
@@ -157,6 +164,9 @@ export default function Team() {
 					>
 							<FaceCard
 								size={1}
+								zoom={member.zoom || 1}
+								offsetX={member.xOffset || 0}
+								offsetY={member.yOffset || 0}
 								left={0} 
 								top={0}
 								img={member.img}

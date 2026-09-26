@@ -173,7 +173,6 @@ export default function HomeClient() {
                 <Footer />
               </footer> 
             </div>
-          
         </div>
       </div>
     </div>

@@ -67,7 +67,7 @@ export function Variation1({show}:{show: boolean}){
                 </p>
 
                 {/* Box 4 - Light red links card */}
-                <div className={`w-[14%] h-[55%] bg-[#ffc8c8] overflow-visible rounded-xl flex flex-col justify-end items-end ${margin} gap-1 ${textSize}`} style={{backgroundColor: showLayout}}>
+                <div className={`pointer-events-auto w-[14%] h-[55%] bg-[#ffc8c8] overflow-visible rounded-xl flex flex-col justify-end items-end ${margin} gap-1 ${textSize}`} style={{backgroundColor: showLayout}}>
                     {linkItems.map((item, index) => (
                         <Link
                             key={index}
