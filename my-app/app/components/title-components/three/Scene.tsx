@@ -73,79 +73,54 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
 	);
 }
 
-function RPIModel(){
-  const { scene : model } = useGLTF(RPI_URL);
+useGLTF.preload(RPI_URL);
 
-  const model1 = useRef<THREE.Group>(null);
-  //const model2 = useRef<THREE.Group>(null);
-  const groupRef = useRef<THREE.Group>(null);
+export function RPIModel() {
+  // Load model (use Draco loader if compressed with Draco)
+  const { scene } = useGLTF(RPI_URL);
+  
+  const groupRef = useRef<THREE.Group>(null!);
 
+  // Movement speed per second (units/sec)
+  const speed = 9.0; 
 
-
-  // controls speed of sliding: deafult = 0.2
-  const speed = .2;
-
+  // Set initial position/rotation once mounted
   useEffect(() => {
-    if (groupRef.current) 
-    {
-      model1.current!.position.set(-10, -82, 70);
-      model1.current!.rotation.y = 1.875; 
-    }
-  }, [model1]);
+    // Enable matrix updates optimization if model is static relative to its parent
+    scene.position.set(-10, -82, 70);
+    scene.rotation.y = 1.875;
+  }, [scene]);
 
+  	useEffect(() => {
+		scene.traverse((child) => {
+			if ((child as THREE.Mesh).isMesh) {
+			child.castShadow = true;
+			child.receiveShadow = false; // Disable receiveShadow if not needed
+			}
+		});
+	}, [scene]);
 
-  useFrame((delta) => {
-    //if (planeRef.current) {
-    //  const direction = new THREE.Vector3();
-    //  planeRef.current.getWorldDirection(direction);
-    //  console.log(direction);
-    //}
-    if (groupRef.current) {
-      //console.log(model1.position);
-      groupRef.current!.position.z-=speed;
-      groupRef.current!.position.y+=0.051*speed;
-      if(groupRef.current!.position.z<-261){
-        groupRef.current!.position.z=-20;
-        groupRef.current!.position.y=0.00;
-      }
-      //console.log(groupRef.current!.position.z);
+  // Frame loop with Delta time calculation for consistent speed on 60Hz/120Hz/144Hz displays
+  useFrame((_, delta) => {
+    if (!groupRef.current) return;
 
-      
-      
-      //console.log(groupRef.current.position);
-      /*if (tileUpdate<=0){
-        tileUpdate = 240;
-        if (currTile = 1){
-          currTile = 2;
-          model1.position.add(new THREE.Vector3(0,-8,370));
-          console.log("tile1->tile2")
-        }
-        else if (currTile = 2){
-          currTile = 1;
-          model2.position.add(new THREE.Vector3(0,-8,370));
-          console.log("tile2->tile1")
-        }
-      }*/
-      //console.log(groupRef.current!.position.z);
+    // Scale movement by frame delta time
+    const moveStep = speed * delta;
+    
+    groupRef.current.position.z -= moveStep;
+    groupRef.current.position.y += 0.051 * moveStep;
+
+    // Loop position boundary reset
+    if (groupRef.current.position.z < -261) {
+      groupRef.current.position.z = -20;
+      groupRef.current.position.y = 0.00;
     }
   });
+
   return (
     <group ref={groupRef}>
-      <Clone
-        ref={model1}
-        object={model}
-        position={[0, 0, 0]}
-      />
-
-      {/*<Clone
-        ref={model2}
-        object={model}
-        position={[5, 0, 0]}
-      />*/
-      }
-      {//<primitive object={outerModel1} />
-      }
-      {/*<primitive object={model2} />*/}
+      {/* 2. Direct primitive instead of heavy <Clone /> */}
+      <primitive object={scene} />
     </group>
   );
 }
@@ -195,56 +170,7 @@ const _p1 = new THREE.Vector3();
 const _p2 = new THREE.Vector3();
 const _p3 = new THREE.Vector3();
 
-/*
-type slowInterval = {
-  begin: number;
-  end: number;
-  scale: number
-};
-//put all the raw scoll values that you want to slow
-const slowZones : slowInterval[] = [
-  {begin: 200 , end: 400, scale: 0.1}, 
-  {begin: 600 , end: 800, scale: 0.1}
-];
-//returns adjusted intervals based on the slowdown of prior intervals
-function getAdjustedSlowIntervals(intervals: slowInterval[]){
-  let offset = 0;
-  let answer : slowInterval[] =[];
-  for(const slowInterval of intervals){
-    answer.push({begin:slowInterval.begin+offset,end:slowInterval.end+offset,scale:slowInterval.scale})
-    let currOffset = (slowInterval.end-slowInterval.begin)*(1-slowInterval.scale);
-    offset+=currOffset;
-  }
-  return answer;
-}
-//scales scroll based on slowIntervals
-function getScaledScroll(trueScroll: number)
-{
-  let output = 0;
-  let current = 0;
-  for (const slowInterval of getAdjustedSlowIntervals(slowZones)){
-    if (scrollY <= slowInterval.begin) {
-      output += scrollY - current;
-      return output;
-      }
 
-    output += slowInterval.begin - current;
-
-
-    if (scrollY <= slowInterval.end) {
-      output += (scrollY - slowInterval.begin) * slowInterval.scale;
-      return output;
-    }
-    
-    output += (slowInterval.end - slowInterval.begin) * slowInterval.scale;
-    current = slowInterval.end;
-
-  }
-  
-  output += scrollY - current;
-  return output;
-}
-*/
 /**
  * Centripetal Catmull-Rom spline evaluation (alpha = 0.5)
  * Guarantees C1 smooth curves while strictly passing through p1 at t=0 and p2 at t=1.
