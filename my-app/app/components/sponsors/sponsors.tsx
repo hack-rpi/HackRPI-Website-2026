@@ -76,13 +76,13 @@ export default function Sponsors() {
 	return (
 		<div 
 			
-			className="relative min-h-0 md:min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 py-56 md:py-5 gap-10 flex flex-col">
+			className="relative min-h-0 md:min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 py-20 md:py-5 gap-10 flex flex-col">
 			<canvas
 				id="rain"
 				ref={canvasRef}
 				className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
 			/>
-			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">Thank you to our sponsors that make HackRPI possible!</h2>
+			<h2 className="relative text-center left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">Thank you to our sponsors that make HackRPI possible!</h2>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.OBSIDIAN.map((sponsor, index) => (
 					<SponsorCard
@@ -93,7 +93,55 @@ export default function Sponsors() {
 						link={sponsor.url}
 					/>
 				))}
+				{sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor: any, index: number) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"gold"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+				{sponsors.SILVER.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"silver"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+				{sponsors.BRONZE.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"bronze"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+				{sponsors.COLLABORATORS.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"collaborator"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
+				{sponsors.TRACKS.map((sponsor, index) => (
+					<SponsorCard
+						key={index}
+						name={sponsor.name}
+						tier={"track"}
+						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+						link={sponsor.url}
+					/>
+				))}
 			</div>
+
+
+{/* 
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor: any, index: number) => (
 					<SponsorCard
@@ -148,7 +196,11 @@ export default function Sponsors() {
 						link={sponsor.url}
 					/>
 				))}
-			</div>
+			</div> */}
+
+
+
+
 			<h2 className="relative -mt-[40px] text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">More sponsors flying in soon ✈︎</h2>
 			<div className = "flex flex-row justify-center flex-wrap gap-10">
 				{/* <SponsorCard name="error" tier="invalid" image = "/sponsors/sponsor_logos/" /> */}

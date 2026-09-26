@@ -98,7 +98,7 @@ export default function SponsorCard({ name, tier, image, link }: any) {
   }
 
   let style =
-    "w-[38vw] h-[38vw] md:w-[20vw] md:h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
+    "w-[30vw] h-[30vw] min-w-[240px] min-h-[140px] md:w-[20vw] md:h-[20vw] p-5 rounded-2xl backdrop-blur-lg " +
     bg_color +
     " " +
     text_color +
@@ -115,42 +115,59 @@ export default function SponsorCard({ name, tier, image, link }: any) {
     "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " +
     text_color;
 
-  return (
-    <a href = {link} target="_blank" rel="noopener noreferrer m-5"> 
-    <div className="m-3 flex flex-col items-center group relative" style={{ perspective: "800px" }}>
+  return (<>
+    <div className="block portrait:hidden">
+      <a href = {link} target="_blank" rel="noopener noreferrer m-5"> 
+        <div className="m-3 flex flex-col items-center group relative" style={{ perspective: "800px" }}>
+            <span className={sponsor_name_style}>{name}</span>
+            <div className="absolute -inset-[10px] z-10" onMouseMove={handleMove} onMouseLeave={handleLeave} />
 
-      <span className={sponsor_name_style}>{name}</span>
-
-      <div className="absolute -inset-[10px] z-10" onMouseMove={handleMove} onMouseLeave={handleLeave} />
-
-      <div
-        className={style + " m-4 relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
-        style={{
-            transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-            boxShadow: shadow,
-            perspective: "800px"
-        }}
-      > 
-          <div className="flex flex-col items-center justify-center gap-2">
-            
-            {image && (
-              <img
-                src={image}
-                alt={name}
-                className="absolute inset-0 w-full h-full object-contain p-7 transition-transform duration-200 ease-out"
-                style={{
-                  transform: `translateX(${imgX}px) translateY(${imgY}px) scale(1.05)`,
-                  perspective: "800px"
-                }}
-              />
-            )}
-             
-          </div>
-           
-      </div>
-
-      <span className={sponsor_rank_style}>{tier}</span>
+          <div
+            className={style + " m-4 relative overflow-hidden border-3 transform-gpu [transform-style:preserve-3d]"}
+            style={{
+                transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                boxShadow: shadow,
+                perspective: "800px"
+            }}
+          > 
+              <div className="flex flex-col items-center justify-center gap-2">
+                {image && (
+                  <img
+                    src={image}
+                    alt={name}
+                    className="absolute inset-0 w-full h-full object-contain p-7 transition-transform duration-200 ease-out"
+                    style={{
+                      transform: `translateX(${imgX}px) translateY(${imgY}px) scale(1.05)`,
+                      perspective: "800px"
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+          <span className={sponsor_rank_style}>{tier}</span>
+        </div>
+      </a>
     </div>
-    </a>
-  );
+
+    <div className="hidden portrait:block">
+      <a href = {link} target="_blank" rel="noopener noreferrer m-5"> 
+        <div className="flex flex-col items-center group relative">
+          <div
+            className={style + " m-4 relative overflow-hidden border-3"}
+            style={{boxShadow: shadow,}}
+          > 
+              <div className="flex flex-col items-center justify-center gap-2">
+                {image && (
+                  <img
+                    src={image}
+                    alt={name}
+                    className="absolute inset-0 w-full h-full object-contain p-2 transition-transform duration-200 ease-out"
+                  />
+                )}
+              </div>
+            </div>
+        </div>
+      </a>
+    </div>
+  </>);
 }
