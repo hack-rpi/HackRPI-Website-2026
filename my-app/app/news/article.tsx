@@ -23,9 +23,9 @@ interface ArticleProps {
 const bodyParagraphClass =
   'mb-8 text-lg leading-[1.9] text-[#b4b4b4] max-md:mb-8 max-md:text-base';
 const bodyH2Class =
-  'mb-6 mt-14 text-4xl font-bold tracking-tight text-white first:mt-0 max-md:mb-6 max-md:mt-12 max-md:text-3xl';
+  'mb-6 mt-14 text-4xl font-semibold tracking-tight text-white first:mt-0 max-md:mb-6 max-md:mt-12 max-md:text-3xl';
 const bodyH3Class =
-  'mb-4 mt-10 text-[1.75rem] font-semibold text-white max-md:mb-4 max-md:mt-8 max-md:text-[1.35rem]';
+  'mb-4 mt-10 text-[1.75rem] font-Regular text-white max-md:mb-4 max-md:mt-8 max-md:text-[1.35rem]';
 const bodyBlockquoteClass =
   'my-12 rounded-r-xl border-l-4 border-gold bg-[rgba(255,215,0,0.05)] py-8 pl-10 pr-8 text-xl italic text-white max-md:my-10 max-md:py-6 max-md:pl-8 max-md:text-lg';
 
@@ -111,7 +111,7 @@ const Article: React.FC<ArticleProps> = ({
           <div className="mb-0.5 flex items-center gap-2.5 text-xs">
             <span className={categoryClass}>{category}</span>
           </div>
-          <h3 className={titleClass}>{title}</h3>
+          <h1 className={titleClass}>{title}</h1>
           <p className={excerptClass}>{excerpt}</p>
           <span className="
             mt-auto inline-flex items-center gap-2 text-sm font-semibold
@@ -152,12 +152,12 @@ const Article: React.FC<ArticleProps> = ({
               {category}
             </span>
           </div>
-          <h2 className="
+          <h1 className="
             mb-3 text-[2rem] font-bold leading-snug tracking-tight text-white
             [text-shadow:0_2px_12px_rgba(0,0,0,0.6)] max-md:mb-3 max-md:text-2xl
           ">
             {title}
-          </h2>
+          </h1>
           <p className="max-w-150 text-[0.95rem] leading-normal text-[#b4b4b4]">
             {excerpt}
           </p>
@@ -194,16 +194,16 @@ const Article: React.FC<ArticleProps> = ({
           {content.split('\n\n').map((paragraph, index) => {
             if (paragraph.startsWith('## ')) {
               return (
-                <h2 key={index} className={bodyH2Class}>
+                <h1 key={index} className={bodyH2Class}>
                   {paragraph.replace('## ', '')}
-                </h2>
+                </h1>
               );
             }
             if (paragraph.startsWith('### ')) {
               return (
-                <h3 key={index} className={bodyH3Class}>
+                <h1 key={index} className={bodyH3Class}>
                   {paragraph.replace('### ', '')}
-                </h3>
+                </h1>
               );
             }
             if (paragraph.startsWith('> ')) {

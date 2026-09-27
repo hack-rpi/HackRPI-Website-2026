@@ -1,595 +1,357 @@
 "use client";
 
 import "@/app/globals.css";
-import React, { use, useEffect, useState } from "react";
-import useMouseLogic from "./mouse";
-import next from "next";
-import dynamic from 'next/dynamic';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
-import SponsorCard from "./sponsorCard";
 import Lenis from "lenis";
 import Link from "next/link";
-import { Document, Page, pdfjs } from 'react-pdf';
 
-const PDFViewer = dynamic(() => import('./PDFViewer'), {
+const PDFViewer = dynamic(() => import("./PDFViewer"), {
   ssr: false,
-  loading: () => <p className="text-center py-10">Loading PDF viewer...</p>,
+  loading: () => <p className="text-center py-10 text-white">Loading PDF viewer...</p>,
 });
 
-const tw = {
-	container: "box-border desktop:px-[30px] py-0 flex flex-row justify-center m-7",
-	stackText: "box-border p-5 flex flex-col w-full justify-center",
+const listItems: Record<string, Record<string, string | boolean>> = {
+  "Logo on T-Shirt": {
+    bronze: "small",
+    silver: "small",
+    gold: "medium",
+    obsidian: "large",
+    silverpromoter: "Medium sized logo",
+    goldpromoter: "Large size logo",
+  },
+  "Logo on Website": { bronze: true, silver: true, gold: true, obsidian: true },
+  "Distribute Company Swag": { bronze: true, silver: true, gold: true, obsidian: true },
+  "Company Flier in Event Folder": { bronze: true, silver: true, gold: true, obsidian: true },
+  "Social Media Advertising": { bronze: false, silver: true, gold: true, obsidian: true },
+  "Company Judges": { bronze: false, silver: true, gold: true, obsidian: true },
+  "Resume Book": {
+    bronze: false,
+    silver: "after event",
+    gold: "before event",
+    obsidian: "before event",
+    silverpromoter: "Or distribute before event",
+  },
+  "Host Fireside Chat": { bronze: false, silver: true, gold: true, obsidian: true },
+  "Host a Workshop": { bronze: false, silver: false, gold: true, obsidian: true },
+  "Promotional Mail to Hackers": { bronze: false, silver: false, gold: false, obsidian: true },
+  "Priority Booth Placement": { bronze: false, silver: false, gold: false, obsidian: true },
+  "Opening Ceremony Demo": { bronze: false, silver: false, gold: false, obsidian: true },
+  "Company Table": { bronze: true, silver: true, gold: true, obsidian: true },
+};
 
-	neumorphic: "bg-purple-800 rounded-[15px]",
-	sponsorCard: "w-[20vw] h-[60vh] m-5 box-border flex",
-	centerText: "text-center flex flex-col items-center justify-center",
+type Tier = "bronze" | "silver" | "gold" | "obsidian";
 
-	clickable: "transition-transform duration-300 active:duration-100 active:scale-[0.98]",
-
-	benefitRow: "transition whitespace-nowrap hover:scale-[1.05] active:scale-[0.98] duration-300",
-	benefitAvailable: "opacity-50",
-	benefitContainer: "grid grid-cols-3 w-full items-center my-[3px]",
-
-	light: "var(--color-purple-500)",
-	shadow: "var(--color-purple-400)",
-} as const;
-
-var listItems = {
-	"Logo on T-Shirt": {
-		'bronze': "small",
-		'silver': "small",
-		'gold': "medium",
-		'obsidian': "large",
-
-		'silverpromoter': "Medium sized logo",
-		'goldpromoter': "Large size logo",
-	},
-	"Logo on Website": {
-		'bronze': true,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Distribute Company Swag": {
-		'bronze': true,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Company Flier in Event Folder": {
-		'bronze': true,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Social Media Advertising": {
-		'bronze': false,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Company Judges": {
-		'bronze': false,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Resume Book": {
-		'bronze': false,
-		'silver': "after event",
-		'gold': "before event",
-		'obsidian': "before event",
-
-		'silverpromoter': "Or distribute before event",
-	},
-	"Host Fireside Chat": {
-		'bronze': false,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Host a Workshop": {
-		'bronze': false,
-		'silver': false,
-		'gold': true,
-		'obsidian': true,
-	},
-	"Promotional Mail to Hackers": {
-		'bronze': false,
-		'silver': false,
-		'gold': false,
-		'obsidian': true,
-	},
-	"Priority Booth Placement": {
-		'bronze': false,
-		'silver': false,
-		'gold': false,
-		'obsidian': true,
-	},
-	"Opening Ceremony Demo": {
-		'bronze': false,
-		'silver': false,
-		'gold': false,
-		'obsidian': true,
-	},
-	"Company Table": {
-		'bronze': true,
-		'silver': true,
-		'gold': true,
-		'obsidian': true,
-	}
+interface ThemeConfig {
+  accentText: string;
+  cardBorder: string;
+  cardGlow: string;
+  panelBg: string;
+  panelBorder: string;
+  rowHover: string;
+  bgGradient: string;
 }
 
-var themes = {
-	'default': {
-		bg: '#e0e0e0', //background
-		light: '#ffffff',
-		shadow: '#a6a6a6',
+const tierThemes: Record<Tier, ThemeConfig> = {
+  bronze: {
+    accentText: "text-red-400",
+    cardBorder: "border-red-500/50",
+    cardGlow: "shadow-red-500/25 ring-red-500",
+    panelBg: "bg-red-950/20",
+    panelBorder: "border-red-500/30",
+    rowHover: "hover:bg-red-900/30",
+    bgGradient: "from-red-950/30 via-slate-950 to-slate-950",
+  },
+  silver: {
+    accentText: "text-slate-200",
+    cardBorder: "border-slate-300/50",
+    cardGlow: "shadow-slate-200/25 ring-slate-300",
+    panelBg: "bg-slate-900/40",
+    panelBorder: "border-slate-400/30",
+    rowHover: "hover:bg-slate-800/40",
+    bgGradient: "from-slate-900/50 via-slate-950 to-slate-950",
+  },
+  gold: {
+    accentText: "text-amber-300",
+    cardBorder: "border-amber-300/60",
+    cardGlow: "shadow-amber-300/30 ring-amber-300",
+    panelBg: "bg-amber-950/20",
+    panelBorder: "border-amber-400/30",
+    rowHover: "hover:bg-amber-900/30",
+    bgGradient: "from-amber-950/25 via-slate-950 to-slate-950",
+  },
+  obsidian: {
+    accentText: "text-blue-400",
+    cardBorder: "border-blue-400/60",
+    cardGlow: "shadow-blue-500/30 ring-blue-400",
+    panelBg: "bg-blue-950/25",
+    panelBorder: "border-blue-500/30",
+    rowHover: "hover:bg-blue-900/30",
+    bgGradient: "from-blue-950/30 via-slate-950 to-slate-950",
+  },
+};
 
-		text: '#e0e0e0',
-		text2: '#e0e0e0',
-		text3: 'rgba(0,0,0,0.2)',
-		accent: ''
-	},
-	'bronze': {
-		fourth: '#e0e0e0',
-		second: '#DF7373',
-		bg: '#DA5552',
-		fifth: '#CC444B',
-		third: '#472836'
+const tierCards: Array<{ name: Tier; label: string; amount: string; image: string }> = [
+  { name: "bronze", label: "Bronze", amount: "$750", image: "/sponsors/res/red balloon.png" },
+  { name: "silver", label: "Silver", amount: "$1,500", image: "/sponsors/res/white balloon.png" },
+  { name: "gold", label: "Gold", amount: "$2,500", image: "/sponsors/res/yellow balloon.png" },
+  { name: "obsidian", label: "Obsidian", amount: "$5,000", image: "/sponsors/res/blue balloon.png" },
+];
 
+const nextTierMap: Record<Tier, Tier | null> = {
+  bronze: "silver",
+  silver: "gold",
+  gold: "obsidian",
+  obsidian: null,
+};
 
-		// second: '#D58936',
-		// third: '#A44200',
-		// fourth: '#69140E',
-		// fifth: '#3C1518'
-	},
-	'silver': {
-		bg: '#e0e0e0',
-		second: '#81726A',
-		third: '#68534D',
-		fourth: '#004E64',
-		fifth: '#042A2B'
-	},
-	'gold': {
-		bg: '#e0e0e0',
-		second: '#B6C8A9',
-		third: '#fca311',
-		fourth: '#14213d',
-		fifth: '#000000'
-	},
-	'obsidian': {
-		bg: '#e0e0e0',
-		second: '#D4CDF4',
-		third: '#7353BA',
-		fourth: '#2F195F',
-		fifth: '#0F1020'
-	},
-} as any;
+export default function SponsorUsPage() {
+  const [selectedTier, setSelectedTier] = useState<Tier>("bronze");
+  const [isMobile, setIsMobile] = useState(false);
 
-function SponsorUsPage() {
-	const { getPosition } = useMouseLogic();
-	const [numPages, setNumPages] = useState<number>();
-	var isMobileLayout = false;
-	var viewingCurrentTier = 'bronze';
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-	function calculateShadows() {
+    const lenis = new Lenis({ smoothWheel: true, duration: 1.2 });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
-		Array.from(document.querySelectorAll('[data-neumorphic="true"]')).forEach((el) => {
-			let element = el as HTMLElement;
-			// element.style.boxShadow = '20px 20px 60px #bebebe, -20px -20px 60px #ffffff';
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-			const rect = element.getBoundingClientRect();
+  const handleSelectTier = (tier: Tier) => {
+    setSelectedTier(tier);
+    document.getElementById("container2")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
-			const centerX = rect.left + rect.width / 2;
-			const centerY = rect.top + rect.height / 2;
+  const scrollDocs = (itemName: string) => {
+    const container = document.getElementById("docText");
+    if (!container) return;
 
-			let { x, y } = getPosition();
-			if (isMobileLayout){
-				x = 0;
-				y = 0;
-			};
-			const dx = centerX - x;
-			const dy = centerY - y;
+    const headings = container.querySelectorAll("h3");
+    let targetHeader: HTMLElement | null = null;
 
-			const size = Math.max(rect.width, rect.height);
-			const scale = size * 0.01; // adjust as needed
+    headings.forEach((h3) => {
+      if (h3.textContent?.trim().toLowerCase() === itemName.trim().toLowerCase()) {
+        targetHeader = h3;
+      }
+    });
 
-			const len = Math.hypot(dx, dy) || 1;
-			const offX = (dx / len) * scale;
-			const offY = (dy / len) * scale;
+    if (targetHeader) {
+      (targetHeader as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
 
-			// ${offX}px ${offY}px ${scale * 2}px rgba(0,0,0,0.2),
-			// ${-offX}px ${-offY}px ${scale * 2}px rgba(255,255,255,0.9)
+      const parentDiv = (targetHeader as HTMLElement).parentElement;
+      if (parentDiv) {
+        parentDiv.style.animation = "none";
+        void parentDiv.offsetWidth;
+        parentDiv.style.animation = "pulseHighlight 2.5s ease 0s 1 normal";
+      }
+    }
+  };
 
-			element.style.boxShadow = `
-				${offX}px ${offY}px ${scale * 2}px ${tw.shadow},
-				${-offX}px ${-offY}px ${scale * 2}px ${tw.light}
-			`;
-		});
-	}
+  const currentTheme = tierThemes[selectedTier];
+  const nextTier = nextTierMap[selectedTier];
 
-	function getSizeOfChildren(parentElement: HTMLElement){
-		let children = parentElement.children;
-		if (children.length === 0) return 0;
-		
-		let firstChild = children[0].getBoundingClientRect();
-		let lastChild = children[children.length - 1].getBoundingClientRect();
-		
-		return lastChild.right - firstChild.left;
-	}
+  return (
+    <>
+      <NavBar showOnScroll={false} variant={1} />
+      <main className={`w-full bg-gradient-to-b ${currentTheme.bgGradient} pt-[8vh] min-h-screen text-slate-100 transition-colors duration-700`}>
+        
+        {/* Instruction Banner */}
+        <div className="max-w-6xl mx-auto px-4 my-6">
+          <div className={`backdrop-blur-xl rounded-2xl p-4 text-center text-lg font-medium border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-xl`}>
+            Select a tier balloon below to explore sponsorship benefits!
+          </div>
+        </div>
 
-	function mobileLayout(){
-		if (window.innerWidth > window.innerHeight){
-			isMobileLayout = false;
-			let container1 = document.getElementById('container1')!;
-			container1.style.flexDirection = '';
+        {/* Tier Cards */}
+        <div id="container1" className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+          {tierCards.map((card) => {
+            const isSelected = selectedTier === card.name;
+            const cardTheme = tierThemes[card.name];
 
-			Array.from(container1.children).forEach((child) => {
-				let childElement = child as HTMLElement;
-				childElement.style.width = '';
-				childElement.style.height = '';
-				childElement.style.padding = '';
-				childElement.style.margin = '';
-			});
+            return (
+              <div
+                key={card.name}
+                onClick={() => handleSelectTier(card.name)}
+                className={`relative cursor-pointer rounded-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 transform active:scale-95 hover:-translate-y-2 backdrop-blur-xl border ${cardTheme.panelBg} ${
+                  isSelected
+                    ? `ring-2 ${cardTheme.cardGlow} scale-105 shadow-2xl${cardTheme.cardBorder}`
+                    : "border-slate-700/50 hover:border-slate-500/50"
+                }`}
+              >
+                <div className="relative w-32 h-36 mb-4 animate-float">
+                  <Image
+                    src={card.image}
+                    alt={`${card.label} Balloon`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-contain filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
+                    priority
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className={`text-2xl font-bold tracking-wide ${isSelected ? cardTheme.accentText : "text-white"}`}>
+                    {card.label}
+                  </h3>
+                  <p className="text-xl font-semibold opacity-90 mt-1">{card.amount}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-		}else{
-			isMobileLayout = true;
-			let container1 = document.getElementById('container1')!;
-			container1.style.flexDirection = 'column';
+        {/* Dynamic Benefits Panel */}
+        <div id="container2" className="max-w-6xl mx-auto px-4 my-10">
+          <div className={`backdrop-blur-xl rounded-2xl p-6 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-2xl`}>
+            <div className="text-center mb-6">
+              <h2 className={`text-3xl font-extrabold capitalize ${currentTheme.accentText} transition-colors duration-500`}>
+                {selectedTier} Tier Benefits
+              </h2>
+            </div>
 
-			Array.from(container1.children).forEach((child) => {
-				let childElement = child as HTMLElement;
-				childElement.style.width = '100%';
-				childElement.style.height = 'auto';
-				childElement.style.padding = '7px';
-				childElement.style.margin = '5px 0';
-			});
-		}
-	}
+            {isMobile || !nextTier ? (
+              <div className="space-y-3">
+                {Object.entries(listItems).map(([name, tiers]) => {
+                  const val = tiers[selectedTier];
+                  const isAvailable = Boolean(val);
+                  const displayValue = typeof val === "string" ? `: ${val}` : "";
 
-	function updateBenefits(tier: string, shouldScroll = true){
-		changeTheme(tier);
+                  return (
+                    <div
+                      key={name}
+                      onClick={() => scrollDocs(name)}
+                      className={`p-3.5 rounded-xl cursor-pointer transition-all duration-200 hover:scale-[1.01] ${currentTheme.rowHover} ${
+                        isAvailable ? "bg-slate-800/40 text-slate-100 font-medium border border-slate-700/30" : "opacity-40 text-slate-400"
+                      }`}
+                    >
+                      {name}
+                      {displayValue}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <div className={`grid grid-cols-3 items-center text-center font-bold text-xl border-b pb-3 mb-4 ${currentTheme.panelBorder}`}>
+                  <span className={`capitalize ${currentTheme.accentText}`}>{selectedTier}</span>
+                  <span className="text-slate-400">&rarr;</span>
+                  <span className={`capitalize ${tierThemes[nextTier].accentText}`}>{nextTier}</span>
+                </div>
 
-		if (shouldScroll) {
-			document.getElementById("container2")!.scrollIntoView({
-					behavior: "smooth",
-					block: "center",
-			});
-    	}
+                {Object.entries(listItems).map(([name, tiers]) => {
+                  const currentVal = tiers[selectedTier];
+                  const nextVal = tiers[nextTier];
+                  const isCurrentAvailable = Boolean(currentVal);
 
-		viewingCurrentTier = tier;
-		let benefitsDiv = document.getElementById('benefits')!;
-		let currentBenefits = [];
-		let potentialBenefits = [];
+                  const currentText = typeof currentVal === "string" ? `${name}: ${currentVal}` : name;
+                  const promoterText = (tiers[`${selectedTier}promoter`] as string) || (typeof nextVal === "string" ? `${name}: ${nextVal}` : name);
 
-		const benefitCurrent = `${tw.benefitRow} text-[1.25em] leading-[140%] text-slate-100`;
-		const benefitAvailable = `${tw.benefitRow} ${tw.benefitAvailable} text-[1.25em] leading-[140%] text-slate-100`;
-		const benefitArrow = "justify-self-center text-[1.25em] leading-[140%] text-slate-100";
+                  return (
+                    <div
+                      key={name}
+                      onClick={() => scrollDocs(name)}
+                      className={`grid grid-cols-3 items-center py-2.5 px-4 rounded-xl cursor-pointer ${currentTheme.rowHover} border border-transparent transition-all duration-200 hover:scale-[1.01]`}
+                    >
+                      <span className={`text-center ${isCurrentAvailable ? "text-slate-100 font-medium" : "opacity-40"}`}>
+                        {currentText}
+                      </span>
+                      <span className="text-center text-slate-400">&rarr;</span>
+                      <span className={`text-center ${nextVal ? "text-slate-100 font-medium" : "opacity-40"}`}>
+                        {nextVal ? promoterText : "—"}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
 
-		if (isMobileLayout || tier == 'obsidian'){
-			benefitsDiv.innerHTML = `<h3 class="text-slate-100 text-[1.25em] desktop:text-[1.75em] my-2.5">${tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>`;
-			for (const [name, tiers] of Object.entries(listItems)) {
-				let p = document.createElement('p');
-				p.textContent = name;
-				p.onclick = function(){scrollDocs(name)};
+        {/* Custom Tailored Note */}
+        <div id="container3" className="max-w-6xl mx-auto px-4 my-8">
+          <div className={`backdrop-blur-xl rounded-2xl p-6 text-center space-y-2 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-xl`}>
+            <h4 className="text-xl text-slate-200">
+              We understand that standard sponsorship tiers may not suit all organizations.
+            </h4>
+            <h4 className="text-xl text-slate-200">
+              Please contact{" "}
+              <Link href="mailto:hackrpi@rpi.edu" className={`underline ${currentTheme.accentText} hover:opacity-80 transition-opacity`}>
+                hackrpi@rpi.edu
+              </Link>{" "}
+              if you want to develop a tailored sponsorship package.
+            </h4>
+          </div>
+        </div>
 
-				p.className = `my-[3px] ${benefitCurrent}`;
-				let tierValue = tiers[tier as keyof typeof tiers];
-				if(tierValue != false){
-					if(tierValue !== true){
-						p.textContent+= ': ' + tierValue;
-					}
-					currentBenefits.push(p);
-				}else{
-					p.className = `my-[3px] ${benefitAvailable}`;
-					potentialBenefits.push(p);
-				}
-			}
-		}else{
-			let nextTier = '';
-			if (tier == "bronze")
-				nextTier = "silver";
-			else if (tier == "silver")
-				nextTier = "gold";
-			else if (tier == "gold")
-				nextTier = "obsidian";
-			
-			benefitsDiv.innerHTML = '';
-			let titleBenefitContainer = document.createElement('div');
-			titleBenefitContainer.className = tw.benefitContainer;
-			let firstTier = document.createElement('h3');
-			firstTier.innerHTML = tier.charAt(0).toUpperCase() + tier.slice(1);
-			firstTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
+        {/* Documentation Section */}
+        <div id="container4" className="max-w-6xl mx-auto px-4 my-10">
+          <div className={`backdrop-blur-xl rounded-2xl p-8 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-2xl`}>
+            <div id="docText" className="space-y-6">
+              {[
+                { title: "Logo on T-Shirt", text: ["Your company logo will be printed on the free shirts we give out.", "Higher tiers increase the size of the logo."] },
+                { title: "Logo on Website", text: ["Your company logo will be included on our website."] },
+                { title: "Distribute Company Swag", text: ["Bring merchandise to your booth.", "Alternatively we can have some at the check in desk to hand out."] },
+                { title: "Company Flier in Event Folder", text: ["We'll include your flier in the event folder handed out to all participants at check in."] },
+                { title: "Social Media Advertising", text: ["Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)."] },
+                { title: "Company Judges", text: ["Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)."] },
+                { title: "Resume Book", text: ["Your company will be included on the list we send out participant resumes to (after the event in mid-November).", "In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)."] },
+                { title: "Host Fireside Chat", text: ["Company informational session during the main event hackathon.", "Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings."] },
+                { title: "Host a Workshop", text: ["Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer.", "This can occur before as a separate HackRPI event or during the main hackathon."] },
+                { title: "Promotional Mail to Hackers", text: ["Your company will be featured on the mail we send out to all hackers signed up before the main event."] },
+                { title: "Priority Booth Placement", text: ["Your booth/table will be closer to the entrance and area where the majority of participants are."] },
+                { title: "Opening Ceremony Demo", text: ["During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI."] },
+                { title: "Company Table", text: ["We provide a table where your company can set up a presence, but will accommodate if you want to bring a custom booth/multiple table setup."] },
+              ].map((doc) => (
+                <div key={doc.title} className="p-4 rounded-xl transition-colors">
+                  <h3 className={`text-2xl font-bold ${currentTheme.accentText} mb-1 transition-colors duration-500`}>{doc.title}</h3>
+                  {doc.text.map((p, idx) => (
+                    <p key={idx} className="text-gray-300 ml-4">{p}</p>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-			let arrow = document.createElement('span');
-			arrow.innerHTML = '&rarr;';
-			arrow.className = `justify-self-center text-[1.25em] leading-[140%] text-slate-100`;
+        {/* Responsive PDF Container */}
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 my-10 w-full overflow-hidden">
+          <div className="w-full max-w-full overflow-x-auto rounded-2xl flex justify-center">
+            <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
+          </div>
+        </div>
 
-			let secondTier = document.createElement('h3');
-			secondTier.innerHTML = nextTier.charAt(0).toUpperCase() + nextTier.slice(1);
-			secondTier.className = "justify-self-center text-slate-100 text-[1.75em] my-[10px]";
+        <div className="h-[20vh]"></div>
+      </main>
 
-			titleBenefitContainer.appendChild(firstTier);
-			titleBenefitContainer.appendChild(arrow);
-			titleBenefitContainer.appendChild(secondTier);
-			benefitsDiv.appendChild(titleBenefitContainer);
-			
-			for (const [name, tiers] of Object.entries(listItems)) {
-				let benefitContainer = document.createElement('div');
-				benefitContainer.className = tw.benefitContainer;
-				let nextTierNote = null;
-				let p = document.createElement('p');
-				p.textContent = name;
-				benefitContainer.onclick = function(){scrollDocs(name)};
+      <footer className="bg-gray-800">
+        <div className="w-full h-[10vh] bg-slate-950" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+        <Footer />
+      </footer>
 
-				p.className = `justify-self-center ${benefitCurrent}`;
-				let tierValue = tiers[tier as keyof typeof tiers];
-				if(tierValue != false){
-					if(tierValue !== true){
-						p.textContent+= ': ' + tierValue;
-						
-						let nextValue = tiers[nextTier as keyof typeof tiers];
-						if (nextTier!= 'obsidian' && nextTier != null && nextValue != false && nextValue != tierValue){
-							let nextTier = document.createElement('p');
-							nextTier.className = `justify-self-center ${benefitAvailable}`;
-							
-							let promoter = tiers[tier+'promoter' as keyof typeof tiers] as string;
-							nextTier.textContent = promoter;
-							nextTierNote = nextTier;
-						}
-					}
-					benefitContainer.appendChild(p);
-					if(nextTierNote){
-						let arrow = document.createElement('span');
-						arrow.innerHTML = '&rarr;';
-						arrow.className = benefitArrow;
+      <style jsx global>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
 
-						benefitContainer.appendChild(arrow);
-						benefitContainer.appendChild(nextTierNote);
-					}
-					currentBenefits.push(benefitContainer);
-				}else{
-					p.className = `justify-self-center ${benefitAvailable}`;
-					benefitContainer.appendChild(p);
-					potentialBenefits.push(benefitContainer);
-
-					let nextValue = tiers[nextTier as keyof typeof tiers];
-					if(tier != 'obsidian' && nextValue){
-						let arrow = document.createElement('span');
-						arrow.innerHTML = '&rarr;';
-						arrow.className = benefitArrow;
-
-						benefitContainer.appendChild(arrow);
-
-						let p = document.createElement('p');
-						p.className = `justify-self-center ${benefitCurrent}`;
-						p.textContent+= name;
-						benefitContainer.appendChild(p);
-					}
-				}
-			}
-		}
-
-		for(let benefit of currentBenefits){
-			benefitsDiv.appendChild(benefit);
-		}
-		for(let benefit of potentialBenefits){
-			benefitsDiv.appendChild(benefit);
-		}
-	}
-
-	function changeTheme(theme: any){
-		return;
-		let root = document.documentElement;
-
-		root.style.setProperty('--bg', themes[theme].bg);
-		root.style.setProperty('--light', themes[theme].light);
-		root.style.setProperty('--shadow', themes[theme].shadow);
-
-		root.style.setProperty('--accent', themes[theme].accent);
-		root.style.setProperty('--text', themes[theme].text);
-		root.style.setProperty('--text2', themes[theme].text2);
-		root.style.setProperty('--text3', themes[theme].text3);
-
-		// console.log(themes['bronze'])
-		// console.log(themes[theme].bg)
-		// const value = getComputedStyle(root).getPropertyValue('--bg');
-		// console.log(value);
-	}
-
-	function scrollDocs(item:string){
-		let container = document.getElementById('docText');
-		let justFound = false;
-		Array.from(container!.children).forEach((child) => {
-			let childElement = child as HTMLElement;
-			if (childElement.innerHTML == item){
-				justFound = true;
-				childElement.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center'      // Options: 'start', 'center', 'end', or 'nearest'
-				});
-			}else{
-				if (childElement.tagName == 'H3') justFound = false;
-				if (!justFound){
-					childElement.style.animation = "none";
-					void childElement.offsetWidth;
-					childElement.style.animation = "tempBlur 4s ease 0s 1 normal";
-
-					justFound = false
-				}
-			}
-		});
-
-	}
-
-	function load(){
-		var size1 = getSizeOfChildren(document.getElementById('container1')!);
-		document.getElementById('container2')!.style.width = size1 + 'px';
-		document.getElementById('container3')!.style.width = size1 + 'px';
-		document.getElementById('container4')!.style.width = size1 + 'px';
-		mobileLayout();
-		calculateShadows();
-		updateBenefits(viewingCurrentTier, false);
-	}
-
-	useEffect(() => {
-		load();
-		window.addEventListener('resize', load);
-		
-		window.addEventListener('mousemove', calculateShadows);
-		window.addEventListener('scroll', calculateShadows);
-
-		// lenis scrolling section
-		const lenis = new Lenis({
-			smoothWheel: true,
-			duration: 1.2,
-		});
-
-		function raf(time: number) {
-			lenis.raf(time);
-			requestAnimationFrame(raf);
-		}
-
-		requestAnimationFrame(raf);
-	}, []);
-
-	return (<>
-		<NavBar showOnScroll={false} variant={1}/>
-		<main className="w-full bg-hackrpi-clouds-dark-blue pt-[8vh]">	
-			{/* <div className='container' style={{marginTop: '100px'}}></div> */}
-			<div className={`${tw.container} flex-col`}>
-				<div className={`${tw.neumorphic} text-white px-5 py-2 desktop:py-5 text-center items-center text-md desktop:text-xl`} data-neumorphic="true">
-					Click the buttons to see the benefits!
-				</div>
-			</div>
-			<div id='container1' className={`${tw.container} text-slate-100`} style={{}}>
-				{/* <div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('bronze')}} style={{}}>
-					<h1 className="text-[2em]">Bronze</h1>
-					<h2 className="text-[1.75em]">750</h2>
-				</div>
-				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('silver')}} style={{}}>
-					<h1 className="text-[2em]">Silver</h1>
-					<h2 className="text-[1.75em]">1500</h2>
-				</div>
-				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('gold')}} style={{}}>
-					<h1 className="text-[2em]">Gold</h1>
-					<h2 className="text-[1.75em]">2500</h2>
-				</div>
-				<div className={`${tw.clickable} ${tw.neumorphic} ${tw.sponsorCard} ${tw.centerText}`} data-neumorphic="true" onClick={function(){updateBenefits('obsidian')}} style={{}}>
-					<h1 className="text-[2em]">Obsidian</h1>
-					<h2 className="text-[1.75em]">5000</h2>
-				</div> */}
-
-				<div onClick={function(){updateBenefits('bronze')}}>
-					<SponsorCard tier="Bronze" amount="750" className={`${tw.clickable}`}/>
-				</div>
-				<div onClick={function(){updateBenefits('silver')}}>
-					<SponsorCard tier="Silver" amount="1500" className={`${tw.clickable}`}/>
-				</div>
-				<div onClick={function(){updateBenefits('gold')}}>
-					<SponsorCard tier="Gold" amount="2500" className={`${tw.clickable}`}/>
-				</div>
-				<div onClick={function(){updateBenefits('obsidian')}}>
-					<SponsorCard tier="Obsidian" amount="5000" className={`${tw.clickable}`}/>
-				</div>
-			</div>
-
-			<div className={tw.container}>
-				<div id='container2' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
-					<div id='benefits' className={tw.stackText} style={{}}>
-						<h3 className="text-slate-100 text-[1.75em] my-2.5">LOADING</h3>
-					</div>
-				</div>
-			</div>
-
-			<div className={tw.container}>
-				<div id='container3' className={`${tw.clickable} ${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
-					<div className={tw.stackText} style={{}}>
-						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">We understand that standard sponsorship tiers may not suit all organizations.</h4>
-						<h4 className="text-mist-400 text-[1.25em] leading-[130%]">
-							Please contact &nbsp;
-							<Link href="mailto:hackrpi@rpi.edu" className="underline text-blue-500 hover:text-purple-500">
-								hackrpi@rpi.edu
-							</Link>
-							&nbsp; if you want to develop a tailored sponsorship package.
-						</h4>
-					</div>
-				</div>
-			</div>
-
-			<div className={tw.container}>
-				<div id='container4' className={`${tw.neumorphic} ${tw.centerText} ${tw.container}`} data-neumorphic="true" style={{}}>
-					<div id='docText' className={tw.stackText} style={{}}>
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Logo on T-Shirt</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company logo will be printed on the free shirts we give out</p>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Higher tiers increase the size of the logo</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Logo on Website</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company logo will be included on our website</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Distribute Company Swag</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Bring merchandise to your booth</p>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Alternatively we can have some at the check in desk to hand out</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Flier in Event Folder</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We'll include your flier in the event folder handed out to all participants at check in</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Social Media Advertising</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Featured on 2 sponsor posts for our social media sites (Instagram, LinkedIn)</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Judges</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to send a company representative to serve as a judge for the main hackathon event (In-person)</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Resume Book</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company will be included on the list we send out participant resumes to (after the event in mid-November)</p>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">In Gold tier or above, your company will be included on the list we send out participant resumes to (before the event in early September)</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Host Fireside Chat</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Company informational session during the main event hackathon</p>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Participants usually attend to take breaks from their work, perfect time to learn about your company and any job openings</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Host a Workshop</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Opportunity to host a workshop relating to one or more of your company's products for any interested students from Rensselaer</p>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">This can occur before as a separate HackRPI event or during the main hackathon</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Promotional Mail to Hackers</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your company will be featured on the mail we send out to all hackers signed up before the main event</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Priority Booth Placement</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">Your booth/table will be closer to the entrance and area where the majority of participants are</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Opening Ceremony Demo</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">During our opening ceremony, we'll have a short slot for you to feature your company/product as a sponsor of HackRPI</p>
-
-						<h3 className="text-[1.75em] text-left mt-5 mb-2 text-slate-100">Company Table</h3>
-						<p className="text-[1.25em] leading-[140%] text-gray-300 text-left ml-8 mb-2">We provide a table where your company can set up a presence, but will accomodate if you want to bring a custom booth/multiple table setup</p>
-					</div>
-				</div>
-			</div>
-
-			{/* <iframe
-				className="mx-auto w-[90%] h-[120vh] py-10"
-				src="/sponsors/HackRPI_Sponsorship_Deck.pdf"
-			></iframe> */}
-			<PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
-				
-			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
-		</main>
-		<footer className="bg-gray-800">
-			<div className="w-full h-[10vh] bg-hackrpi-clouds-dark-blue" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
-			<Footer/>
-		</footer>
-		<style jsx global>{`
-			@keyframes tempBlur {
-				0% { filter: blur(0px); }
-				10% { filter: blur(5px); }
-				80% { filter: blur(0px); }
-				100% { filter: blur(0px); }
-			}
-		`}</style>
-	</>);
+        @keyframes pulseHighlight {
+          0% { background-color: rgba(255, 255, 255, 0.25); }
+          50% { background-color: rgba(255, 255, 255, 0.1); }
+          100% { background-color: transparent; }
+        }
+      `}</style>
+    </>
+  );
 }
-
-export default SponsorUsPage;

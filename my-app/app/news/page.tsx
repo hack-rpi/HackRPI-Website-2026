@@ -159,9 +159,9 @@ const Page: React.FC = () => {
       {hackathonArticles.length > 0 && (
         <>
           <div className="mx-auto max-w-400 px-12 pb-8 pt-8 max-md:px-6">
-            <h2 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
+            <h1 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
               Hackathon
-            </h2>
+            </h1>
           </div>
 
           <section className="mx-auto max-w-400 overflow-visible px-12 pb-12 max-md:px-6">
@@ -182,9 +182,9 @@ const Page: React.FC = () => {
 
       {/* Latest Stories Section */}
       <div className="mx-auto max-w-400 px-12 pb-8 pt-12 max-md:px-6">
-        <h2 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
+        <h1 className="bg-linear-to-r from-white to-gold bg-clip-text text-[1.75rem] font-bold tracking-tight text-transparent max-md:text-2xl">
           Latest Stories
-        </h2>
+        </h1>
       </div>
 
       <section className="mx-auto grid max-w-400 grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-6 p-12 max-md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] max-md:gap-5 max-md:px-6 max-md:py-12">
