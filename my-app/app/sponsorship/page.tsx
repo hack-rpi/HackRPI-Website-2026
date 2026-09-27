@@ -60,36 +60,36 @@ const tierThemes: Record<Tier, ThemeConfig> = {
     accentText: "text-red-400",
     cardBorder: "border-red-500/50",
     cardGlow: "shadow-red-500/25 ring-red-500",
-    panelBg: "bg-red-950/20",
-    panelBorder: "border-red-500/30",
-    rowHover: "hover:bg-red-900/30",
+    panelBg: "bg-red-950/50",
+    panelBorder: "border-red-500/40",
+    rowHover: "hover:bg-red-900/40",
     bgGradient: "from-red-950/30 via-slate-950 to-slate-950",
   },
   silver: {
     accentText: "text-slate-200",
     cardBorder: "border-slate-300/50",
     cardGlow: "shadow-slate-200/25 ring-slate-300",
-    panelBg: "bg-slate-900/40",
-    panelBorder: "border-slate-400/30",
-    rowHover: "hover:bg-slate-800/40",
+    panelBg: "bg-slate-900/60",
+    panelBorder: "border-slate-400/40",
+    rowHover: "hover:bg-slate-800/50",
     bgGradient: "from-slate-900/50 via-slate-950 to-slate-950",
   },
   gold: {
     accentText: "text-amber-300",
     cardBorder: "border-amber-300/60",
     cardGlow: "shadow-amber-300/30 ring-amber-300",
-    panelBg: "bg-amber-950/20",
-    panelBorder: "border-amber-400/30",
-    rowHover: "hover:bg-amber-900/30",
+    panelBg: "bg-amber-950/50",
+    panelBorder: "border-amber-400/40",
+    rowHover: "hover:bg-amber-900/40",
     bgGradient: "from-amber-950/25 via-slate-950 to-slate-950",
   },
   obsidian: {
     accentText: "text-blue-400",
     cardBorder: "border-blue-400/60",
     cardGlow: "shadow-blue-500/30 ring-blue-400",
-    panelBg: "bg-blue-950/25",
-    panelBorder: "border-blue-500/30",
-    rowHover: "hover:bg-blue-900/30",
+    panelBg: "bg-blue-950/50",
+    panelBorder: "border-blue-500/40",
+    rowHover: "hover:bg-blue-900/40",
     bgGradient: "from-blue-950/30 via-slate-950 to-slate-950",
   },
 };
@@ -163,17 +163,43 @@ export default function SponsorUsPage() {
   return (
     <>
       <NavBar showOnScroll={false} variant={1} />
-      <main className={`w-full bg-gradient-to-b ${currentTheme.bgGradient} pt-[8vh] min-h-screen text-slate-100 transition-colors duration-700`}>
+      <main className={`relative w-full bg-gradient-to-b ${currentTheme.bgGradient} pt-[8vh] min-h-screen text-slate-100 transition-colors duration-700 overflow-hidden`}>
         
+        {/* Background Clouds Spanning Entire Page */}
+        <div className="absolute top-[5vh] left-[-50px] md:left-[2%] w-72 md:w-[32rem] h-44 opacity-25 pointer-events-none animate-float-slow z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[18vh] right-[-40px] md:right-[3%] w-64 md:w-[28rem] h-40 opacity-20 pointer-events-none animate-float-reverse z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[38vh] left-[5%] w-80 md:w-[34rem] h-52 opacity-25 pointer-events-none animate-float-drift z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[55vh] right-[-20px] md:right-[5%] w-72 md:w-[30rem] h-48 opacity-20 pointer-events-none animate-float-slow z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[72vh] left-[-30px] md:left-[1%] w-80 md:w-[36rem] h-56 opacity-20 pointer-events-none animate-float-reverse z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[88vh] right-[2%] w-72 md:w-[32rem] h-48 opacity-25 pointer-events-none animate-float-drift z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[110vh] left-[4%] w-80 md:w-[35rem] h-52 opacity-20 pointer-events-none animate-float-slow z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+        <div className="absolute top-[135vh] right-[-30px] md:right-[4%] w-80 md:w-[36rem] h-56 opacity-25 pointer-events-none animate-float-reverse z-0">
+          <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
+        </div>
+
         {/* Instruction Banner */}
-        <div className="max-w-6xl mx-auto px-4 my-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 my-6">
           <div className={`backdrop-blur-xl rounded-2xl p-4 text-center text-lg font-medium border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-xl`}>
             Select a tier balloon below to explore sponsorship benefits!
           </div>
         </div>
 
         {/* Tier Cards */}
-        <div id="container1" className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+        <div id="container1" className="relative z-10 max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
           {tierCards.map((card) => {
             const isSelected = selectedTier === card.name;
             const cardTheme = tierThemes[card.name];
@@ -209,75 +235,89 @@ export default function SponsorUsPage() {
           })}
         </div>
 
-        {/* Dynamic Benefits Panel */}
-        <div id="container2" className="max-w-6xl mx-auto px-4 my-10">
-          <div className={`backdrop-blur-xl rounded-2xl p-6 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-2xl`}>
-            <div className="text-center mb-6">
-              <h2 className={`text-3xl font-extrabold capitalize ${currentTheme.accentText} transition-colors duration-500`}>
-                {selectedTier} Tier Benefits
-              </h2>
-            </div>
+        {/* Responsive Outer Container for Window Image */}
+        <div id="container2" className="relative z-10 max-w-5xl mx-auto px-4 my-10">
+          <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center p-3 sm:p-6 md:p-10">
+            {/* Background Image scaling within screen boundaries */}
+            <Image
+              src="/sponsors/res/window.png"
+              alt="Window Frame Background"
+              fill
+              className="object-contain object-center z-0"
+              priority
+            />
 
-            {isMobile || !nextTier ? (
-              <div className="space-y-3">
-                {Object.entries(listItems).map(([name, tiers]) => {
-                  const val = tiers[selectedTier];
-                  const isAvailable = Boolean(val);
-                  const displayValue = typeof val === "string" ? `: ${val}` : "";
-
-                  return (
-                    <div
-                      key={name}
-                      onClick={() => scrollDocs(name)}
-                      className={`p-3.5 rounded-xl cursor-pointer transition-all duration-200 hover:scale-[1.01] ${currentTheme.rowHover} ${
-                        isAvailable ? "bg-slate-800/40 text-slate-100 font-medium border border-slate-700/30" : "opacity-40 text-slate-400"
-                      }`}
-                    >
-                      {name}
-                      {displayValue}
-                    </div>
-                  );
-                })}
+            {/* Inset Benefits Comparison Box fit inside window borders */}
+            <div className={`relative z-10 w-[88%] sm:w-[84%] my-6 sm:my-8 rounded-2xl p-4 sm:p-6 md:p-8 backdrop-blur-md border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-xl`}>
+              <div className="text-center mb-4 sm:mb-6">
+                <h2 className={`text-2xl sm:text-3xl font-extrabold capitalize ${currentTheme.accentText} transition-colors duration-500`}>
+                  {selectedTier} Tier Benefits
+                </h2>
               </div>
-            ) : (
-              <div className="space-y-2">
-                <div className={`grid grid-cols-3 items-center text-center font-bold text-xl border-b pb-3 mb-4 ${currentTheme.panelBorder}`}>
-                  <span className={`capitalize ${currentTheme.accentText}`}>{selectedTier}</span>
-                  <span className="text-slate-400">&rarr;</span>
-                  <span className={`capitalize ${tierThemes[nextTier].accentText}`}>{nextTier}</span>
+
+              {isMobile || !nextTier ? (
+                <div className="space-y-2.5 max-h-[60vh] overflow-y-auto pr-1">
+                  {Object.entries(listItems).map(([name, tiers]) => {
+                    const val = tiers[selectedTier];
+                    const isAvailable = Boolean(val);
+                    const displayValue = typeof val === "string" ? `: ${val}` : "";
+
+                    return (
+                      <div
+                        key={name}
+                        onClick={() => scrollDocs(name)}
+                        className={`p-3 rounded-xl cursor-pointer transition-all duration-200 hover:scale-[1.01] ${currentTheme.rowHover} ${
+                          isAvailable ? "bg-slate-900/70 text-slate-100 font-medium border border-slate-700/40" : "opacity-40 text-slate-400 bg-slate-950/40"
+                        }`}
+                      >
+                        {name}
+                        {displayValue}
+                      </div>
+                    );
+                  })}
                 </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className={`grid grid-cols-3 items-center text-center font-bold text-lg sm:text-xl border-b pb-3 mb-3 ${currentTheme.panelBorder}`}>
+                    <span className={`capitalize ${currentTheme.accentText}`}>{selectedTier}</span>
+                    <span className="text-slate-400">&rarr;</span>
+                    <span className={`capitalize ${tierThemes[nextTier].accentText}`}>{nextTier}</span>
+                  </div>
 
-                {Object.entries(listItems).map(([name, tiers]) => {
-                  const currentVal = tiers[selectedTier];
-                  const nextVal = tiers[nextTier];
-                  const isCurrentAvailable = Boolean(currentVal);
+                  <div className="space-y-1.5 max-h-[60vh] overflow-y-auto pr-1">
+                    {Object.entries(listItems).map(([name, tiers]) => {
+                      const currentVal = tiers[selectedTier];
+                      const nextVal = tiers[nextTier];
+                      const isCurrentAvailable = Boolean(currentVal);
 
-                  const currentText = typeof currentVal === "string" ? `${name}: ${currentVal}` : name;
-                  const promoterText = (tiers[`${selectedTier}promoter`] as string) || (typeof nextVal === "string" ? `${name}: ${nextVal}` : name);
+                      const currentText = typeof currentVal === "string" ? `${name}: ${currentVal}` : name;
+                      const promoterText = (tiers[`${selectedTier}promoter`] as string) || (typeof nextVal === "string" ? `${name}: ${nextVal}` : name);
 
-                  return (
-                    <div
-                      key={name}
-                      onClick={() => scrollDocs(name)}
-                      className={`grid grid-cols-3 items-center py-2.5 px-4 rounded-xl cursor-pointer ${currentTheme.rowHover} border border-transparent transition-all duration-200 hover:scale-[1.01]`}
-                    >
-                      <span className={`text-center ${isCurrentAvailable ? "text-slate-100 font-medium" : "opacity-40"}`}>
-                        {currentText}
-                      </span>
-                      <span className="text-center text-slate-400">&rarr;</span>
-                      <span className={`text-center ${nextVal ? "text-slate-100 font-medium" : "opacity-40"}`}>
-                        {nextVal ? promoterText : "—"}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+                      return (
+                        <div
+                          key={name}
+                          onClick={() => scrollDocs(name)}
+                          className={`grid grid-cols-3 items-center py-2 px-3 sm:px-4 rounded-xl cursor-pointer ${currentTheme.rowHover} border border-transparent transition-all duration-200 hover:scale-[1.01] text-sm sm:text-base`}
+                        >
+                          <span className={`text-center ${isCurrentAvailable ? "text-slate-100 font-medium" : "opacity-40"}`}>
+                            {currentText}
+                          </span>
+                          <span className="text-center text-slate-400">&rarr;</span>
+                          <span className={`text-center ${nextVal ? "text-slate-100 font-medium" : "opacity-40"}`}>
+                            {nextVal ? promoterText : "—"}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Custom Tailored Note */}
-        <div id="container3" className="max-w-6xl mx-auto px-4 my-8">
+        <div id="container3" className="relative z-10 max-w-6xl mx-auto px-4 my-8">
           <div className={`backdrop-blur-xl rounded-2xl p-6 text-center space-y-2 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-xl`}>
             <h4 className="text-xl text-slate-200">
               We understand that standard sponsorship tiers may not suit all organizations.
@@ -293,7 +333,7 @@ export default function SponsorUsPage() {
         </div>
 
         {/* Documentation Section */}
-        <div id="container4" className="max-w-6xl mx-auto px-4 my-10">
+        <div id="container4" className="relative z-10 max-w-6xl mx-auto px-4 my-10">
           <div className={`backdrop-blur-xl rounded-2xl p-8 border ${currentTheme.panelBg} ${currentTheme.panelBorder} transition-all duration-500 shadow-2xl`}>
             <div id="docText" className="space-y-6">
               {[
@@ -323,7 +363,7 @@ export default function SponsorUsPage() {
         </div>
 
         {/* Responsive PDF Container */}
-        <div className="max-w-6xl mx-auto px-2 sm:px-4 my-10 w-full overflow-hidden">
+        <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 my-10 w-full overflow-hidden">
           <div className="w-full max-w-full overflow-x-auto rounded-2xl flex justify-center">
             <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
           </div>
@@ -344,6 +384,30 @@ export default function SponsorUsPage() {
         }
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(15px, -18px); }
+        }
+        .animate-float-slow {
+          animation: floatSlow 9s ease-in-out infinite;
+        }
+
+        @keyframes floatReverse {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(-15px, -20px); }
+        }
+        .animate-float-reverse {
+          animation: floatReverse 11s ease-in-out infinite;
+        }
+
+        @keyframes floatDrift {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(20px, -10px); }
+        }
+        .animate-float-drift {
+          animation: floatDrift 13s ease-in-out infinite;
         }
 
         @keyframes pulseHighlight {
