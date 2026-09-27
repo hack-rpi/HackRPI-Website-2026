@@ -7,7 +7,7 @@ import { OrbitControls, Float, useGLTF } from "@react-three/drei";
 import ParallaxClouds from "./parallaxCloudsMobile";
 import SkyCountdownOverlay from "./countdownMobile";
 
-useGLTF.preload("/models/your-model.glb");
+useGLTF.preload("/3d/plane0.glb");
 
 function Center3DModel() {
   // Path relative to your public/ directory

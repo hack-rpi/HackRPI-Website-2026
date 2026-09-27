@@ -27,46 +27,53 @@ export default function Footer() {
 	});
 
 	return (
-		<div className="h-auto w-full bg-transparent pt-20" id="footer">
+		<div className="h-auto w-full bg-transparent pt-10" id="footer">
+			{/* Removed justify-between and reduced padding from p-12 to p-6/p-8 */}
 			<div className="rounded-xl w-[calc(100%-2.5rem)] border-gBlack border text-2xl
-					mx-5 bottom-5 h-full desktop:h-[50vh] relative flex flex-col text-center bg-gBlack
+					mx-5 bottom-5 h-auto relative flex flex-col text-center bg-gBlack p-6 desktop:p-8 overflow-hidden
 				">
-				<div className="relative w-full h-[90%] flex flex-col items-center desktop:flex-row desktop:items-start">
-					<div className="relative z-10 w-1/2 h-full pb-5 p-10 desktop:p-20 desktop:pb-20 flex flex-col items-center">
-						<div className="relative z-10 w-fit h-full p-0 flex flex-col pt-0 pl-0">
+				<div className="relative w-full flex flex-col items-center justify-between gap-6 desktop:flex-row desktop:items-center">
+					
+					{/* LEFT COLUMN: TITLE SECTION */}
+					<div className="relative z-10 w-full desktop:w-3/5 flex flex-col items-center desktop:items-start text-center desktop:text-left">
+						
+						{/* Date Subtitle */}
 						<div
-							className="text-blue-200 text-[1.25rem] desktop:text-[1.75rem] leading-none text-center desktop:text-left desktop:ml-3 desktop:mr-auto"
+							className="text-blue-200 text-base sm:text-lg desktop:text-2xl font-sans leading-none tracking-wide desktop:ml-1"
 							style={{ fontFamily: "Calibri, sans-serif" }}
 							id="title-animate"
 						>
 							November 7, 8th • Troy, NY
 						</div>
 
+						{/* Massive Title */}
 						<div
-							className="text-white text-[5rem] desktop:text-[10rem] font-bold leading-none tracking-tight"
+							className="text-white text-[clamp(4.5rem,12vw,12rem)] font-extrabold leading-[0.85] tracking-tighter whitespace-nowrap my-1"
 							style={{ fontFamily: "Calibri, sans-serif" }}
 							id="title-animate"
 						>
 							HackRPI
 						</div>
 
-							<div
-								className="text-blue-200 text-[2rem] desktop:text-[2.3rem] font-mono leading-none desktop:ml-auto desktop:mr-5"
-								style={{ clipPath: "inset(0px 0% 0px 0px)" }}
-								id="title-animate"
-							>
-								IN THE CLOUDS
-							</div>
+						{/* Subtitle */}
+						<div
+							className="text-blue-200 text-xl sm:text-2xl desktop:text-3xl font-mono leading-none tracking-widest desktop:ml-1"
+							id="title-animate"
+						>
+							IN THE CLOUDS
 						</div>
 					</div>
+
+					{/* RIGHT COLUMN: LOCATION & SOCIALS */}
 					<div className="
-						relative z-10 desktop:mt-7 w-11/12 desktop:w-1/2 h-full font-mono
-						flex flex-col items-center justify-center text-center p-5 desktop:p-30 desktop:px-20
+						relative z-10 w-full desktop:w-2/5 font-mono
+						flex flex-col items-center justify-center text-center gap-1
 					">
-						<span className="text-white text-lg desktop:text-2xl">Darrin Communications Center</span>
-						<span className="text-white text-lg desktop:text-2xl">@ Rensselaer Polytechnic Institute</span>
-						<span className="text-white text-lg desktop:text-2xl">110 8th St, Troy, NY 12180</span>
-						<div className="mt-6 flex items-center justify-center gap-4 text-blue-200">
+						<span className="text-white text-base sm:text-xl desktop:text-2xl font-semibold">Darrin Communications Center</span>
+						<span className="text-white/90 text-base sm:text-lg desktop:text-xl">@ Rensselaer Polytechnic Institute</span>
+						<span className="text-white/70 text-sm sm:text-base desktop:text-lg">110 8th St, Troy, NY 12180</span>
+						
+						<div className="mt-4 flex items-center justify-center gap-3 text-blue-200">
 							<Link
 								href="https://discord.gg/ZcKXwk7Bx2"
 								target="_blank"
@@ -126,7 +133,11 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
-				<span className="text-white block w-full pb-4 text-center text-sm desktop:text-lg font-mono">Made with ❤️ by HackRPI, © 2026 HackRPI</span>
+
+				{/* Tightened Copyright Notice */}
+				<span className="text-white/60 block w-full mt-6 text-center text-xs sm:text-sm font-mono">
+					Made with ❤️ by HackRPI, © 2026 HackRPI
+				</span>
 			</div>
 		</div>
 	);

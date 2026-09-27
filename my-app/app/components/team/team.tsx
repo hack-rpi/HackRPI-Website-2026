@@ -48,17 +48,8 @@ export default function Team() {
           repeat: -1,
         });
 
-        const marqueeEl = marqueeRef.current;
-        const handleMouseEnter = () => loopTween.pause();
-        const handleMouseLeave = () => loopTween.play();
-
-        marqueeEl.addEventListener("mouseenter", handleMouseEnter);
-        marqueeEl.addEventListener("mouseleave", handleMouseLeave);
-
         return () => {
           loopTween.kill();
-          marqueeEl.removeEventListener("mouseenter", handleMouseEnter);
-          marqueeEl.removeEventListener("mouseleave", handleMouseLeave);
         };
       }
     });
