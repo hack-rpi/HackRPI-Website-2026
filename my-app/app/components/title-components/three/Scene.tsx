@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, Suspense, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PerspectiveCamera, useGLTF, useProgress, Clone } from "@react-three/drei";
+import { useGLTF, useProgress} from "@react-three/drei";
 import * as THREE from "three";
 import { ProceduralCity } from "./ProceduralCity";
 import { Letter3D } from "./Letters3D";
@@ -12,8 +12,8 @@ const RPI_URL = "/3d/rpiPairWOuter.glb";
 const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
 const RPI_TILE_URL = "/3d/rpiHighResTrimmed.glb";
 const PLANE_URL = "/3d/plane0.glb";
-//useGLTF.preload(PLANE_URL);
-//useGLTF.preload(RPI_URL);
+useGLTF.preload(RPI_URL);
+useGLTF.preload(PLANE_URL);
 
 const scrollMultiplier = 1;
 export const PlanePivots: CameraPivot[] = [
@@ -73,56 +73,51 @@ function PlaneModel({ scale = 0.15, scrollY }: { scale?: number, scrollY: number
 	);
 }
 
-useGLTF.preload(RPI_URL);
-
-export function RPIModel() {
+export function RPIModel({onLoaded}: {onLoaded: () => void}) {
   // Load model (use Draco loader if compressed with Draco)
   const { scene } = useGLTF(RPI_URL);
   
   const groupRef = useRef<THREE.Group>(null!);
-
-  // Movement speed per second (units/sec)
   const speed = 9.0; 
 
-  // Set initial position/rotation once mounted
-  useEffect(() => {
-    // Enable matrix updates optimization if model is static relative to its parent
-    scene.position.set(-10, -82, 70);
-    scene.rotation.y = 1.875;
-  }, [scene]);
+	useEffect(() => {
+		if (scene)
+			onLoaded();
+	}, [scene, onLoaded]);
+
+	useEffect(() => {
+		scene.position.set(-10, -82, 70);
+		scene.rotation.y = 1.875;
+	}, [scene]);
 
   	useEffect(() => {
 		scene.traverse((child) => {
 			if ((child as THREE.Mesh).isMesh) {
 			child.castShadow = true;
-			child.receiveShadow = false; // Disable receiveShadow if not needed
+			child.receiveShadow = false;
 			}
 		});
 	}, [scene]);
 
-  // Frame loop with Delta time calculation for consistent speed on 60Hz/120Hz/144Hz displays
-  useFrame((_, delta) => {
-    if (!groupRef.current) return;
+	useFrame((_, delta) => {
+		if (!groupRef.current) return;
 
-    // Scale movement by frame delta time
-    const moveStep = speed * delta;
-    
-    groupRef.current.position.z -= moveStep;
-    groupRef.current.position.y += 0.051 * moveStep;
+		// Scale movement by frame delta time
+		const moveStep = speed * delta;
+		
+		groupRef.current.position.z -= moveStep;
+		groupRef.current.position.y += 0.051 * moveStep;
 
-    // Loop position boundary reset
-    if (groupRef.current.position.z < -261) {
-      groupRef.current.position.z = -20;
-      groupRef.current.position.y = 0.00;
-    }
-  });
+		// Loop position boundary reset
+		if (groupRef.current.position.z < -261) {
+			groupRef.current.position.z = -20;
+			groupRef.current.position.y = 0.00;
+		}
+	});
 
-  return (
-    <group ref={groupRef}>
-      {/* 2. Direct primitive instead of heavy <Clone /> */}
-      <primitive object={scene} />
-    </group>
-  );
+	return (
+		<primitive ref={groupRef} object={scene} />
+	);
 }
 
 export type CameraPivot = {
@@ -411,10 +406,13 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 	}
 
 	const fogExposure = 0.007 + 0.02 * intensity;
-
+	const [loaded, setLoaded] = useState(false);
 
 	return (
 		<div className="w-full h-screen fixed z-0">
+			<div className={`z-1 pointer-events-none absolute inset-0 w-full h-full bg-black transition-opacity duration-1000 ease-in ${loaded ? "opacity-0" : "opacity-100"}`}>
+				<div className="absolute bottom-0 left-0 w-full " style={{ height: "45.2%", backgroundColor: "#262931" }}></div>
+			</div>
 			<Canvas shadows>
 				<color attach="background" args={[fogColor]} />
 				{/* {(timeLeft && scrollY < 1267) ? (<>
@@ -423,10 +421,8 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 					<Letter3D content={TextBoard1[2]} centered={false} billboard={true} font={1}  pos={[-2,-6,-5]} rot={[Math.PI/2,Math.PI,0]}/>
 					<Letter3D content={TextBoard1[3]} centered={false} billboard={true} font={1} pos={[-2,-6,-6.5]} rot={[Math.PI/2,Math.PI,0]}/>
 					<Letter3D content={TextBoard1[4]} centered={false} billboard={true} font={1} pos={[-2,-6,-8]} rot={[Math.PI/2,Math.PI,0]}/>
-				 	</>) : null
+					</>) : null
 				} */}
-
-				
 
 				<CameraRig scrollY={scrollY} />
 
@@ -444,19 +440,15 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 
 				<directionalLight position={[-30, 40, -30]} intensity={0.9} color="#496b91" />
 				<ambientLight intensity={0.25} color="#262931" />
-				{/* <Environment preset="city" /> */}
-
 				
 				<fogExp2 attach="fog" args={[fogColor, fogExposure]} />
 
 				{scrollY < 1180*scrollMultiplier ? 
-					// <ProceduralCity origin={[10,-30,20]} speed={2} gridWidth={70} gridDepth={70} tileSize={2} />
 					<Suspense>
-						<RPIModel/>
+						<RPIModel onLoaded={() => setLoaded(true)} />
 					</Suspense>
 				: <></>}
 				
-
 				{/* 3D Plane */}
 				<PlaneModel scrollY={scrollY} />
 			</Canvas>

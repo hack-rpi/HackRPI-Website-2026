@@ -1,182 +1,157 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
 import FaceCard from "./faceCard";
+import teamMembers from "./team.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-// Note: Use group photo 2.
-
-const teamMembers = [
-	{
-		img: '/team/F267/Tobias.jpg',
-		name: 'Tobias Manayath',
-		pos: 'President',
-		gradientClass: 'from-blue-400 via-indigo-500 to-blue-700',
-		zoom: 1.7,
-		xOffset: -23,
-		yOffset: 40
-	},
-	{
-		img: '/team/F267/Jackson.jpg',
-		name: 'Jackson Baimel',
-		pos: 'Vice President',
-		gradientClass: 'from-red-400 via-rose-500 to-red-700',
-		zoom: 1.35,
-		xOffset: -1,
-		yOffset: 25
-	},
-	{
-		img: '/team/F267/Lala.jpg',
-		name: 'Lala Liu',
-		pos: 'Director of Logistics',
-		gradientClass: 'from-yellow-300 via-amber-400 to-yellow-600',
-		zoom: 1.2,
-		xOffset: -10,
-		yOffset: 30
-	},
-	{
-		img: '/team/F267/Devan4.jpg',
-		name: 'Devan Patel',
-		pos: 'Director of Finance',
-		gradientClass: 'from-emerald-300 via-green-400 to-emerald-600',
-		zoom: 1.50,
-		xOffset: -20,
-		yOffset: 65
-	},
-	{
-		img: '/team/F267/Ethan.jpg',
-		name: 'Ethan Kusse',
-		pos: 'Director of Sponsorship',
-		gradientClass: 'from-cyan-300 via-sky-400 to-cyan-600',
-		zoom: 1.7,
-		xOffset: -9,
-		yOffset: 95
-	},
-	{
-		img: '/team/F267/Caleb3.jpg', // 3 or 10
-		name: 'Caleb Liu',
-		pos: 'Director of Technology',
-		gradientClass: 'from-violet-300 via-purple-500 to-violet-700',
-		zoom: 1.5,
-		xOffset: 1,
-		yOffset: 40
-	},
-	{
-		img: '/team/F267/Jodie.jpg',
-		name: 'Jodie Cho',
-		pos: 'Director of Marketing',
-		gradientClass: 'from-orange-300 via-orange-500 to-orange-700',
-		zoom: 1.9,
-		xOffset: -11,
-		yOffset: 10
-	},
-	{
-		img: '/team/F267/Matt.jpg',
-		name: 'Matthew Treanor',
-		pos: 'Director of Outreach',
-		gradientClass: 'from-pink-300 via-rose-500 to-pink-700',
-		zoom: 1.6,
-		xOffset: -22,
-		yOffset: 30
-	},
-];
-
 export default function Team() {
-	useEffect(() => {
-		const scrollBox = document.querySelector("#horizontal-scrollbox");
-		const parallaxBg = document.querySelector("#parallax-bg") as HTMLElement | null;
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
 
-		// Clean native scroll handler for background parallax
-		const handleScroll = () => {
-			if (!scrollBox || !parallaxBg) return;
-			const scrolledAmount = scrollBox.scrollLeft;
-			
-			// Moves background at 30% speed of the foreground scrollbox
-			parallaxBg.style.setProperty('--bg-scroll', `-${scrolledAmount * 0.3}px`);
-		};
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Text Entry Animations
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#pin",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
 
-		if (scrollBox) {
-			scrollBox.addEventListener("scroll", handleScroll, { passive: true });
-		}
+      let animatedTitle = false;
+      tl.call(() => {
+        if (!animatedTitle) {
+          textAnimation("team-title", 0.6);
+          animatedTitle = true;
+        }
+      }, [], 0.1);
 
-		const ctx = gsap.context(() => {
-			// Retain your entry text animations 
-			const tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: "#pin",
-					start: "top 90%",
-					toggleActions: "play none none none"
-				},
-			});
+      let animatedNames = false;
+      tl.call(() => {
+        if (!animatedNames) {
+          textAnimation("name-animate", 1.0, 0.1);
+          animatedNames = true;
+        }
+      }, [], 0.0);
 
-			let HA1 = false;
-			tl.call(() => {
-				if (!HA1) {
-					textAnimation("team-title", 0.6);
-					HA1 = true;
-				}
-			}, [], 0.1);
+      // 2. Desktop GSAP Infinite Marquee Loop
+      if (marqueeRef.current) {
+        const loopTween = gsap.to(marqueeRef.current, {
+          xPercent: -50,
+          ease: "none",
+          duration: 35,
+          repeat: -1,
+        });
 
-			let HA2 = false;
-			tl.call(() => {
-				if (!HA2) {
-					textAnimation("name-animate", 1.0, 0.1);
-					HA2 = true;
-				}
-			}, [], 0.0);
-		});
+        const marqueeEl = marqueeRef.current;
+        const handleMouseEnter = () => loopTween.pause();
+        const handleMouseLeave = () => loopTween.play();
 
-		return () => {
-			ctx.revert();
-			if (scrollBox) {
-				scrollBox.removeEventListener("scroll", handleScroll);
-			}
-		};
-	}, []);
+        marqueeEl.addEventListener("mouseenter", handleMouseEnter);
+        marqueeEl.addEventListener("mouseleave", handleMouseLeave);
 
-	return (
-		<div className="relative min-h-0 md:min-h-screen bg-gBlack pt-12 pb-4 md:py-20 overflow-hidden" id="pin">
+        return () => {
+          loopTween.kill();
+          marqueeEl.removeEventListener("mouseenter", handleMouseEnter);
+          marqueeEl.removeEventListener("mouseleave", handleMouseLeave);
+        };
+      }
+    });
 
-			<div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-16 relative z-10">
-				<h2 id="team-title" className="text-left text-white/70 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">
-					Meet the HackRPI Organizing Team
-					<div className="text-animation-layer inline-block w-auto" id="text-animate-layer"/>
-				</h2>
-				<p className="text-lg text-white/70 leading-relaxed">
-					Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord!
-				</p>
-			</div>
+    return () => ctx.revert();
+  }, []);
 
-			<div 
-				id="horizontal-scrollbox"
-				className="w-full overflow-x-auto overflow-y-visible flex gap-0 px-6 md:px-16 pb-4 md:pb-12 relative z-10 scroll-smooth snap-x select-none"
+  // Duplicated for seamless infinite scrolling loop
+  const duplicatedTeam = [...teamMembers, ...teamMembers];
+
+  return (
+    <div
+      className="relative min-h-0 md:min-h-screen bg-gBlack pt-12 pb-16 md:py-20 overflow-hidden"
+      id="pin"
+    >
+      {/* Background Glow Highlights */}
+      <div className="pointer-events-none absolute top-10 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-10 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+
+      {/* Header Container */}
+      <div className="px-6 md:px-16 max-w-4xl flex flex-col gap-4 mb-10 md:mb-14 relative z-10">
+        <h2
+          id="team-title"
+          className="text-left text-white/70 text-2xl md:text-3xl font-bold tracking-wider text-white/90 uppercase font-mono"
+        >
+          Meet the HackRPI Organizing Team
+          <div
+            className="text-animation-layer inline-block w-auto"
+            id="text-animate-layer"
+          />
+        </h2>
+        <p className="text-sm md:text-lg text-white/70 leading-relaxed font-sans">
+          Hello! We are a motivated team of RPI students who share a passion for
+          exploring the bounds of Computer Science and a commitment to organizing
+          a fantastic event. Our team of students from every grade and major work
+          together to organize our annual fall hackathon as well as other
+          smaller events throughout the year. We are always looking for more
+          students to join our team and help us make our event a success. If you
+          are interested in helping, please join our discord!
+        </p>
+      </div>
+
+      {/* ========================================== */}
+      {/* DESKTOP VIEW: Continuous Auto-Scroll Carousel */}
+      {/* ========================================== */}
+      <div className="hidden md:block w-full overflow-hidden relative z-10 py-6">
+        <div ref={marqueeRef} className="flex w-max gap-8 will-change-transform">
+          {duplicatedTeam.map((member, index) => (
+            <div
+				key={`${member.name}-desktop-${index}`}
+				className="flex-shrink-0 relative w-[260px] h-[380px]"
 			>
-				{teamMembers.map((member, i) => (
-					<div 
-							key={member.name} 
-							className={`flex-shrink-0 snap-start relative ${i !== 0 ? "-ml-6 md:ml-0" : ""}`}
-							style={{ height: 'calc(min(45vh, 60vw) + 5rem)', width: 'min(36vh, 48vw)' }}
-					>
-							<FaceCard
-								size={1}
-								zoom={member.zoom || 1}
-								offsetX={member.xOffset || 0}
-								offsetY={member.yOffset || 0}
-								left={0} 
-								top={0}
-								img={member.img}
-								name={member.name}
-								pos={member.pos}
-								gradientClass={member.gradientClass}
-							/>
-					</div>
-				))}
+				<FaceCard
+					zoom={member.zoom || 1}
+					offsetX={member.xOffset || 0}
+					offsetY={member.yOffset || 0}
+					img={member.img}
+					name={member.name}
+					pos={member.pos}
+					gradientClass={member.gradientClass}
+				/>
 			</div>
-		</div>
-	);
-};
+          ))}
+        </div>
+      </div>
+
+      {/* ========================================== */}
+      {/* MOBILE VIEW: 2-Column Grid Powered by FaceCard */}
+      {/* ========================================== */}
+
+      <div className="block md:hidden px-4 relative z-10">
+        <div className="grid grid-cols-2 gap-x-2 gap-y-6 justify-items-center">
+          {teamMembers.map((member) => (
+            <div
+				key={`${member.name}-mobile`}
+				className="relative flex justify-center items-center w-full max-w-[200px] h-[300px]"
+			>
+				<FaceCard
+					zoom={member.zoom || 1}
+					offsetX={member.xOffset || 0}
+					offsetY={member.yOffset || 0}
+					img={member.img}
+					name={member.name}
+					pos={member.pos}
+					gradientClass={member.gradientClass}
+				/>
+			</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// Hello! We are a motivated team of RPI students who share a passion for exploring the bounds of Computer Science and a commitment to organizing a fantastic event. Our team of students from every grade and major work together to organize our annual fall hackathon as well as other smaller events throughout the year. We are always looking for more students to join our team and help us make our event a success. If you are interested in helping, please join our discord!

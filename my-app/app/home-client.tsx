@@ -13,7 +13,6 @@ import FinalMessage from "@/app/components/final-message/final-message";
 
 import Lenis from 'lenis';
 import { ReactNode, useEffect, useState } from "react";
-import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
@@ -23,19 +22,16 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HomeClient() {
   const [Navbar, setNavbar] = useState<ReactNode>(null);
   const [isClient, setIsClient] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const { active, progress } = useProgress();
-
-  useEffect(() => {
-    if (!active && progress >= 100) {
-      setLoaded(true);
-    }
-  }, [active, progress]);
 
   // Initialize client flag
   useEffect(() => {
     setIsClient(true);
     setNavbar(<NavBar showOnScroll={false} variant={2}/>);
+  }, []);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
   }, []);
 
   // Setup Lenis and GSAP animations
@@ -96,43 +92,6 @@ export default function HomeClient() {
           );
         }
 
-        // switch navbar styling
-        // ScrollTrigger.create({
-        //   trigger: "#switch-light",
-        //   start: "top top",
-        //   end: "bottom top",
-        //   onEnter: () => {
-        //     setNavbar(<NavBar showOnScroll={true}/>);
-        //   },
-        //   onEnterBack: () => {
-        //     setNavbar(<NavBar showOnScroll={true}/>);
-        //   },
-        //   onLeave: () => {
-        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-        //   },
-        //   onLeaveBack: () => {
-        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-        //   }
-        // });
-
-        // ScrollTrigger.create({
-        //   trigger: "#switch-light-2",
-        //   start: "top top",
-        //   end: "bottom top",
-        //   onEnter: () => {
-        //     setNavbar(<NavBar showOnScroll={true}/>);
-        //   },
-        //   onEnterBack: () => {
-        //     setNavbar(<NavBar showOnScroll={true}/>);
-        //   },
-        //   onLeave: () => {
-        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-        //   },
-        //   onLeaveBack: () => {
-        //     setNavbar(<NavBar showOnScroll={true} variant={1}/>);
-        //   }
-        // });
-
         return () => {
           ScrollTrigger.killAll();
           lenis.destroy();
@@ -147,10 +106,10 @@ export default function HomeClient() {
 
   return (
     <div className = "bg-black overflow-y-scroll scrollbar-hide">
-      <div className={`bg-black transition-opacity duration-3000 ease-in ${loaded ? "opacity-100" : "opacity-0"}`}>
         {isClient && Navbar}
         <div className="w-full overflow-hidden bg-black">
           <TitleComponent/>
+          
           {/* <TitleComponent
             onReady={(variant) => {
               // Runs once the chosen title variant is mounted/rendered
@@ -175,6 +134,5 @@ export default function HomeClient() {
             </div>
         </div>
       </div>
-    </div>
   );
 }
