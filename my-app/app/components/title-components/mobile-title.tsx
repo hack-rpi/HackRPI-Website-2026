@@ -22,19 +22,15 @@ function Center3DModel() {
 
 export default function MobileTitleComponent() {
   return (
-    <div className="relative w-full min-h-screen bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-6 overflow-hidden flex flex-col justify-between select-none">
-      {/* Background Cloud & Countdown Overlay Layer */}
+    <div className="relative w-full min-h-screen mt-5 bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-6 overflow-hidden flex flex-col justify-between select-none">
       <div className="absolute inset-0 pointer-events-none z-0">
         <ParallaxClouds />
         <SkyCountdownOverlay center={true} />
       </div>
 
-      {/* Atmospheric Soft Gradient Backdrop */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70 pointer-events-none z-0" />
 
-      {/* TOP HERO SECTION: Date/Location + Title + Register Button */}
       <header className="relative z-10 w-full pt-6 flex flex-col items-center text-center">
-        {/* Date & Location Pill Badges */}
         <div className="flex items-center gap-2 mb-2">
           <span className="px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-200 text-xs font-mono uppercase tracking-wider backdrop-blur-md">
             Nov. 7–8
