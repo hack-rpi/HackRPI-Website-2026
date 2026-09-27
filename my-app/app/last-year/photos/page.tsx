@@ -1,24 +1,41 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import "@/app/globals.css";
 import LastYearCollage from "@/app/components/prev-projects/LastYearCollage";
-import Image from "next/image";
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
-import Lenis from 'lenis';
-import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 export default function PastYearProjects() {
   return (
     <>
-      <NavBar showOnScroll={false}/>
-      <div className="w-full pt-[8vh] flex items-center justify-center flex-col bg-linear-to-b from-sky-500 via-purple-500 to-purple-800" id="winners">
-        <h2 className="text-3xl font-bold text-center p-5 m-5">Photos from HackRPI 2025!</h2>
+      <NavBar showOnScroll={false} variant={2}/>
 
-        <LastYearCollage />
-      </div>
-      <Footer/>
+      {/* Main Container styled to match the dark theme */}
+      <main
+        className="relative w-full min-h-screen pt-[10vh] flex flex-col items-center justify-start bg-slate-950 text-white overflow-hidden"
+        id="winners"
+      >
+        {/* Top Glow Accent matching the footer and cloud theme */}
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-blue-600/15 blur-[140px] rounded-full" />
+
+        {/* Header Section */}
+        <div className="relative z-10 text-center px-4 pt-6 pb-2">
+          <span className="text-blue-300 font-mono text-sm tracking-widest uppercase">
+            Memories & Moments
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mt-1 bg-gradient-to-r from-blue-200 via-white to-blue-300 bg-clip-text text-transparent">
+            Photos from HackRPI 2025
+          </h1>
+        </div>
+
+        {/* Photos Grid */}
+        <div className="w-full relative z-10">
+          <LastYearCollage />
+        </div>
+      </main>
+
+      <Footer />
     </>
   );
 }
