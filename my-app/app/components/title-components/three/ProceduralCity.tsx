@@ -413,7 +413,7 @@ export function ProceduralCity({
           <meshStandardMaterial
             map={style.map}
             emissiveMap={style.emissiveMap}
-            emissive={new THREE.Color("#ffffffce")}
+            emissive={new THREE.Color("#ffffff")}
             emissiveIntensity={0.8}
             transparent={false}
             roughness={0.25}

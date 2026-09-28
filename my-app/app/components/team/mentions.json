@@ -1,0 +1,21 @@
+[
+  { "name": "Dakshesh Amaram", "dept": "Finance" },
+  { "name": "Ryan Bennett", "dept": "Logistics" },
+  { "name": "Liam Brown", "dept": "Logistics" },
+  { "name": "Nicholas Cone", "dept": "Technology" },
+  { "name": "Frank Damato", "dept": "Technology" },
+  { "name": "James DeBlock", "dept": "Marketing" },
+  { "name": "Somey Dong", "dept": "Marketing" },
+  { "name": "Blessing Esochaghi", "dept": "Marketing" },
+  { "name": "Parker Kristhoffer", "dept": "Technology" },
+  { "name": "Dathan Lang", "dept": "Marketing" },
+  { "name": "Corbin Larsen", "dept": "Logistics" },
+  { "name": "Steven Luo", "dept": "Technology" },
+  { "name": "Angelo Miguel", "dept": "Sponsorship" },
+  { "name": "Liam O'Donnell", "dept": "Sponsorship" },
+  { "name": "Shankar Palanickal", "dept": "Finance" },
+  { "name": "Matthew Radford", "dept": "Finance" },
+  { "name": "Preston Santos", "dept": "Finance" },
+  { "name": "Brian Tam", "dept": "Marketing" },
+  { "name": "Jordan Ye", "dept": "Technology" }
+]

@@ -23,8 +23,8 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 	return (
 		<nav role="navigation" className="mobile-navigation">
 			<div className="
-				w-screen h-18 flex items-center justify-center fixed top-0
-				bg-linear-to-b from-purple-400/60 to-blue-800 z-50
+				w-screen h-12 flex items-center justify-center fixed top-0
+				bg-linear-to-b from-purple-400/60 to-blue-800/100 z-200
 			" style={{}}>
 				<div className="flex items-center justify-start w-1/3">
 					<button onClick={() => setNavMenuOpen((prev) => !prev)} className="text-white text-4xl ml-8 w-10 h-8">

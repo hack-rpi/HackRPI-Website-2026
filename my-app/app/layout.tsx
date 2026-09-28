@@ -29,10 +29,10 @@ const sugoProDisplay = Barlow_Condensed({
   display: "swap",
 });
 
-// Subheading Font: Louiseville
-const louisville = localFont({
-  src: "../public/fonts/Louiseville.ttf",
-  variable: "--font-louisville",
+// Subheading Font: OMN (One More Night)
+const OMNFont = localFont({
+  src: "../public/fonts/KGOneMoreNight.ttf",
+  variable: "--font-OMN",
   display: "swap",
 });
 
@@ -59,7 +59,7 @@ export default function RootLayout({
         <link rel="icon" href="/HackRPI_Favicon.png"></link>
       </head>
       <body
-        className={`${sugoProDisplay.variable} ${louisville.variable} ${calps.variable} bg-gBlack antialiased`}
+        className={`${sugoProDisplay.variable} ${OMNFont.variable} ${calps.variable} bg-gBlack antialiased`}
       >
         {children}
       </body>

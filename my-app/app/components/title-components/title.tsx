@@ -3,7 +3,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import DesktopTitleComponent from "./desktop-title";
-//import MobileTitleComponent from "./mobile-title";
+import MobileTitleComponent from "./mobile-title";
 
 type Props = {
   onReady?: (variant: "desktop" | "mobile") => void;
@@ -30,8 +30,8 @@ export default function TitleComponent({ onReady }: Props) {
     return () => cancelAnimationFrame(id);
   }, [variant, onReady]);
 
-  if (variant === "desktop") return <DesktopTitleComponent />;
- // if (variant === "mobile") return <MobileTitleComponent />;
+  if (variant === "desktop") return <DesktopTitleComponent/>;
+  if (variant === "mobile") return <MobileTitleComponent/>;
 
   return <div className="h-screen" />;
 }

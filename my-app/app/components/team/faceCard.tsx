@@ -1,106 +1,172 @@
-import Lenis from 'lenis'
-import React, { useState } from "react";
+"use client";
 
-// https://github.com/darkroomengineering/lenis?tab=readme-ov-file#installation
+import React, { useRef } from "react";
 
-export default function FaceCard({ size, left, top, img, name, pos, gradientClass }: any) {
-	let bg_color, text_color;
-	let shadowColor = "0,0,0"; // default RGB
+interface FaceCardProps {
+  size?: number;
+  zoom?: number;
+  offsetX?: number;
+  offsetY?: number;
+  left?: number;
+  top?: number;
+  img: string;
+  name: string;
+  pos: string;
+  gradientClass?: string;
+}
 
-	bg_color = " bg-gradient-to-br from-white/5 to-transparent border border-white/20";
+export default function FaceCard({
+  size = 1,
+  zoom = 1,
+  offsetX = 0,
+  offsetY = 0,
+  left = 0,
+  top = 0,
+  img,
+  name,
+  pos,
+  gradientClass,
+}: FaceCardProps) {
+  const desktopCardRef = useRef<HTMLDivElement>(null);
+  const mobileCardRef = useRef<HTMLDivElement>(null);
 
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const margin = 20;
 
-	const [rotateX, setRotateX] = useState(0);
-	const [rotateY, setRotateY] = useState(0);
-	const [shadow, setShadow] = useState(
-		`0px 20px 40px rgba(${shadowColor},0.35)`
-	);
-	function handleMove(e: React.MouseEvent<HTMLDivElement>) {
-		const rect = e.currentTarget.getBoundingClientRect();
+    if (
+      x < margin ||
+      x > rect.width - margin ||
+      y < margin ||
+      y > rect.height - margin
+    ) {
+      return;
+    }
 
-		const x = e.clientX - rect.left;
-		const y = e.clientY - rect.top;
+    let percentX = (x / rect.width - 0.5) * 2;
+    let percentY = (y / rect.height - 0.5) * 2;
 
-		const margin = 20;
+    if (Math.abs(percentX) < 0.05) percentX = 0;
+    if (Math.abs(percentY) < 0.05) percentY = 0;
 
-		// Prevent jitter near edges
-		if (
-			x < margin ||
-			x > rect.width - margin ||
-			y < margin ||
-			y > rect.height - margin
-		) {
-			return;
-		}
+    const rotateY = percentX * 25;
+    const rotateX = -percentY * 25;
 
-		let percentX = (x / rect.width - 0.5) * 2;
-		let percentY = (y / rect.height - 0.5) * 2;
+    card.style.transition = "none";
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  }
 
-		if (Math.abs(percentX) < 0.05) percentX = 0;
-		if (Math.abs(percentY) < 0.05) percentY = 0;
+  function handleLeave(e: React.MouseEvent<HTMLDivElement>) {
+    const card = e.currentTarget;
+    card.style.transition = "transform 500ms cubic-bezier(0.03, 0.98, 0.52, 0.99)";
+    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+  }
 
-		// 3D tilt
-		setRotateY(percentX * 25);
-		setRotateX(-percentY * 25);
+  return (
+    <>
+      {/* ==================================================== */}
+      {/* DESKTOP LAYOUT                                       */}
+      {/* ==================================================== */}
+      <div
+        ref={desktopCardRef}
+        className="hidden md:block relative transform-gpu [transform-style:preserve-3d] p-5 select-none componentWillChange-transform"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        style={{
+          height: `min(${size * 45}vh, 60vw)`,
+          width: `min(${size * 36}vh, 48vw)`,
+          marginLeft: `${left}vw`,
+          marginTop: `${top}vh`,
+        }}
+      >
+        {/* Photo Frame Container */}
+        <div
+          className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm relative"
+          style={{
+            boxShadow:
+              "0 0 40px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+          }}
+        >
+          <img
+            className="h-full w-full object-cover pointer-events-none"
+            style={{
+              transform: `translate(${offsetX}px, ${offsetY}px) scale(${zoom})`,
+            }}
+            src={img}
+            alt={name}
+          />
 
-		// dynamic colored glow
-		const shadowX = -percentX * 30;
-		const shadowY = -percentY * 30;
+          {/* 1. Dark Gradient Overlay */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 via-black/50 to-transparent pointer-events-none" />
 
-		const distance = Math.sqrt(percentX * percentX + percentY * percentY);
-		const blur = 30 + distance * 40;
-		const opacity = 0.25 + distance * 0.4;
+          {/* 2. Text Container */}
+          <div className="absolute inset-x-0 bottom-3 text-center z-10">
+            <b className="text-white text-lg block drop-shadow-md">{name}</b>
+            <b
+              className={`
+                text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-widest leading-tight block -mt-0.5
+                bg-gradient-to-b ${gradientClass || "from-blue-400 to-indigo-600"}
+                bg-clip-text text-transparent
+              `}
+            >
+              {pos}
+            </b>
+          </div>
+        </div>
+      </div>
 
-		setShadow(
-			`${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`
-		);
-	}
+      {/* ==================================================== */}
+      {/* MOBILE LAYOUT                                        */}
+      {/* ==================================================== */}
+      <div
+        ref={mobileCardRef}
+        className="block md:hidden relative transform-gpu [transform-style:preserve-3d] p-3 select-none componentWillChange-transform"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        style={{
+          width: "253px",
+          height: "317px",
+        }}
+      >
+        <div
+          className="w-full h-[230px] rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm relative"
+          style={{
+            boxShadow:
+              "0 0 30px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+          }}
+        >
+          <img
+            className="h-full w-full object-cover pointer-events-none"
+            style={{
+              transform: `translate(${offsetX * 0.7}px, ${
+                offsetY * 0.7
+              }px) scale(${zoom})`,
+            }}
+            src={img}
+            alt={name}
+          />
+        </div>
 
-	function handleLeave() {
-		setRotateX(0);
-		setRotateY(0);
-		setShadow(`0px 20px 40px rgba(${shadowColor},0.35)`);
-	}
-
-	let style =" transition-transform transition-all duration-400 ease-out";
-
-	let sponsor_rank_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 -translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
-	let sponsor_name_style = "mt-3 text-sm font-semibold tracking-wide capitalize opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 " + text_color;
-
-	return (
-		<div className={"absolute transform-gpu transform-3d duration-400 p-5 ease-out"}
-			onMouseMove={handleMove}
-			onMouseLeave={handleLeave}
-			style={{
-				transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-				boxShadow: shadow,
-				height: `min(${size * 45}vh, 60vw)`, width: `min(${size * 36}vh, 48vw)`, marginLeft: `${left}vw`, marginTop: `${top}vh` }}
-		>
-			<div className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm" style={{ boxShadow: '0 0 40px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
-				<img className="h-full w-full object-cover" src={`${img}`} alt={name} />
-			</div>
-			<span className="relative w-fit mx-auto mt-4 block" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-				<b className="text-white text-lg drop-shadow-lg">{name}</b>
-				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
-			</span>
-			<span className="relative w-fit mx-auto -mt-2 block leading-tight" id="name-animate" style={{ clipPath: "inset(0px 100% 0px 0px)" }}>
-				<b
-					className={`
-						text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-tight md:tracking-widest leading-tight
-
-						bg-linear-to-b
-						${gradientClass}
-
-						bg-clip-text
-						text-transparent
-
-						drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
-					`}
-				>
-					{pos}
-				</b>
-				<div className="text-animation-layer inline-block w-auto" id="text-animate-layer" />
-			</span>
-		</div>
-	);
-};
+        {/* Text Container below the image frame */}
+        <div className="w-full text-center mt-2.5">
+          <b className="text-white text-sm font-bold drop-shadow-md block leading-tight">
+            {name}
+          </b>
+          <b
+            className={`
+              text-[10px] uppercase font-bold tracking-wider leading-tight block mt-0.5
+              bg-gradient-to-b ${gradientClass || "from-blue-400 to-indigo-600"}
+              bg-clip-text text-transparent
+              drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
+            `}
+          >
+            {pos}
+          </b>
+        </div>
+      </div>
+    </>
+  );
+}

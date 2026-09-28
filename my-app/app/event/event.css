@@ -40,9 +40,9 @@ h1{
   display: flex;
   position:relative;
   overflow: hidden;
-  height:100vh;
-  width:50%;
-  max-width: 150vw;
+  height:90vh;
+  width:100%;
+  max-width: 100vw;
   max-height: 100vh;
 }
 
@@ -80,14 +80,37 @@ h1{
   filter: brightness(0.5) blur(4px);
 }
 
-.coverTextContainer{
-  position:relative;
-  right:0;
+.coverTextContainer {
+  bottom: 0;
+  transform: translateY(-50%);
+  margin-right: 20px;
+  position: absolute;
+  right: 0;
   max-width: 50vw;
-  width:100%;
+  min-width: 200px;
+  max-height: 50vh;
+  padding: 20px;
   justify-items: center;
   align-content: center;
   cursor: crosshair;
+
+  background-color: rgba(82, 80, 80, 0.702);
+  border-radius: 10px;
+
+  /* 1. Define container context */
+  container-type: inline-size;
+  container-name: coverContainer;
+}
+
+/* 2. Scale text based on container width */
+.coverTextContainer h1 {
+  /* clamp(MIN, VAL, MAX) -> 5cqw = 5% of .coverTextContainer width */
+  font-size: clamp(1.2rem, 8cqw, 3.5rem);
+  line-height: 1.1;
+}
+
+.coverTextContainer p {
+  font-size: clamp(0.875rem, 3.5cqw, 1.25rem);
 }
 
 @keyframes fadeUp {
@@ -105,4 +128,22 @@ h1{
   opacity: 0;
   animation: fadeUp 0.6s ease-out forwards;
   animation-delay: calc(var(--i) * 0.1s);
+}
+
+.eventPageBG{
+  background: linear-gradient(
+    to bottom,
+    #744d9e 0%,         /* Tailwind purple-300 */
+    #0f77a7 50%,        /* Tailwind sky-500 */
+    /*#0ea5e9 80%,*/        /* Tailwind sky-500 */
+    /* var(--hackrpi-clouds-green, #10b981) 100% */
+    var(--hackrpi-clouds-dark-blue, #1e3a8a) 100%
+  );
+}
+.eventPageEnd{
+  background-color:var(--hackrpi-clouds-dark-blue, #1e3a8a);
+}
+
+.criteriaBG{
+  background-color:var(--color-hackrpi-clouds-dark-blue);
 }

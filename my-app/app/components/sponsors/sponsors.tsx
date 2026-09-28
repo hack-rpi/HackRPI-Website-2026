@@ -1,149 +1,175 @@
-
 import SponsorCard from './sponsorCard';
 import ShinyCard from '../shinyCard';
 import sponsors from '../../../public/sponsors/sponsors.json';
 import { useRef, useEffect } from 'react';
 
 export default function Sponsors() {
-		const canvasRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const drawRainEnabled = false; // Set to true to display rain effect
 
-	useEffect(() => {
-		const canvas = document.getElementById("rain") as HTMLCanvasElement | null;
-		if (!canvas) return;
-		const ctx = canvas.getContext("2d");
-		if (!ctx) return;
+    useEffect(() => {
+        // Exit early inside the hook instead of wrapping the hook in an if-statement
+        if (!drawRainEnabled) return;
 
-		let w = (canvas.width = canvas.offsetWidth);
-		let h = (canvas.height = canvas.offsetHeight);
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d", { alpha: true });
+        if (!ctx) return;
 
-		let drops = Array.from({ length: 150 }, () => ({
-			x: Math.random() * w,
-			y: Math.random() * h,
-			l: Math.random() * 50 + 30,
-			speed: Math.random() * 4 + 4,
-			raincolor : Math.random() * (200 - 100) + 100,
-		}));
+        let w = 0;
+        let h = 0;
+        let animationFrameId: number;
 
-		function draw() {
-			if (!ctx) return;
-			ctx.clearRect(0, 0, w, h);
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
-			
-			
+        const resize = () => {
+            w = canvas.offsetWidth;
+            h = canvas.offsetHeight;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+        };
 
-			drops.forEach(d => {
-				// Fade out in the bottom 40% of the canvas
-				const fadeStart = h * 0.6;
-				const fadeEnd = h * 0.95;
-				
-				let alpha = 0.6;
-				if (d.y > fadeStart) {
-					const fadeProgress = (d.y - fadeStart) / (fadeEnd - fadeStart);
-					alpha = 0.6 * (1 - Math.min(fadeProgress, 1));
-				}
+        resize();
 
-				ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, ${alpha})`;
-				ctx.lineWidth = 1;
-				ctx.beginPath();
-				ctx.moveTo(d.x, d.y);
-				ctx.lineTo(d.x + 1, d.y + d.l);
-				ctx.stroke();
+        const NUM_DROPS = 120;
+        const drops = Array.from({ length: NUM_DROPS }, () => ({
+            x: Math.random() * (w + 200) - 100,
+            y: Math.random() * (h + 100) - 100,
+            l: Math.random() * 40 + 25,
+            speed: Math.random() * 3 + 4,
+            raincolor: Math.floor(Math.random() * 100 + 100),
+        }));
 
-				const SPEED_MULTIPLIER = 4;
-				d.y += d.speed * SPEED_MULTIPLIER;
-				d.x += 2;
+        function draw() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, w, h);
 
-				if (d.y > fadeEnd) {   // Reset when fully faded, not at h
-					d.y = -20;
-					d.x = Math.random() * w;
-				}
-			});
+            const topFadeEnd = h * 0.15;
+            const fadeStart = h * 0.6;
+            const fadeEnd = h * 0.95;
+            const SPEED_MULTIPLIER = 4;
 
-			requestAnimationFrame(draw);
-		}
+            ctx.lineWidth = 1;
 
-		draw();
+            drops.forEach((d) => {
+                let alphaMultiplier = 1;
 
-		window.addEventListener("resize", () => {
-	       w = canvas.width = canvas.offsetWidth;
-	       h = canvas.height = canvas.offsetHeight;
-		});
-	}, []);
+                if (d.y < topFadeEnd) {
+                    alphaMultiplier = Math.max(0, d.y / topFadeEnd);
+                } else if (d.y > fadeStart) {
+                    alphaMultiplier = 1 - Math.min((d.y - fadeStart) / (fadeEnd - fadeStart), 1);
+                }
 
+                const alpha = 0.5 * alphaMultiplier;
 
+                if (alpha > 0.05) {
+                    ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.moveTo(d.x, d.y);
+                    ctx.lineTo(d.x + 1, d.y + d.l);
+                    ctx.stroke();
+                }
 
+                d.y += d.speed * SPEED_MULTIPLIER;
+                d.x += 1.5;
 
-	return (
-		<div 
-			
-			className="relative min-h-0 md:min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 py-56 md:py-5 gap-10 flex flex-col">
-			<canvas
-				id="rain"
-				ref={canvasRef}
-				className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
-			/>
-			<h2 className="relative text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">Thank you to our sponsors that make HackRPI possible!</h2>
-			{/* <div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.OBSIDIAN.map((sponsor, index) => (
-					<SponsorCard
-						key={index}
-						name={sponsor.name}
-						tier={"obsidian"}
-						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
-						link={sponsor.url}
-					/>
-				))}
-			</div>
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor: any, index: number) => (
-					<SponsorCard
-						key={index}
-						name={sponsor.name}
-						tier={"gold"}
-						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
-						link={sponsor.url}
-					/>
-				))}
-			</div>
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.SILVER.map((sponsor, index) => (
-					<SponsorCard
-						key={index}
-						name={sponsor.name}
-						tier={"silver"}
-						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
-						link={sponsor.url}
-					/>
-				))}
-			</div>
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.BRONZE.map((sponsor, index) => (
-					<SponsorCard
-						key={index}
-						name={sponsor.name}
-						tier={"bronze"}
-						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
-						link={sponsor.url}
-					/>
-				))}
-			</div> */}
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{sponsors.COLLABORATORS.map((sponsor, index) => (
-					<SponsorCard
-						key={index}
-						name={sponsor.name}
-						tier={"collaborator"}
-						image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
-						link={sponsor.url}
-					/>
-				))}
-			</div>
-			<h2 className="relative -mt-[40px] text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono">More sponsors flying in soon ✈︎</h2>
-			<div className = "flex flex-row justify-center flex-wrap gap-10">
-				{/* <SponsorCard name="error" tier="invalid" image = "/sponsors/sponsor_logos/" /> */}
-			</div>
-			{/* <ShinyCard image="" theme=""/> */}
-		</div>
-	);
+                if (d.y > fadeEnd) {
+                    d.y = -d.l - 20;
+                    d.x = Math.random() * (w + 200) - 100;
+                }
+            });
 
-};
+            animationFrameId = requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        let resizeTimeout: NodeJS.Timeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resize, 100);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            cancelAnimationFrame(animationFrameId);
+            clearTimeout(resizeTimeout);
+        };
+    }, [drawRainEnabled]); // Added to dependency array
+
+    return (
+        <div className="relative min-h-0 md:min-h-screen overflow-hidden p-5 py-20 md:py-5 gap-10 flex flex-col">
+            <canvas
+                ref={canvasRef}
+                className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 [will-change:transform]"
+            />
+            <h2 className="relative text-center left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-10">
+                Thank you to our sponsors that make HackRPI possible!
+            </h2>
+            <div className="flex flex-row justify-center flex-wrap gap-10 z-10">
+                {sponsors.OBSIDIAN.map((sponsor, index) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"obsidian"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+                {sponsors.GOLD.length > 0 && sponsors.GOLD.map((sponsor: any, index: number) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"gold"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+                {sponsors.SILVER.map((sponsor, index) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"silver"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+                {sponsors.BRONZE.map((sponsor, index) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"bronze"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+                {sponsors.COLLABORATORS.map((sponsor, index) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"collaborator"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+                {sponsors.TRACKS.map((sponsor, index) => (
+                    <SponsorCard
+                        key={index}
+                        name={sponsor.name}
+                        tier={"track"}
+                        image={"/sponsors/sponsor_logos/" + sponsor.logoPath}
+                        link={sponsor.url}
+                    />
+                ))}
+            </div>
+
+            <h2 className="relative -mt-[40px] text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-10">
+                More sponsors flying in soon ✈︎
+            </h2>
+            <div className="flex flex-row justify-center flex-wrap gap-10 z-10"></div>
+        </div>
+    );
+}

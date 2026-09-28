@@ -1,0 +1,74 @@
+[
+	{
+		"img": "/team/F267/Tobias.webp",
+		"name": "Tobias Manayath",
+		"pos": "President",
+		"gradientClass": "from-blue-400 via-indigo-500 to-blue-700",
+		"zoom": 1.7,
+		"xOffset": -23,
+		"yOffset": 40
+	},
+	{
+		"img": "/team/F267/Jackson.webp",
+		"name": "Jackson Baimel",
+		"pos": "Vice President",
+		"gradientClass": "from-red-400 via-rose-500 to-red-700",
+		"zoom": 1.35,
+		"xOffset": -1,
+		"yOffset": 25
+	},
+	{
+		"img": "/team/F267/Lala.webp",
+		"name": "Lala Liu",
+		"pos": "Director of Logistics",
+		"gradientClass": "from-yellow-300 via-amber-400 to-yellow-600",
+		"zoom": 1.2,
+		"xOffset": -10,
+		"yOffset": 30
+	},
+	{
+		"img": "/team/F267/Devan4.webp",
+		"name": "Devan Patel",
+		"pos": "Director of Finance",
+		"gradientClass": "from-emerald-300 via-green-400 to-emerald-600",
+		"zoom": 1.50,
+		"xOffset": -20,
+		"yOffset": 65
+	},
+	{
+		"img": "/team/F267/Ethan.webp",
+		"name": "Ethan Kusse",
+		"pos": "Director of Sponsorship",
+		"gradientClass": "from-cyan-300 via-sky-400 to-cyan-600",
+		"zoom": 1.7,
+		"xOffset": -9,
+		"yOffset": 95
+	},
+	{
+		"img": "/team/F267/Caleb3.webp",
+		"name": "Caleb Liu",
+		"pos": "Director of Technology",
+		"gradientClass": "from-violet-300 via-purple-500 to-violet-700",
+		"zoom": 1.5,
+		"xOffset": 1,
+		"yOffset": 40
+	},
+	{
+		"img": "/team/F267/Jodie.webp",
+		"name": "Jodie Cho",
+		"pos": "Director of Marketing",
+		"gradientClass": "from-orange-300 via-orange-500 to-orange-700",
+		"zoom": 1.9,
+		"xOffset": -11,
+		"yOffset": 10
+	},
+	{
+		"img": "/team/F267/Matt.webp",
+		"name": "Matthew Treanor",
+		"pos": "Director of Outreach",
+		"gradientClass": "from-pink-300 via-rose-500 to-pink-700",
+		"zoom": 1.6,
+		"xOffset": -22,
+		"yOffset": 30
+	}
+]

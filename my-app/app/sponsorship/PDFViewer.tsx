@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Make sure worker URL is configured
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Point directly to the static public file
+pdfjs.GlobalWorkerOptions.workerSrc = '/sponsors/pdf.worker.min.mjs';
 
 interface PDFViewerProps {
   file: string;
@@ -12,20 +12,39 @@ interface PDFViewerProps {
 
 export default function PDFViewer({ file }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number>();
+  const [containerWidth, setContainerWidth] = useState<number>();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      if (entries[0]) {
+        setContainerWidth(entries[0].contentRect.width);
+      }
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="flex flex-col items-center py-10">
+    <div ref={containerRef} className="w-full max-w-4xl flex flex-col items-center py-6 px-2">
       <Document
         file={file}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        className="w-full flex flex-col items-center gap-4"
       >
         {Array.from(new Array(numPages), (_, index) => (
-          <Page 
-            key={`page_${index + 1}`} 
-            pageNumber={index + 1} 
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-          />
+          <div key={`page_${index + 1}`} className="w-full flex justify-center overflow-hidden rounded-lg shadow-md">
+            <Page
+              pageNumber={index + 1}
+              width={containerWidth ? Math.min(containerWidth, 800) : undefined}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          </div>
         ))}
       </Document>
     </div>
