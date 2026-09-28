@@ -3,10 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Fix worker loading for Next.js & AWS Amplify
-if (typeof window !== 'undefined') {
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-}
+// 1. Configure worker directly from installed pdfjs-dist via Webpack URL
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 interface PDFViewerProps {
   file: string;
@@ -20,8 +21,7 @@ export default function PDFViewer({ file }: PDFViewerProps) {
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
       if (entries[0]) {
-        const newWidth = entries[0].contentRect.width;
-        setContainerWidth(newWidth);
+        setContainerWidth(entries[0].contentRect.width);
       }
     });
 
