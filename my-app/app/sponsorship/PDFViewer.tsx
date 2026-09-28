@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Ensure pdfjs worker is properly linked
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Fix worker loading for Next.js & AWS Amplify
+if (typeof window !== 'undefined') {
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+}
 
 interface PDFViewerProps {
   file: string;
@@ -18,7 +20,6 @@ export default function PDFViewer({ file }: PDFViewerProps) {
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
       if (entries[0]) {
-        // Subtract padding/margins if necessary to prevent overflow
         const newWidth = entries[0].contentRect.width;
         setContainerWidth(newWidth);
       }

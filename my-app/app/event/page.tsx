@@ -12,6 +12,7 @@ import Image from 'next/image';
 
 import Lenis from 'lenis';
 import { useEffect } from "react";
+import Prizes from './prizes';
 
 export default function Event() {
   useEffect(() => {
@@ -162,6 +163,10 @@ export default function Event() {
 							</div>
 						</div>
           </div>
+
+		  	<div className="w-full h-auto text-white p-5 flex flex-col items-center py-10">
+				<Prizes />
+			</div>
 
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
