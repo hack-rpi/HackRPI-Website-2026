@@ -365,7 +365,13 @@ export default function SponsorUsPage() {
         {/* Responsive PDF Container */}
         <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 my-10 w-full overflow-hidden">
           <div className="w-full max-w-full overflow-x-auto rounded-2xl flex justify-center">
-            <PDFViewer file="/sponsors/sponsorshipBooklet2026.pdf" />
+            {/* <PDFViewer file="/sponsors/sponsorshipBooklet2026.pdf" /> */}
+            <iframe
+              className="mx-auto w-[90%] h-[120vh] py-10"
+              src="https://drive.google.com/file/d/1BDj3qfGiU0tNfEeEDE9UCeRUIvoqoD-k/preview"
+              title="HackRPI Sponsorship Deck"
+              allow="autoplay"
+            ></iframe>
           </div>
         </div>
 
