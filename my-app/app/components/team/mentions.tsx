@@ -9,6 +9,7 @@ import type { PointLight } from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Center, OrbitControls, useGLTF } from "@react-three/drei";
 import mentions from "./mentions.json";
+import "./team.css";
 
 // Preload the 3D model immediately on module load
 useGLTF.preload("/3d/trophy.glb");
@@ -138,17 +139,6 @@ export default function Mentions() {
       const mentionsContainer = document.querySelector("#mentions-container");
       if (!mentionsContainer) return;
 
-      ScrollTrigger.create({
-        trigger: mentionsContainer,
-        start: "20% bottom",
-        onEnter: () => {
-          if (!mentionsAnimatedRef.current) {
-            mentionsAnimatedRef.current = true;
-            textAnimation("mentions-animate", 0.6);
-          }
-        },
-      });
-
       gsap
         .timeline({
           scrollTrigger: {
@@ -196,15 +186,12 @@ export default function Mentions() {
         id="mentions-container"
       >
         {/* Revamped Header Title with fixed baseline padding */}
-        <div className="text-center z-10 pt-4 flex flex-col items-center gap-1.5">
+        <div className="text-center z-10 pt-4 flex flex-col items-center gap-2 animate-glow-loop">
           <span className="text-[10px] md:text-xs font-mono font-bold uppercase tracking-[0.3em] text-pink-300/80">
             — THE TEAM BEHIND THE MAGIC —
           </span>
-          <div
-            className="relative px-4 pb-2 pt-1 inline-block overflow-visible"
-            id="mentions-animate"
-          >
-            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-pink-200 leading-normal drop-shadow-lg">
+          <div className="relative px-4 pb-2 pt-1 inline-block">
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-pink-200 leading-normal">
               Our Organizers <span className="text-pink-400 not-italic">♡</span>
             </h2>
           </div>

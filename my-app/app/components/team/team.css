@@ -1,0 +1,14 @@
+@keyframes continuousGlowFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    filter: blur(0px) drop-shadow(0 0 12px rgba(244, 114, 182, 0.2));
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+    filter: blur(0px) drop-shadow(0 0 24px rgba(244, 114, 182, 0.5));
+  }
+}
+
+.animate-glow-loop {
+  animation: continuousGlowFloat 4s ease-in-out infinite;
+}
