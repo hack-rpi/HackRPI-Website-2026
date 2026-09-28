@@ -13,6 +13,7 @@ useGLTF.preload(RPI_URL);
 useGLTF.preload(PLANE_URL);
 
 const scrollMultiplier = 1;
+const endingMargin = 800;
 export const PlanePivots: CameraPivot[] = [
 	{ position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 0 },
 	{ position: [0, 0, 0], rotation: [-0.15, 0, 0], fov: 50, scrollPosition: 300*scrollMultiplier },
@@ -25,18 +26,18 @@ export const PlanePivots: CameraPivot[] = [
 	// { position: [0, -40, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier },
 	// { position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 2000*scrollMultiplier },
 
-	{ position: [3, 2, 0], rotation: [0.3, 0, 0.5], fov: 50, scrollPosition: 2300*scrollMultiplier },
-	{ position: [3, 2, 0], rotation: [0.5, 0, 0.5], fov: 50, scrollPosition: 2600*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 3000*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.5, 0, -0.5], fov: 50, scrollPosition: 3300*scrollMultiplier },
-	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3600*scrollMultiplier },
-	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3800*scrollMultiplier },
-	{ position: [-1, 2, 0], rotation: [0.3, 0, -0.2], fov: 50, scrollPosition: 4000*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 4200*scrollMultiplier },
-	{ position: [0, 2, 0], rotation: [-0.1, 0, -1.3], fov: 50, scrollPosition: 4800*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.3, 0, 0.5], fov: 50, scrollPosition: (2300-endingMargin*0.2)*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.5, 0, 0.5], fov: 50, scrollPosition: (2600-endingMargin*0.4)*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: (3000-endingMargin*0.6)*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.5, 0, -0.5], fov: 50, scrollPosition: (3300-endingMargin*0.7)*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: (3600-endingMargin*0.8)*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: (3800-endingMargin*0.9)*scrollMultiplier },
+	{ position: [-1, 2, 0], rotation: [0.3, 0, -0.2], fov: 50, scrollPosition: (4000-endingMargin)*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: (4200-endingMargin)*scrollMultiplier },
+	{ position: [0, 2, 0], rotation: [-0.1, 0, -1.3], fov: 50, scrollPosition: (4800-endingMargin)*scrollMultiplier },
 
-	{ position: [1, 2, 0], rotation: [0.1, 0, 0.5], fov: 50, scrollPosition: 5100*scrollMultiplier },
-	{ position: [3, 2, 0], rotation: [0.1, 0, 1], fov: 50, scrollPosition: 5300*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.1, 0, 0.5], fov: 50, scrollPosition: (5100-endingMargin)*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.1, 0, 1], fov: 50, scrollPosition: (5300-endingMargin)*scrollMultiplier },
 ];
 
 const CameraPivots: CameraPivot[] = [
@@ -52,11 +53,11 @@ const CameraPivots: CameraPivot[] = [
 		{ position: [40, -22, -10], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1480*scrollMultiplier } as const,
 
 		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 2200*scrollMultiplier } as const,
-		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 4000*scrollMultiplier } as const,
+		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: (4000-endingMargin*0.8)*scrollMultiplier } as const,
 
-		{ position: [-8, 4, -3], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 4800*scrollMultiplier } as const,
+		{ position: [-8, 4, -3], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: (4800-endingMargin)*scrollMultiplier } as const,
 
-		{ position: [-20, 0, 30], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 5100*scrollMultiplier } as const,
+		{ position: [-20, 0, 30], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: (5100-endingMargin)*scrollMultiplier } as const,
 
 
 		// { position: [0, 10, -2], rotation: [-2*Math.PI / 4, 0, -2* Math.PI/4], fov: 50, scrollPosition: 4400*scrollMultiplier } as const,
