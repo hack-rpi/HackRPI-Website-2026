@@ -69,7 +69,7 @@ const linkItems = [
     //{ label: "Prizes", href: "/prizes" },
     { label: "Last Year", href: "/last-year" },
     { label: "Sponsor Us", href: "/sponsorship" },
-    { label: "Discord", href: "https://discord.gg/" },
+    { label: "Discord", href: "https://discord.gg/kfABu274um" },
   ];
 
 export default function DesktopTitleComponent() {
