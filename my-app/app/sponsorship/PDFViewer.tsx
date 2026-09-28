@@ -3,11 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// 1. Configure worker directly from installed pdfjs-dist via Webpack URL
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+// Point directly to the static public file
+pdfjs.GlobalWorkerOptions.workerSrc = '/sponsors/pdf.worker.min.mjs';
 
 interface PDFViewerProps {
   file: string;
