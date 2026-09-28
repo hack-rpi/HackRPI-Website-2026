@@ -14,7 +14,7 @@ import { ReactNode, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
-import BackgroundColor from "./components/BGColor";
+import { FooterEllipseColor, FooterColor } from "@/app/components/BGColor";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,8 +129,8 @@ export default function HomeClient() {
             </div>
             <div className="z-10 relative">
               <Mentions />
-              <footer id="switch-light-2" className="bg-white">
-                <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>
+              <footer id="switch-light-2" style={{backgroundColor: FooterColor}}>
+                <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: FooterEllipseColor }} id="footer-ellipse"></div>
                 <FinalMessage/>
                 <Footer />
               </footer> 

@@ -95,8 +95,11 @@ export default function DesktopTitleComponent() {
         <HeroScene scrollY={scrollY} variation={1} startShowPosition={0} hideShowPosition={10} />
         <HeroScene scrollY={scrollY} variation={2} startShowPosition={400} hideShowPosition={600} />
         <HeroScene scrollY={scrollY} variation={3} startShowPosition={700} hideShowPosition={1000} />
+        <HeroScene scrollY={scrollY} variation={4} startShowPosition={1000} hideShowPosition={1200} />
+        <HeroScene scrollY={scrollY} variation={5} startShowPosition={1200} hideShowPosition={1500} />
+        <HeroScene scrollY={scrollY} variation={6} startShowPosition={1600} hideShowPosition={2100} />
         
-        <div style={{marginBottom: "1900px"}}></div>
+        <div style={{marginBottom: "2100px"}}></div>
     </>);
 }
 

@@ -10,7 +10,7 @@ const mapStyle = {
     anchor: "viewport",
     color: "#ffffff",
     intensity: 0.8,
-    position: [1.5, 90, 40],
+    position: [1.5, 190, 40],
   },
   glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   sources: {

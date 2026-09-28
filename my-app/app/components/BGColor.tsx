@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+export const FooterEllipseColor = "#252525";
+export const FooterColor = "#cecab8";
 
 export default function BackgroundColor({ scrollY }: { scrollY: number }) {
   const bgRef = useRef<HTMLDivElement>(null);

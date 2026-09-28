@@ -55,14 +55,12 @@ export default function FaceCard({
     const rotateY = percentX * 25;
     const rotateX = -percentY * 25;
 
-    // Apply styles instantly via direct DOM manipulation (No React re-renders)
     card.style.transition = "none";
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   }
 
   function handleLeave(e: React.MouseEvent<HTMLDivElement>) {
     const card = e.currentTarget;
-    // Smoothly animate back to center on mouse leave
     card.style.transition = "transform 500ms cubic-bezier(0.03, 0.98, 0.52, 0.99)";
     card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
   }
@@ -152,30 +150,22 @@ export default function FaceCard({
           />
         </div>
 
-        <span
-          className="relative w-fit mx-auto mt-2 block text-center"
-          style={{ clipPath: "inset(0px 100% 0px 0px)" }}
-        >
-          <b className="text-white text-sm font-bold drop-shadow-md">{name}</b>
-        </span>
-
-        <span
-          className="relative w-fit mx-auto -mt-0.5 block leading-tight text-center"
-          style={{ clipPath: "inset(0px 100% 0px 0px)" }}
-        >
+        {/* Text Container below the image frame */}
+        <div className="w-full text-center mt-2.5">
+          <b className="text-white text-sm font-bold drop-shadow-md block leading-tight">
+            {name}
+          </b>
           <b
             className={`
-              text-[10px] uppercase font-bold tracking-wider leading-tight
-              bg-gradient-to-b ${
-                gradientClass || "from-blue-400 to-indigo-600"
-              }
+              text-[10px] uppercase font-bold tracking-wider leading-tight block mt-0.5
+              bg-gradient-to-b ${gradientClass || "from-blue-400 to-indigo-600"}
               bg-clip-text text-transparent
               drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
             `}
           >
             {pos}
           </b>
-        </span>
+        </div>
       </div>
     </>
   );

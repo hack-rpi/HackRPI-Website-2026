@@ -28,18 +28,18 @@ export const PlanePivots: CameraPivot[] = [
 	// { position: [0, -40, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier },
 	// { position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 2000*scrollMultiplier },
 
-	{ position: [3, 2, 0], rotation: [0.3, 0, 0.5], fov: 50, scrollPosition: 2100*scrollMultiplier },
-	{ position: [3, 2, 0], rotation: [0.5, 0, 0.5], fov: 50, scrollPosition: 2400*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 2800*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.5, 0, -0.5], fov: 50, scrollPosition: 3100*scrollMultiplier },
-	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3400*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.3, 0, 0.5], fov: 50, scrollPosition: 2300*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.5, 0, 0.5], fov: 50, scrollPosition: 2600*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 3000*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.5, 0, -0.5], fov: 50, scrollPosition: 3300*scrollMultiplier },
 	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3600*scrollMultiplier },
-	{ position: [-1, 2, 0], rotation: [0.3, 0, -0.2], fov: 50, scrollPosition: 3800*scrollMultiplier },
-	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 4000*scrollMultiplier },
-	{ position: [0, 2, 0], rotation: [0.1, 0, -1.3], fov: 50, scrollPosition: 4600*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3800*scrollMultiplier },
+	{ position: [-1, 2, 0], rotation: [0.3, 0, -0.2], fov: 50, scrollPosition: 4000*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 4200*scrollMultiplier },
+	{ position: [0, 2, 0], rotation: [-0.1, 0, -1.3], fov: 50, scrollPosition: 4800*scrollMultiplier },
 
-	{ position: [1, 2, 0], rotation: [0.1, 0, 0.5], fov: 50, scrollPosition: 4900*scrollMultiplier },
-	{ position: [3, 2, 0], rotation: [0.1, 0, 1], fov: 50, scrollPosition: 5200*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.1, 0, 0.5], fov: 50, scrollPosition: 5100*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.1, 0, 1], fov: 50, scrollPosition: 5300*scrollMultiplier },
 ];
 
 const CameraPivots: CameraPivot[] = [
@@ -54,12 +54,12 @@ const CameraPivots: CameraPivot[] = [
 		{ position: [35, -20, -5], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1200*scrollMultiplier } as const,
 		{ position: [40, -22, -10], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1480*scrollMultiplier } as const,
 
-		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier } as const,
-		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 3800*scrollMultiplier } as const,
+		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 2200*scrollMultiplier } as const,
+		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 4000*scrollMultiplier } as const,
 
-		{ position: [-8, 4, -3], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 4600*scrollMultiplier } as const,
+		{ position: [-8, 4, -3], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 4800*scrollMultiplier } as const,
 
-		{ position: [-20, 0, 20], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 5200*scrollMultiplier } as const,
+		{ position: [-20, 0, 30], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 5100*scrollMultiplier } as const,
 
 
 		// { position: [0, 10, -2], rotation: [-2*Math.PI / 4, 0, -2* Math.PI/4], fov: 50, scrollPosition: 4400*scrollMultiplier } as const,
@@ -411,7 +411,7 @@ const COLOR_DARK = new THREE.Color("#252525");
 const tempColor = new THREE.Color();
 
 export default function PlaneScene({ scrollY }: { scrollY: number }) {
-	console.log(scrollY);
+	// console.log(scrollY);
 
     const bgRef = useRef<HTMLDivElement>(null);
     const fogRef = useRef<THREE.FogExp2>(null);
@@ -468,7 +468,7 @@ export default function PlaneScene({ scrollY }: { scrollY: number }) {
             {/* <div ref={bgRef} className="absolute inset-0 -z-10 bg-black/50 pointer-events-auto" /> */}
             
             {/* Dark screen loader */}
-            <div className={`z-1 pointer-events-none absolute inset-0 w-full h-full bg-black transition-opacity duration-1000 ease-in ${loaded ? "opacity-0" : "opacity-100"}`}>
+            <div className={`z-1 pointer-events-none absolute inset-0 w-full h-full bg-black transition-opacity duration-1000 ease-in ${(loaded || scrollY >= 20) ? "opacity-0" : "opacity-100"}`}>
                 <div className="absolute bottom-0 left-0 w-full " style={{ height: "45.2%", backgroundColor: "#262931" }}></div>
             </div>
 
