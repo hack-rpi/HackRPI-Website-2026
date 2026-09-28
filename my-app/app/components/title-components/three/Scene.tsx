@@ -4,9 +4,6 @@ import { useEffect, useMemo, useRef, Suspense, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, useProgress} from "@react-three/drei";
 import * as THREE from "three";
-import { ProceduralCity } from "./ProceduralCity";
-import { Letter3D } from "./Letters3D";
-import { useCountDown } from "../countdown";
 
 const RPI_URL = "/3d/rpiPairWOuter.glb";
 const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
