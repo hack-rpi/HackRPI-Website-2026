@@ -9,6 +9,7 @@ import "@/app/globals.css";
 
 import dynamic from "next/dynamic";
 import HeroScene from './titleScenes';
+import BackgroundColor from '../BGColor';
 const MapTerrain = dynamic(() => import("./mapTerrain"), { ssr: false });
 
 // type slowInterval = {
@@ -88,6 +89,7 @@ export default function DesktopTitleComponent() {
     return (<>
         {/* <img src="https://picsum.photos/600/400" className="absolute w-full h-full object-cover"/> */}
         {/* <MapTerrain/> */}
+        <BackgroundColor scrollY={scrollY}/>
         <PlaneScene scrollY={scrollY}/>
         
         <HeroScene scrollY={scrollY} variation={1} startShowPosition={0} hideShowPosition={10} />

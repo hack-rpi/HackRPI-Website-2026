@@ -5,8 +5,12 @@ import { useRef, useEffect } from 'react';
 
 export default function Sponsors() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const drawRainEnabled = false; // Set to true to display rain effect
 
     useEffect(() => {
+        // Exit early inside the hook instead of wrapping the hook in an if-statement
+        if (!drawRainEnabled) return;
+
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext("2d", { alpha: true });
@@ -16,7 +20,6 @@ export default function Sponsors() {
         let h = 0;
         let animationFrameId: number;
 
-        // Cap scale at 1.5 to balance high-DPI crispness with performance
         const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
         const resize = () => {
@@ -29,14 +32,13 @@ export default function Sponsors() {
 
         resize();
 
-        // 1. Group drops by color range to minimize context state changes
-        const NUM_DROPS = 120; // Reduced density slightly for smooth 60fps
+        const NUM_DROPS = 120;
         const drops = Array.from({ length: NUM_DROPS }, () => ({
             x: Math.random() * (w + 200) - 100,
             y: Math.random() * (h + 100) - 100,
             l: Math.random() * 40 + 25,
             speed: Math.random() * 3 + 4,
-            raincolor: Math.floor(Math.random() * 100 + 100), // Pre-floor color values
+            raincolor: Math.floor(Math.random() * 100 + 100),
         }));
 
         function draw() {
@@ -50,9 +52,6 @@ export default function Sponsors() {
 
             ctx.lineWidth = 1;
 
-            // 2. Batch single line strokes inside a single path
-            ctx.beginPath();
-            
             drops.forEach((d) => {
                 let alphaMultiplier = 1;
 
@@ -65,7 +64,6 @@ export default function Sponsors() {
                 const alpha = 0.5 * alphaMultiplier;
 
                 if (alpha > 0.05) {
-                    // Fast stroke batching without opening separate paths
                     ctx.strokeStyle = `rgba(${d.raincolor}, ${d.raincolor}, 255, ${alpha})`;
                     ctx.beginPath();
                     ctx.moveTo(d.x, d.y);
@@ -74,7 +72,7 @@ export default function Sponsors() {
                 }
 
                 d.y += d.speed * SPEED_MULTIPLIER;
-                d.x += 1.5; // Slightly smoother drift
+                d.x += 1.5;
 
                 if (d.y > fadeEnd) {
                     d.y = -d.l - 20;
@@ -87,7 +85,6 @@ export default function Sponsors() {
 
         draw();
 
-        // 3. Debounce or throttle resize event
         let resizeTimeout: NodeJS.Timeout;
         const handleResize = () => {
             clearTimeout(resizeTimeout);
@@ -101,10 +98,10 @@ export default function Sponsors() {
             cancelAnimationFrame(animationFrameId);
             clearTimeout(resizeTimeout);
         };
-    }, []);
+    }, [drawRainEnabled]); // Added to dependency array
 
     return (
-        <div className="relative min-h-0 md:min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#5f6b7a,#2a2f4a,#111112)] p-5 py-20 md:py-5 gap-10 flex flex-col">
+        <div className="relative min-h-0 md:min-h-screen overflow-hidden p-5 py-20 md:py-5 gap-10 flex flex-col">
             <canvas
                 ref={canvasRef}
                 className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 [will-change:transform]"

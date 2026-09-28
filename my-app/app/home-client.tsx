@@ -3,8 +3,6 @@
 import NavBar from "@/app/components/nav-bar/nav-bar";
 import Footer from "@/app/components/footer/footer";
 import TitleComponent from "@/app/components/title-components/title";
-import Buffer from "@/app/components/themed-components/buffer"
-import AboutUs from "@/app/components/about-us/about-us";
 import FAQPage from "@/app/components/faq/faqpage";
 import Sponsors from "@/app/components/sponsors/sponsors";
 import TeamComponent from "@/app/components/team/team";
@@ -16,6 +14,7 @@ import { ReactNode, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
+import BackgroundColor from "./components/BGColor";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,9 +104,9 @@ export default function HomeClient() {
   }, [isClient]);
 
   return (
-    <div className = "bg-black overflow-y-scroll scrollbar-hide">
+    <div className = "overflow-y-scroll scrollbar-hide">
         {isClient && Navbar}
-        <div className="w-full overflow-hidden bg-black">
+        <div className="w-full overflow-hidden">
           <TitleComponent/>
           
           {/* <TitleComponent
@@ -124,7 +123,11 @@ export default function HomeClient() {
             <div className="z-10 relative">
               <FAQPage />
               <Sponsors />
+            </div>
+            <div className="relative">
               <TeamComponent />
+            </div>
+            <div className="z-10 relative">
               <Mentions />
               <footer id="switch-light-2" className="bg-white">
                 <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: "#111112" }} id="footer-ellipse"></div>

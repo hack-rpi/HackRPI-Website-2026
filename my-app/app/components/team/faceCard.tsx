@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 interface FaceCardProps {
   size?: number;
@@ -27,16 +27,12 @@ export default function FaceCard({
   pos,
   gradientClass,
 }: FaceCardProps) {
-  const shadowColor = "0,0,0";
-
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const [shadow, setShadow] = useState(
-    `0px 20px 40px rgba(${shadowColor},0.35)`
-  );
+  const desktopCardRef = useRef<HTMLDivElement>(null);
+  const mobileCardRef = useRef<HTMLDivElement>(null);
 
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const margin = 20;
@@ -56,39 +52,32 @@ export default function FaceCard({
     if (Math.abs(percentX) < 0.05) percentX = 0;
     if (Math.abs(percentY) < 0.05) percentY = 0;
 
-    setRotateY(percentX * 25);
-    setRotateX(-percentY * 25);
+    const rotateY = percentX * 25;
+    const rotateX = -percentY * 25;
 
-    const shadowX = -percentX * 30;
-    const shadowY = -percentY * 30;
-    const distance = Math.sqrt(percentX * percentX + percentY * percentY);
-    const blur = 30 + distance * 40;
-    const opacity = 0.25 + distance * 0.4;
-
-    setShadow(
-      `${shadowX}px ${shadowY + 20}px ${blur}px rgba(${shadowColor},${opacity})`
-    );
+    // Apply styles instantly via direct DOM manipulation (No React re-renders)
+    card.style.transition = "none";
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   }
 
-  function handleLeave() {
-    setRotateX(0);
-    setRotateY(0);
-    setShadow(`0px 20px 40px rgba(${shadowColor},0.35)`);
+  function handleLeave(e: React.MouseEvent<HTMLDivElement>) {
+    const card = e.currentTarget;
+    // Smoothly animate back to center on mouse leave
+    card.style.transition = "transform 500ms cubic-bezier(0.03, 0.98, 0.52, 0.99)";
+    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
   }
 
   return (
     <>
       {/* ==================================================== */}
-      {/* DESKTOP LAYOUT (Hidden on mobile)                    */}
-      {/* Restores original inline viewport height/width math  */}
+      {/* DESKTOP LAYOUT                                       */}
       {/* ==================================================== */}
       <div
-        className="hidden md:block relative transform-gpu [transform-style:preserve-3d] duration-300 p-5 ease-out select-none"
+        ref={desktopCardRef}
+        className="hidden md:block relative transform-gpu [transform-style:preserve-3d] p-5 select-none componentWillChange-transform"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
         style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-          boxShadow: shadow,
           height: `min(${size * 45}vh, 60vw)`,
           width: `min(${size * 36}vh, 48vw)`,
           marginLeft: `${left}vw`,
@@ -97,7 +86,7 @@ export default function FaceCard({
       >
         {/* Photo Frame Container */}
         <div
-          className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm"
+          className="h-full w-full rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm relative"
           style={{
             boxShadow:
               "0 0 40px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
@@ -111,58 +100,39 @@ export default function FaceCard({
             src={img}
             alt={name}
           />
+
+          {/* 1. Dark Gradient Overlay */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 via-black/50 to-transparent pointer-events-none" />
+
+          {/* 2. Text Container */}
+          <div className="absolute inset-x-0 bottom-3 text-center z-10">
+            <b className="text-white text-lg block drop-shadow-md">{name}</b>
+            <b
+              className={`
+                text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-widest leading-tight block -mt-0.5
+                bg-gradient-to-b ${gradientClass || "from-blue-400 to-indigo-600"}
+                bg-clip-text text-transparent
+              `}
+            >
+              {pos}
+            </b>
+          </div>
         </div>
-
-        {/* Name Title */}
-        <span
-          className="relative w-fit mx-auto mt-4 block text-center"
-          id="name-animate"
-          style={{ clipPath: "inset(0px 100% 0px 0px)" }}
-        >
-          <b className="text-white text-lg drop-shadow-lg">{name}</b>
-          <div
-            className="text-animation-layer inline-block w-auto"
-            id="text-animate-layer"
-          />
-        </span>
-
-        {/* Position Title with Gradient Styling */}
-        <span
-          className="relative w-fit mx-auto -mt-1 block leading-tight text-center"
-          id="name-animate"
-          style={{ clipPath: "inset(0px 100% 0px 0px)" }}
-        >
-          <b
-            className={`
-              text-[clamp(8px,2.4vw,12px)] uppercase font-bold tracking-widest leading-tight
-              bg-gradient-to-b ${
-                gradientClass || "from-blue-400 to-indigo-600"
-              }
-              bg-clip-text text-transparent
-              drop-shadow-[0_0_8px_rgba(255,255,255,.12)]
-            `}
-          >
-            {pos}
-          </b>
-        </span>
       </div>
 
       {/* ==================================================== */}
-      {/* MOBILE LAYOUT (Hidden on desktop)                     */}
-      {/* Fixed 253px x 317px size with 253:317 photo ratio    */}
+      {/* MOBILE LAYOUT                                        */}
       {/* ==================================================== */}
       <div
-        className="block md:hidden relative transform-gpu [transform-style:preserve-3d] duration-300 p-3 ease-out select-none"
+        ref={mobileCardRef}
+        className="block md:hidden relative transform-gpu [transform-style:preserve-3d] p-3 select-none componentWillChange-transform"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
         style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-          boxShadow: shadow,
           width: "253px",
           height: "317px",
         }}
       >
-        {/* Photo Frame Container - Exact 253 x 317 proportional box */}
         <div
           className="w-full h-[230px] rounded-xl overflow-hidden border border-white/20 shadow-2xl backdrop-blur-sm relative"
           style={{
@@ -182,23 +152,15 @@ export default function FaceCard({
           />
         </div>
 
-        {/* Name Title */}
         <span
           className="relative w-fit mx-auto mt-2 block text-center"
-          id="name-animate"
           style={{ clipPath: "inset(0px 100% 0px 0px)" }}
         >
           <b className="text-white text-sm font-bold drop-shadow-md">{name}</b>
-          <div
-            className="text-animation-layer inline-block w-auto"
-            id="text-animate-layer"
-          />
         </span>
 
-        {/* Position Title with Gradient Styling */}
         <span
           className="relative w-fit mx-auto -mt-0.5 block leading-tight text-center"
-          id="name-animate"
           style={{ clipPath: "inset(0px 100% 0px 0px)" }}
         >
           <b

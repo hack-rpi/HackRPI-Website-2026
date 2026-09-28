@@ -62,7 +62,7 @@ export default function Team() {
 
   return (
     <div
-      className="relative min-h-0 md:min-h-screen bg-gBlack pt-12 pb-16 md:py-20 overflow-hidden"
+      className="relative min-h-0 md:min-h-screen pt-12 pb-16 md:py-20 overflow-hidden"
       id="pin"
     >
       {/* Background Glow Highlights */}
@@ -95,7 +95,7 @@ export default function Team() {
       {/* ========================================== */}
       {/* DESKTOP VIEW: Continuous Auto-Scroll Carousel */}
       {/* ========================================== */}
-      <div className="hidden md:block w-full overflow-hidden relative z-10 py-6">
+      <div className="hidden md:block w-full overflow-hidden relative z-0 py-6">
         <div ref={marqueeRef} className="flex w-max gap-8 will-change-transform">
           {duplicatedTeam.map((member, index) => (
             <div

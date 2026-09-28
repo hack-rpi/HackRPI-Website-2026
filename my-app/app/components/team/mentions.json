@@ -1,0 +1,10 @@
+[
+  { "name": "Ryan Bennett", "dept": "Logistics" },
+  { "name": "James DeBlock", "dept": "Marketing" },
+  { "name": "Somey Dong", "dept": "Marketing" },
+  { "name": "Blessing Esochaghi", "dept": "Marketing" },
+  { "name": "Corbin Larsen", "dept": "Logistics" },
+  { "name": "Steven Luo", "dept": "Technology" },
+  { "name": "Matthew Radford", "dept": "Finance" },
+  { "name": "Jordan Ye", "dept": "Technology" }
+]

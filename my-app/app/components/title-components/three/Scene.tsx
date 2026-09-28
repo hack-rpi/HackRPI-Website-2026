@@ -25,7 +25,21 @@ export const PlanePivots: CameraPivot[] = [
 	{ position: [0, -3, 0], rotation: [Math.PI / 2, 0, Math.PI * 1.5], fov: 50, scrollPosition: 1200*scrollMultiplier },
 	{ position: [0, -8, 0], rotation: [Math.PI / 2, 0, 2*Math.PI], fov: 50, scrollPosition: 1400*scrollMultiplier },
 	{ position: [0, -20, 0], rotation: [Math.PI / 2, 0.2, 0.5], fov: 50, scrollPosition: 1600*scrollMultiplier },
-	{ position: [0, -80, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier },
+	// { position: [0, -40, 0], rotation: [Math.PI / 2, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier },
+	// { position: [0, 0, 0], rotation: [0, 0, 0], fov: 50, scrollPosition: 2000*scrollMultiplier },
+
+	{ position: [3, 2, 0], rotation: [0.3, 0, 0.5], fov: 50, scrollPosition: 2100*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.5, 0, 0.5], fov: 50, scrollPosition: 2400*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 2800*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.5, 0, -0.5], fov: 50, scrollPosition: 3100*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3400*scrollMultiplier },
+	{ position: [1, 2, 0], rotation: [0.3, 0, 0.2], fov: 50, scrollPosition: 3600*scrollMultiplier },
+	{ position: [-1, 2, 0], rotation: [0.3, 0, -0.2], fov: 50, scrollPosition: 3800*scrollMultiplier },
+	{ position: [-3, 2, 0], rotation: [0.3, 0, -0.5], fov: 50, scrollPosition: 4000*scrollMultiplier },
+	{ position: [0, 2, 0], rotation: [0.1, 0, -1.3], fov: 50, scrollPosition: 4600*scrollMultiplier },
+
+	{ position: [1, 2, 0], rotation: [0.1, 0, 0.5], fov: 50, scrollPosition: 4900*scrollMultiplier },
+	{ position: [3, 2, 0], rotation: [0.1, 0, 1], fov: 50, scrollPosition: 5200*scrollMultiplier },
 ];
 
 const CameraPivots: CameraPivot[] = [
@@ -39,6 +53,16 @@ const CameraPivots: CameraPivot[] = [
 		{ position: [10, -0.5, 2], rotation: [0, Math.PI/2, 0], fov: 50, scrollPosition: 1000*scrollMultiplier } as const, 
 		{ position: [35, -20, -5], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1200*scrollMultiplier } as const,
 		{ position: [40, -22, -10], rotation: [Math.PI / 4, Math.PI/2, -3 * Math.PI / 4], fov: 50, scrollPosition: 1480*scrollMultiplier } as const,
+
+		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 2000*scrollMultiplier } as const,
+		{ position: [0, 10, -5], rotation: [-3*Math.PI / 4, 0, Math.PI], fov: 50, scrollPosition: 3800*scrollMultiplier } as const,
+
+		{ position: [-8, 4, -3], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 4600*scrollMultiplier } as const,
+
+		{ position: [-20, 0, 20], rotation: [-2*Math.PI / 4, -2*Math.PI/4, -2* Math.PI/4], fov: 50, scrollPosition: 5200*scrollMultiplier } as const,
+
+
+		// { position: [0, 10, -2], rotation: [-2*Math.PI / 4, 0, -2* Math.PI/4], fov: 50, scrollPosition: 4400*scrollMultiplier } as const,
 ];
 
 const _planeResult = {
@@ -378,52 +402,77 @@ function CameraRig({ scrollY }: { scrollY: number }) {
 }
 
 
-export default function PlaneScene({scrollY}: {scrollY: number}) {
-	// console.log(scrollY)
-	const { timeLeft, isPast } = useCountDown('2026-11-07T09:00:00');
 
-	let TextBoard1 = [
-		"HackRPI is arriving in",
-		`${timeLeft?.days} days`,
-		`${timeLeft?.hours} hours`,
-		`${timeLeft?.minutes} minutes`,
-		`${timeLeft?.seconds} seconds`
-	]
-	let board1Shift = -1 * (Math.max(0, scrollY-1240) / (1267-1240));
 
-	let mapDisappear = (1180*scrollMultiplier);
-	let intensity;
-	if(scrollY <= mapDisappear){
-		intensity = Math.min(Math.max(0, (scrollY+100 - mapDisappear)/100), 1)
-	}else{
-		intensity = Math.min(Math.max(0, 1-((scrollY - mapDisappear)/100)), 1)
-	}
 
-	let fogColor = new THREE.Color("#000000");
-	if(scrollY > mapDisappear){
-		const targetColor = new THREE.Color("#5f6b7a");
-		fogColor.lerp(targetColor, Math.min(1, (scrollY - mapDisappear) /100));
-	}
+const COLOR_BLACK = new THREE.Color("#000000");
+const COLOR_BLUE = new THREE.Color("#5f6b7a");
+const COLOR_DARK = new THREE.Color("#252525");
+const tempColor = new THREE.Color();
 
-	const fogExposure = 0.007 + 0.02 * intensity;
-	const [loaded, setLoaded] = useState(false);
+export default function PlaneScene({ scrollY }: { scrollY: number }) {
+	console.log(scrollY);
 
-	return (
-		<div className="w-full h-screen fixed z-0">
-			<div className={`z-1 pointer-events-none absolute inset-0 w-full h-full bg-black transition-opacity duration-1000 ease-in ${loaded ? "opacity-0" : "opacity-100"}`}>
-				<div className="absolute bottom-0 left-0 w-full " style={{ height: "45.2%", backgroundColor: "#262931" }}></div>
-			</div>
+    const bgRef = useRef<HTMLDivElement>(null);
+    const fogRef = useRef<THREE.FogExp2>(null);
+    const rafId = useRef<number | null>(null);
+
+    const scrollMultiplier = 1; // Adjust per your setup
+    const mapDisappear = 1180 * scrollMultiplier;
+    const sponsorsAppear = 2800 * scrollMultiplier;
+    const fogDisappear = 4000 * scrollMultiplier;
+
+    useEffect(() => {
+        if (rafId.current) cancelAnimationFrame(rafId.current);
+
+        rafId.current = requestAnimationFrame(() => {
+            let intensity = 0;
+            if (scrollY <= mapDisappear) {
+                intensity = Math.min(Math.max(0, (scrollY + 100 - mapDisappear) / 100), 1);
+            } else if (scrollY < fogDisappear) {
+                intensity = Math.min(Math.max(0, 1 - (scrollY - mapDisappear) / 100), 1);
+            } else {
+                intensity = Math.min(Math.max(0, 1 - (scrollY - fogDisappear) / 300), 1);
+            }
+            const fogExposure = 0.007 + 0.02 * intensity;
+
+            if (scrollY < mapDisappear) {
+                tempColor.copy(COLOR_BLACK);
+            } else if (scrollY >= mapDisappear && scrollY < sponsorsAppear) {
+                const factor = Math.min(1, (scrollY - mapDisappear) / 100);
+                tempColor.copy(COLOR_BLACK).lerp(COLOR_BLUE, factor);
+            } else {
+                const factor = Math.min(1, Math.max(0, (scrollY - sponsorsAppear) / 600));
+                tempColor.copy(COLOR_BLUE).lerp(COLOR_DARK, factor);
+            }
+
+            if (bgRef.current) {
+                bgRef.current.style.backgroundColor = tempColor.getStyle();
+            }
+
+            if (fogRef.current) {
+                fogRef.current.color.copy(tempColor);
+                fogRef.current.density = fogExposure;
+            }
+        });
+
+        return () => {
+            if (rafId.current) cancelAnimationFrame(rafId.current);
+        };
+    }, [scrollY]);
+
+    const [loaded, setLoaded] = useState(false);
+
+    return (
+        <div className="w-full h-screen fixed inset-0 pointer-events-none z-1">
+            {/* <div ref={bgRef} className="absolute inset-0 -z-10 bg-black/50 pointer-events-auto" /> */}
+            
+            {/* Dark screen loader */}
+            <div className={`z-1 pointer-events-none absolute inset-0 w-full h-full bg-black transition-opacity duration-1000 ease-in ${loaded ? "opacity-0" : "opacity-100"}`}>
+                <div className="absolute bottom-0 left-0 w-full " style={{ height: "45.2%", backgroundColor: "#262931" }}></div>
+            </div>
+
 			<Canvas shadows>
-				<color attach="background" args={[fogColor]} />
-				{/* {(timeLeft && scrollY < 1267) ? (<>
-					<Letter3D content={TextBoard1[0]} centered={false} billboard={true} font={1} pos={[-1+board1Shift,-6,-2]} rot={[Math.PI/2,Math.PI,0]}/>
-					<Letter3D content={TextBoard1[1]} centered={false} billboard={true} font={1}  pos={[-2,-6,-3.5]} rot={[Math.PI/2,Math.PI,0]}/>
-					<Letter3D content={TextBoard1[2]} centered={false} billboard={true} font={1}  pos={[-2,-6,-5]} rot={[Math.PI/2,Math.PI,0]}/>
-					<Letter3D content={TextBoard1[3]} centered={false} billboard={true} font={1} pos={[-2,-6,-6.5]} rot={[Math.PI/2,Math.PI,0]}/>
-					<Letter3D content={TextBoard1[4]} centered={false} billboard={true} font={1} pos={[-2,-6,-8]} rot={[Math.PI/2,Math.PI,0]}/>
-					</>) : null
-				} */}
-
 				<CameraRig scrollY={scrollY} />
 
 				<directionalLight
@@ -441,17 +490,22 @@ export default function PlaneScene({scrollY}: {scrollY: number}) {
 				<directionalLight position={[-30, 40, -30]} intensity={0.9} color="#496b91" />
 				<ambientLight intensity={0.25} color="#262931" />
 				
-				<fogExp2 attach="fog" args={[fogColor, fogExposure]} />
+				<fogExp2 ref={fogRef} attach="fog" args={["#000000", 0.007]} />
 
-				{scrollY < 1180*scrollMultiplier ? 
-					<Suspense>
+				{scrollY < 1180 * scrollMultiplier ? (
+					<Suspense fallback={null}>
 						<RPIModel onLoaded={() => setLoaded(true)} />
 					</Suspense>
-				: <></>}
+				) : null}
 				
 				{/* 3D Plane */}
-				<PlaneModel scrollY={scrollY} />
+				{scrollY < 5150? (
+					<PlaneModel scrollY={scrollY} />
+				): <></>}
 			</Canvas>
-		</div>
-	);
+			
+
+            
+        </div>
+    );
 }
