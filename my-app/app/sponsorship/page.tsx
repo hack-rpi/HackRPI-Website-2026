@@ -569,11 +569,13 @@ function SponsorUsPage() {
 				</div>
 			</div>
 
-			{/* <iframe
+			<iframe
 				className="mx-auto w-[90%] h-[120vh] py-10"
-				src="/sponsors/HackRPI_Sponsorship_Deck.pdf"
-			></iframe> */}
-			<PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
+				src="https://drive.google.com/file/d/1BDj3qfGiU0tNfEeEDE9UCeRUIvoqoD-k/preview"
+				title="HackRPI Sponsorship Deck"
+				allow="autoplay"
+			></iframe>
+			{/* <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" /> */}
 				
 			<div className="bg-hackrpi-clouds-dark-blue h-[30vh]"></div>
 		</main>

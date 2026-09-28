@@ -9,7 +9,7 @@ import type { Group } from "three";
 
 import type { PointLight } from "three";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { Center, OrbitControls, Text, useGLTF } from '@react-three/drei'
+import { Center, Text, useGLTF } from '@react-three/drei'
 
 const mentions = [
   { name: "Ryan Bennett", dept: "Logistics" },
@@ -35,7 +35,7 @@ const deptConfig: Record<string, { icon: string; gradient: string; shadow: strin
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-	const { scene } = useGLTF('/3d/trophy.glb');
+	const { scene } = useGLTF('/3d/trophy-reduced.glb');
 	const clonedScene = useMemo(() => scene.clone(), [scene]);
 	return <Center><primitive object={clonedScene} /></Center>;
 }
@@ -64,7 +64,7 @@ function MovingLight({ scrollData }: { scrollData: React.MutableRefObject<{ x: n
 
 function Scene({ scrollData }: { scrollData: React.MutableRefObject<{ x: number }> }) {
     return (
-        <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+        <Canvas dpr={[0.9, 1]} camera={{ position: [0, 0, 10], fov: 45 }}>
             <ambientLight intensity={0.3} />
 
             <directionalLight 
@@ -79,7 +79,6 @@ function Scene({ scrollData }: { scrollData: React.MutableRefObject<{ x: number 
             <hemisphereLight color={"#ffffff"} groundColor={"#444444"} intensity={0.4} />
 
             <Model/>
-            <OrbitControls enableZoom={false} />
         </Canvas>
     )
 }
