@@ -365,7 +365,7 @@ export default function SponsorUsPage() {
         {/* Responsive PDF Container */}
         <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 my-10 w-full overflow-hidden">
           <div className="w-full max-w-full overflow-x-auto rounded-2xl flex justify-center">
-            <PDFViewer file="/sponsors/HackRPI Sponsorship Booklet 2026.pdf" />
+            <PDFViewer file="/sponsors/sponsorshipBooklet2026.pdf" />
           </div>
         </div>
 
