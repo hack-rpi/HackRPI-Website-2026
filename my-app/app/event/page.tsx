@@ -52,10 +52,10 @@ export default function Event() {
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2>EVENT DISCORD</h2>
-            {/*Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
+            Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
-            Join the conversation on Discord and get the support you need to succeed at HackRPI.*/} Stay on the lookout - link coming soon!
-            {/*<HackRPILink
+            Join the conversation on Discord and get the support you need to succeed at HackRPI.
+            <HackRPILink
               href="https://discord.gg/kfABu274um"
               className="
                 hover:bg-linear-to-br
@@ -66,7 +66,7 @@ export default function Event() {
               target="_blank"
             >
               <Image src="/social/discord.svg" alt="Discord Logo" width={50} height={50} />
-            </HackRPILink>*/}
+            </HackRPILink>
           </div>
         </div>
 
