@@ -35,7 +35,8 @@ export default function LastYearCollage() {
     useEffect(() => {
         (async () => {
             try {
-                const res = await fetch("/api/last-year/photos", { cache: "no-store" });
+                // const res = await fetch("/api/last-year/photos", { cache: "no-store" });
+                const res = await fetch("/lastYearPhotos/photos.json");
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
                 setPhotos(data.photos ?? []);
