@@ -84,15 +84,17 @@ export function QnA({ title, content, defaultOpen = false }: FAQ) {
 
 export default function StackedCarousel() {
   return (
-    <FaqGrid>
-      {CARDS.map((card, index) => (
-        <QnA 
-          key={card.title || index} 
-          title={card.title} 
-          content={card.body} 
-          defaultOpen={false} 
-        />
-      ))}
-    </FaqGrid>
+    <section id="#faq">
+      <FaqGrid>
+        {CARDS.map((card, index) => (
+          <QnA 
+            key={card.title || index} 
+            title={card.title} 
+            content={card.body} 
+            defaultOpen={false} 
+          />
+        ))}
+      </FaqGrid>
+    </section>
   );
 }

@@ -75,7 +75,7 @@ export default function Footer() {
 						
 						<div className="mt-4 flex items-center justify-center gap-3 text-blue-200">
 							<Link
-								href="https://discord.gg/kfABu274um"
+								href="https://discord.gg/mrnsm74tDj"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="Discord"

@@ -3,19 +3,7 @@
 		"name": "Home",
 		"links": [
 			{ "href": "/",
-				"children": "Home",
-				"new_tab": false },
-			{ "href": "/#about",
-				"children": "About",
-				"new_tab": false },
-			{ "href": "/#faq",
-				"children": "FAQ",
-				"new_tab": false },
-			{ "href": "/#sponsors",
-				"children": "Sponsors",
-				"new_tab": false },
-			{ "href": "/#team",
-				"children": "Team",
+				"children": "You're not meant to see this! This is a bug!",
 				"new_tab": false }
 		]
 	},

@@ -56,7 +56,7 @@ export default function Event() {
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.
             <HackRPILink
-              href="https://discord.gg/kfABu274um"
+              href="https://discord.gg/mrnsm74tDj"
               className="
                 hover:bg-linear-to-br
                 hover:from-[#5865F2] hover:to-[#7289da]

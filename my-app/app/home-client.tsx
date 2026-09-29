@@ -120,6 +120,9 @@ export default function HomeClient() {
           <div id="switch-light">
             <FAQPage />
             <Buffer fillColor="#5f6b7a"/>*/}
+
+
+            
             <div className="z-10 relative">
               <FAQPage />
               <Sponsors />
