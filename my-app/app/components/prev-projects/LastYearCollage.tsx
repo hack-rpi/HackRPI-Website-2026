@@ -113,7 +113,7 @@ export default function LastYearCollage() {
         (async () => {
             try {
                 // Fetch the generated static photos.json directly
-                const res = await fetch("/lastYearPhotos/photos.json");
+                const res = await fetch("/photos.json");
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
                 setPhotos(data.photos ?? []);
