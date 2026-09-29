@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
 const VALID = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"]);
 
@@ -10,9 +11,10 @@ function naturalKey(name) {
         .map((p) => (/\d+/.test(p) ? Number(p) : p));
 }
 
-const dir = path.join(process.cwd(), "public", "lastYearPhotos");
+async function processImages() {
+    const dir = path.join(process.cwd(), "public", "lastYearPhotos");
+    if (!fs.existsSync(dir)) return;
 
-if (fs.existsSync(dir)) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     const files = entries
@@ -38,10 +40,12 @@ if (fs.existsSync(dir)) {
         });
 
     const urls = files.map((f) => `/lastYearPhotos/${f}`);
-    
+
     fs.writeFileSync(
         path.join(dir, "photos.json"),
         JSON.stringify({ photos: urls }, null, 2)
     );
     console.log(`Generated photos.json with ${urls.length} photos.`);
 }
+
+processImages();
