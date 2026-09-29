@@ -76,7 +76,8 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 	if (variant === 1) {
 		return (
 			<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
-				<DesktopNavBarDarker links={links} />
+				{/* <DesktopNavBarDarker links={links} /> */}
+				<DesktopNavBarHero links={links} />
 			</nav>
 		)
 	}else if (variant === 2) {
@@ -88,7 +89,8 @@ export default function NavBar({ showOnScroll, variant }: { showOnScroll: boolea
 	}
 	else return (
 		<nav role="navigation" className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-50`}>
-			<DesktopNavBar links={links} />
+			{/* <DesktopNavBar links={links} /> */}
+			<DesktopNavBarHero links={links} />
 		</nav>
 	);
 }

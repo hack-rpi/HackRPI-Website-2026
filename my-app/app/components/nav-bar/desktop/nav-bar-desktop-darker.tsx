@@ -46,17 +46,66 @@ interface NavGroupProps {
     variant?: "default" | "hero";
 }
 
+// export function NavGroupComponent({ name, links, variant = "default" }: NavGroupProps) {
+//     const isHero = variant === "hero";
+
+//     const linkStyles = isHero
+//     ? "py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:no-underline focus:no-underline active:no-underline hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] whitespace-nowrap cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent"
+//     : "mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500 hover:bg-size-[100%_2px]";
+
+//     if (links.length === 1) {
+//         return (
+//             <Link
+//                 role="link"
+//                 href={links[0].href}
+//                 className={linkStyles}
+//                 target={links[0].new_tab ? "_blank" : undefined}
+//             >
+//                 {name}
+//             </Link>
+//         );
+//     }
+
+//     return (
+//         <div className="dropdown dropdown-hover">
+//             <div
+//                 role="button"
+//                 tabIndex={0}
+//                 className={linkStyles}
+//             >
+//                 <Link href={links[0].href}>{name}</Link>
+//             </div>
+
+//             <ul
+// 				tabIndex={-1}
+// 				className=" -translate-x-1/4
+// 					dropdown-content menu p-0 w-24  
+// 					bg-slate-950/5 backdrop-blur-md 
+// 					z-50 text-slate-200
+// 				"
+// 			>
+// 				{links.map((link) => (
+// 					<li key={link.href} className="m-0 p-0" role="link">
+// 						<NavLink href={link.href} new_tab={link.new_tab} variant="hero">
+// 							{link.children}
+// 						</NavLink>
+// 					</li>
+// 				))}
+// 			</ul>
+//         </div>
+//     );
+// }
+
 export function NavGroupComponent({ name, links, variant = "default" }: NavGroupProps) {
     const isHero = variant === "hero";
 
     const linkStyles = isHero
-    ? "py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:no-underline focus:no-underline active:no-underline hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] whitespace-nowrap cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent"
-    : "mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500 hover:bg-size-[100%_2px]";
+        ? "py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:no-underline focus:no-underline active:no-underline hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] whitespace-nowrap cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent"
+        : "mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500 hover:bg-size-[100%_2px]";
 
     if (links.length === 1) {
         return (
             <Link
-                role="link"
                 href={links[0].href}
                 className={linkStyles}
                 target={links[0].new_tab ? "_blank" : undefined}
@@ -68,30 +117,30 @@ export function NavGroupComponent({ name, links, variant = "default" }: NavGroup
 
     return (
         <div className="dropdown dropdown-hover">
-            <div
-                role="button"
-                tabIndex={0}
+            {/* Direct Link trigger preserving your original linkStyles without the event-capturing div wrapper */}
+            <Link 
+                href={links[0].href} 
                 className={linkStyles}
             >
-                <Link href={links[0].href}>{name}</Link>
-            </div>
+                {name}
+            </Link>
 
             <ul
-				tabIndex={-1}
-				className=" -translate-x-1/4
-					dropdown-content menu p-0 w-24  
-					bg-slate-950/5 backdrop-blur-md 
-					z-50 text-slate-200
-				"
-			>
-				{links.map((link) => (
-					<li key={link.href} className="m-0 p-0" role="link">
-						<NavLink href={link.href} new_tab={link.new_tab} variant="hero">
-							{link.children}
-						</NavLink>
-					</li>
-				))}
-			</ul>
+                tabIndex={-1}
+                className=" -translate-x-1/4
+                    dropdown-content menu p-0 w-24  
+                    bg-slate-950/5 backdrop-blur-md 
+                    z-50 text-slate-200
+                "
+            >
+                {links.map((link) => (
+                    <li key={link.href} className="m-0 p-0">
+                        <NavLink href={link.href} new_tab={link.new_tab} variant="hero">
+                            {link.children}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
