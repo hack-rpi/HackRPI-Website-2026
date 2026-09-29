@@ -32,7 +32,7 @@
 			{ "href": "/last-year",
 				"children": "Winners",
 				"new_tab": false },
-			{ "href": "/photos",
+			{ "href": "/last-year/photos",
 				"children": "Photos",
 				"new_tab": false }
 		]
