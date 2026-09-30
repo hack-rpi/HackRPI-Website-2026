@@ -126,14 +126,14 @@ export function RPIModel({onLoaded}: {onLoaded: () => void}) {
 
 		// Scale movement by frame delta time
 		const moveStep = speed * delta;
-		
+		console.log(groupRef.current.position);
 		groupRef.current.position.z -= moveStep;
 		groupRef.current.position.y += 0.051 * moveStep;
 
 		// Loop position boundary reset
 		if (groupRef.current.position.z < -261) {
 			groupRef.current.position.z = -20;
-			groupRef.current.position.y = 0.00;
+			groupRef.current.position.y = -82;
 		}
 	});
 
