@@ -72,7 +72,6 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
     const relativeX = x / rect.width - 0.5;
     const relativeY = y / rect.height - 0.5;
 
-    // Use requestAnimationFrame to batch DOM writes smoothly
     if (rafId.current) cancelAnimationFrame(rafId.current);
 
     rafId.current = requestAnimationFrame(() => {
@@ -83,7 +82,6 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
       const imgX = relativeX * -12;
       const imgY = relativeY * -12;
 
-      // 1. Direct Transform Update (Zero React Renders)
       cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       cardRef.current.style.boxShadow = `${-relativeX * 15}px ${
         -relativeY * 15 + 10
@@ -124,15 +122,17 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
       href={link || "#"}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block focus:outline-none"
+      className="group relative block focus:outline-none shrink-0"
     >
       <div className="flex flex-col items-center">
-        {/* Top Hover Label */}
-        <span
-          className={`mb-2 text-xs font-semibold tracking-wider uppercase opacity-0 -translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 ${config.text}`}
-        >
-          {name}
-        </span>
+        {/* Top Hover Label with height constraint to prevent off-screen clipping */}
+        <div className="h-6 flex items-center justify-center overflow-hidden">
+          <span
+            className={`text-xs font-semibold tracking-wider uppercase truncate max-w-[240px] opacity-0 transition-all duration-300 group-hover:opacity-100 ${config.text}`}
+          >
+            {name}
+          </span>
+        </div>
 
         {/* Main Glass Card */}
         <div
@@ -140,9 +140,9 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={`
-            relative flex items-center justify-center overflow-hidden rounded-2xl border 
-            w-[260px] h-[160px] sm:w-[280px] sm:h-[170px] p-6
-            backdrop-blur-md transform-gpuWillChange
+            relative flex items-center justify-center rounded-2xl border 
+            w-[240px] h-[150px] sm:w-[280px] sm:h-[170px] p-6
+            backdrop-blur-md transform-gpu [will-change:transform]
             transition-transform duration-100 ease-out
             shadow-lg shadow-black/20
             ${config.bg} ${config.border}

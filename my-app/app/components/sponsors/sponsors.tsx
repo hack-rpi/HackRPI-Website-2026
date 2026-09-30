@@ -109,7 +109,8 @@ export default function Sponsors() {
             <h2 className="relative text-center left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-10">
                 Thank you to our sponsors that make HackRPI possible!
             </h2>
-            <div className="flex flex-row justify-center flex-wrap gap-10 z-10">
+            
+            <div className="flex flex-row justify-center flex-wrap gap-6 sm:gap-10 z-10 max-w-7xl mx-auto w-full">
                 {sponsors.OBSIDIAN.map((sponsor, index) => (
                     <SponsorCard
                         key={index}
