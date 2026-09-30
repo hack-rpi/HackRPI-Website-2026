@@ -95,6 +95,12 @@ const categoryPrizes: StandardPrize[] = [
     description: "Build an intuitive app for mobile or emulators.",
     icon: "📱",
   },
+  {
+    title: "Best use of Fish Audio",
+    reward: "???",
+    description: "Build an innovative voice AI experience using Fish Audio. We’re excited to see creative applications across conversational AI, games, education, accessibility, entertainment, productivity, agents, and more. Projects should meaningfully integrate Fish Audio’s API and demonstrate an interesting or useful application of voice AI",
+    icon: "🎧",
+  },
 ];
 
 export default function Prizes() {

@@ -26,6 +26,7 @@ const listItems: Record<string, Record<string, string | boolean>> = {
   "Logo on Website": { bronze: true, silver: true, gold: true, obsidian: true },
   "Distribute Company Swag": { bronze: true, silver: true, gold: true, obsidian: true },
   "Company Flier in Event Folder": { bronze: true, silver: true, gold: true, obsidian: true },
+  "Company Table": { bronze: true, silver: true, gold: true, obsidian: true },
   "Social Media Advertising": { bronze: false, silver: true, gold: true, obsidian: true },
   "Company Judges": { bronze: false, silver: true, gold: true, obsidian: true },
   "Resume Book": {
@@ -40,7 +41,6 @@ const listItems: Record<string, Record<string, string | boolean>> = {
   "Promotional Mail to Hackers": { bronze: false, silver: false, gold: false, obsidian: true },
   "Priority Booth Placement": { bronze: false, silver: false, gold: false, obsidian: true },
   "Opening Ceremony Demo": { bronze: false, silver: false, gold: false, obsidian: true },
-  "Company Table": { bronze: true, silver: true, gold: true, obsidian: true },
 };
 
 type Tier = "bronze" | "silver" | "gold" | "obsidian";
@@ -163,10 +163,10 @@ export default function SponsorUsPage() {
   return (
     <>
       <NavBar showOnScroll={false} variant={1} />
-      <main className={`relative w-full bg-gradient-to-b ${currentTheme.bgGradient} pt-[8vh] min-h-screen text-slate-100 transition-colors duration-700 overflow-hidden`}>
+      <main className={`relative w-full bg-gradient-to-b ${currentTheme.bgGradient} pt-[8vh] min-h-screen text-slate-100 transition-colors duration-700`}>
         
         {/* Background Clouds Spanning Entire Page */}
-        <div className="absolute top-[5vh] left-[-50px] md:left-[2%] w-72 md:w-[32rem] h-44 opacity-25 pointer-events-none animate-float-slow z-0">
+        <div className="absolute top-[5vh] left-[-50px] md:left-[2%] w-72 md:w-[32rem] opacity-25 pointer-events-none animate-float-slow z-0">
           <Image src="/sponsors/res/cloud.png" alt="Cloud Background" fill className="object-contain" />
         </div>
         <div className="absolute top-[18vh] right-[-40px] md:right-[3%] w-64 md:w-[28rem] h-40 opacity-20 pointer-events-none animate-float-reverse z-0">
@@ -256,7 +256,7 @@ export default function SponsorUsPage() {
               </div>
 
               {isMobile || !nextTier ? (
-                <div className="space-y-2.5 max-h-[60vh] overflow-y-auto pr-1">
+                <div className="space-y-2.5 overflow-y-auto pr-1">
                   {Object.entries(listItems).map(([name, tiers]) => {
                     const val = tiers[selectedTier];
                     const isAvailable = Boolean(val);
@@ -284,7 +284,7 @@ export default function SponsorUsPage() {
                     <span className={`capitalize ${tierThemes[nextTier].accentText}`}>{nextTier}</span>
                   </div>
 
-                  <div className="space-y-1.5 max-h-[60vh] overflow-y-auto pr-1">
+                  <div className="space-y-1.5 overflow-y-auto pr-1">
                     {Object.entries(listItems).map(([name, tiers]) => {
                       const currentVal = tiers[selectedTier];
                       const nextVal = tiers[nextTier];

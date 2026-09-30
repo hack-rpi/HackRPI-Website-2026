@@ -11,7 +11,11 @@
 		}
   	],
 	"GOLD": [
-		
+		{
+			"name": "Fish Audio",
+			"logoPath": "fishyAuds.svg",
+			"url": "https://fish.audio"
+		}
 	],
 	"SILVER": [
 		{
