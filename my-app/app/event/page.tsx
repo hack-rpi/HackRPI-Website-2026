@@ -14,6 +14,11 @@ import Lenis from 'lenis';
 import { useEffect } from "react";
 import Prizes from './prizes';
 
+const YELLOW_BRIGHT = "#FEF9C2";
+const DARK_GREY = "#252525"
+const LIGHT_YELLOW = "#CECAB8"
+const PASTEL_TURQUOISE = "#7EB9A4"
+
 export default function Event() {
   useEffect(() => {
     // lenis scrolling
@@ -35,14 +40,19 @@ export default function Event() {
       <NavBar showOnScroll={false} variant={2} />
       <Cover/>
 
-      <main className = "flex flex-col w-full eventPageBG">
+      <main style={{ 
+      '--dark-grey': DARK_GREY,
+      '--light-yellow': LIGHT_YELLOW,
+      '--yellow-bright': YELLOW_BRIGHT
+    	} as React.CSSProperties} className = "flex flex-col w-full eventPageBG">
+		
 				{/* Mentoring information */}
         <div className="w-full h-auto flex flex-col desktop:flex-row text-white pt-10">
           <div className="w-full desktop:w-[10%] flex flex-col items-center justify-center p-5">
-            <h1>Need Help?</h1>
+            <h1 style={{color: YELLOW_BRIGHT}}>Need Help?</h1>
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2>MENTORING INFORMATION</h2>
+            <h2 style={{color: DARK_GREY}}>MENTORING INFORMATION</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
             your project idea, or navigating the challenges of a hackathon, our experienced
@@ -51,13 +61,17 @@ export default function Event() {
             Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2>EVENT DISCORD</h2>
+            <h2 style={{color: DARK_GREY}}>EVENT DISCORD</h2>
             Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.
             <HackRPILink
               href="https://discord.gg/kfABu274um"
               className="
+			  	
+                bg-linear-to-br
+                from-[#5865F2]/30 to-[#7289da]/30
+                bg-transparent border-[#5865F2]/30
                 hover:bg-linear-to-br
                 hover:from-[#5865F2] hover:to-[#7289da]
                 hover:bg-transparent hover:border-[#5865F2]
@@ -72,9 +86,11 @@ export default function Event() {
 
 				{/* Project submission and judging */}
         <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-20 ">
-          <h1 className="text-center">Project Submission and Judging</h1>
+          <h1 
+	   className={`text-center`} 
+		  style={{color: YELLOW_BRIGHT}}>Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
-            <h2 className="text-center">JUDGING CRITERIA</h2>
+            <h2 className="text-center" style={{color: DARK_GREY}}>JUDGING CRITERIA</h2>
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
               present your project to our panel of industry professionals,
@@ -83,19 +99,20 @@ export default function Event() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">
 							{/* Practicality & Utility Card */}
-							<div className="
+					<div className={`
                 group relative criteriaBG
-                border-2 border-hackrpi-pink/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-pink
-              ">
+                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
+              `}>
 								<div className="
-                  bg-red-500 absolute -top-3 -right-3 w-12 h-12
+        		  absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center text-2xl
                   group-hover:rotate-12 transition-transform duration-300
-                ">
+                "
+				style={{backgroundColor: YELLOW_BRIGHT}}>
 									🎯
 								</div>
-								<h3 className="font-bold text-xl text-white mb-3">Practicality & Utility</h3>
+								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Practicality & Utility</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
 									What problem do you want to solve? What impression do you get from the hack? Does it provide for a smooth user experience? Any future plans?
 								</p>
@@ -105,17 +122,18 @@ export default function Event() {
 							{/* Creativity Card */}
 							<div className="
                 group relative criteriaBG
-                border-2 border-hackrpi-light-purple/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
+                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
               ">
 								<div className="
                   absolute -top-3 -right-3 w-12 h-12
-                  bg-red-500 rounded-full flex items-center justify-center
+                  rounded-full flex items-center justify-center
                   text-2xl group-hover:rotate-12 transition-transform duration-300
-                ">
+                "
+				style={{backgroundColor: YELLOW_BRIGHT}}>
 									💡
 								</div>
-								<h3 className="font-bold text-xl text-hackrpi-light-purple mb-3">Creativity</h3>
+								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Creativity</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
 									How original is your hack? Is this a novel idea or something that many people came across? How difficult is the problem you are solving?
 								</p>
@@ -125,17 +143,18 @@ export default function Event() {
 							{/* Technical Difficulty Card */}
               <div className="
                 group relative criteriaBG
-                border-2 border-hackrpi-light-purple/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
+                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
               ">								
                 <div className="
                   absolute -top-3 -right-3 w-12 h-12
-                  bg-blue-500 rounded-full flex items-center justify-center
+                  rounded-full flex items-center justify-center
                   text-2xl group-hover:rotate-12 transition-transform duration-300
-                ">
+                "
+				style={{backgroundColor: YELLOW_BRIGHT}}>
 									⚡
 								</div>
-								<h3 className="font-bold text-xl text-hackrpi-orange mb-3">Technical Difficulty</h3>
+								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Technical Difficulty</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
 									How technically challenging was your project? How complex is your design? What different technologies did you use?
 								</p>
@@ -145,17 +164,18 @@ export default function Event() {
 							{/* Effort Card */}
 							<div className="
                 group relative criteriaBG
-                border-2 border-hackrpi-light-purple/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-hackrpi-light-purple
+                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
               ">
 								<div className="
                   absolute -top-3 -right-3 w-12 h-12
-                  bg-red-500 rounded-full flex items-center justify-center
+                  rounded-full flex items-center justify-center
                   text-2xl group-hover:rotate-12 transition-transform duration-300
-                ">
+                "
+				style={{backgroundColor: YELLOW_BRIGHT}}>
 									💪
 								</div>
-								<h3 className="font-bold text-xl text-hackrpi-yellow mb-3">Effort</h3>
+								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Effort</h3>
 								<p className="text-gray-300 text-sm leading-relaxed">
 									Did you genuinely commit time and effort to this product? Did your team work together and all contribute? Did you learn from the experience?
 								</p>
@@ -171,7 +191,7 @@ export default function Event() {
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
 						<div className="text-center mb-12">
-							<h2>PROJECT SUBMISSION</h2>
+							<h2 style={{color: DARK_GREY}}>PROJECT SUBMISSION</h2>
 							<p>Submit your project through Devpost and showcase your amazing work!</p>
 						</div>
 
@@ -180,7 +200,7 @@ export default function Event() {
 							<div className="relative">
 								{/* Timeline Line */}
 								<div className="absolute left-6 sm:left-8 desktop:left-10 top-0 bottom-0 w-1
-								bg-linear-to-b from-blue-500 via-green-500 to-red-500"></div>
+								bg-linear-to-b from-[var(--dark-grey)] via-[var(--light-yellow)] to-[var(--yellow-bright)]"></div>
 
 								{/* Timeline Steps */}
 								<div className="space-y-8">
@@ -188,16 +208,19 @@ export default function Event() {
 									<div className="relative flex items-start">
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
-											bg-blue-500 rounded-full flex items-center justify-center
+											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-blue-500/50
-										">
+										"
+										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											1
 										</div>
 										<div className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-blue-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
-										">
-											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-orange mb-2">Create Your Account</h3>
+											border-l-4 border-[#27907A] p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
+										"
+										style={{borderColor: PASTEL_TURQUOISE}}>
+											<h3 className="text-2xl md:text-3xl font-bold mb-2"
+											style={{color: YELLOW_BRIGHT}}>Create Your Account</h3>
 											<p className="text-white md:text-lg">
 												<Link
 													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
@@ -216,16 +239,17 @@ export default function Event() {
 									<div className="relative flex items-start">
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
-											bg-green-500 rounded-full flex items-center justify-center
+											bg-[#7EB9A4] rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-green-500/50
 										">
 											2
 										</div>
 										<div className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-green-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
+											border-l-4 border-[#7EB9A4] p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										">
-											<h3 className="text-2xl md:text-3xl font-bold text-hackrpi-pink mb-2">Prepare Your Submission</h3>
+											<h3 className="text-2xl md:text-3xl font-bold mb-2"
+											style={{color: YELLOW_BRIGHT}}>Prepare Your Submission</h3>
 											<p className="text-white mb-3 text-sm md:text-lg">Include these essential elements:</p>
 											<ul className="space-y-2 text-sm md:text-base desktop:text-lg text-white">
 												<li className="flex items-center">
@@ -252,16 +276,19 @@ export default function Event() {
 									<div className="relative flex items-start">
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
-											bg-yellow-500 rounded-full flex items-center justify-center
+											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-yellow-500/50
-										">
+										"
+										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											3
 										</div>
 										<div className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-yellow-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
-										">
-											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+											border-l-4 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
+										"
+										style={{borderColor: PASTEL_TURQUOISE}}>
+											<h3 className="text-2xl md:text-3xl font-bold mb-2"
+											style={{color: YELLOW_BRIGHT}}>
 												Submit Before Deadline
 											</h3>
 											<div className="space-y-2 text-white md:text-lg">
@@ -269,7 +296,8 @@ export default function Event() {
 													<div className="w-[50%] desktop:w-auto">
 														Submit by
 													</div>
-													<div className="w-[50%] desktop:w-auto font-bold text-white bg-orange-400 px-1 desktop:ml-2 text-right">
+													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
+													style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>
 														9:00 AM Sunday
 													</div>
 												</div>
@@ -277,7 +305,8 @@ export default function Event() {
 													<div className="w-[50%] desktop:w-auto">
 														Edit until
 													</div>
-													<div className="w-[50%] desktop:w-auto font-bold text-white bg-red-500 px-1 desktop:ml-2 text-right">
+													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
+													style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>
 														11:00 AM Sunday
 													</div>
 												</div>
@@ -289,20 +318,24 @@ export default function Event() {
 									<div className="relative flex items-start">
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
-											bg-red-500 rounded-full flex items-center justify-center
+											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-red-500/50
-										">
+										"
+										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											4
 										</div>
 										<div className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
-											border-l-4 border-red-500 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
-										">
-											<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+											border-l-4 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
+										"
+										style={{borderColor: PASTEL_TURQUOISE}}>
+											<h3 className="text-2xl md:text-3xl font-bold mb-2"
+											style={{color: YELLOW_BRIGHT}}>
 												Present Your Project
 											</h3>
 											<p className="text-white md:text-lg">
-												After <span className="font-bold text-white bg-red-500 mx-0.5 px-0.5">11:00 AM Sunday</span>,
+												After <span className="font-bold text-white mx-0.5 px-0.5"
+												style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>11:00 AM Sunday</span>,
 												no changes are allowed. Be ready to give a live demo and explain your project to the
 												judges!
 											</p>

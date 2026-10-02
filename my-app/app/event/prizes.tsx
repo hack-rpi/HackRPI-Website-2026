@@ -102,7 +102,7 @@ export default function Prizes() {
     <section className="w-full max-w-7xl mx-auto px-4 py-8 text-white">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#4d4637]">
           PRIZE TRACKS
         </h2>
         <p className="text-gray-300 text-sm md:text-base mt-1">
@@ -172,14 +172,15 @@ export default function Prizes() {
         {categoryPrizes.map((prize, idx) => (
           <div
             key={idx}
-            className="group relative criteriaBG border border-white/15 rounded-xl p-3.5 flex flex-col justify-between transition-all duration-200 hover:border-hackrpi-pink hover:bg-white/5"
-          >
+            className="group relative criteriaBG border rounded-xl p-3.5 flex flex-col justify-between transition-all duration-200 hover:border-hackrpi-pink hover:bg-white/5"
+            style={{borderColor: "#FEF9C2"}}>
             <div>
               <div className="flex items-start justify-between gap-2 mb-1.5">
-                <h4 className="font-bold text-sm text-white group-hover:text-hackrpi-light-purple transition-colors leading-snug">
+                <h4 className="font-bold text-sm transition-colors leading-snug"
+                style={{color: "#CECAB8"}}>
                   {prize.title}
                 </h4>
-                <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                <span className="text-2xl text-white shrink-0 group-hover:scale-110 transition-transform">
                   {prize.icon}
                 </span>
               </div>

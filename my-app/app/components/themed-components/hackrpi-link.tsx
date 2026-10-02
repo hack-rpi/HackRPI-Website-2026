@@ -16,7 +16,7 @@ export default function HackRPILink({
 			href={href}
 			className={`
 				${className}
-				group border-purple-500 border-2 text-sky-500 hover:bg-purple-500
+				group border-2 text-sky-500 hover:bg-purple-500
 				hover:text-yellow-500 transition-all duration-500 font-pix font-medium relative text-3xl`}
 			target={target}
 		>

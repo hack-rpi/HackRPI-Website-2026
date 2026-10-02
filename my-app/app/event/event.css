@@ -133,11 +133,11 @@ h1{
 .eventPageBG{
   background: linear-gradient(
     to bottom,
-    #744d9e 0%,         /* Tailwind purple-300 */
-    #0f77a7 50%,        /* Tailwind sky-500 */
+    #CECAB8 0%,         /* Tailwind purple-300 */
+    #252525 100%,        /* Tailwind sky-500 */
     /*#0ea5e9 80%,*/        /* Tailwind sky-500 */
     /* var(--hackrpi-clouds-green, #10b981) 100% */
-    var(--hackrpi-clouds-dark-blue, #1e3a8a) 100%
+    var(--hackrpi-clouds-dark-blue, #00ddc1) 100% 
   );
 }
 .eventPageEnd{
