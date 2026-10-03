@@ -126,14 +126,14 @@ export function RPIModel({onLoaded}: {onLoaded: () => void}) {
 
 		// Scale movement by frame delta time
 		const moveStep = speed * delta;
-		
+		console.log(groupRef.current.position);
 		groupRef.current.position.z -= moveStep;
 		groupRef.current.position.y += 0.051 * moveStep;
 
 		// Loop position boundary reset
 		if (groupRef.current.position.z < -261) {
 			groupRef.current.position.z = -20;
-			groupRef.current.position.y = 0.00;
+			groupRef.current.position.y = -82;
 		}
 	});
 
@@ -490,16 +490,17 @@ export default function PlaneScene({ scrollY }: { scrollY: number }) {
 				
 				<fogExp2 ref={fogRef} attach="fog" args={["#000000", 0.007]} />
 
-				{scrollY < 1180 * scrollMultiplier ? (
-					<Suspense fallback={null}>
-						<RPIModel onLoaded={() => setLoaded(true)} />
-					</Suspense>
-				) : null}
 				
+				<Suspense fallback={null}>
+					<group visible={scrollY < 1180 * scrollMultiplier}>
+						<RPIModel onLoaded={() => setLoaded(true)} />
+					</group>
+				</Suspense>
+
 				{/* 3D Plane */}
-				{scrollY < 5150? (
+				<group visible={scrollY < 5150}>
 					<PlaneModel scrollY={scrollY} />
-				): <></>}
+				</group>
 			</Canvas>
 			
 
