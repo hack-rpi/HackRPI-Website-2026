@@ -63,6 +63,7 @@ export default function SponsorCard({ name, tier, image, link }: SponsorCardProp
   const rafId = useRef<number | null>(null);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if( tier != "obsidian" && tier != "gold") return;
     if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();

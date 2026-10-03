@@ -14,32 +14,7 @@ export default function Team() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Text Entry Animations
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#pin",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      let animatedTitle = false;
-      tl.call(() => {
-        if (!animatedTitle) {
-          textAnimation("team-title", 0.6);
-          animatedTitle = true;
-        }
-      }, [], 0.1);
-
-      let animatedNames = false;
-      tl.call(() => {
-        if (!animatedNames) {
-          textAnimation("name-animate", 1.0, 0.1);
-          animatedNames = true;
-        }
-      }, [], 0.0);
-
-      // 2. Desktop GSAP Infinite Marquee Loop
+      // Desktop GSAP Infinite Marquee Loop
       if (marqueeRef.current) {
         const loopTween = gsap.to(marqueeRef.current, {
           xPercent: -50,
@@ -76,10 +51,6 @@ export default function Team() {
           className="text-left text-white/70 text-2xl md:text-3xl font-bold tracking-wider text-white/90 uppercase font-mono"
         >
           Meet the HackRPI Organizing Team
-          <div
-            className="text-animation-layer inline-block w-auto"
-            id="text-animate-layer"
-          />
         </h2>
         <p className="text-sm md:text-lg text-white/70 leading-relaxed font-sans">
           Hello! We are a motivated team of RPI students who share a passion for
