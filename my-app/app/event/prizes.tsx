@@ -104,7 +104,7 @@ const categoryPrizes: StandardPrize[] = [
     title: "Best Cybersecurity Hack",
     reward: "course subscription",
     description: "Build a secure and innovative security or pentesting solution",
-    icon: "🎧",
+    icon: "💻",
   },
 ];
 
