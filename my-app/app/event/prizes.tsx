@@ -102,7 +102,7 @@ export default function Prizes() {
     <section className="w-full max-w-7xl mx-auto px-4 py-8 text-white">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#4d4637]">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#CECAB8]">
           PRIZE TRACKS
         </h2>
         <p className="text-gray-300 text-sm md:text-base mt-1">

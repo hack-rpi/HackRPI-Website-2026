@@ -133,7 +133,7 @@ h1{
 .eventPageBG{
   background: linear-gradient(
     to bottom,
-    #CECAB8 0%,         /* Tailwind purple-300 */
+    /*#CECAB8 0%,         /* Tailwind purple-300 */
     #252525 100%,        /* Tailwind sky-500 */
     /*#0ea5e9 80%,*/        /* Tailwind sky-500 */
     /* var(--hackrpi-clouds-green, #10b981) 100% */
@@ -141,7 +141,7 @@ h1{
   );
 }
 .eventPageEnd{
-  background-color:var(--hackrpi-clouds-dark-blue, #1e3a8a);
+  background-color:#252525;
 }
 
 .criteriaBG{

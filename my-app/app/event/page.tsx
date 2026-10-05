@@ -43,7 +43,8 @@ export default function Event() {
       <main style={{ 
       '--dark-grey': DARK_GREY,
       '--light-yellow': LIGHT_YELLOW,
-      '--yellow-bright': YELLOW_BRIGHT
+      '--yellow-bright': YELLOW_BRIGHT,
+	  '--pastel-turquoise': PASTEL_TURQUOISE
     	} as React.CSSProperties} className = "flex flex-col w-full eventPageBG">
 		
 				{/* Mentoring information */}
@@ -52,7 +53,7 @@ export default function Event() {
             <h1 style={{color: YELLOW_BRIGHT}}>Need Help?</h1>
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2 style={{color: DARK_GREY}}>MENTORING INFORMATION</h2>
+            <h2 style={{color: LIGHT_YELLOW}}>MENTORING INFORMATION</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
             assistance to participants. Whether you need help with coding, debugging, refining
             your project idea, or navigating the challenges of a hackathon, our experienced
@@ -61,7 +62,7 @@ export default function Event() {
             Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2 style={{color: DARK_GREY}}>EVENT DISCORD</h2>
+            <h2 style={{color: LIGHT_YELLOW}}>EVENT DISCORD</h2>
             Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.
@@ -90,7 +91,7 @@ export default function Event() {
 	   className={`text-center`} 
 		  style={{color: YELLOW_BRIGHT}}>Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
-            <h2 className="text-center" style={{color: DARK_GREY}}>JUDGING CRITERIA</h2>
+            <h2 className="text-center" style={{color: LIGHT_YELLOW}}>JUDGING CRITERIA</h2>
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
               present your project to our panel of industry professionals,
@@ -191,7 +192,7 @@ export default function Event() {
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
 						<div className="text-center mb-12">
-							<h2 style={{color: DARK_GREY}}>PROJECT SUBMISSION</h2>
+							<h2 style={{color: LIGHT_YELLOW}}>PROJECT SUBMISSION</h2>
 							<p>Submit your project through Devpost and showcase your amazing work!</p>
 						</div>
 
@@ -209,7 +210,7 @@ export default function Event() {
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
-											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-blue-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
 										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											1
@@ -226,7 +227,7 @@ export default function Event() {
 													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="text-purple-800 hover:text-pink-800 underline transition-colors"
+													className="text-[var(--pastel-turquoise)] hover:bg-[var(--light-yellow)] hover:text-[var(--dark-grey)] underline transition-colors visited:text-[#7E7DA4]"
 												>
 													Sign up for a Devpost account
 												</Link>{" "}
@@ -240,7 +241,7 @@ export default function Event() {
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-[#7EB9A4] rounded-full flex items-center justify-center
-											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-green-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										">
 											2
 										</div>
@@ -277,7 +278,7 @@ export default function Event() {
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
-											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-yellow-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
 										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											3
@@ -319,7 +320,7 @@ export default function Event() {
 										<div className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
-											text-xl md:text-2xl desktop:text-3xl shadow-lg shadow-red-500/50
+											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
 										style={{backgroundColor: PASTEL_TURQUOISE}}>
 											4
