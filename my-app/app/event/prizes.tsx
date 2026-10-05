@@ -100,6 +100,11 @@ const categoryPrizes: StandardPrize[] = [
     reward: "$200 API credits",
     description: "Build an innovative voice AI experience using Fish Audio. We’re excited to see creative applications across conversational AI, games, education, accessibility, entertainment, productivity, agents, and more. Projects should meaningfully integrate Fish Audio’s API and demonstrate an interesting or useful application of voice AI",
     icon: "🎧",
+  },{
+    title: "Best Cybersecurity Hack",
+    reward: "course subscription",
+    description: "Build a secure and innovative security or pentesting solution",
+    icon: "🎧",
   },
 ];
 

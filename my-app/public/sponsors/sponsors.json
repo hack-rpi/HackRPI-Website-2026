@@ -77,10 +77,6 @@
 	],
 	"TRACKS": [
 		{
-			"name": "Lally CEMET",
-			"logoPath": "RPI_Logo_White.svg",
-			"url": ""
-		},{
 			"name": "Databricks",
 			"logoPath": "databricks.svg",
 			"url": "https://www.databricks.com/"
@@ -88,6 +84,14 @@
 			"name": "ElevenLabs",
 			"logoPath": "elevenlabs.svg",
 			"url": "https://www.elevenlabs.io/"
+		},{
+			"name": "Ret2Systems",
+			"logoPath": "ret2.svg",
+			"url": "https://wargames.ret2.systems/"
+		},{
+			"name": "Lally CEMET",
+			"logoPath": "RPI_Logo_White.svg",
+			"url": ""
 		}
 	]
 }
