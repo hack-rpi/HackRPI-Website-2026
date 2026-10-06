@@ -19,10 +19,15 @@
 	],
 	"SILVER": [
 		{
+			"name": "Regeneron",
+			"logoPath": "regeneron.svg",
+			"url": "https://www.regeneron.com/"
+		},{
 			"name": "Velan Studios",
 			"logoPath": "Velan_Studios_Logo.png",
 			"url": "https://velanstudios.com/"
 		}
+
 	],
 	"BRONZE": [
 		{
@@ -77,6 +82,10 @@
 	],
 	"TRACKS": [
 		{
+			"name": "639 Cloud",
+			"logoPath": "639Cloud.svg",
+			"url": "https://www.639cloud.com"
+		},{
 			"name": "Databricks",
 			"logoPath": "databricks.svg",
 			"url": "https://www.databricks.com/"
