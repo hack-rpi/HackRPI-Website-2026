@@ -34,6 +34,10 @@
 			"name": "GlobalFoundries",
 			"logoPath": "GlobalFoundries.png",
 			"url": "https://gf.com/"
+		},{
+			"name": "Kitware",
+			"logoPath": "kitware.svg",
+			"url": "https://kitware.com/"
 		}
 	],
 	"COLLABORATORS": [
