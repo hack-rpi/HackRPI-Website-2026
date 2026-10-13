@@ -190,14 +190,47 @@ export default function Prizes() {
             <span className="text-3xl">🧱</span>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-lg md:text-xl font-bold text-white">
+                <h3 className="text-lg md:text-xl font-bold text-white max-[1000px]:w-15">
                   Best Use of Databricks
                 </h3>
                 <span className="text-[10px] bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded-full font-semibold">
                   Confirmed
                 </span>
               </div>
-              <p className="text-xs text-gray-300 w-200">
+              <p className="max-[1000px]:w-45 text-xs text-gray-300 w-200">
+                Most tools give you one piece of the puzzle — a model API, a database, a dashboard builder. Meanwhile, Databricks gives you the entire data and AI platform in one place. Ingest and transform raw data with Lakeflow pipelines, query it with SQL or Python notebooks, build and deploy AI agents using foundation models, spin up a managed Postgres database with Lakebase, create interactive dashboards using plain English with Genie, build your custom apps on Databricks Apps, and let Genie Code write and debug your code along the way. The best hacks this weekend won't just call an API — they'll move data end-to-end, from messy source to polished product. Sign up on Databricks Free Edition (yes, it's forever-free), and show us what a complete data and AI platform can do in your hands!
+              </p>
+            </div>
+          </div>
+
+          <div className="gap-2">
+            {dataBrick.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-black/30 border border-white/10 px-3 py-1.5 rounded-lg text-center flex-1 md:flex-none min-w-[75px] my-2"
+              >
+                <div className="text-[10px] text-gray-400 font-medium">{item.rank} Place</div>
+                <div className="text-base font-bold text-hackrpi-orange">{item.reward}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* DataBricks Track Highlight Banner */}
+      <div className="criteriaBG border-2 border-hackrpi-pink/60 rounded-xl p-4 md:p-5 mb-6 bg-gradient-to-r from-hackrpi-pink/10 via-transparent to-hackrpi-light-purple/10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🧱</span>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg md:text-xl font-bold text-white max-[1000px]:w-15">
+                  Best Use of Databricks
+                </h3>
+                <span className="text-[10px] bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded-full font-semibold">
+                  Confirmed
+                </span>
+              </div>
+              <p className="max-[1000px]:w-45 text-xs text-gray-300 w-200">
                 Most tools give you one piece of the puzzle — a model API, a database, a dashboard builder. Meanwhile, Databricks gives you the entire data and AI platform in one place. Ingest and transform raw data with Lakeflow pipelines, query it with SQL or Python notebooks, build and deploy AI agents using foundation models, spin up a managed Postgres database with Lakebase, create interactive dashboards using plain English with Genie, build your custom apps on Databricks Apps, and let Genie Code write and debug your code along the way. The best hacks this weekend won't just call an API — they'll move data end-to-end, from messy source to polished product. Sign up on Databricks Free Edition (yes, it's forever-free), and show us what a complete data and AI platform can do in your hands!
               </p>
             </div>
