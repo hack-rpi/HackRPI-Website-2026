@@ -379,9 +379,8 @@ export default function Prizes() {
         {/* Compact Grid for Category Tracks */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {mlhTracks.map((prize, idx) => (
-          <a href={prize.link}>
+          <a href={prize.link} key={idx}>
           <div
-            key={idx+"mlh"}
             className="h-full group relative criteriaBG border rounded-xl p-3.5 flex flex-col justify-between transition-all duration-200 hover:border-hackrpi-pink hover:bg-white/5"
             style={{borderColor: "#FEF9C2"}}>
             <div>
