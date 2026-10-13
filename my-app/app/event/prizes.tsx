@@ -381,7 +381,7 @@ export default function Prizes() {
         {mlhTracks.map((prize, idx) => (
           <a href={prize.link}>
           <div
-            key={idx}
+            key={idx+"mlh"}
             className="h-full group relative criteriaBG border rounded-xl p-3.5 flex flex-col justify-between transition-all duration-200 hover:border-hackrpi-pink hover:bg-white/5"
             style={{borderColor: "#FEF9C2"}}>
             <div>
