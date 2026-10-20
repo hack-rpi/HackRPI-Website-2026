@@ -167,7 +167,7 @@ export default function Page() {
 		<NavBar showOnScroll={false} variant={1}/>
 		<main className="
 			flex flex-col w-full h-fit min-h-screen pb-[15vh]
-			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-black
+			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-gray-800
 		">
 			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28">
 				{/* <div className="flex w-full items-center justify-center">
@@ -270,7 +270,7 @@ export default function Page() {
 		{state !== "loading" && (
 			<footer className="bg-gray-800">
 				<div
-					className="w-full h-[10vh] bg-black"
+					className="w-full h-[10vh] bg-gray-800"
 					style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }}
 					id="footer-ellipse"
 				></div>
