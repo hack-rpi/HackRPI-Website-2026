@@ -13,11 +13,13 @@ import Image from 'next/image';
 import Lenis from 'lenis';
 import { useEffect } from "react";
 import Prizes from './prizes';
+import BackgroundColor from '../components/BGColor';
 
+const BACKGROUND = "#00152b";
 const YELLOW_BRIGHT = "#FEF9C2";
-const DARK_GREY = "#252525"
-const LIGHT_YELLOW = "#CECAB8"
-const PASTEL_TURQUOISE = "#7EB9A4"
+const DARK_GREY = "#d9d9d9";
+const LIGHT_YELLOW = "#CECAB8";
+const PASTEL_TURQUOISE = "#7EB9A4";
 
 export default function Event() {
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function Event() {
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
             <h2 style={{color: LIGHT_YELLOW}}>EVENT DISCORD</h2>
-            Join the HackRPI 2025 Discord server to stay connected and make the most of your hackathon experience!
+            Join the HackRPI 2026 Discord server to stay connected and make the most of your hackathon experience!
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.
             <HackRPILink
@@ -89,9 +91,9 @@ export default function Event() {
         <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-20 ">
           <h1 
 	   className={`text-center`} 
-		  style={{color: YELLOW_BRIGHT}}>Project Submission and Judging</h1>
+		  style={{color: YELLOW_BRIGHT, fontSize: "300%"}}>Project Submission and Judging</h1>
           <div className="w-full max-w-7xl p-[1em]">
-            <h2 className="text-center" style={{color: LIGHT_YELLOW}}>JUDGING CRITERIA</h2>
+            <h2 className="text-center" style={{color: LIGHT_YELLOW, fontSize: "250%"}}>JUDGING CRITERIA</h2>
             <p className="text-md text-center pb-5">
               After coding ends at 11am on Sunday,
               present your project to our panel of industry professionals,
@@ -104,7 +106,8 @@ export default function Event() {
                 group relative criteriaBG
                 border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              `}>
+              `} 
+			  style={{backgroundColor: BACKGROUND}}>
 								<div className="
         		  absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center text-2xl
@@ -113,8 +116,8 @@ export default function Event() {
 				style={{backgroundColor: YELLOW_BRIGHT}}>
 									🎯
 								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Practicality & Utility</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
+								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Practicality & Utility</h3>
+								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
 									What problem do you want to solve? What impression do you get from the hack? Does it provide for a smooth user experience? Any future plans?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-pink to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -125,7 +128,8 @@ export default function Event() {
                 group relative criteriaBG
                 border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              ">
+              " 
+			  style={{backgroundColor: BACKGROUND}} >
 								<div className="
                   absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center
@@ -134,8 +138,8 @@ export default function Event() {
 				style={{backgroundColor: YELLOW_BRIGHT}}>
 									💡
 								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Creativity</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
+								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Creativity</h3>
+								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
 									How original is your hack? Is this a novel idea or something that many people came across? How difficult is the problem you are solving?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-light-purple to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -146,7 +150,8 @@ export default function Event() {
                 group relative criteriaBG
                 border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              ">								
+              " 
+			  style={{backgroundColor: BACKGROUND}}>								
                 <div className="
                   absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center
@@ -155,8 +160,8 @@ export default function Event() {
 				style={{backgroundColor: YELLOW_BRIGHT}}>
 									⚡
 								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Technical Difficulty</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
+								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Technical Difficulty</h3>
+								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
 									How technically challenging was your project? How complex is your design? What different technologies did you use?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-orange to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -167,7 +172,8 @@ export default function Event() {
                 group relative criteriaBG
                 border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
                 transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              ">
+              "
+			  style={{backgroundColor: BACKGROUND}}>
 								<div className="
                   absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center
@@ -176,8 +182,8 @@ export default function Event() {
 				style={{backgroundColor: YELLOW_BRIGHT}}>
 									💪
 								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: LIGHT_YELLOW}}>Effort</h3>
-								<p className="text-gray-300 text-sm leading-relaxed">
+								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Effort</h3>
+								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
 									Did you genuinely commit time and effort to this product? Did your team work together and all contribute? Did you learn from the experience?
 								</p>
 								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-yellow to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -192,8 +198,9 @@ export default function Event() {
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
 						<div className="text-center mb-12">
-							<h2 style={{color: LIGHT_YELLOW}}>PROJECT SUBMISSION</h2>
-							<p>Submit your project through Devpost and showcase your amazing work!</p>
+							<h2 style={{color: LIGHT_YELLOW, fontSize:"250%"}}>PROJECT SUBMISSION</h2>
+							<p
+							style={{fontSize: "150%"}}>Submit your project through Devpost and showcase your amazing work!</p>
 						</div>
 
 						{/* Submission Timeline */}
@@ -224,7 +231,7 @@ export default function Event() {
 											style={{color: YELLOW_BRIGHT}}>Create Your Account</h3>
 											<p className="text-white md:text-lg">
 												<Link
-													href="https://secure.devpost.com/users/register?ref_content=signup_global_nav&ref_feature=signup&ref_medium=button"
+													href="https://hackrpi-2026.devpost.com/register?flow%5Bdata%5D%5Bchallenge_id%5D=28217&flow%5Bname%5D=register_for_challenge"
 													target="_blank"
 													rel="noopener noreferrer"
 													className="text-[var(--pastel-turquoise)] hover:bg-[var(--light-yellow)] hover:text-[var(--dark-grey)] underline transition-colors visited:text-[#7E7DA4]"
@@ -233,6 +240,17 @@ export default function Event() {
 												</Link>{" "}
 												to get started with your submission.
 											</p>
+
+											<Link
+												href="https://events.mlh.com/events/14390-hackrpi-2026"
+												className={`inline-block w-fit px-6 py-2.5 border border-yellow-100 font-mono font-bold text-yellow-100 text-xs md:text-sm uppercase tracking-widest hover:bg-yellow-100 hover:text-black transition-colors pointer-events-auto`}
+												style={{
+													boxShadow: "0 0 15px rgba(254,252,232,0.15)",
+												}}
+												target="_blank"
+											>
+												Register ⇾
+											</Link>
 										</div>
 									</div>
 
@@ -298,7 +316,7 @@ export default function Event() {
 														Submit by
 													</div>
 													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
-													style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>
+													style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>
 														9:00 AM Sunday
 													</div>
 												</div>
@@ -307,7 +325,7 @@ export default function Event() {
 														Edit until
 													</div>
 													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
-													style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>
+													style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>
 														11:00 AM Sunday
 													</div>
 												</div>
@@ -336,7 +354,7 @@ export default function Event() {
 											</h3>
 											<p className="text-white md:text-lg">
 												After <span className="font-bold text-white mx-0.5 px-0.5"
-												style={{backgroundColor: LIGHT_YELLOW, color: DARK_GREY}}>11:00 AM Sunday</span>,
+												style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>11:00 AM Sunday</span>,
 												no changes are allowed. Be ready to give a live demo and explain your project to the
 												judges!
 											</p>

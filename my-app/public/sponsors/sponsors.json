@@ -41,7 +41,11 @@
 		}
 	],
 	"COLLABORATORS": [
-    	{
+		{
+			"name": "639 Cloud",
+			"logoPath": "639Cloud.svg",
+			"url": "https://www.639cloud.com"
+		},{
 			"name": "Pure Buttons",
 			"logoPath": "Pure-Buttons.svg",
 			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
@@ -86,10 +90,6 @@
 	],
 	"TRACKS": [
 		{
-			"name": "639 Cloud",
-			"logoPath": "639Cloud.svg",
-			"url": "https://www.639cloud.com"
-		},{
 			"name": "Databricks",
 			"logoPath": "databricks.svg",
 			"url": "https://www.databricks.com/"

@@ -48,7 +48,7 @@ export function Variation1({ show }: { show: boolean }) {
                 <div className="col-span-3 flex flex-col justify-between h-full py-2">
                     <div className="space-y-6">
                         <div className="space-y-1">
-                            <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                            <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                                 01 // DATE & VENUE
                             </span>
                             <h2 className="text-2xl md:text-4xl font-mono font-bold text-white tracking-wide">
@@ -62,10 +62,10 @@ export function Variation1({ show }: { show: boolean }) {
                         {/* Timer Widget */}
                         {timeLeft && !isPast && (
                             <div className="space-y-1 pt-2 border-t border-white/10 font-mono">
-                                <span className="text-[10px] uppercase tracking-widest opacity-50 block">
+                                <span className="text-s uppercase tracking-widest opacity-50 block">
                                     COUNTDOWN
                                 </span>
-                                <div className="text-sm md:text-base font-bold text-yellow-100 tracking-wider">
+                                <div className="text-m md:text-xl font-bold text-yellow-100 tracking-wider">
                                     {String(timeLeft.days).padStart(2, "0")}d :{" "}
                                     {String(timeLeft.hours).padStart(2, "0")}h :{" "}
                                     {String(timeLeft.minutes).padStart(2, "0")}m :{" "}
@@ -92,15 +92,15 @@ export function Variation1({ show }: { show: boolean }) {
                 {/* Col 4-6: About / Overview */}
                 <div className="col-span-3 flex flex-col justify-between h-full py-2 border-l border-white/10 pl-6">
                     <div className="space-y-3">
-                        <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                        <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                             02 // OVERVIEW
                         </span>
-                        <p className="text-xs md:text-sm font-mono opacity-80 leading-relaxed">
+                        <p className="text-[1.05rem] md:text-[1.05rem] font-mono opacity-80 leading-relaxed">
                             Join us for 24 hours of creation, learning, and innovation at Rensselaer Polytechnic Institute. Build extraordinary projects alongside passionate student creators.
                         </p>
                     </div>
 
-                    <div className="text-[10px] md:text-xs font-mono opacity-50 uppercase tracking-widest space-x-2">
+                    <div className="text-s md:text-m font-mono opacity-50 uppercase tracking-widest space-x-2">
                         <span>Free Meals</span> • <span>Mentors</span> • <span>Swag</span>
                     </div>
                 </div>
@@ -108,10 +108,10 @@ export function Variation1({ show }: { show: boolean }) {
                 {/* Col 7-9: Event Tracks */}
                 <div className="col-span-3 flex flex-col justify-between h-full py-2 border-l border-white/10 pl-6">
                     <div className="space-y-3">
-                        <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                        <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                             03 // FEATURED TRACKS
                         </span>
-                        <ul className="text-xs md:text-sm font-mono space-y-1.5 opacity-85">
+                        <ul className="text-[1.05rem] md:text-[1.05rem] font-mono space-y-1.5 opacity-85">
                             <li className="flex items-center gap-2">
                                 <span className="text-yellow-100">✦</span> AI & Machine Learning
                             </li>
@@ -127,7 +127,7 @@ export function Variation1({ show }: { show: boolean }) {
                         </ul>
                     </div>
 
-                    <span className="text-[10px] md:text-xs font-mono text-yellow-100/80 uppercase tracking-widest">
+                    <span className="text-[1.05rem] md:text-[1.05rem] font-mono text-yellow-100/80 uppercase tracking-widest">
                         $10K+ PRIZE POOL
                     </span>
                 </div>
