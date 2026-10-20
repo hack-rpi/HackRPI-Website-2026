@@ -206,8 +206,7 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-xl xs:text-3xl font-bold text-center">Coming soon!</h1>
-						{/* <h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
+						<h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
@@ -231,7 +230,7 @@ export default function Page() {
 							onEventClick={(event) => {
 								setModalEvent(allEvents.find((e) => e.id === event.id)!);
 							}}
-						/> */}
+						/>
 					</div>
 				)}
 
