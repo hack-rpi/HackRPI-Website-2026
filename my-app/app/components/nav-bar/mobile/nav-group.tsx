@@ -72,7 +72,7 @@ export default function NavGroup({
 function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
 	return (
 		<NextLink
-			className="w-full px-1 bg-opacity-0 bg-base-100 hover:bg-base-100/50 text-white text-2xl transition-all"
+			className="w-full px-1 bg-opacity-0 bg-base-100 hover:bg-base-100/50 text-2xl transition-all"
 			href={href}
 			onClick={onClick}
 		>

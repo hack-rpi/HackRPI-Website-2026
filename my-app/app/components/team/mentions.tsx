@@ -12,7 +12,7 @@ import mentions from "./mentions.json";
 import "./team.css";
 
 // Preload the 3D model immediately on module load
-useGLTF.preload("/3d/trophy.glb");
+useGLTF.preload("/3d/trophy-reduced.glb");
 
 const deptConfig: Record<
   string,
@@ -59,7 +59,7 @@ const deptConfig: Record<
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-  const { scene } = useGLTF("/3d/trophy.glb");
+  const { scene } = useGLTF("/3d/trophy-reduced.glb");
   const clonedScene = useMemo(() => scene.clone(), [scene]);
   return (
     <Center>
