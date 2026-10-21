@@ -12,7 +12,7 @@ import mentions from "./mentions.json";
 import "./team.css";
 
 // Preload the 3D model immediately on module load
-useGLTF.preload("/3d/trophy-reduced.glb");
+useGLTF.preload("/3d/trophy.glb");
 
 const deptConfig: Record<
   string,
@@ -59,7 +59,7 @@ const deptConfig: Record<
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-  const { scene } = useGLTF("/3d/trophy-reduced.glb");
+  const { scene } = useGLTF("/3d/trophy.glb");
   const clonedScene = useMemo(() => scene.clone(), [scene]);
   return (
     <Center>
@@ -191,7 +191,7 @@ export default function Mentions() {
             — THE TEAM BEHIND THE MAGIC —
           </span>
           <div className="relative px-4 pb-2 pt-1 inline-block">
-            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-pink-200 leading-normal">
+            <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-white via-neutral-100 to-pink-200 leading-normal">
               Our Organizers <span className="text-pink-400 not-italic">♡</span>
             </h2>
           </div>
@@ -213,7 +213,7 @@ export default function Mentions() {
               01 // SPECIAL THANKS
             </h4>
 
-            <h3 className="text-2xl md:text-4xl font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-pink-100 to-amber-200 leading-tight">
+            <h3 className="text-2xl md:text-4xl font-serif italic text-transparent bg-clip-text bg-linear-to-r from-rose-200 via-pink-100 to-amber-200 leading-tight">
               With Sincere Gratitude.
             </h3>
 
@@ -228,7 +228,7 @@ export default function Mentions() {
           <div className="flex flex-col gap-5">
             
             {/* TOP ROW: Moves Leftwards */}
-            <div className="flex w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="flex w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
               <div className="flex gap-5 whitespace-nowrap animate-marquee-left">
                 {row1Duplicated.map((m, i) => {
                   const cfg = deptConfig[m.dept];
@@ -254,7 +254,7 @@ export default function Mentions() {
             </div>
 
             {/* BOTTOM ROW: Moves Rightwards */}
-            <div className="flex w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="flex w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
               <div className="flex gap-5 whitespace-nowrap animate-marquee-right">
                 {row2Duplicated.map((m, i) => {
                   const cfg = deptConfig[m.dept];
