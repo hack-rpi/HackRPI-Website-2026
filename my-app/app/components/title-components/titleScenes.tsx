@@ -9,7 +9,7 @@ const linkItems = [
     //{ label: "Prizes", href: "/prizes" },
     { label: "Last Year", href: "/last-year" },
     { label: "Sponsor Us", href: "/sponsorship" },
-    { label: "Discord", href: "https://discord.gg/mrnsm74tDj" },
+    { label: "Discord", href: "https://discord.gg/WnrzEjNdY9" },
 ];
 
 const splitLabel = (label: string) => {
