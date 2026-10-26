@@ -1,13 +1,14 @@
 {
 	"OBSIDIAN": [
+    {
+			"name": "Nuvalence",
+			"logoPath": "Nuvalence.png",
+			"url": "https://nuvalence.io/"
+		},
 		{
 			"name": "Severino Center",
 			"logoPath": "Severino.jpg",
 			"url": "https://severinocenter.rpi.edu/"
-		},{
-			"name": "Nuvalence",
-			"logoPath": "Nuvalence.png",
-			"url": "https://nuvalence.io/"
 		}
   	],
 	"GOLD": [
@@ -22,22 +23,38 @@
 			"name": "Regeneron",
 			"logoPath": "regeneron.svg",
 			"url": "https://www.regeneron.com/"
-		},{
+		},
+    {
+      "name": "RPI School of Science",
+      "logoPath": "/RPI_SOS.png",
+      "url": "https://science.rpi.edu/"
+    },
+    {
 			"name": "Velan Studios",
 			"logoPath": "Velan_Studios_Logo.png",
 			"url": "https://velanstudios.com/"
 		}
-
 	],
 	"BRONZE": [
 		{
 			"name": "GlobalFoundries",
 			"logoPath": "GlobalFoundries.png",
 			"url": "https://gf.com/"
-		},{
+		},
+    {
 			"name": "Kitware",
 			"logoPath": "kitware.svg",
 			"url": "https://kitware.com/"
+		},
+		{
+			"name": "Rensselaer Center for Open Source Software",
+			"logoPath": "/rcos-red.png",
+			"url": "https://new.rcos.io"
+		},
+    {
+			"name": "RPI Douglas A. Mercer '77 Department of Electrical, Computer, and Systems Engineering Department",
+			"logoPath": "ecse.png",
+			"url": "https://ecse.rpi.edu/"
 		}
 	],
 	"COLLABORATORS": [
@@ -45,44 +62,73 @@
 			"name": "639 Cloud",
 			"logoPath": "639Cloud.svg",
 			"url": "https://www.639cloud.com"
-		},{
-			"name": "Pure Buttons",
-			"logoPath": "Pure-Buttons.svg",
-			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
-	  	},
-	  	{
-			"name": "GitHub",
-			"logoPath": "github-logo.svg",
-			"url": "https://github.com/"
-	  	},
-
-
-
+		},
+		{
+			"name": "Awake Chocolate",
+			"logoPath": "Awake_Chocolate.png",
+			"url": "https://awakechocolate.com/"
+		},
+		{
+			"name": "Big Apple Pizzeria",
+			"logoPath": "/BApple.webp",
+			"url": "https://www.bigapplepizza518.com/"
+		},
 		{
 			"name": "Chick Fil - A",
 			"logoPath": "chicky.svg",
 			"url": "https://www.chickfila.com/"
-		},{
-			"name": "Chipolte",
+		},
+		{
+			"name": "Chipotle",
 			"logoPath": "chipotle.svg",
 			"url": "https://www.chipotle.com/"
-		},{
-			"name": "Starbucks",
-			"logoPath": "starbs.svg",
-			"url": "https://www.starbucks.com/"
-		},{
-			"name": "Awake Chocolate",
-			"logoPath": "Awake_Chocolate.png",
-			"url": "https://awakechocolate.com/"
-		},{
+		},
+		{
+			"name": "DeFazio's Pizza",
+			"logoPath": "/DeFazios.png",
+			"url": "https://defaziospizza.com/"
+		},
+		{
+			"name": "Dibella's Subs",
+			"logoPath": "/Dibellas.png",
+			"url": "https://www.dibellas.com/"
+		},
+		{
+			"name": "GitHub",
+			"logoPath": "github-logo.svg",
+			"url": "https://github.com/"
+		},
+		{
 			"name": "Hannaford",
 			"logoPath": "hannaford.svg",
 			"url": "https://www.hannaford.com/"
-		},{
+		},
+		{
+			"name": "Longhorn Screen & Stitch",
+			"logoPath": "/Longhorn.png",
+			"url": "https://www.longhornscreenandstitch.com/"
+		},
+		{
 			"name": "Monster Energy",
 			"logoPath": "MonsterEnergy.png",
 			"url": "https://www.monsterenergy.com/"
-		},{
+		},
+		{
+			"name": "Pure Buttons",
+			"logoPath": "Pure-Buttons.svg",
+			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
+		},
+		{
+			"name": "RPI Computer Science",
+			"logoPath": "/rpi_cs_logo.png",
+			"url": "https://compsci.rpi.edu/"
+		},
+		{
+			"name": "Starbucks",
+			"logoPath": "starbs.svg",
+			"url": "https://www.starbucks.com/"
+		},
+		{
 			"name": "Taichi Bubble Tea",
 			"logoPath": "Taichi.png",
 			"url": "https://www.taichibubbletea.com/"
@@ -97,14 +143,16 @@
 			"name": "ElevenLabs",
 			"logoPath": "elevenlabs.svg",
 			"url": "https://www.elevenlabs.io/"
-		},{
-			"name": "Ret2Systems",
-			"logoPath": "ret2.svg",
-			"url": "https://wargames.ret2.systems/"
-		},{
+		},
+    {
 			"name": "Lally CEMET",
 			"logoPath": "RPI_Logo_White.svg",
 			"url": ""
+		},
+    {
+			"name": "Ret2Systems",
+			"logoPath": "ret2.svg",
+			"url": "https://wargames.ret2.systems/"
 		}
 	]
 }
