@@ -26,7 +26,7 @@
 		},
     {
       "name": "RPI School of Science",
-      "logoPath": "/RPI_SOS.png",
+      "logoPath": "RPI_SOS.png",
       "url": "https://science.rpi.edu/"
     },
     {
@@ -48,7 +48,7 @@
 		},
 		{
 			"name": "Rensselaer Center for Open Source Software",
-			"logoPath": "/rcos-red.png",
+			"logoPath": "rcos-red.png",
 			"url": "https://new.rcos.io"
 		},
     {
@@ -70,7 +70,7 @@
 		},
 		{
 			"name": "Big Apple Pizzeria",
-			"logoPath": "/BApple.webp",
+			"logoPath": "BApple.webp",
 			"url": "https://www.bigapplepizza518.com/"
 		},
 		{
@@ -85,12 +85,12 @@
 		},
 		{
 			"name": "DeFazio's Pizza",
-			"logoPath": "/DeFazios.png",
+			"logoPath": "DeFazios.png",
 			"url": "https://defaziospizza.com/"
 		},
 		{
 			"name": "Dibella's Subs",
-			"logoPath": "/Dibellas.png",
+			"logoPath": "Dibellas.png",
 			"url": "https://www.dibellas.com/"
 		},
 		{
@@ -105,7 +105,7 @@
 		},
 		{
 			"name": "Longhorn Screen & Stitch",
-			"logoPath": "/Longhorn.png",
+			"logoPath": "Longhorn.png",
 			"url": "https://www.longhornscreenandstitch.com/"
 		},
 		{
@@ -120,7 +120,7 @@
 		},
 		{
 			"name": "RPI Computer Science",
-			"logoPath": "/rpi_cs_logo.png",
+			"logoPath": "rpi_cs_logo.png",
 			"url": "https://compsci.rpi.edu/"
 		},
 		{
