@@ -132,6 +132,13 @@ const mlhTracks: mlhPrize[] = [
     "link": "https://mlh.link/elevenlabs"
   },
   {
+    "title": "Best Use of SpaceXSI",
+    "reward": "Mechanical Keyboard",
+    "description": "This weekend, assemble your ultimate hackathon A-Team using Cursor and Grok Bot to streamline your development, accelerate your builds, and lock in your shot at the SpaceXSI raffle.  Every member on the winning team walks away with a custom-branded Cursor mechanical keyboard.",
+    "icon": "spaceXSI",
+    "link": "https://mlh.link/spacexsi?utm_source=mlh&utm_medium=referral&utm_content=Build+Your+Hackathon+A-Team+with+SpaceXSI"
+  },
+  {
     "title": "Best Use of Gemini API",
     "reward": "MLH Swag Kits",
     "description": "It’s time to push the boundaries of what’s possible with AI using Google Gemini. Check out the Gemini API to build AI-powered apps that make your friends say WHOA. So, what can Gemini do for your hackathon project?\n\n- Understand language like a human and build a chatbot that gives personalized advice\n- Analyze info like a supercomputer and create an app that summarizes complex research papers\n- Generate creative content like code, scripts, music, and more\n\nThink of the possibilities… what will you build with the Google Gemini API this weekend?",
@@ -153,53 +160,11 @@ const mlhTracks: mlhPrize[] = [
     "link": "https://mlh.link/tigerdata"
   },
   {
-    "title": "Best Use of Presage",
-    "reward": "Fitbit Inspire & Presage Perks",
-    "description": "Presage is pioneering the Human Sensing Layer, enabling any application to understand a person’s real-time physical and emotional state. With Presage, you can leverage clinically-proven vital signs, movement, emotion, and/or focus tracking to build a project that gives the standard camera super powers.\n\nUse any of the Presage SDKs to integrate capabilities like real-time heart rate, breathing rate, engagement levels, and facial expressions into your hack with just a few lines of code.\n\n- Immersive Gaming & Entertainment: Dynamically change game difficulty or story elements based on a player's excitement or focus levels.\n- Contactless Wellness & Fitness: Build a non-invasive app that monitors stress, recovery, or fitness performance.\n- Accessibility & Security: Utilize vital signs for effortless authentication, or to enhance accessibility.\n- Productivity: Design a tool that tracks focus or stress.\n\nBuild your next hack with Presage and show us the future of human-computer interaction! Win awesome prizes along for with the following perks from the Presage team:\n\n- Free refills for Presage Development credits to accelerate you through your next three months of building\n- 30% off all Presage usage charges for your first year after going live",
-    "icon": "presage",
-    "link": "https://mlh.link/presage"
-  },
-  {
-    "title": "Best Use of Gen AI",
-    "reward": "Assorted Prizes",
-    "description": "Generative AI is rapidly changing the landscape of software development. This category challenges you to build novel applications that leverage the power of Generative AI APIs. Think outside the box and integrate cutting-edge AI models to create innovative solutions with real-world impact.\n\nTo participate, utilize publicly available Generative AI APIs (like those from OpenAI, Anthropic, Hugging Face, Llama, IBM Watson, or Google Gemini) to develop a unique and functional application. This could include:\n\n- AI-powered creative tools: Design an app that allows users to generate unique marketing copy, translate languages in real-time, or create personalized learning experiences.\n- Intelligent assistants and automation: Build a chatbot that can provide insightful customer support, or a system that automates complex tasks using natural language processing.\n- Next-generation content creation platforms: Develop a platform that empowers users to generate high-quality images, write different kinds of creative text formats, or compose original music with AI assistance.\n\nThis is your chance to get hands on with cutting edge tech, put your skills on display, and of course, win some awesome prizes!",
-    "icon": "genai",
-    "link": "https://mlh.link/gemini"
-  },
-  {
-    "title": "Best Use of Backboard",
-    "reward": "Tile Essentials Pack",
-    "description": "Every AI model API is stateless by default. That means your app forgets everything the second a session ends. State management should be the first step of any AI build, regardless of what LLM you are using, and Backboard gives you that for free. But Backboard is not just state management.\n\nIt is a single, unified API built on the world’s #1 AI memory that gives you everything you need in one place: long-term memory, RAG, embeddings, tool calls, model routing across 17,000+ LLMs, and persistent context that stays alive across every page refresh, session, and user. No stitching together five different services. One API. One integration. Built on the best memory in AI.\n\nHere’s just a small list of things Backboard can make possible for your AI app!\n\n- AI-powered Travel Guide: Remembers allergies and preferences from past trips.\n- Personalized Fitness Coach: Adjusts workouts based on progress and injury history.\n- Smart Home Controller: Learns routines over time to anticipate lighting and climate preferences!\n\nUse Backboard to build a seamless, persistent user experience without the usual infrastructure headache! Each winning team member will receive a Tiles Essentials Pack because, just like AI, we all need an occasional reminder of where things are!",
-    "icon": "blackboard",
-    "link": "https://mlh.link/backboard"
-  },
-  {
     "title": "Best Use of Vultr",
     "reward": "M5Stack Official Tab5",
     "description": "Vultr empowers hackers to bring their high-performance projects to life instantly; providing everything from the speed of one-click deployment and scalable cloud compute, to specialized Vultr Cloud GPUs that can power AI-driven applications. We want you to push the limits of what can be built when infrastructure is no longer the bottleneck!\n\nSign up for a Vultr account today and claim your free cloud credits! Take your next hack to the cloud with Vultr for a chance to win some awesome prizes for you and your team!",
     "icon": "vultr",
     "link": "https://mlh.link/vultr"
-  },
-  {
-    "title": "Commit Fellowship Prize Category",
-    "reward": "An Interview with the Commit Fellowship Team & a copy of The Lean Startup",
-    "description": "Done sitting on your big idea? Enter the Commit Fellowship Prize Category to take your hack beyond the hackathon. Selected winning teams will have the chance to secure a spot in an exclusive, 3-week zero-to-founder sprint hosted by Major League Hacking and Transcend Network. If you’re ready to do the real work of bringing a startup to market, this is for you.\n\n- Exclusive Admission: A chance to interview for the highly selective Commit Fellowship 3-week sprint.\n- Founder Mentorship: Live coaching, peer code reviews, and structured customer discovery sessions.\n- Launch Perks & Microgrants: Completion opens access to thousands of dollars in cash microgrants and in-kind tooling credits (like AI credits) to keep your post-hackathon momentum going.\n\nQualify by building a working prototype with a team, demonstrate a real problem worth solving, and opt into the Commit Fellowship Prize Category when you submit your project. Once that’s complete, be sure to submit this supplemental form to be considered for the prize category. A winning team from your hackathon will be selected post-event and notified via email.",
-    "icon": "fellowship",
-    "link": "https://mlh.link/commit"
-  },
-  {
-    "title": "DEV Writing Challenge",
-    "reward": "$100",
-    "description": "Give your project another chance to shine!\n\nYour hackathon may end after the weekend, but your project story is just getting started. Publish what you built on DEV and help other developers learn from your process.\n\nEach month, the DEV editorial team will select at least one favorite project. Additional projects may be selected depending on submission volume.\n\nSelections consider technical substance, originality, clear storytelling, and community popularity. Great work deserves an audience, so make your post useful, memorable, and easy to share.",
-    "icon": "dev",
-    "link": "https://dev.to/mlh-hackathon"
-  },
-  {
-    "title": "Best Use of DigitalOcean",
-    "reward": "Retro Wireless Mouse",
-    "description": "DigitalOcean offers a reliable and easy-to-use cloud platform for every stage of your project. Leverage core services like Droplets, Managed Databases, and App Platform to build, deploy, and scale your application effortlessly. Building with AI? DigitalOcean Gradient™ AI enables you to build, train, and deploy machine learning models, including access to GPU infrastructure and serverless inference!\n\nSign up for DigitalOcean today and reach out to your MLH Coach for credits that you can use towards building your next great hack. Build with DigitalOcean’s robust cloud infrastructure for a chance to win some great prizes for you and each of your teammates!",
-    "icon": "digitalocean",
-    "link": "https://mlh.link/digitalocean"
   },
   {
     "title": "Best Use of Snowflake API",
@@ -209,25 +174,11 @@ const mlhTracks: mlhPrize[] = [
     "link": "https://mlh.link/snowflake"
   },
   {
-    "title": "Best Use of Auth0",
-    "reward": "Wireless Headphones",
-    "description": "Auth0 wants your applications to be secure! Why spend hours building features like social sign-in, Multi-Factor Authentication, and passwordless log-in when you can enable them through Auth0 straight out of the box? You can also secure your AI applications with Auth0 for AI Agents.\n\nAuth0 is free to try, doesn’t require a credit card, and allows for up to 7,000 free active users and unlimited log-ins. Make your new account today and use any of the Auth0 APIs for a chance to win a pair of wireless headphones for you and each member of your team!",
-    "icon": "auth0",
-    "link": "https://mlh.link/auth0"
-  },
-  {
     "title": "Best Use of MongoDB Atlas",
     "reward": "M5Stack IoT Kit",
     "description": "MongoDB Atlas takes the leading modern database and makes it accessible in the cloud! Get started with a $50 credit for students or sign up for the Atlas free forever tier (no credit card required).\n\nAlong with a suite of services and functionalities, you’ll have everything you need to manage all of your data, and you can get a headstart with free resources from MongoDB University! Build a hack using MongoDB Atlas for a chance to win a M5Stack IoT Kit for you and each member of your group.",
     "icon": "mongodb",
     "link": "https://mlh.link/mongodb"
-  },
-  {
-    "title": "Best .Tech Domain Name",
-    "reward": "Desktop Microphone & a Free .Tech Domain Name for up to 10 years!",
-    "description": "Make your Team’s Achievements timeless: Win a .Tech Domain Name for up to 10 years to Showcase and Expand Your Project, Plus Desktop Mics for Effortless Collaboration on Zoom, empowering you to build even more cool things together!",
-    "icon": "tech",
-    "link": "https://get.tech"
   },
   {
     "title": "Best Domain Name from GoDaddy Registry",
