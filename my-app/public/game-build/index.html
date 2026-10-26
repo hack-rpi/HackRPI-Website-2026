@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | InTheCloudGameJam</title>
+    <title>Unity Web Player | EatEatCloudCloud</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,10 +20,31 @@
       <div id="unity-footer">
         <div id="unity-logo-title-footer"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">InTheCloudGameJam</div>
+        <div id="unity-build-title">EatEatCloudCloud</div>
       </div>
     </div>
     <script>
+      // The client build has the server address baked in as ws://98.87.150.200:7777.
+      // Redirect it to the real server behind Caddy (wss on 443) until the build is fixed.
+      (function () {
+        var NativeWebSocket = window.WebSocket;
+        var BAKED_IN = /^wss?:\/\/98\.87\.150\.200(:\d+)?/;
+        var SERVER = "wss://game.hackrpi.com";
+        function PatchedWebSocket(url, protocols) {
+          if (typeof url === "string" && BAKED_IN.test(url)) {
+            url = url.replace(BAKED_IN, SERVER);
+          }
+          return protocols === undefined
+            ? new NativeWebSocket(url)
+            : new NativeWebSocket(url, protocols);
+        }
+        PatchedWebSocket.prototype = NativeWebSocket.prototype;
+        ["CONNECTING", "OPEN", "CLOSING", "CLOSED"].forEach(function (k) {
+          PatchedWebSocket[k] = NativeWebSocket[k];
+        });
+        window.WebSocket = PatchedWebSocket;
+      })();
+
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -52,15 +73,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Builds.loader.js";
+      var loaderUrl = buildUrl + "/WebClientBuild.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Builds.data",
-        frameworkUrl: buildUrl + "/Builds.framework.js",
-        codeUrl: buildUrl + "/Builds.wasm",
+        dataUrl: buildUrl + "/WebClientBuild.data",
+        frameworkUrl: buildUrl + "/WebClientBuild.framework.js",
+        codeUrl: buildUrl + "/WebClientBuild.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "InTheCloudGameJam",
+        companyName: "Squister",
+        productName: "EatEatCloudCloud",
         productVersion: "1.0",
         showBanner: unityShowBanner,
         // errorHandler: function(err, url, line) {
