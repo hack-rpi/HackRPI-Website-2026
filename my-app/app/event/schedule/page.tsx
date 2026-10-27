@@ -69,12 +69,18 @@ export default function Page() {
 
 	const fetchData = async () => {
 		try {
-			const resp = await fetch("/data/scheduleData.json");
+			//the json was auto generated please note that I used a script that I made (thats why there are strange endtime blocks scatered throughout IDK why it did that) but there is a script please let Frank know if you want it (or I have put it in the repo then you dont really have to worry abt that)
+			const resp = await fetch("https://script.google.com/macros/s/AKfycbw2ZFpUxSN8h7ZrSSrAtz6cX5w9eLRF6PI8pWMi9jZu2qYGYqtjg1DD-2vZ-68_1m-hcA/exec");
 			if (!resp.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const jsonData: ScheduleData = await resp.json();
-
+			//const jsonData: ScheduleData = await resp.json();
+			//if using the google app script endpoint, there is no reason to do this as it's a static object and the endpoint takes like 2 seconds but I thought I would leave it here incase someone optimizes it
+			const responseData = await resp.json();
+			const jsonData: ScheduleData =
+			typeof responseData.json === "string"
+				? JSON.parse(responseData.json)
+				: responseData.json;
 			const saturdayEvents = jsonData.saturdayEvents
 				.map((event) => {
 					const normalizedEvent = normalizeEventTimes(event, "2026-11-07");
@@ -167,7 +173,7 @@ export default function Page() {
 		<NavBar showOnScroll={false} variant={1}/>
 		<main className="
 			flex flex-col w-full h-fit min-h-screen pb-[15vh]
-			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-black
+			items-center justify-center bg-linear-to-b from-hackrpi-clouds-dark-blue via-purple-900 via-80% to-gray-800
 		">
 			<div className="w-11/12 max-w-3/4 grow shrink basis-auto mt-28">
 				{/* <div className="flex w-full items-center justify-center">
@@ -206,8 +212,7 @@ export default function Page() {
 
 				{state === "loaded" && (
 					<div className="flex flex-col items-start w-full h-fit mb-8">
-						<h1 className="text-xl xs:text-3xl font-bold text-center">Coming soon!</h1>
-						{/* <h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
+						<h1 className="text-xl xs:text-3xl font-bold text-center">Saturday, November 7, 2026</h1>
 						<p>Click / Tap any event for more info!</p>
 						<hr className="w-full border-grey my-4" />
 
@@ -231,7 +236,7 @@ export default function Page() {
 							onEventClick={(event) => {
 								setModalEvent(allEvents.find((e) => e.id === event.id)!);
 							}}
-						/> */}
+						/>
 					</div>
 				)}
 
@@ -271,7 +276,7 @@ export default function Page() {
 		{state !== "loading" && (
 			<footer className="bg-gray-800">
 				<div
-					className="w-full h-[10vh] bg-black"
+					className="w-full h-[10vh] bg-gray-800"
 					style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }}
 					id="footer-ellipse"
 				></div>
