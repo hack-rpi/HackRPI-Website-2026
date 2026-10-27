@@ -69,7 +69,7 @@ export default function Event() {
             Have questions for the staff? Want to chat with other participants? Looking for a team?
             Join the conversation on Discord and get the support you need to succeed at HackRPI.
             <HackRPILink
-              href="https://discord.gg/mrnsm74tDj"
+              href="https://discord.gg/WnrzEjNdY9"
               className="
 			  	
                 bg-linear-to-br
