@@ -84,6 +84,11 @@ function onEdit(e) {
   const junkValues = range.getValues();
   const values = getExpandedValues(junkValues,1,1)
   const backgrounds = range.getBackgrounds();
+  //gets descriptions for the event
+  const descriptions = {};
+  for (let i = 2; sheet.getRange(`K${i}`).getValue() != ""; i++){
+    descriptions[sheet.getRange(`K${i}`).getValue()] = sheet.getRange(`L${i}`).getValue();
+  }
 
   //gets the length of the schedule also get what cell switches it to a sunday.
   var length = 0;
@@ -124,7 +129,7 @@ function onEdit(e) {
           scheduleEntry["title"] = lines[0];
           scheduleEntry["location"] = lines[1];
           //placeholder as there is no way to do this rn
-          scheduleEntry["description"] = "";
+          scheduleEntry["description"] = descriptions[lines[0]];
           scheduleEntry["speaker"] = "";
           scheduleEntry["visable"] = true;
           //INSERT type logic HERE
