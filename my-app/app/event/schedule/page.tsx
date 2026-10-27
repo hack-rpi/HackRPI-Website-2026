@@ -69,12 +69,18 @@ export default function Page() {
 
 	const fetchData = async () => {
 		try {
-			const resp = await fetch("/data/scheduleData.json");
+			//the json was auto generated please note that I used a script that I made (thats why there are strange endtime blocks scatered throughout IDK why it did that) but there is a script please let Frank know if you want it (or I have put it in the repo then you dont really have to worry abt that)
+			const resp = await fetch("https://script.google.com/macros/s/AKfycbw2ZFpUxSN8h7ZrSSrAtz6cX5w9eLRF6PI8pWMi9jZu2qYGYqtjg1DD-2vZ-68_1m-hcA/exec");
 			if (!resp.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const jsonData: ScheduleData = await resp.json();
-
+			//const jsonData: ScheduleData = await resp.json();
+			//if using the google app script endpoint, there is no reason to do this as it's a static object and the endpoint takes like 2 seconds but I thought I would leave it here incase someone optimizes it
+			const responseData = await resp.json();
+			const jsonData: ScheduleData =
+			typeof responseData.json === "string"
+				? JSON.parse(responseData.json)
+				: responseData.json;
 			const saturdayEvents = jsonData.saturdayEvents
 				.map((event) => {
 					const normalizedEvent = normalizeEventTimes(event, "2026-11-07");
