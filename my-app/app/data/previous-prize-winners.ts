@@ -7,7 +7,7 @@ export const podiumPrizes: ProjectDisplayProps[] = [
 		authors: ["ajitesh bankula", "Connor Kuemerle", "Samson Kempiak", "Matthew Durcan"],
 		description:
 			"We wanted to build something that mixes AI, hardware, and environmental impact in a way that's actually useful. Everyone throws trash away, but very few people sort it correctly, and most campuses or public places have no idea how full their bins are or how much contamination they get. TrashCam was born from the idea of turning an ordinary trash can into a smart, reactive, AI-powered system that could see what's being thrown away and help facilities track sustainability metrics.",
-		imageUrl: "/last-year/placeholder.gif",
+		imageUrl: "/last-year/retro2.jpg",
 		prizeCategory: "First Place",
 		imageOnLeft: false,
 	},
@@ -28,7 +28,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["Justin Zhang", "courteneyS Sit"],
 		description:
 			'Night Shift is an ICU Digital Twin where our "Modern" AI finds optimal, life-saving strategies that outperform "Retro" human-led decisions, creating a smarter decision-support tool for hospitals.',
-		imageUrl: "/last-year/Night-Shift.png",
+		imageUrl: "/last-year/NightShift.png",
 		prizeCategory: "Best Machine Learning Hack",
 	},
 	{
@@ -36,7 +36,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["Vedant Naidu", "Ravjeet Chahal"],
 		description:
 			"RetroCare reimagines the bedside nurse through AI calls that monitor seniors' meds, mood, and safety, offering compassionate care and peace of mind.",
-		imageUrl: "/last-year/RetroCare.png",
+		imageUrl: "/last-year/retroCare.png",
 		prizeCategory: "Best Healthcare Hack",
 	},
 	{
@@ -51,7 +51,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["Teerthraj Parmar", "Matthew McCall", "Swaroop Sridhar"],
 		description:
 			"The Helpful Assessment Readiness Platform leverages artificial intelligence to create highly interactive, personalized, and adaptive technical interviews.",
-		imageUrl: "/last-year/HARP.png",
+		imageUrl: "/last-year/harp.jpg",
 		prizeCategory: "Best Artificial Intelligence Hack",
 	},
 	{
@@ -59,7 +59,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["Alex C", "Dathan Lang", "Akshat Prakash", "Brian Tam"],
 		description:
 			"ByteBites.tech turns campus dining menus into personalized health guidance filtering allergies, supporting chronic conditions, and recommending smarter meals tailored to each student's wellness goals.",
-		imageUrl: "/last-year/ByteBite.png",
+		imageUrl: "/last-year/bytebite.jpg",
 		prizeCategory: "Best Data Science Hack",
 	},
 	{
@@ -82,7 +82,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["otemitayo1212", "Tim Rota", "R3Vipers Ames", "zcacciapalle Cacciapalle"],
 		description:
 			'We integrated a Windows XP computer, Raspberry Pi on a custom PCI card, and a cooling system into a 19" CRT monitor. The Windows XP machine is retro, the Raspberry Pi is modern, and we even built a custom game.',
-		imageUrl: "/last-year/crt-all-in-one-pici.jpg",
+		imageUrl: "/last-year/crt.jpeg",
 		prizeCategory: "Best Hardware Hack",
 	},
 	{
@@ -90,7 +90,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		authors: ["Megan Leigh", "Rijul Verma", "Kaeshev Alapati"],
 		description:
 			"Gachirat is a retro-inspired digital pet that helps you improve your health and financial literacy in a fun, gamified way.",
-		imageUrl: "/last-year/Gachirat.png",
+		imageUrl: "/last-year/gachirat.png",
 		prizeCategory: "Judge Favorite",
 	},
 	{
@@ -112,14 +112,14 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		title: "QuACKER",
 		authors: ["Rita Lei", "Nicole Wu", "Farrah Hass"],
 		description: "Questionably Accurate Course Knowledge, Evaluation, & Ratings.",
-		imageUrl: "/last-year/QuACKER.png",
+		imageUrl: "/last-year/quacker.jpg",
 		prizeCategory: "[MLH] Best .Tech Domain Name",
 	},
 	{
 		title: "Wurst",
 		authors: ['Mingjia "Jacky" Guan', "Xiyuan Li", "Yuanhao Zhou", "Ray Feng"],
 		description: "Locality Sensitive Hashing based RAG Chatbot.",
-		imageUrl: "/last-year/Wurst.jpeg",
+		imageUrl: "/last-year/wurst.jpg",
 		prizeCategory: "[MLH] Best Use of Gemini API",
 	},
 	{
@@ -142,7 +142,7 @@ export const carouselPrizes: ProjectCarouselProps[] = [
 		title: "Echo Of You",
 		authors: ["Kelly Crane", "Phu Thai"],
 		description: "Bringing yesterday into today | Relive past people in our modern lives.",
-		imageUrl: "/last-year/Echo-Of-You.png",
+		imageUrl: "/last-year/echoOfYou.png",
 		prizeCategory: "[MLH] Best Use of Vultr",
 	},
 ];
