@@ -7,7 +7,7 @@ export const podiumPrizes: ProjectDisplayProps[] = [
 		authors: ["ajitesh bankula", "Connor Kuemerle", "Samson Kempiak", "Matthew Durcan"],
 		description:
 			"We wanted to build something that mixes AI, hardware, and environmental impact in a way that's actually useful. Everyone throws trash away, but very few people sort it correctly, and most campuses or public places have no idea how full their bins are or how much contamination they get. TrashCam was born from the idea of turning an ordinary trash can into a smart, reactive, AI-powered system that could see what's being thrown away and help facilities track sustainability metrics.",
-		imageUrl: "/last-year/retro2.jpg",
+		imageUrl: "/last-year/TrashCam.png",
 		prizeCategory: "First Place",
 		imageOnLeft: false,
 	},
