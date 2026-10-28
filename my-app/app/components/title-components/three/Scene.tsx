@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, useProgress} from "@react-three/drei";
 import * as THREE from "three";
 
-const RPI_URL = "/3d/rpiPairWOuter.glb";
+const RPI_URL = "/3d/rpiPairWOuterCompressed.glb";
 const RPI_OUTER_URL = "/3d/rpiLowResLarge.glb";
 const RPI_TILE_URL = "/3d/rpiHighResTrimmed.glb";
 const PLANE_URL = "/3d/plane0.glb";
