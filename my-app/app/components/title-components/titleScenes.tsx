@@ -336,15 +336,15 @@ export function Variation4({ show }: { show: boolean }) {
                                 <span className="text-yellow-100 font-bold">$300-$100</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>ML / Data Science Hack</span>
+                                <span>Best ML / Data Science Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Sustainability Hack</span>
+                                <span>Best Sustainability Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Healthcare Hack Hack</span>
+                                <span>Best Healthcare Hack Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                         </ul>
