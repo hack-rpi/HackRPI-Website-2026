@@ -344,7 +344,7 @@ export function Variation4({ show }: { show: boolean }) {
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Best Healthcare Hack Hack</span>
+                                <span>Best Healthcare Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                         </ul>
