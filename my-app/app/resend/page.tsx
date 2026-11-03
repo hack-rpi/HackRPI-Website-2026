@@ -1,6 +1,15 @@
+
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import CodeMirror from "@uiw/react-codemirror";
+import {
+  StreamLanguage,
+  HighlightStyle,
+  syntaxHighlighting,
+} from "@codemirror/language";
+import { tags } from "@lezer/highlight";
+import { EditorView } from "@codemirror/view";
 import styles from "./page.module.css";
 
 type EmailRow = {
@@ -9,6 +18,16 @@ type EmailRow = {
 };
 
 const initialVariables = ["email", "first_name", "company"];
+
+const variableHighlight = syntaxHighlighting(
+  HighlightStyle.define([
+    {
+      tag: tags.keyword,
+      color: "#7EB9A4",
+      fontWeight: "600",
+    },
+  ])
+);
 
 const initialEmails: EmailRow[] = [
   {
@@ -37,72 +56,128 @@ const initialEmails: EmailRow[] = [
   },
 ];
 
+// Highlight placeholders such as {first_name}.
+const variableLanguage = StreamLanguage.define({
+  token(stream) {
+    if (stream.match(/\{[a-zA-Z_][a-zA-Z0-9_]*\}/)) {
+      return "keyword";
+    }
+
+    stream.next();
+    return null;
+  },
+});
+
+// Editor appearance and text layout.
+const editorTheme = EditorView.theme({
+  "&": {
+    height: "100%",
+    backgroundColor: "#252525",
+    color: "#FEF9C2",
+    fontSize: "14px",
+  },
+  "&.cm-focused": {
+    outline: "none",
+  },
+  ".cm-scroller": {
+    overflow: "auto",
+    fontFamily: "monospace",
+    lineHeight: "24px",
+  },
+  ".cm-content": {
+    padding: "14px",
+    caretColor: "#FEF9C2",
+  },
+  ".cm-line": {
+    padding: "0",
+  },
+  ".cm-cursor": {
+    borderLeftColor: "#FEF9C2",
+  },
+  ".cm-selectionBackground": {
+    backgroundColor: "#7E7DA4 !important",
+  },
+  "&.cm-focused .cm-selectionBackground": {
+    backgroundColor: "#7E7DA4 !important",
+  },
+  ".cm-gutters": {
+    display: "none",
+  },
+  ".cm-keyword": {
+    color: "#7EB9A4",
+    fontWeight: "600",
+  },
+  ".tok-keyword": {
+    color: "#7EB9A4",
+    fontWeight: "600",
+  },
+});
+
 function parseCSV(text: string): string[][] {
-    // Remove a possible UTF-8 BOM.
-    const input = text.replace(/^\uFEFF/, "");
-    const rows: string[][] = [];
-  
-    let row: string[] = [];
-    let field = "";
-    let inQuotes = false;
-  
-    for (let i = 0; i < input.length; i++) {
-      const char = input[i];
-  
-      if (inQuotes) {
-        if (char === '"') {
-          if (input[i + 1] === '"') {
-            field += '"';
-            i++;
-          } else {
-            inQuotes = false;
-          }
-        } else {
-          field += char;
-        }
-      } else if (char === '"' && field.length === 0) {
-        inQuotes = true;
-      } else if (char === ",") {
-        row.push(field);
-        field = "";
-      } else if (char === "\n" || char === "\r") {
-        if (char === "\r" && input[i + 1] === "\n") {
+  // Remove a possible UTF-8 BOM.
+  const input = text.replace(/^\uFEFF/, "");
+  const rows: string[][] = [];
+
+  let row: string[] = [];
+  let field = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < input.length; i++) {
+    const char = input[i];
+
+    if (inQuotes) {
+      if (char === '"') {
+        if (input[i + 1] === '"') {
+          field += '"';
           i++;
+        } else {
+          inQuotes = false;
         }
-  
-        row.push(field);
-  
-        if (row.some((value) => value.trim() !== "")) {
-          rows.push(row);
-        }
-  
-        row = [];
-        field = "";
       } else {
         field += char;
       }
+    } else if (char === '"' && field.length === 0) {
+      inQuotes = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n" || char === "\r") {
+      if (char === "\r" && input[i + 1] === "\n") {
+        i++;
+      }
+
+      row.push(field);
+
+      if (row.some((value) => value.trim() !== "")) {
+        rows.push(row);
+      }
+
+      row = [];
+      field = "";
+    } else {
+      field += char;
     }
-  
-    if (inQuotes) {
-      throw new Error("The CSV contains an unclosed quoted field.");
-    }
-  
-    // Include the final row if the file doesn't end with a newline.
-    row.push(field);
-  
-    if (row.some((value) => value.trim() !== "")) {
-      rows.push(row);
-    }
-  
-    return rows;
   }
+
+  if (inQuotes) {
+    throw new Error("The CSV contains an unclosed quoted field.");
+  }
+
+  // Include the final row if the file doesn't end with a newline.
+  row.push(field);
+
+  if (row.some((value) => value.trim() !== "")) {
+    rows.push(row);
+  }
+
+  return rows;
+}
 
 export default function Home() {
   const [variables, setVariables] = useState(initialVariables);
   const [emails, setEmails] = useState(initialEmails);
   const [selectedId, setSelectedId] = useState(1);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const highlightRef = useRef<HTMLDivElement>(null);
 
   const [template, setTemplate] = useState(
     "Hello {first_name},\n\n" +
@@ -119,11 +194,13 @@ export default function Home() {
   function handleTemplateChange(value: string) {
     setTemplate(value);
 
-    const matches = [...value.matchAll(
-      /\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g
-    )];
+    const matches = [
+      ...value.matchAll(/\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g),
+    ];
 
-    const discovered = [...new Set(matches.map((match) => match[1]))];
+    const discovered = [
+      ...new Set(matches.map((match) => match[1])),
+    ];
 
     setVariables((current) => {
       const missing = discovered.filter(
@@ -135,7 +212,7 @@ export default function Home() {
       return [...current, ...missing];
     });
 
-    // Initialize any newly discovered variables for every email.
+    // Initialize newly discovered variables for every email.
     setEmails((current) =>
       current.map((email) => {
         const nextValues = { ...email.values };
@@ -173,6 +250,7 @@ export default function Home() {
     const id = Math.max(0, ...emails.map((email) => email.id)) + 1;
 
     const values: Record<string, string> = {};
+
     for (const variable of variables) {
       values[variable] = "";
     }
@@ -198,21 +276,83 @@ export default function Home() {
     );
   }, [template, selectedEmail]);
 
+  
+async function handleSendEmail() {
+  if (!selectedEmail?.values.email) {
+    alert("Please select a recipient with a valid email address.");
+    return;
+  }
+
+  try {
+    console.log("Sending email to:", selectedEmail.values.email);
+    console.log("Email preview:", preview);
+
+    const response = await fetch("/api/resend", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: selectedEmail.values.email,
+        subject: `Hello ${selectedEmail.values.first_name || "there"}!`,
+        body: preview,
+      }),
+    });
+
+    // Read the response as text first.
+    const responseText = await response.text();
+
+    console.log("API Status:", response.status);
+    console.log("API Response:", responseText);
+    console.log(
+      "Content Type:",
+      response.headers.get("content-type")
+    );
+
+    // Check whether the server actually returned JSON.
+    let result;
+
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      throw new Error(
+        `Server returned HTML or invalid JSON. HTTP Status: ${response.status}. Check the browser console for the actual response.`
+      );
+    }
+
+    if (!response.ok) {
+      throw new Error(result.error || "Email failed.");
+    }
+
+    alert(`Email successfully sent to ${selectedEmail.values.email}!`);
+
+  } catch (error) {
+    console.error("Email sending error:", error);
+
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Unable to send email."
+    );
+  }
+}
+
+
   async function handleCSVImport(file: File) {
     try {
       const text = await file.text();
       const parsed = parseCSV(text);
-  
+
       if (parsed.length < 2) {
         throw new Error(
           "The CSV must contain a header row and at least one email."
         );
       }
-  
+
       // Normalize headers into usable variable names.
       const headers: string[] = [];
       const seen = new Set<string>();
-  
+
       parsed[0].forEach((rawHeader, index) => {
         const base =
           rawHeader
@@ -220,53 +360,58 @@ export default function Home() {
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, "_")
             .replace(/^_+|_+$/g, "") || `column_${index + 1}`;
-  
+
         let header = base;
         let suffix = 2;
-  
+
         while (seen.has(header)) {
           header = `${base}_${suffix++}`;
         }
-  
+
         seen.add(header);
         headers.push(header);
       });
-  
+
       // Ensure every row has an email field.
       if (!headers.includes("email")) {
         headers.unshift("email");
       }
-  
+
+      const normalizedOriginalHeaders = parsed[0].map((header, index) => {
+        return (
+          header
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "") || `column_${index + 1}`
+        );
+      });
+
       const importedEmails: EmailRow[] = parsed
         .slice(1)
         .map((row, index) => {
           const values: Record<string, string> = {};
-  
+
           headers.forEach((header) => {
-            const originalIndex = parsed[0]
-              .map((h) =>
-                h
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "_")
-                  .replace(/^_+|_+$/g, "")
-              )
-              .indexOf(header);
-  
+            const originalIndex =
+              normalizedOriginalHeaders.indexOf(header);
+
             values[header] =
-              originalIndex >= 0 ? (row[originalIndex] ?? "").trim() : "";
+              originalIndex >= 0
+                ? (row[originalIndex] ?? "").trim()
+                : "";
           });
-  
+
           return {
             id: index + 1,
             values,
           };
         });
-  
+
       if (importedEmails.length === 0) {
         throw new Error("No email rows were found in the CSV.");
       }
-  
+
       setVariables(headers);
       setEmails(importedEmails);
       setSelectedId(importedEmails[0].id);
@@ -293,38 +438,38 @@ export default function Home() {
             </div>
 
             <div className={styles.headerActions}>
-            <input
+              <input
                 ref={fileInputRef}
                 type="file"
                 accept=".csv,text/csv"
                 hidden
                 onChange={async (event) => {
-                const file = event.target.files?.[0];
+                  const file = event.target.files?.[0];
 
-                if (file) {
+                  if (file) {
                     await handleCSVImport(file);
-                }
+                  }
 
-                // Allow importing the same file again.
-                event.target.value = "";
+                  // Allow importing the same file again.
+                  event.target.value = "";
                 }}
-            />
+              />
 
-            <button
+              <button
                 className={styles.importButton}
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-            >
+              >
                 Import CSV
-            </button>
+              </button>
 
-            <button
+              <button
                 className={styles.addButton}
                 type="button"
                 onClick={addEmail}
-            >
+              >
                 + Add email
-            </button>
+              </button>
             </div>
           </div>
 
@@ -385,8 +530,8 @@ export default function Home() {
           </div>
 
           <p className={styles.hint}>
-            Select a row to preview that recipient's email. Edit any cell
-            to change its variable value.
+            Select a row to preview that recipient&apos;s email. Edit any
+            cell to change its variable value.
           </p>
         </section>
 
@@ -407,43 +552,25 @@ export default function Home() {
             </label>
 
             <div className={styles.editorWrapper}>
-            {/* Highlighting layer */}
-            <div
-                ref={highlightRef}
-                className={styles.highlightLayer}
-                aria-hidden="true"
-            >
-                {template
-                .split(/(\{[a-zA-Z_][a-zA-Z0-9_]*\})/g)
-                .map((part, index) =>
-                    /^\{[a-zA-Z_][a-zA-Z0-9_]*\}$/.test(part) ? (
-                    <span className={styles.variableHighlight} key={index}>
-                        {part}
-                    </span>
-                    ) : (
-                    <span key={index}>{part}</span>
-                    )
-                )}
-                {"\n"}
-            </div>
-
-            {/* Actual editable textarea */}
-            <textarea
+              <CodeMirror
                 id="email-template"
-                className={styles.textbox}
                 value={template}
-                onChange={(event) => handleTemplateChange(event.target.value)}
-                onScroll={(event) => {
-                if (highlightRef.current) {
-                    highlightRef.current.scrollTop = event.currentTarget.scrollTop;
-                    highlightRef.current.scrollLeft = event.currentTarget.scrollLeft;
-                }
+                height="100%"
+                extensions={[variableLanguage, editorTheme, variableHighlight]}
+                onChange={handleTemplateChange}
+                basicSetup={{
+                  lineNumbers: false,
+                  foldGutter: false,
+                  highlightActiveLine: false,
+                  highlightActiveLineGutter: false,
+                  autocompletion: false,
                 }}
-                placeholder={"Hello {first_name},\n\nYour message goes here..."}
-                spellCheck
-            />
+                aria-label="Email template editor"
+                placeholder={
+                  "Hello {first_name},\n\nYour message goes here..."
+                }
+              />
             </div>
-
 
             <div className={styles.previewHeader}>
               <label className={styles.fieldLabel} htmlFor="preview">
@@ -469,10 +596,16 @@ export default function Home() {
             <div id="preview" className={styles.preview}>
               {preview || "Your rendered email will appear here."}
             </div>
+
+            <button 
+                className={styles.addButton}
+                type="button"
+                onClick={handleSendEmail}>
+              Send Email
+            </button>
           </div>
         </section>
       </div>
     </main>
   );
 }
-
