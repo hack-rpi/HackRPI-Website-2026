@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCountDown } from "./countdown";
 
 const linkItems = [
+    { label: "Game", href: "../../public/game-build/index.html"},
     { label: "Event", href: "/event" },
     { label: "Schedule", href: "/event/schedule" },
     //{ label: "Prizes", href: "/prizes" },
