@@ -15,6 +15,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
 import { FooterEllipseColor, FooterColor } from "@/app/components/BGColor";
+import FloatingInfoModal from "@/app/components/floating-info-modal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,6 +106,7 @@ export default function HomeClient() {
 
   return (
     <div className = "overflow-y-scroll scrollbar-hide">
+        <FloatingInfoModal />
         {isClient && Navbar}
         <div className="w-full overflow-hidden">
           <TitleComponent/>
