@@ -15,7 +15,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
 import { FooterEllipseColor, FooterColor } from "@/app/components/BGColor";
-import FloatingInfoModal from "@/app/components/floating-info-modal";
+import FloatingInfoModal from "@/app/components/blockchain-modal";
 
 gsap.registerPlugin(ScrollTrigger);
 

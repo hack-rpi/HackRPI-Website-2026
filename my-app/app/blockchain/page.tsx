@@ -1,6 +1,7 @@
 "use client";
 
 import NavBar from "@/app/components/nav-bar/nav-bar";
+import Footer from "@/app/components/footer/footer";
 import { type SubmitEvent, useCallback, useEffect, useMemo, useState } from "react";
 
 type Block = {
@@ -171,7 +172,8 @@ export default function BlockchainPage() {
           <div className="rounded-xl border border-hackrpi-clouds-blue/25 bg-[#011e37]/75 p-5 shadow-2xl backdrop-blur-xl xs:p-6">
             <span className="text-sm font-bold uppercase tracking-[0.15em] text-hackrpi-clouds-green">Browser miner</span>
             <strong className="my-2 block font-mono text-3xl text-white">SHA-256</strong>
-            <p className="text-lg leading-relaxed text-white/75">This self-contained demo mines locally. Refresh the page to begin a new chain.</p>
+            <p className="text-lg leading-relaxed text-white/75">This self-contained demo mines locally.</p>
+            <p className="text-lg leading-relaxed text-white/75">Refresh the page to begin a new chain.</p>
           </div>
         </header>
 
@@ -221,7 +223,7 @@ export default function BlockchainPage() {
                 <Metric label="Nonce" value={attempt ? attempt.nonce.toLocaleString() : "—"} />
                 <Metric label="Attempts" value={attempt ? attempt.attempts.toLocaleString() : "—"} last />
               </div>
-              <div className="flex overflow-hidden px-4 py-6 font-mono text-sm font-bold tracking-[0.05em] whitespace-nowrap text-hackrpi-clouds-blue/40 2xs:text-base xs:px-5 xs:py-8 xs:text-xl xs:tracking-[0.07em]" aria-live="polite">
+              <div className="flex overflow-hidden px-4 py-6 font-mono text-sm font-bold tracking-wider whitespace-nowrap text-hackrpi-clouds-blue/40 2xs:text-base xs:px-5 xs:py-8 xs:text-xl xs:tracking-[0.07em]" aria-live="polite">
                 <span className="text-hackrpi-clouds-green drop-shadow-[0_0_8px_rgba(0,255,127,0.5)]">{attempt?.hash.slice(0, difficulty) || target}</span>
                 <code>{attempt?.hash.slice(difficulty) || "•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••"}</code>
               </div>
@@ -261,7 +263,7 @@ export default function BlockchainPage() {
             <p className="text-sm text-white/55 xs:self-end xs:text-base">{blocks.length} {blocks.length === 1 ? "block" : "blocks"} held in memory</p>
           </div>
 
-          <div className="mt-6 flex min-h-60 items-stretch overflow-x-auto pb-5">
+          <div className="scrollbar-hide mt-6 flex min-h-60 items-stretch overflow-x-auto overflow-y-hidden pb-5 [scrollbar-width:none]">
             {blocks.length === 0 ? (
               <div className="grid w-full place-items-center rounded-lg border border-dashed border-hackrpi-clouds-blue/30 text-lg text-white/55">Preparing the genesis block…</div>
             ) : blocks.map((block, index) => (
@@ -287,11 +289,15 @@ export default function BlockchainPage() {
           </div>
         </section>
 
-        <footer className="flex flex-col justify-between gap-2 px-1 pt-5 text-sm uppercase tracking-[0.11em] text-white/45 xs:flex-row">
-          <span>Local in-browser demo</span>
-          <span>Refresh to reset the chain</span>
-        </footer>
       </div>
+      <footer className="mt-8 w-full bg-hackrpi-clouds-dark-blue pt-8 xs:pt-10 desktop:pt-12">
+        <div
+          id="footer-ellipse"
+          aria-hidden="true"
+          className="h-0 w-full overflow-hidden opacity-0"
+        />
+        <Footer />
+      </footer>
       </main>
     </>
   );

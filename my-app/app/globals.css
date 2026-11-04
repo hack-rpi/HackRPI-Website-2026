@@ -41,32 +41,6 @@ html::-webkit-scrollbar {
   display: none;
 }
 
-@keyframes question-button-drift {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(-2deg);
-  }
-  25% {
-    transform: translate3d(-10px, -7px, 0) rotate(2deg);
-  }
-  50% {
-    transform: translate3d(5px, -14px, 0) rotate(-1deg);
-  }
-  75% {
-    transform: translate3d(9px, -5px, 0) rotate(2deg);
-  }
-}
-
-.floating-question-button {
-  animation: question-button-drift 4.5s ease-in-out infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-question-button {
-    animation: none;
-  }
-}
-
 @layer base {
   /* Set Sugo Pro Display as default font for body & headings */
   body {
