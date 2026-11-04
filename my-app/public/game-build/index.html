@@ -24,8 +24,6 @@
       </div>
     </div>
     <script>
-      // The client build has the server address baked in as ws://98.87.150.200:7777.
-      // Redirect it to the real server behind Caddy (wss on 443) until the build is fixed.
       (function () {
         var NativeWebSocket = window.WebSocket;
         var BAKED_IN = /^wss?:\/\/98\.87\.150\.200(:\d+)?/;
@@ -44,7 +42,6 @@
         });
         window.WebSocket = PatchedWebSocket;
       })();
-
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -125,8 +122,8 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "min(100vw, calc((100vh - 38px) * 16 / 9))";
-        canvas.style.height = "min(56.25vw, calc(100vh - 38px))";
+        canvas.style.width = "1360px";
+        canvas.style.height = "740px";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";

@@ -36,11 +36,9 @@ export default function PastYearProjects() {
 		<>
 			<NavBar showOnScroll={false}/>
 			<main className="
-				w-full pt-[8vh] flex items-center justify-center pb-20 flex-col
-				bg-linear-to-b from-orange-500 via-purple-500 via-60% to-purple-800"
+				w-full pt-[8vh] flex items-center justify-center pb-20 flex-col"
+				//bg-linear-to-b from-orange-500 via-purple-500 via-60% to-purple-800"
 				style={{
-				backgroundImage: "url('/last-year/retro2.jpg')",
-				backgroundSize: "100% 100%",
 			}}
 			id="winners">
 				<h2 className="text-3xl font-bold text-center p-5 m-5">Previous Projects from HackRPI 2025</h2>

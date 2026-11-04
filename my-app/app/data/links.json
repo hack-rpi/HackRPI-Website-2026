@@ -69,5 +69,15 @@
 				"new_tab": true
 			}
 		]
+	},
+	{
+		"name": "Game",
+		"links" : [
+			{ "href": "/game",
+				"children": "You're not meant to see this! This is a bug!",
+				"new_tab": true
+			}
+		]
 	}
+
 ]
