@@ -22,7 +22,7 @@ function Center3DModel() {
 
 export default function MobileTitleComponent() {
   return (
-    <div className="relative w-full min-h-screen mt-5 bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-6 overflow-hidden flex flex-col justify-between select-none">
+    <div className="relative w-full min-h-screen mt-7 bg-hackrpi-clouds-dark-blue bg-cover bg-center bg-no-repeat p-6 overflow-hidden flex flex-col justify-between select-none">
       <div className="absolute inset-0 pointer-events-none z-0">
         <ParallaxClouds />
         <SkyCountdownOverlay center={true} />
