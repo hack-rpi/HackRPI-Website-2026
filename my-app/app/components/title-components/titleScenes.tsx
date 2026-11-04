@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useCountDown } from "./countdown";
 
 const linkItems = [
-    { label: "Game", href: "../../public/game-build/index.html"},
     { label: "Event", href: "/event" },
     { label: "Schedule", href: "/event/schedule" },
     //{ label: "Prizes", href: "/prizes" },
     { label: "Last Year", href: "/last-year" },
     { label: "Sponsor Us", href: "/sponsorship" },
+    { label: "Game", href: "/game"},
     { label: "Discord", href: "https://discord.gg/WnrzEjNdY9" },
 ];
 

@@ -1,4 +1,4 @@
-# HackRPI Website Team Code of Conduct
+# HackRPI Technology Team Code of Conduct
 
 In the interest of fostering an open and welcoming environment, HackRPI pledges to be an inclusive and harassment-free experience for all, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, educational background, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
@@ -6,13 +6,15 @@ This Code of Conduct (CoC) applies to all HackRPI-affiliated activity online and
 
 This project is affiliated with [Rensselaer Center for Open Source](http://rcos.io) (RCOS) at [Rensselaer Polytechnic Institute](https://www.rpi.edu/) (RPI). As such, this Code of Conduct has been adapted from the [RCOS Community Code of Conduct](https://rcos.github.io/rcos-handbook/#/community/CODE_OF_CONDUCT).
 
+Additionally, HackRPI is affliated with [Major League Hacking](https://www.mlh.com/) (MLH). This Code of Conduct does not supersede [MLH's Code of Conduct](https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md).
+
 ## Summary
 
 - [Be respectful and inclusive](#be-respectful-and-inclusive).
 - [Give and be welcoming to constructive feedback](#give-and-be-welcoming-to-constructive-feedback).
 - [Focus on what is best for the HackRPI community](#focus-on-what-is-best-for-the-community).
 - Do not engage in any [unacceptable behaviors](#unacceptable-behaviors).
-- At any point, you may [report CoC violations](#reporting-incidents) to RCOS Coordinators and Faculty Advisors.
+- At any point, you may [report CoC violations](#reporting-incidents) to RCOS Coordinators, Faculty Advisors, or to MLH.
 - [Project maintainers](#project-maintainer-responsibilities) should be mindful of the Code of Conduct.
 
 ## Guidelines
@@ -52,15 +54,21 @@ Examples of unacceptable behaviors include:
 
 - The use of sexualized language or imagery and unwelcome sexual attention or advances
 - Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment as defined [here](https://rcos.github.io/rcos-handbook/#/community/harassment_guidelines)
+- Public or private harassment as defined [here (RCOS)](https://rcos.github.io/rcos-handbook/#/community/harassment_guidelines) and [here (MLH)](https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md)
 - Publishing others’ private information, such as a physical or electronic address, without explicit permission
 - Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ## Reporting Incidents
 
+### RCOS
+
 At any point, you may report instances of CoC violations to the RCOS [Coordinators](https://rcos.github.io/rcos-handbook/#/leadership/coordinators) and [Faculty Advisors](https://handbook.rcos.io/#/leadership/faculty) at <rcos-leadership@googlegroups.com>. You, as well as any other witnesses, have the right to remain anonymous to the rest of the RCOS community.
 
 If you are uncomfortable reporting to the Coordinators for any reason, you may reach out to a Faculty Advisor directly via the RCOS [Discord](https://rcos.io/register).
+
+### MLH
+
+You may also report incidents to MLH. See [MLH's Reporting Procedures](https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md#reporting-procedures).
 
 ## Project Maintainer Responsibilities
 
