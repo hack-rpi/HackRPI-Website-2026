@@ -89,7 +89,7 @@ export default function Event() {
         </div>
 
 				{/* Project submission and judging */}
-        <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-20 ">
+        <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-0">
           <h1 
 	   className={`text-center`} 
 		  style={{color: YELLOW_BRIGHT, fontSize: "300%"}}>Project Submission and Judging</h1>
@@ -389,7 +389,7 @@ export default function Event() {
 					</div>
         </div>
 		{/* giveaway stuff */}
-		<div className="w-full h-auto text-white p-5 flex flex-col items-center py-10">
+		<div className="w-full h-auto text-white p-5 flex flex-col items-center">
 			<Giveaway />
 		</div>
       </main>
