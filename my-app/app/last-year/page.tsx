@@ -6,10 +6,10 @@ import ProjectDisplay from "@/app/components/prev-projects/project-display";
 import ProjectCarousel from "@/app/components/prev-projects/project-carousel";
 import { podiumPrizes } from "@/app/data/previous-prize-winners";
 import { carouselPrizes } from "@/app/data/previous-prize-winners";
-import Image from "next/image";
 
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
+import { FooterColor } from "../components/BGColor";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 import Lenis from 'lenis';
@@ -67,8 +67,12 @@ export default function PastYearProjects() {
 					</HackRPILink>
 				</div>
 			</main>
-			<footer className="bg-white">
-				<div className="w-full h-[10vh] bg-purple-800" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+			<footer style={{ backgroundColor: FooterColor }}>
+				<div
+					className="h-[10vh] w-full bg-background"
+					style={{ clipPath: "ellipse(70% 10% at 50% 0%)" }}
+					id="footer-ellipse"
+				></div>
 				<Footer/>
 			</footer>
 		</>

@@ -4,10 +4,8 @@ import logo from "@/public/HackRPI_Logo_Light.png";
 // import RegistrationButton from "@/components/themed-components/registration-header-link";
 
 import Link from "next/link";
-import NextLink from "next/link";
 import { Link as lin } from "../nav-bar-links";
 import MlhBanner from "../../mlh-banner/mlh-banner";
-import { useState } from "react";
 
 function NavLink({
     href,
@@ -100,7 +98,7 @@ export function NavGroupComponent({ name, links, variant = "default" }: NavGroup
     const isHero = variant === "hero";
 
     const linkStyles = isHero
-        ? "py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:no-underline focus:no-underline active:no-underline hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] whitespace-nowrap cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent"
+        ? "inline-flex items-center py-2 text-sm font-semibold tracking-wider text-slate-200/90 no-underline uppercase transition-all duration-300 hover:text-white hover:no-underline focus:no-underline active:no-underline hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] whitespace-nowrap cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent"
         : "mx-2 whitespace-nowrap text-lg xl:text-xl bg-size-[0%_2px] bg-no-repeat bg-bottom-left transition-all duration-200 bg-linear-to-r from-hackrpi-clouds-green to-sky-500 hover:bg-size-[100%_2px]";
 
     if (links.length === 1) {
@@ -116,7 +114,7 @@ export function NavGroupComponent({ name, links, variant = "default" }: NavGroup
     }
 
     return (
-        <div className="dropdown dropdown-hover">
+        <div className="group relative flex items-center">
             {/* Direct Link trigger preserving your original linkStyles without the event-capturing div wrapper */}
             <Link 
                 href={links[0].href} 
@@ -127,10 +125,12 @@ export function NavGroupComponent({ name, links, variant = "default" }: NavGroup
 
             <ul
                 tabIndex={-1}
-                className=" -translate-x-1/4
-                    dropdown-content menu p-0 w-24  
+                className="invisible absolute top-full left-1/2
+                    menu w-24 -translate-x-1/2 p-0 opacity-0
                     bg-slate-950/5 backdrop-blur-md 
-                    z-50 text-slate-200
+                    z-50 text-slate-200 transition-opacity duration-200
+                    group-hover:visible group-hover:opacity-100
+                    group-focus-within:visible group-focus-within:opacity-100
                 "
             >
                 {links.map((link) => (

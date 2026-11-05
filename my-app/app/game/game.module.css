@@ -1,0 +1,126 @@
+.page {
+  min-height: 100vh;
+  background: #000 url("/background.png") center / cover no-repeat;
+}
+
+.gameStage {
+  position: relative;
+  min-height: 920px;
+  overflow: hidden;
+}
+
+.desktop {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 32px);
+  transform: translate(-50%, -50%);
+}
+
+.mobile {
+  position: absolute;
+  top: 96px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 96px);
+}
+
+.canvas {
+  background: #231f20;
+}
+
+.mobileCanvas {
+  width: 100%;
+  height: 100%;
+  background: #231f20;
+}
+
+.loadingBar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  width: 154px;
+  height: 130px;
+  background: url("/game-build/TemplateData/unity-logo-dark.png") no-repeat center;
+}
+
+.progressBarEmpty {
+  width: 141px;
+  height: 18px;
+  margin-top: 10px;
+  margin-left: 6.5px;
+  background: url("/game-build/TemplateData/progress-bar-empty-dark.png") no-repeat center;
+}
+
+.progressBarFull {
+  width: 0;
+  height: 18px;
+  margin-top: 10px;
+  background: url("/game-build/TemplateData/progress-bar-full-dark.png") no-repeat center;
+}
+
+.unityFooter {
+  position: relative;
+}
+
+.mobile .unityFooter {
+  display: none;
+}
+
+.footerLogo {
+  float: left;
+  width: 102px;
+  height: 38px;
+  background: url("/game-build/TemplateData/unity-logo-title-footer.png") no-repeat center;
+}
+
+.buildTitle {
+  float: right;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 38px;
+}
+
+.fullscreenButton {
+  float: right;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  cursor: pointer;
+  background: url("/game-build/TemplateData/fullscreen-button.png") no-repeat center;
+  border: 0;
+}
+
+.warning {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  display: none;
+  padding: 10px;
+  background: white;
+  transform: translateX(-50%);
+}
+
+.siteFooter {
+  padding-top: 4rem;
+  background: #cecab8;
+}
+
+.footerEllipse {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+@media (max-width: 859px) {
+  .gameStage {
+    min-height: 100svh;
+  }
+}

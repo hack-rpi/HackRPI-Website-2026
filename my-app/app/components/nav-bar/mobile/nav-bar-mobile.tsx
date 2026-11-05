@@ -23,7 +23,7 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 	return (
 		<nav role="navigation" className="mobile-navigation">
 			<div className="
-				w-screen h-12 flex items-center justify-center fixed top-0
+				w-screen h-14 py-1 flex items-center justify-center fixed top-0
 				bg-linear-to-b from-purple-400/60 to-blue-800/100 z-200
 			" style={{}}>
 				<div className="flex items-center justify-start w-1/3">
@@ -60,7 +60,7 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 				id="home"
 			></div>
 			<div
-				className={`fixed top-18 ${
+				className={`fixed top-14 ${
 					navMenuOpen ? "left-0" : "-left-3/4"
 				} h-full bg-hackrpi-clouds-dark-blue py-5 w-3/4 z-20 transition-all overflow-y-auto`}
 			>
