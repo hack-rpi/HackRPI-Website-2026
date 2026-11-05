@@ -13,6 +13,7 @@ import Image from 'next/image';
 import Lenis from 'lenis';
 import { useEffect } from "react";
 import Prizes from './prizes';
+import Giveaway from './giveaway';
 import BackgroundColor from '../components/BGColor';
 
 const BACKGROUND = "#00152b";
@@ -88,7 +89,7 @@ export default function Event() {
         </div>
 
 				{/* Project submission and judging */}
-        <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-20 ">
+        <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-0">
           <h1 
 	   className={`text-center`} 
 		  style={{color: YELLOW_BRIGHT, fontSize: "300%"}}>Project Submission and Judging</h1>
@@ -387,6 +388,10 @@ export default function Event() {
 						</div>*/}
 					</div>
         </div>
+		{/* giveaway stuff */}
+		<div className="w-full h-auto text-white p-5 flex flex-col items-center">
+			<Giveaway />
+		</div>
       </main>
       <footer className="bg-white">
 				<div className="w-full h-[10vh] eventPageEnd" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
