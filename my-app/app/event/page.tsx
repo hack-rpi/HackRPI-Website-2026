@@ -278,15 +278,15 @@ export default function Event() {
 												</li>
 												<li className="flex items-center">
 													<span className="mr-2">▸</span>
-													Demo video showcasing your hack
-												</li>
-												<li className="flex items-center">
-													<span className="mr-2">▸</span>
 													Technologies used and challenges faced
 												</li>
 												<li className="flex items-center">
 													<span className="mr-2">▸</span>
 													Team member information
+												</li>
+												<li className="flex items-center">
+													<span className="mr-2">▸</span>
+													Don't forget to opt into your prize tracks!
 												</li>
 											</ul>
 										</div>
