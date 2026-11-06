@@ -112,7 +112,7 @@ const categoryPrizes: StandardPrize[] = [
     icon: "📱",
   },
   {
-    title: "Best use of Fish Audio",
+    title: "Best Voice Agent, Powered by Fish Audio",
     reward: "$200 API credits",
     description: "Build an innovative voice AI experience using Fish Audio. We’re excited to see creative applications across conversational AI, games, education, accessibility, entertainment, productivity, agents, and more. Projects should meaningfully integrate Fish Audio’s API and demonstrate an interesting or useful application of voice AI",
     icon: "🎧",
