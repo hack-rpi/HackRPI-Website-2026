@@ -2,6 +2,11 @@ import { Link } from "../nav-bar-links";
 import { useState } from "react";
 import NextLink from "next/link";
 
+const mobileNavLabelStyle = {
+	fontFamily: "var(--font-calps), sans-serif",
+	fontWeight: 400,
+};
+
 export default function NavGroup({
 	name,
 	links,
@@ -19,8 +24,10 @@ export default function NavGroup({
                 href={links[0].href}
                 target={links[0].new_tab ? "_blank" : undefined}
                 onClick={onLinkClick}
+                style={mobileNavLabelStyle}
                 className="
                     w-11/12 whitespace-nowrap text-2xl p-2 mb-2 transition-all duration-200
+                    text-hackrpi-clouds-dark-blue dark:text-white
                     bg-base-100 bg-size-[0%_4px] bg-no-repeat bg-bottom-left
                     bg-linear-to-r from-sky-500 to-hackrpi-clouds-green hover:bg-size-[100%_4px]
                 "
@@ -36,13 +43,15 @@ export default function NavGroup({
 			onClick={() => setClicked((prev) => !prev)}
 		>
 			<div
+				style={mobileNavLabelStyle}
 				className={`relative w-11/12 flex items-center justify-between h-12
-					text-2xl bg-base-100 z-5 rounded-t pl-2 collapse-arrow ${
+					text-2xl text-hackrpi-clouds-dark-blue dark:text-white
+					bg-base-100 z-5 rounded-t pl-2 collapse-arrow ${
 					clicked ? "bg-size-[100%_4px] bg-base-300" : "bg-base-100 bg-size-[0%_4px]"
 				} bg-no-repeat bg-linear-to-r from-sky-500 to-hackrpi-clouds-green bg-bottom-left
 				motion-safe:hover:bg-size-[100%_4px] transition-all duration-200`}
 			>
-				{name}
+				<span className="relative top-px">{name}</span>
 				<svg
 					viewBox="0 0 256 256"
 					id="Flat"
@@ -72,9 +81,11 @@ export default function NavGroup({
 function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
 	return (
 		<NextLink
-			className="w-full px-1 bg-opacity-0 bg-base-100 hover:bg-base-100/50 text-white text-2xl transition-all"
+			className="w-full px-1 bg-opacity-0 bg-base-100 hover:bg-base-100/50 text-2xl
+				text-hackrpi-clouds-dark-blue dark:text-white transition-all"
 			href={href}
 			onClick={onClick}
+			style={mobileNavLabelStyle}
 		>
 			{children}
 		</NextLink>

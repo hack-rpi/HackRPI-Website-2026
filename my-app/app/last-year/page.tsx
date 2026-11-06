@@ -6,10 +6,10 @@ import ProjectDisplay from "@/app/components/prev-projects/project-display";
 import ProjectCarousel from "@/app/components/prev-projects/project-carousel";
 import { podiumPrizes } from "@/app/data/previous-prize-winners";
 import { carouselPrizes } from "@/app/data/previous-prize-winners";
-import Image from "next/image";
 
 import NavBar from "../components/nav-bar/nav-bar";
 import Footer from "../components/footer/footer";
+import { FooterColor } from "../components/BGColor";
 import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
 import Lenis from 'lenis';
@@ -36,11 +36,9 @@ export default function PastYearProjects() {
 		<>
 			<NavBar showOnScroll={false}/>
 			<main className="
-				w-full pt-[8vh] flex items-center justify-center pb-20 flex-col
-				bg-linear-to-b from-orange-500 via-purple-500 via-60% to-purple-800"
+				w-full pt-[8vh] flex items-center justify-center pb-20 flex-col"
+				//bg-linear-to-b from-orange-500 via-purple-500 via-60% to-purple-800"
 				style={{
-				backgroundImage: "url('/last-year/retro2.jpg')",
-				backgroundSize: "100% 100%",
 			}}
 			id="winners">
 				<h2 className="text-3xl font-bold text-center p-5 m-5">Previous Projects from HackRPI 2025</h2>
@@ -69,8 +67,12 @@ export default function PastYearProjects() {
 					</HackRPILink>
 				</div>
 			</main>
-			<footer className="bg-white">
-				<div className="w-full h-[10vh] bg-purple-800" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+			<footer style={{ backgroundColor: FooterColor }}>
+				<div
+					className="h-[10vh] w-full bg-background"
+					style={{ clipPath: "ellipse(70% 10% at 50% 0%)" }}
+					id="footer-ellipse"
+				></div>
 				<Footer/>
 			</footer>
 		</>

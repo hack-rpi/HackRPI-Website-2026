@@ -1,0 +1,24 @@
+customHeaders:
+  # Large static assets: let browsers keep them for a week instead of re-downloading
+  # on every visit. Rename a file (or add ?v=2) when replacing it so visitors get the new one.
+  - pattern: '/3d/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=604800'
+  - pattern: '/team/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=604800'
+  - pattern: '/lastYearPhotos/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=604800'
+  - pattern: '/sponsors/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=604800'
+  # The game is replaced more often, so only cache it for a day.
+  - pattern: '/game-build/Build/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=86400'

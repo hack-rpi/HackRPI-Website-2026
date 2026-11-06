@@ -88,7 +88,7 @@ export default function AboutUs() {
         }
     };
     return (
-       <div ref={containerRef} className="relative p-5 bg-gradient-to-b from-black via-sky-950 to-black min-h-0 md:min-h-screen flex items-center justify-center mb-0 md:mb-[10vh] mt-[5vh] md:mt-[10vh] py-12 pb-64 md:py-0">
+       <div ref={containerRef} className="relative p-5 bg-linear-to-b from-black via-sky-950 to-black min-h-0 md:min-h-screen flex items-center justify-center py-12 pb-64 md:py-12">
         
         {/* The 3D Scene Wrapper now has built-in top padding space */}
         <div 
@@ -103,7 +103,7 @@ export default function AboutUs() {
 
                 {/* 2. The Letter */}
                 <div className={`letter-content p-8 md:p-12 shadow-md select-none flex flex-col justify-between
-                    ${isPortrait ? "z-[100]" : ""}
+                    ${isPortrait ? "z-100" : ""}
                 `}>
 					<Link href="/news#article/2027" className="block group">
 						<div>

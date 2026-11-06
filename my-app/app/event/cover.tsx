@@ -33,7 +33,7 @@ export default function Cover(){
       <div className="mapContainer">
         <iframe ref={map} loading="lazy" allowFullScreen src="https://maps.google.com/maps?q=Darrin+Communication+Center&output=embed"></iframe>
       </div>
-      <div className="coverTextContainer z-1">
+      <div className="coverTextContainer z-1" style = {{width:"20%", height:"50%"}}>
         {/* <div className="coverBackimg"></div> */}
         {coverText.map((text, i) => {
           //const Tag: JSX.Element = text.type;// as keyof JSX.IntrinsicElements;

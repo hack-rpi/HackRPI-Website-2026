@@ -1,0 +1,439 @@
+:root {
+    --background: #252525;
+    --foreground: #FEF9C2;
+    --panel: #CECAB8;
+    --primary: #7EB9A4;
+    --secondary: #7E7DA4;
+    
+    --border: #7E7DA4;
+    --panel-text: #252525;
+    --muted-text: #55544C;
+    --hover: #B5B2A3;
+    --selected: #B9B8D0;
+    --focus: #7E7DA4;
+    }
+    
+    .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: var(--background);
+    color: var(--foreground);
+    }
+    
+    .workspace {
+    width: 100%;
+    max-width: 1500px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+    }
+    
+    .panel {
+    height: 75vh;
+    min-height: 420px;
+    max-height: 850px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel);
+    color: var(--panel-text);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    }
+    
+    .panelHeader {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    }
+    
+    .heading {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 650;
+    color: var(--panel-text);
+    }
+    
+    .subtitle {
+    margin: 5px 0 0;
+    font-size: 0.82rem;
+    color: #426D5E;
+    }
+    
+    .addButton {
+    flex-shrink: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--background);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+    }
+    
+    .addButton:hover {
+    filter: brightness(0.92);
+    }
+    
+    .headerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    }
+    
+    .importButton {
+    flex-shrink: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    background: var(--secondary);
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+    }
+    
+    .importButton:hover {
+    filter: brightness(1.12);
+    }
+    
+    /* Left-hand table */
+    
+    .tableContainer {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    }
+    
+    .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.85rem;
+    color: var(--panel-text);
+    }
+    
+    .table th,
+    .table td {
+    min-width: 150px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(37 37 37 / 18%);
+    border-right: 1px solid rgb(37 37 37 / 10%);
+    text-align: left;
+    vertical-align: middle;
+    }
+    
+    .table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--background);
+    color: var(--foreground);
+    font-weight: 600;
+    white-space: nowrap;
+    }
+    
+    .table th:first-child,
+    .table td:first-child {
+    min-width: 180px;
+    }
+    
+    .table th code {
+    font-size: 0.8rem;
+    color: var(--primary);
+    }
+    
+    .table tbody tr {
+    cursor: pointer;
+    transition: background 0.15s ease;
+    }
+    
+    .table tbody tr:hover td {
+    background: var(--hover);
+    }
+    
+    .table tbody tr.selectedRow td {
+    background: var(--selected);
+    }
+    
+    .recipientButton {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #45436E;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 2px;
+    }
+    
+    .recipientButton:hover {
+    text-decoration-color: currentColor;
+    }
+    
+    .cellInput {
+    width: 100%;
+    min-width: 120px;
+    box-sizing: border-box;
+    padding: 7px 8px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--panel-text);
+    font: inherit;
+    }
+    
+    .cellInput:hover {
+    border-color: var(--secondary);
+    }
+    
+    .cellInput:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: -1px;
+    border-color: var(--secondary);
+    background: var(--foreground);
+    color: var(--background);
+    }
+    
+    .hint {
+    flex-shrink: 0;
+    margin: 12px 0 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--muted-text);
+    }
+    
+    /* Right-hand editor */
+    
+    .editorArea {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .fieldLabel {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--panel-text);
+    }
+    
+    /* Wrapper for the editor and its highlighting layer */
+    
+    .editorWrapper {
+    position: relative;
+    flex: 1;
+    min-height: 100px;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    background: var(--background);
+    }
+    
+    /* Text rendered behind the transparent textarea */
+    
+    .highlightLayer {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 14px;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+    scrollbar-width: none;
+    }
+    
+    .highlightLayer::-webkit-scrollbar {
+    display: none;
+    }
+    
+    /* Variable names */
+    
+    .variableHighlight {
+    color: var(--primary);
+    font-weight: 600;
+    }
+    
+    /* Actual editable text */
+    
+    .textbox {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    box-sizing: border-box;
+    resize: none;
+    overflow: auto;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    caret-color: var(--foreground);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    }
+    
+    .editorWrapper:focus-within {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+    border-color: var(--focus);
+    }
+    
+    .textbox::selection {
+    background: rgb(126 125 164 / 45%);
+    -webkit-text-fill-color: transparent;
+    }
+    
+    .textbox::placeholder {
+    color: #CECAB8;
+    -webkit-text-fill-color: #CECAB8;
+    }
+    
+    /* Preview */
+    
+    .previewHeader {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    }
+    
+    .recipientSelect {
+    max-width: 65%;
+    padding: 7px 10px;
+    border: 1px solid var(--secondary);
+    border-radius: 7px;
+    background: var(--background);
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.82rem;
+    }
+    
+    .preview {
+    flex: 1;
+    min-height: 70px;
+    overflow: auto;
+    padding: 14px;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    }
+    
+    /* Keep the leftmost column visible while scrolling horizontally */
+    
+    .table th:first-child,
+    .table td:first-child {
+    position: sticky;
+    left: 0;
+    min-width: 180px;
+    }
+    
+    /* Keep the header above the sticky body cells */
+    
+    .table th:first-child {
+    top: 0;
+    z-index: 3;
+    background: var(--background);
+    color: var(--foreground);
+    }
+    
+    /* Keep recipient cells above other scrolling columns */
+    
+    .table td:first-child {
+    z-index: 2;
+    background: var(--panel);
+    }
+    
+    /* Preserve selected-row and hover states for sticky cells */
+    
+    .table tbody tr.selectedRow td:first-child {
+    background: var(--selected);
+    }
+    
+    .table tbody tr:hover td:first-child {
+    background: var(--hover);
+    }
+    
+    /* Responsive layout */
+    
+    @media (max-width: 600px) {
+    .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    }
+    
+    .panel {
+    height: 65vh;
+    min-height: 380px;
+    }
+    }
+    
+    @media (max-width: 480px) {
+    .panel {
+    padding: 14px;
+    }
+    
+    .panelHeader {
+    align-items: flex-start;
+    }
+    
+    .heading {
+    font-size: 1.05rem;
+    }
+    
+    .table th,
+    .table td {
+    padding: 8px;
+    }
+    }
+    

@@ -9,7 +9,8 @@ const linkItems = [
     //{ label: "Prizes", href: "/prizes" },
     { label: "Last Year", href: "/last-year" },
     { label: "Sponsor Us", href: "/sponsorship" },
-    { label: "Discord", href: "https://discord.gg/mrnsm74tDj" },
+    { label: "Game", href: "/game"},
+    { label: "Discord", href: "https://discord.gg/WnrzEjNdY9" },
 ];
 
 const splitLabel = (label: string) => {
@@ -48,7 +49,7 @@ export function Variation1({ show }: { show: boolean }) {
                 <div className="col-span-3 flex flex-col justify-between h-full py-2">
                     <div className="space-y-6">
                         <div className="space-y-1">
-                            <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                            <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                                 01 // DATE & VENUE
                             </span>
                             <h2 className="text-2xl md:text-4xl font-mono font-bold text-white tracking-wide">
@@ -62,10 +63,10 @@ export function Variation1({ show }: { show: boolean }) {
                         {/* Timer Widget */}
                         {timeLeft && !isPast && (
                             <div className="space-y-1 pt-2 border-t border-white/10 font-mono">
-                                <span className="text-[10px] uppercase tracking-widest opacity-50 block">
+                                <span className="text-s uppercase tracking-widest opacity-50 block">
                                     COUNTDOWN
                                 </span>
-                                <div className="text-sm md:text-base font-bold text-yellow-100 tracking-wider">
+                                <div className="text-m md:text-xl font-bold text-yellow-100 tracking-wider">
                                     {String(timeLeft.days).padStart(2, "0")}d :{" "}
                                     {String(timeLeft.hours).padStart(2, "0")}h :{" "}
                                     {String(timeLeft.minutes).padStart(2, "0")}m :{" "}
@@ -92,15 +93,15 @@ export function Variation1({ show }: { show: boolean }) {
                 {/* Col 4-6: About / Overview */}
                 <div className="col-span-3 flex flex-col justify-between h-full py-2 border-l border-white/10 pl-6">
                     <div className="space-y-3">
-                        <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                        <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                             02 // OVERVIEW
                         </span>
-                        <p className="text-xs md:text-sm font-mono opacity-80 leading-relaxed">
-                            Join us for 24 hours of creation, learning, and innovation at Rensselaer Polytechnic Institute. Build extraordinary projects alongside passionate student creators.
+                        <p className="text-[1.05rem] md:text-[1.05rem] font-mono opacity-80 leading-relaxed">
+                            Join us for 24 hours of fun, learning, and innovation at Rensselaer Polytechnic Institute. Build cool projects with new friends!
                         </p>
                     </div>
 
-                    <div className="text-[10px] md:text-xs font-mono opacity-50 uppercase tracking-widest space-x-2">
+                    <div className="text-s md:text-m font-mono opacity-50 uppercase tracking-widest space-x-2">
                         <span>Free Meals</span> • <span>Mentors</span> • <span>Swag</span>
                     </div>
                 </div>
@@ -108,26 +109,26 @@ export function Variation1({ show }: { show: boolean }) {
                 {/* Col 7-9: Event Tracks */}
                 <div className="col-span-3 flex flex-col justify-between h-full py-2 border-l border-white/10 pl-6">
                     <div className="space-y-3">
-                        <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] opacity-50 block">
+                        <span className="text-s md:text-sm font-mono uppercase tracking-[0.25em] opacity-50 block">
                             03 // FEATURED TRACKS
                         </span>
-                        <ul className="text-xs md:text-sm font-mono space-y-1.5 opacity-85">
+                        <ul className="text-[1.05rem] md:text-[1.05rem] font-mono space-y-1.5 opacity-85">
                             <li className="flex items-center gap-2">
-                                <span className="text-yellow-100">✦</span> AI & Machine Learning
+                                <span className="text-yellow-100">✦</span> Machine Learning & Data Science
                             </li>
                             <li className="flex items-center gap-2">
-                                <span className="text-yellow-100">✦</span> Cloud Infrastructure
+                                <span className="text-yellow-100">✦</span> Healthcare
                             </li>
                             <li className="flex items-center gap-2">
-                                <span className="text-yellow-100">✦</span> Hardware & Robotics
+                                <span className="text-yellow-100">✦</span> Hardware
                             </li>
                             <li className="flex items-center gap-2">
-                                <span className="text-yellow-100">✦</span> Game Dev & General
+                                <span className="text-yellow-100">✦</span> Game Dev
                             </li>
                         </ul>
                     </div>
 
-                    <span className="text-[10px] md:text-xs font-mono text-yellow-100/80 uppercase tracking-widest">
+                    <span className="text-[1.05rem] md:text-[1.05rem] font-mono text-yellow-100/80 uppercase tracking-widest">
                         $10K+ PRIZE POOL
                     </span>
                 </div>
@@ -174,7 +175,7 @@ export function Variation2({ show }: { show: boolean }) {
                 {/* Large Stacked Title Header */}
                 <div className="space-y-2">
                     <p className="text-sm font-mono font-bold uppercase tracking-[0.4em] text-yellow-100/90 drop-shadow-md">
-                        12TH ANNUAL HACKATHON
+                        13TH ANNUAL HACKATHON
                     </p>
                     <h1 style={{ color: textColor }} className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] drop-shadow-lg">
                         HACK <br />
@@ -206,7 +207,7 @@ export function Variation2({ show }: { show: boolean }) {
                             Main Foyer
                         </h2>
                         <p className="text-base md:text-lg font-mono text-neutral-200 drop-shadow">
-                            Pick up your badge & wristband
+                            Pick up your wristband, handbook, and a shirt!
                         </p>
                     </div>
                 </div>
@@ -251,7 +252,7 @@ export function Variation3({ show }: { show: boolean }) {
                     Enjoy a custom game made by RPI's very own Game Development Club
                 </p>
                 <p className="text-lg font-light opacity-80 max-w-md leading-relaxed">
-                    Be a cloud, Eating clouds, In The Clouds
+                    Be a cloud, eating clouds, In The Clouds
                 </p>
                 
                 <div  className="py-2"/>
@@ -332,19 +333,19 @@ export function Variation4({ show }: { show: boolean }) {
                                 <span className="text-yellow-100 font-bold">$750</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Ethical AI (#1-#3)</span>
-                                <span className="text-yellow-100 font-bold">$100-$300</span>
+                                <span>Best Ethical AI Hack (#1-#3)</span>
+                                <span className="text-yellow-100 font-bold">$300-$100</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>ML / Data Science</span>
+                                <span>Best ML / Data Science Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Sustainability</span>
+                                <span>Best Sustainability Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Healthcare Hack</span>
+                                <span>Best Healthcare Hack</span>
                                 <span className="text-yellow-100 font-bold">$400</span>
                             </li>
                         </ul>
@@ -356,31 +357,31 @@ export function Variation4({ show }: { show: boolean }) {
                             className="text-xs font-mono font-bold uppercase tracking-widest block opacity-70"
                             style={{ color: textColor }}
                         >
-                            HARDWARE & GEAR
+                            MORE PRIZES
                         </span>
                         <ul className="space-y-2.5 font-mono text-sm md:text-base">
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>In The Clouds</span>
+                                <span>Best In The Clouds Hack</span>
                                 <span className="text-yellow-100 font-bold text-xs">Sony Headphones</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Best Hardware</span>
+                                <span>Best Hardware Hack</span>
                                 <span className="text-yellow-100 font-bold text-xs">Mini 4K Drone</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Best AI Edge</span>
+                                <span>Best Artifical Intelligence Hack</span>
                                 <span className="text-yellow-100 font-bold text-xs">Air Fryer</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>First Time Hack</span>
-                                <span className="text-yellow-100 font-bold text-xs">Lego Technic</span>
+                                <span>Best First Time Hack</span>
+                                <span className="text-yellow-100 font-bold text-xs">Lego Technic Plane</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
                                 <span>Best Game Hack</span>
                                 <span className="text-yellow-100 font-bold text-xs">Govee LED Bars</span>
                             </li>
                             <li className="flex justify-between items-baseline border-b border-white/10 pb-1">
-                                <span>Best Mobile App</span>
+                                <span>Best Mobile Hack</span>
                                 <span className="text-yellow-100 font-bold text-xs">Mini Projector</span>
                             </li>
                         </ul>
@@ -416,7 +417,7 @@ export function Variation5({ show }: { show: boolean }) {
                     <span
                         className="text-xs md:text-sm font-mono uppercase tracking-[0.4em] block font-bold text-yellow-100/90"
                     >
-                        SUNDAY @ 11:00 AM
+                        SUNDAY 11/8 @ 11:00 AM
                     </span>
 
                     <h1
@@ -438,13 +439,13 @@ export function Variation5({ show }: { show: boolean }) {
                         <span className="text-yellow-100 font-bold">01 //</span> Practicality & Utility
                     </div>
                     <div className="flex items-center gap-2">
-                        <span className="text-yellow-100 font-bold">02 //</span> Originality & Creativity
+                        <span className="text-yellow-100 font-bold">02 //</span> Creativity
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="text-yellow-100 font-bold">03 //</span> Technical Difficulty
                     </div>
                     <div className="flex items-center gap-2">
-                        <span className="text-yellow-100 font-bold">04 //</span> Team Effort & Growth
+                        <span className="text-yellow-100 font-bold">04 //</span> Effort
                     </div>
                 </div>
 

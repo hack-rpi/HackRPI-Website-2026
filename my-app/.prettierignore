@@ -1,0 +1,9 @@
+.next/
+build/
+coverage/
+node_modules/
+out/
+public/game-build/
+public/last-year/photos/photos.json
+public/sponsors/pdf.worker.min.mjs
+package-lock.json
