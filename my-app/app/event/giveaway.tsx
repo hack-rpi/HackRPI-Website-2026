@@ -20,23 +20,23 @@ const WorkshopGiveAwayItems: mlhPrize[] = [
   },
   {
     "title": "5 Chick-fil-A Voucher Cards",
-    "location": "Velan Studios and Regeneron fireside chats",
+    "location": "Velan Studios and Regeneron Fireside Chats",
     "icon": "chicky"
   },
   {
-    "title": "3 Starbucks coffe bags",
+    "title": "3 Starbucks coffee bags",
     "location": "Fish Audio Voice Lab",
     "icon": "starbs"
   },
 ]
 const CeremonyGiveAwayItems: mlhPrize[] = [
   {
-    "title": "Cloud lamp",
+    "title": "Cloud Lamp",
     "location": "Opening Ceremony",
     "icon": "cloud"
   },
   {
-    "title": "Glaxy projector",
+    "title": "Galaxy Projector",
     "location": "Closing Ceremony",
     "icon": "galaxy"
   }
@@ -61,7 +61,7 @@ const classRewards: classReward[] = [
         "reward": "a drop lab"
     },
     {
-        "title": "Web Systems",
+        "title": "Web Systems Development",
         "reward": "a drop homework"
     }
 ]
