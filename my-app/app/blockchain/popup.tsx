@@ -39,7 +39,8 @@ type PhysicsNode = {
   isDragging: boolean;
 };
 
-const difficulty = 3;
+const STATIC_DIFFICULTY = 4;
+const difficulty = STATIC_DIFFICULTY;
 const target = "0".repeat(difficulty);
 let nextLogId = 1;
 
@@ -169,7 +170,7 @@ export default function GlobalBlockchainPopup() {
 //         data: "Genesis Block",
 //         previousHash: "0",
 //         nonce: 0,
-//         difficulty: 3, // Added to match the 8-key schema
+//         difficulty: STATIC_DIFFICULTY, // Added to match the 8-key schema
 //         canvasId: genesisId,
 //       };
 //       const hash = await hashBlock(genesis);
@@ -575,7 +576,7 @@ export default function GlobalBlockchainPopup() {
       data: `${message} #${latest.index + 1}`,
       previousHash: latest.hash,
       nonce: 0,
-      difficulty: serverDifficulty ?? 3,
+      difficulty: serverDifficulty ?? STATIC_DIFFICULTY,
       canvasId: deviceCanvasId,
     };
 
