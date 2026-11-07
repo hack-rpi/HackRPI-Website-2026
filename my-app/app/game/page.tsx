@@ -121,7 +121,7 @@ export default function Game() {
       streamingAssetsUrl: "/game-build/StreamingAssets",
       companyName: "Squister",
       productName: "EatEatCloudCloud",
-      productVersion: "1.0",
+      productVersion: "1.5",
       showBanner,
       // errorHandler: function(err, url, line) {
       //    alert("error " + err + " occurred at line " + line);
