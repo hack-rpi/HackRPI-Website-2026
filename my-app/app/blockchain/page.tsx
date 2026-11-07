@@ -154,7 +154,7 @@ export default function BlockchainPage() {
   return (
     <>
       <NavBar showOnScroll={false} variant={2} />
-      <main className="relative min-h-screen min-w-80 overflow-hidden bg-[radial-gradient(circle_at_12%_5%,rgba(135,206,235,0.2),transparent_27rem),linear-gradient(150deg,#001020_0%,#00152b_48%,#062b47_100%)] pt-12 text-[#f6fbff] desktop:pt-16">
+      <main className="relative min-h-screen min-w-80 overflow-x-hidden bg-[radial-gradient...] pt-12 text-[#f6fbff] desktop:pt-16">
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 opacity-30 bg-[linear-gradient(rgba(135,206,235,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(135,206,235,0.1)_1px,transparent_1px)] bg-size-[42px_42px]"

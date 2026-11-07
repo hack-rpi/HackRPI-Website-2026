@@ -1,19 +1,79 @@
-// The blockchain lives here. startNode() below connects it to other nodes.
+// The blockchain lives here with DAA, Cumulative Work Consensus, and MongoDB stats tracking.
 const crypto = require('node:crypto');
 const http = require('node:http');
 const timers = require('node:timers/promises');
 const express = require('express');
 const socketIO = require('socket.io');
 const socketClient = require('socket.io-client');
+const { MongoClient } = require('mongodb');
 
-const DIFFICULTY = 3;
-const TARGET = '0'.repeat(DIFFICULTY); // A mined hash must begin with "000".
+require('dotenv').config({ path: './config.env' });
+
+const INITIAL_DIFFICULTY = 3;
 const MAX_BLOCKS = 256;
 const MAX_DATA_BYTES = 1024;
 const MAX_MINING_PACE_MS = 1000;
-const HEX_HASH = /^[0-9a-f]{64}$/; // SHA-256 produces 64 hexadecimal characters.
+const HEX_HASH = /^[0-9a-f]{64}$/;
+const TARGET_BLOCK_TIME_MS = 10000; // Target 10 seconds per block for difficulty adjustment
 
-// Hashing: put the fields in a fixed order, convert them to text, then hash them.
+// MongoDB Setup
+const mongoUri = process.env.MONGO_CONNECTION;
+let dbClient = null;
+let statsCollection = null;
+
+async function initMongo() {
+  if (!mongoUri) {
+    console.warn('⚠️ MONGO_CONNECTION not found. Stats tracking disabled.');
+    return;
+  }
+  try {
+    dbClient = new MongoClient(mongoUri);
+    await dbClient.connect();
+    const db = dbClient.db();
+    statsCollection = db.collection('blockchain_stats');
+    
+    const existing = await statsCollection.findOne({ _id: 'global_stats' });
+    if (!existing) {
+      await statsCollection.insertOne({
+        _id: 'global_stats',
+        maxLength: 1,
+        totalBlocksMined: 0,
+        divergentBranchesSolved: 0,
+        attacksAvoided: 0,
+        attacksFailed: 0,
+        updatedAt: new Date()
+      });
+    }
+    console.log('✅ Connected to MongoDB successfully.');
+  } catch (err) {
+    console.error('❌ MongoDB connection error:', err.message);
+  }
+}
+
+async function updateStats(updateFields, currentChainLength) {
+  if (!statsCollection) return;
+  try {
+    await statsCollection.updateOne(
+      { _id: 'global_stats' },
+      { 
+        $inc: updateFields,
+        $set: { updatedAt: new Date() }
+      },
+      { upsert: true }
+    );
+
+    if (currentChainLength) {
+      await statsCollection.updateOne(
+        { _id: 'global_stats', maxLength: { $lt: currentChainLength } },
+        { $set: { maxLength: currentChainLength } }
+      );
+    }
+  } catch (err) {
+    console.error('Error updating stats in MongoDB:', err.message);
+  }
+}
+
+// Hashing including difficulty level
 function hashBlock(block) {
   const contents = [
     block.index,
@@ -21,21 +81,47 @@ function hashBlock(block) {
     block.data,
     block.previousHash,
     block.nonce,
+    block.difficulty,
   ];
   const text = JSON.stringify(contents);
   return crypto.createHash('sha256').update(text).digest('hex');
 }
 
-// Every node starts with this exact block. A changing timestamp would split them.
 const GENESIS = {
   index: 0,
   timestamp: 0,
   data: 'Genesis Block',
   previousHash: '0',
   nonce: 0,
+  difficulty: INITIAL_DIFFICULTY,
 };
 GENESIS.hash = hashBlock(GENESIS);
 Object.freeze(GENESIS);
+
+// Calculate total cryptographic work score of a chain
+function calculateChainWork(blocks) {
+  return blocks.reduce((total, block) => {
+    return total + Math.pow(16, block.difficulty || INITIAL_DIFFICULTY);
+  }, 0);
+}
+
+// Dynamic Difficulty Adjustment (DAA) algorithm
+function getNextDifficulty(blocks) {
+  const latest = blocks[blocks.length - 1];
+  if (blocks.length < 3) return latest.difficulty;
+
+  // Check time difference between last block and 3 blocks prior
+  const prevBlock = blocks[blocks.length - 3];
+  const timeTaken = latest.timestamp - prevBlock.timestamp;
+  const expectedTime = TARGET_BLOCK_TIME_MS * 2;
+
+  if (timeTaken < expectedTime / 2) {
+    return latest.difficulty + 1; // Increase difficulty if mining is too fast
+  } else if (timeTaken > expectedTime * 2 && latest.difficulty > 1) {
+    return latest.difficulty - 1; // Decrease difficulty if mining is too slow
+  }
+  return latest.difficulty;
+}
 
 class Blockchain {
   constructor() {
@@ -47,19 +133,15 @@ class Blockchain {
     return this.blocks[this.blocks.length - 1];
   }
 
-  // Mining: try nonces until one makes a hash with the required leading zeroes.
   async mine(data, onProgress, paceMs = 0) {
     if (this.isMining) {
-      throw new Error('Already mining; wait for the current block.');
+      throw new Error('Already mining; wait for current block.');
     }
     if (!validData(data)) {
-      throw new Error(`Data must be text, at most ${MAX_DATA_BYTES} bytes as JSON.`);
-    }
-    if (!Number.isSafeInteger(paceMs) || paceMs < 0 || paceMs > MAX_MINING_PACE_MS) {
-      throw new Error(`Mining pace must be an integer from 0–${MAX_MINING_PACE_MS} milliseconds.`);
+      throw new Error(`Data must be text, at most ${MAX_DATA_BYTES} bytes.`);
     }
     if (this.blocks.length >= MAX_BLOCKS) {
-      throw new Error('Demo chain limit reached; restart the node.');
+      throw new Error('Demo chain limit reached; restart node.');
     }
     if (!validate(this.blocks).valid) {
       throw new Error('Cannot mine on an invalid chain.');
@@ -68,38 +150,38 @@ class Blockchain {
     this.isMining = true;
     try {
       const previousBlock = this.latestBlock();
+      const nextDifficulty = getNextDifficulty(this.blocks);
+      const target = '0'.repeat(nextDifficulty);
+
       const newBlock = {
         index: previousBlock.index + 1,
         timestamp: Math.max(Date.now(), previousBlock.timestamp),
         data: data,
         previousHash: previousBlock.hash,
         nonce: 0,
+        difficulty: nextDifficulty,
         hash: '',
       };
 
       while (true) {
-        // Another node may have sent a better chain while we were mining.
         if (this.latestBlock().hash !== previousBlock.hash) {
           throw new Error('Chain changed during mining; retry.');
         }
 
         newBlock.hash = hashBlock(newBlock);
         const attempts = newBlock.nonce + 1;
-        const foundValidHash = newBlock.hash.startsWith(TARGET);
+        const foundValidHash = newBlock.hash.startsWith(target);
 
-        // The optional callback lets the server send attempts to the visualizer.
         const shouldReport = attempts === 1 || attempts % 1000 === 0 || foundValidHash;
         if (shouldReport && typeof onProgress === 'function') {
           onProgress({
             index: newBlock.index,
-            difficulty: DIFFICULTY,
+            difficulty: newBlock.difficulty,
             nonce: newBlock.nonce,
             hash: newBlock.hash,
             attempts: attempts,
           });
         }
-        // Visualizers can request a short pause at sampled attempts so people
-        // can follow the nonce and hash changes. Normal mining uses pace 0.
         if (shouldReport && paceMs > 0) {
           await timers.setTimeout(paceMs);
         }
@@ -109,27 +191,27 @@ class Blockchain {
 
         newBlock.nonce += 1;
         if (attempts % 1000 === 0) {
-          // Pause between batches so the server can receive socket messages.
           await timers.setImmediate();
         }
       }
 
-      // Check once more before appending: the progress callback can change state.
       if (this.latestBlock().hash !== previousBlock.hash) {
         throw new Error('Chain changed during mining; retry.');
       }
       this.blocks.push(newBlock);
+
+      await updateStats({ totalBlocksMined: 1 }, this.blocks.length);
       return structuredClone(newBlock);
     } finally {
-      // Unlock after success OR failure, so another request can mine.
       this.isMining = false;
     }
   }
 
-  // Consensus: only a fully valid chain with more work can replace our chain.
+  // Cumulative Work Consensus Rule
   replace(candidateBlocks) {
     const validation = validate(candidateBlocks);
     if (!validation.valid) {
+      updateStats({ attacksAvoided: 1 }, null);
       return {
         accepted: false,
         reason: 'invalid',
@@ -138,33 +220,31 @@ class Blockchain {
       };
     }
 
-    // Difficulty is fixed, so more valid blocks means more work.
-    if (candidateBlocks.length < this.blocks.length) {
-      return { accepted: false, reason: 'shorter', message: 'Current chain has more work.' };
+    const currentWork = calculateChainWork(this.blocks);
+    const candidateWork = calculateChainWork(candidateBlocks);
+
+    if (candidateWork < currentWork) {
+      updateStats({ attacksAvoided: 1 }, null);
+      return { accepted: false, reason: 'shorter', message: 'Current chain has more accumulated cryptographic work.' };
     }
-    if (candidateBlocks.length === this.blocks.length) {
+    if (candidateWork === currentWork) {
       const candidateTip = candidateBlocks[candidateBlocks.length - 1];
       const currentTip = this.latestBlock();
       if (candidateTip.hash === currentTip.hash) {
         return { accepted: false, reason: 'unchanged', message: 'Already synchronized.' };
       }
-
-      // Different tips can both be honest. Keep ours until one branch extends.
-      return {
-        accepted: false,
-        reason: 'tie',
-        message: 'Equal work; keep current chain until a branch is extended.',
-      };
+      updateStats({ attacksFailed: 1 }, null);
+      return { accepted: false, reason: 'tie', message: 'Equal work; keeping current chain.' };
     }
 
+    updateStats({ divergentBranchesSolved: 1 }, candidateBlocks.length);
     this.blocks = structuredClone(candidateBlocks);
-    return { accepted: true, reason: 'longer', message: 'Adopted the valid chain with more work.' };
+    return { accepted: true, reason: 'longer', message: 'Adopted valid chain with higher cumulative work.' };
   }
 
-  // Send a copy so outside code cannot edit this node's internal blocks.
   toJSON() {
     return {
-      difficulty: DIFFICULTY,
+      difficulty: this.latestBlock().difficulty,
       blocks: structuredClone(this.blocks),
       validation: validate(this.blocks),
       mining: this.isMining,
@@ -172,7 +252,7 @@ class Blockchain {
   }
 }
 
-// Validation: inspect every block before trusting a received chain.
+// Enhanced validation checking dynamic targets
 function validate(blocks) {
   if (!Array.isArray(blocks) || blocks.length < 1 || blocks.length > MAX_BLOCKS) {
     return { valid: false, error: `Chain must contain 1–${MAX_BLOCKS} blocks.` };
@@ -181,54 +261,44 @@ function validate(blocks) {
   for (let index = 0; index < blocks.length; index += 1) {
     const block = blocks[index];
 
-    // First check the fields, so malformed network input cannot reach hashing.
     if (!block || typeof block !== 'object' || Array.isArray(block)) {
       return invalidBlock(index, 'Malformed block.');
     }
-    if (Object.keys(block).length !== 6) {
-      return invalidBlock(index, 'Malformed block.');
+    if (Object.keys(block).length !== 7) {
+      return invalidBlock(index, 'Malformed block schema.');
     }
     if (block.index !== index) {
-      return invalidBlock(index, 'Block index is out of order.');
+      return invalidBlock(index, 'Block index out of order.');
     }
     if (!validData(block.data)) {
-      return invalidBlock(index, 'Invalid block data.');
+      return invalidBlock(index, 'Invalid block data size.');
     }
-    if (!Number.isSafeInteger(block.timestamp) || block.timestamp < 0) {
-      return invalidBlock(index, 'Invalid timestamp or nonce.');
-    }
-    if (!Number.isSafeInteger(block.nonce) || block.nonce < 0) {
-      return invalidBlock(index, 'Invalid timestamp or nonce.');
+    if (!Number.isSafeInteger(block.difficulty) || block.difficulty < 1 || block.difficulty > 32) {
+      return invalidBlock(index, 'Invalid block difficulty.');
     }
     if (typeof block.hash !== 'string' || !HEX_HASH.test(block.hash)) {
       return invalidBlock(index, 'Malformed hash.');
     }
-    if (typeof block.previousHash !== 'string') {
-      return invalidBlock(index, 'Malformed hash.');
-    }
 
-    // Recompute the hash: an old hash cannot hide changed data.
     if (block.hash !== hashBlock(block)) {
       return invalidBlock(index, 'Hash does not match block contents.');
     }
 
-    // Genesis is fixed and does not need mining. All other blocks do.
     if (index === 0) {
       if (block.hash !== GENESIS.hash) {
-        return invalidBlock(index, 'Genesis does not match this network.');
+        return invalidBlock(index, 'Genesis does not match network.');
       }
       continue;
     }
 
     const previousBlock = blocks[index - 1];
     if (block.previousHash !== previousBlock.hash) {
-      return invalidBlock(index, 'Previous hash does not match.');
+      return invalidBlock(index, 'Previous hash mismatch.');
     }
-    if (block.timestamp < previousBlock.timestamp) {
-      return invalidBlock(index, 'Timestamp precedes parent.');
-    }
-    if (!block.hash.startsWith(TARGET)) {
-      return invalidBlock(index, 'Proof of work is missing.');
+    
+    const target = '0'.repeat(block.difficulty);
+    if (!block.hash.startsWith(target)) {
+      return invalidBlock(index, 'Proof of work target not met for difficulty.');
     }
   }
   return { valid: true };
@@ -239,29 +309,21 @@ function invalidBlock(index, message) {
 }
 
 function validData(data) {
-  if (typeof data !== 'string') {
-    return false;
-  }
-  // Count the JSON size because that is what travels over the socket.
-  const encodedData = JSON.stringify(data);
-  return Buffer.byteLength(encodedData) <= MAX_DATA_BYTES;
+  if (typeof data !== 'string') return false;
+  return Buffer.byteLength(JSON.stringify(data)) <= MAX_DATA_BYTES;
 }
 
-// Networking: each call starts a server with its own independent blockchain.
+// Networking with Security Blacklisting for Malicious Peers
 async function startNode(options = {}) {
-  const port = options.port ?? 0; // Port 0 chooses a free port for the demo/tests.
+  const port = options.port ?? 0;
   const host = options.host ?? '127.0.0.1';
   const peerUrls = options.peers ?? [];
   const blockchain = new Blockchain();
   const peerConnections = [];
+  const blacklistedIps = new Set();
 
   const app = express();
-  app.get(['/', '/api/chain'], function (_request, response) {
-    response.json(blockchain.toJSON());
-  });
-  app.get('/api/validate', function (_request, response) {
-    response.json(validate(blockchain.blocks));
-  });
+  app.get(['/', '/api/chain'], (_req, res) => res.json(blockchain.toJSON()));
 
   const server = http.createServer(app);
   const socketServer = new socketIO.Server(server, {
@@ -279,61 +341,47 @@ async function startNode(options = {}) {
     }
   }
 
-  function acceptChain(blocks) {
-    const decision = blockchain.replace(blocks);
-    if (decision.accepted) {
-      // Only forward changed chains, or peers would keep echoing the same data.
-      broadcastChain();
+  socketServer.use((socket, next) => {
+    const clientIp = socket.handshake.address;
+    if (blacklistedIps.has(clientIp)) {
+      return next(new Error('Blacklisted due to malicious activity.'));
     }
-    return decision;
-  }
-
-  // A server also acts as a client when it connects to another blockchain node.
-  function connectPeer(url) {
-    const peer = socketClient.io(url, { autoConnect: false });
-    peerConnections.push(peer);
-
-    peer.on('connect', function () {
-      // On reconnect, offer any blocks mined while we were disconnected.
-      const state = blockchain.toJSON();
-      peer.emit('chain:propose', { blocks: state.blocks });
-    });
-    peer.on('chain:full', function (state) {
-      const decision = acceptChain(state?.blocks);
-      if (decision.reason === 'shorter') {
-        const ourState = blockchain.toJSON();
-        peer.emit('chain:propose', { blocks: ourState.blocks });
-      }
-    });
-
-    peer.connect();
-    return peer;
-  }
+    next();
+  });
 
   socketServer.on('connection', function (socket) {
+    let invalidSubmissions = 0;
     socket.emit('chain:full', blockchain.toJSON());
 
-    // Send the current chain to a client or visualizer.
-    socket.on('chain:get', function (_payload, acknowledge) {
+    socket.on('chain:get', (_payload, acknowledge) => {
       const state = blockchain.toJSON();
       socket.emit('chain:full', state);
-      sendReply(acknowledge, state);
+      if (typeof acknowledge === 'function') acknowledge(state);
     });
 
-    // Check a competing chain using the same rules as every other node.
-    socket.on('chain:propose', function (payload, acknowledge) {
-      const decision = acceptChain(payload?.blocks);
+    socket.on('chain:propose', (payload, acknowledge) => {
+      const decision = blockchain.replace(payload?.blocks);
+      if (!decision.accepted && decision.reason === 'invalid') {
+        invalidSubmissions++;
+        if (invalidSubmissions >= 3) {
+          const clientIp = socket.handshake.address;
+          blacklistedIps.add(clientIp);
+          console.warn(`🚨 Blacklisted malicious peer IP: ${clientIp}`);
+          socket.disconnect(true);
+          return;
+        }
+      }
       socket.emit('chain:result', decision);
-      sendReply(acknowledge, decision);
+      if (typeof acknowledge === 'function') acknowledge(decision);
     });
 
-    // Mine on this node, then share the result with clients and peers.
-    socket.on('mine:start', async function (payload, acknowledge) {
+    socket.on('mine:start', async (payload, acknowledge) => {
       const startedAt = Date.now();
       try {
-        const block = await blockchain.mine(payload?.data, function (progress) {
+        const block = await blockchain.mine(payload?.data, (progress) => {
           socketServer.emit('mine:progress', progress);
         }, payload?.paceMs ?? 0);
+        
         const result = {
           block: block,
           attempts: block.nonce + 1,
@@ -342,73 +390,47 @@ async function startNode(options = {}) {
         socketServer.emit('block:new', { block: block });
         socketServer.emit('mine:done', result);
         broadcastChain();
-        sendReply(acknowledge, { ok: true, ...result });
+        if (typeof acknowledge === 'function') acknowledge({ ok: true, ...result });
       } catch (error) {
         socket.emit('mine:error', { message: error.message });
         socketServer.emit('chain:full', blockchain.toJSON());
-        sendReply(acknowledge, { ok: false, message: error.message });
+        if (typeof acknowledge === 'function') acknowledge({ ok: false, message: error.message });
       }
     });
   });
 
-  await new Promise(function (resolve, reject) {
+  await new Promise((resolve, reject) => {
     server.once('error', reject);
     server.listen(port, host, resolve);
   });
-  for (const url of peerUrls) {
-    connectPeer(url);
-  }
 
-  // The demo and tests use this to stop their temporary servers.
   async function close() {
-    for (const peer of peerConnections) {
-      peer.close();
-    }
-    await new Promise(function (resolve) {
-      socketServer.close(resolve);
-    });
+    for (const peer of peerConnections) peer.close();
+    if (dbClient) await dbClient.close();
+    await new Promise((resolve) => socketServer.close(resolve));
   }
 
   return {
     url: `http://${host}:${server.address().port}`,
-    blockchain: blockchain,
-    connectPeer: connectPeer,
-    close: close,
+    blockchain,
+    close,
   };
 }
 
-// An acknowledgement is an optional callback sent with a socket request.
-function sendReply(acknowledge, result) {
-  if (typeof acknowledge === 'function') {
-    acknowledge(result);
-  }
-}
-
 async function main() {
-  const peers = [];
-  const addresses = (process.env.PEERS || '').split(',');
-  for (const address of addresses) {
-    const url = address.trim();
-    if (url !== '') {
-      peers.push(url);
-    }
-  }
-
+  await initMongo();
   const node = await startNode({
     port: Number(process.env.PORT || 3000),
     host: process.env.HOST || '127.0.0.1',
-    peers: peers,
   });
-  console.log(`Node running at ${node.url} (difficulty ${DIFFICULTY})`);
-  console.log('Use npm run client, or connect your visualizer with Socket.IO.');
+  console.log(`Node running securely at ${node.url} with DAA & Cumulative Consensus`);
 }
 
-// Start only when run directly. Importing this file for tests does not start it.
 if (require.main === module) {
-  main().catch(function (error) {
+  main().catch((error) => {
     console.error(error.message);
     process.exitCode = 1;
   });
 }
 
-module.exports = { Blockchain, DIFFICULTY, GENESIS, MAX_BLOCKS, hashBlock, validate, startNode };
+module.exports = { Blockchain, GENESIS, MAX_BLOCKS, hashBlock, validate, startNode };

@@ -2,7 +2,7 @@
 const readline = require('node:readline');
 const socketClient = require('socket.io-client');
 
-const serverUrl = process.env.SERVER_URL || 'http://127.0.0.1:3000';
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://127.0.0.1:3000';
 const socket = socketClient.io(serverUrl);
 const terminal = readline.createInterface({
   input: process.stdin,
