@@ -22,7 +22,7 @@ export default function BobaCountdown() {
   return (
     <section
       aria-label="Taichi boba at midnight"
-      className="mx-auto mb-6 flex w-full max-w-3xl shrink-0 flex-wrap items-center justify-center gap-x-6 gap-y-4 rounded-2xl bg-hackrpi-clouds-dark-blue/60 px-5 py-5 text-center backdrop-blur-md sm:px-6 sm:text-left"
+      className="mx-auto mb-6 flex w-full max-w-3xl shrink-0 flex-wrap items-center justify-center gap-x-6 gap-y-4 rounded-2xl bg-hackrpi-clouds-dark-blue/60 px-5 py-5 text-center backdrop-blur-md sm:px-6 sm:text-left min-[861px]:bg-hackrpi-clouds-dark-blue/30 min-[861px]:backdrop-blur-[4px]"
     >
       <Image
         src="/sponsors/sponsor_logos/Taichi.png"
