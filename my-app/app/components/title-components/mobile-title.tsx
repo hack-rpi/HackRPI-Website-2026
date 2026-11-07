@@ -6,6 +6,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Float, useGLTF } from "@react-three/drei";
 import ParallaxClouds from "./parallaxCloudsMobile";
 import SkyCountdownOverlay from "./countdownMobile";
+import BobaCountdown from "./boba-countdown";
 
 useGLTF.preload("/3d/plane0.glb");
 
@@ -41,6 +42,7 @@ export default function MobileTitleComponent() {
         </div>
 
         {/* Main Title */}
+        <BobaCountdown />
         <h1
           className="text-white text-5xl sm:text-6xl font-bold tracking-tight leading-none drop-shadow-xl"
           style={{ fontFamily: "Calibri, sans-serif" }}
