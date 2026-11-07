@@ -126,7 +126,6 @@ export function RPIModel({onLoaded}: {onLoaded: () => void}) {
 
 		// Scale movement by frame delta time
 		const moveStep = speed * delta;
-		console.log(groupRef.current.position);
 		groupRef.current.position.z -= moveStep;
 		groupRef.current.position.y += 0.051 * moveStep;
 

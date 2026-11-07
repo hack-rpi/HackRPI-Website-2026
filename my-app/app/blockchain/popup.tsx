@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback, useRef, type SubmitEvent } from "react";
+import { io, Socket } from "socket.io-client";
 
 type Block = {
   index: number;
@@ -9,6 +10,7 @@ type Block = {
   data: string;
   previousHash: string;
   nonce: number;
+  difficulty: number;
   hash: string;
   canvasId: string;
 };
@@ -72,15 +74,16 @@ function getDeviceCanvasId(): string {
 }
 
 async function hashBlock(block: Omit<Block, "hash">) {
-  const input = JSON.stringify([
+  const contents = [
     block.index,
     block.timestamp,
     block.data,
     block.previousHash,
     block.nonce,
+    block.difficulty,
     block.canvasId,
-  ]);
-  const bytes = new TextEncoder().encode(input);
+  ];
+  const bytes = new TextEncoder().encode(JSON.stringify(contents));
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
@@ -112,6 +115,10 @@ export default function GlobalBlockchainPopup() {
   
   const [showOnlyMyBlocks, setShowOnlyMyBlocks] = useState(false);
   const [showLogs, setShowLogs] = useState(false);
+
+  const socketRef = useRef<Socket | null>(null);
+  const [serverDifficulty, setServerDifficulty] = useState(3);
+  const target = "0".repeat(serverDifficulty);
 
   // Canvas & Physics Interactive State
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -152,26 +159,27 @@ export default function GlobalBlockchainPopup() {
     }, ...current].slice(0, 50));
   }, []);
 
-  useEffect(() => {
-    let active = true;
-    async function createGenesisBlock() {
-      const genesisId = getDeviceCanvasId();
-      const genesis = {
-        index: 0,
-        timestamp: 0,
-        data: "Genesis Block",
-        previousHash: "0",
-        nonce: 0,
-        canvasId: genesisId,
-      };
-      const hash = await hashBlock(genesis);
-      if (!active) return;
-      setBlocks([{ ...genesis, hash }]);
-      addLog(`Initialized (${genesisId})`, "success");
-    }
-    void createGenesisBlock();
-    return () => { active = false; };
-  }, [addLog]);
+//   useEffect(() => {
+//     let active = true;
+//     async function createGenesisBlock() {
+//       const genesisId = getDeviceCanvasId();
+//       const genesis = {
+//         index: 0,
+//         timestamp: 0,
+//         data: "Genesis Block",
+//         previousHash: "0",
+//         nonce: 0,
+//         difficulty: 3, // Added to match the 8-key schema
+//         canvasId: genesisId,
+//       };
+//       const hash = await hashBlock(genesis);
+//       if (!active) return;
+//       setBlocks([{ ...genesis, hash }]);
+//       addLog(`Initialized (${genesisId})`, "success");
+//     }
+//     void createGenesisBlock();
+//     return () => { active = false; };
+//   }, [addLog]);
 
   const latest = blocks.at(-1);
 
@@ -185,6 +193,44 @@ export default function GlobalBlockchainPopup() {
     }
     return blocks;
   }, [blocks, showOnlyMyBlocks, deviceCanvasId]);
+
+  useEffect(() => {
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "http://127.0.0.1:3000";
+    const socket = io(serverUrl);
+    socketRef.current = socket;
+
+    socket.on("chain:full", (state) => {
+        if (state && Array.isArray(state.blocks)) {
+            setBlocks(state.blocks);
+            // If your server state sends difficulty, save it (default to 3 if not present)
+            if (state.difficulty) setServerDifficulty(state.difficulty); 
+        }
+    });
+
+    socket.on("mine:progress", (prog) => {
+      setAttempt({
+        index: prog.index,
+        nonce: prog.nonce,
+        hash: prog.hash,
+        attempts: prog.attempts,
+      });
+    });
+
+    socket.on("mine:done", (result) => {
+      addLog(`Block #${result.block.index} mined in ${result.elapsedMs}ms`, "success");
+      setIsMining(false);
+      setAttempt(null);
+    });
+
+    socket.on("mine:error", (err) => {
+      addLog(`Mining error: ${err.message}`, "error");
+      setIsMining(false);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [addLog]);
 
   // Fork Analysis: Determine canonical chain vs false/abandoned fork branches
   const chainAnalysis = useMemo(() => {
@@ -525,10 +571,11 @@ export default function GlobalBlockchainPopup() {
     
     const candidate = {
       index: latest.index + 1,
-      timestamp: Date.now(),
-      data: `${data} #${latest.index + 1}`,
+      timestamp: Math.max(Date.now(), latest.timestamp),
+      data: `${message} #${latest.index + 1}`,
       previousHash: latest.hash,
       nonce: 0,
+      difficulty: serverDifficulty ?? 3,
       canvasId: deviceCanvasId,
     };
 
@@ -544,11 +591,14 @@ export default function GlobalBlockchainPopup() {
         }
 
         if (found) {
-          setBlocks((current) => [...current, { ...candidate, hash }]);
-          addLog(
-            `Block #${candidate.index} mined (${Math.round(performance.now() - startedAt)}ms)`,
-            "success",
-          );
+            const updatedBlocks = [...blocks, { ...candidate, hash }];
+            setBlocks(updatedBlocks);
+            addLog(
+                `Block #${candidate.index} mined (${Math.round(performance.now() - startedAt)}ms)`,
+                "success",
+            );
+
+            socketRef.current?.emit("chain:propose", { blocks: updatedBlocks });
           break;
         }
 
@@ -560,6 +610,7 @@ export default function GlobalBlockchainPopup() {
       setIsMining(false);
     }
   }, [message, latest, isMining, deviceCanvasId, addLog]);
+  
 
   useEffect(() => {
     if (isMining || blocks.length === 0) return;

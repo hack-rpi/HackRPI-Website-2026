@@ -82,6 +82,7 @@ function hashBlock(block) {
     block.previousHash,
     block.nonce,
     block.difficulty,
+    block.canvasId,
   ];
   const text = JSON.stringify(contents);
   return crypto.createHash('sha256').update(text).digest('hex');
@@ -94,6 +95,7 @@ const GENESIS = {
   previousHash: '0',
   nonce: 0,
   difficulty: INITIAL_DIFFICULTY,
+  canvasId: 'server-genesis',
 };
 GENESIS.hash = hashBlock(GENESIS);
 Object.freeze(GENESIS);
@@ -237,7 +239,12 @@ class Blockchain {
       return { accepted: false, reason: 'tie', message: 'Equal work; keeping current chain.' };
     }
 
-    updateStats({ divergentBranchesSolved: 1 }, candidateBlocks.length);
+    const addedCount = candidateBlocks.length - this.blocks.length;
+    updateStats({ 
+      divergentBranchesSolved: 1, 
+      totalBlocksMined: addedCount > 0 ? addedCount : 1 
+    }, candidateBlocks.length);
+
     this.blocks = structuredClone(candidateBlocks);
     return { accepted: true, reason: 'longer', message: 'Adopted valid chain with higher cumulative work.' };
   }
@@ -264,7 +271,7 @@ function validate(blocks) {
     if (!block || typeof block !== 'object' || Array.isArray(block)) {
       return invalidBlock(index, 'Malformed block.');
     }
-    if (Object.keys(block).length !== 7) {
+    if (Object.keys(block).length !== 8) {
       return invalidBlock(index, 'Malformed block schema.');
     }
     if (block.index !== index) {
