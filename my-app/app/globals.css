@@ -40,6 +40,7 @@ html::-webkit-scrollbar {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 @layer base {
   /* Set Sugo Pro Display as default font for body & headings */
   body {
