@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { BlockchainProvider } from "@/app/context/blockchainContext";
+import GlobalBlockchainPopup from "@/app/blockchain/popup";
 
 // Main Font: Sugo Pro Display (Family with multiple weights/styles)
 // const sugoProDisplay = localFont({
@@ -61,7 +63,11 @@ export default function RootLayout({
       <body
         className={`${sugoProDisplay.variable} ${OMNFont.variable} ${calps.variable} bg-gBlack antialiased`}
       >
-        {children}
+        <BlockchainProvider>
+          {children}
+          {/* This floating popup/badge is now present on every page */}
+          <GlobalBlockchainPopup />
+        </BlockchainProvider>
       </body>
     </html>
   );

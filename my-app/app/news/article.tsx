@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 export interface ArticleData {
   id: string;
@@ -9,37 +9,38 @@ export interface ArticleData {
   author: string;
   date: string;
   imageUrl: string;
+  sourceName?: string;
+  sourceUrl?: string;
   featured?: boolean;
 }
 
 interface ArticleProps {
   data: ArticleData;
-  variant?: 'card' | 'full' | 'featured';
+  variant?: "card" | "full" | "featured";
   /** Wider card styling for the horizontal Hackathon strip */
   scrollCard?: boolean;
   onClick?: () => void;
 }
 
-const bodyParagraphClass =
-  'mb-8 text-lg leading-[1.9] text-[#b4b4b4] max-md:mb-8 max-md:text-base';
+const bodyParagraphClass = "mb-8 text-lg leading-[1.9] text-[#b4b4b4] max-md:mb-8 max-md:text-base";
 const bodyH2Class =
-  'mb-6 mt-14 text-4xl font-semibold tracking-tight text-white first:mt-0 max-md:mb-6 max-md:mt-12 max-md:text-3xl';
+  "mb-6 mt-14 text-4xl font-semibold tracking-tight text-white first:mt-0 max-md:mb-6 max-md:mt-12 max-md:text-3xl";
 const bodyH3Class =
-  'mb-4 mt-10 text-[1.75rem] font-Regular text-white max-md:mb-4 max-md:mt-8 max-md:text-[1.35rem]';
+  "mb-4 mt-10 text-[1.75rem] font-Regular text-white max-md:mb-4 max-md:mt-8 max-md:text-[1.35rem]";
 const bodyBlockquoteClass =
-  'my-12 rounded-r-xl border-l-4 border-gold bg-[rgba(255,215,0,0.05)] py-8 pl-10 pr-8 text-xl italic text-white max-md:my-10 max-md:py-6 max-md:pl-8 max-md:text-lg';
+  "my-12 rounded-r-xl border-l-4 border-gold bg-[rgba(255,215,0,0.05)] py-8 pl-10 pr-8 text-xl italic text-white max-md:my-10 max-md:py-6 max-md:pl-8 max-md:text-lg";
 
 const Article: React.FC<ArticleProps> = ({
   data,
-  variant = 'card',
+  variant = "card",
   scrollCard = false,
   onClick,
 }) => {
-  const { title, excerpt, content, category, author, date, imageUrl } = data;
+  const { title, excerpt, content, category, author, date, imageUrl, sourceName, sourceUrl } = data;
   const heroRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    if (variant === 'full' && heroRef.current) {
+    if (variant === "full" && heroRef.current) {
       const handleScroll = () => {
         const scrollPosition = window.scrollY;
         const heroElement = heroRef.current;
@@ -57,26 +58,24 @@ const Article: React.FC<ArticleProps> = ({
         }
       };
 
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [variant]);
 
-  if (variant === 'card') {
-    const cardRadius = scrollCard ? 'rounded-2xl' : 'rounded-[14px] max-md:rounded-xl';
-    const imageHeight = scrollCard
-      ? 'h-[180px] max-md:h-[160px]'
-      : 'h-[140px] max-md:h-[120px]';
-    const contentPad = scrollCard ? 'gap-2 p-[1.35rem]' : 'gap-[0.35rem] p-4';
+  if (variant === "card") {
+    const cardRadius = scrollCard ? "rounded-2xl" : "rounded-[14px] max-md:rounded-xl";
+    const imageHeight = scrollCard ? "h-[180px] max-md:h-[160px]" : "h-[140px] max-md:h-[120px]";
+    const contentPad = scrollCard ? "gap-2 p-[1.35rem]" : "gap-[0.35rem] p-4";
     const categoryClass = scrollCard
-      ? 'rounded-[5px] border border-[rgba(255,215,0,0.2)] bg-[rgba(255,215,0,0.1)] px-[0.7rem] py-[0.3rem] text-[0.65rem] font-bold uppercase tracking-[0.08em] text-gold'
-      : 'rounded border border-[rgba(255,215,0,0.2)] bg-[rgba(255,215,0,0.1)] px-[0.55rem] py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.08em] text-gold';
+      ? "rounded-[5px] border border-[rgba(255,215,0,0.2)] bg-[rgba(255,215,0,0.1)] px-[0.7rem] py-[0.3rem] text-[0.65rem] font-bold uppercase tracking-[0.08em] text-gold"
+      : "rounded border border-[rgba(255,215,0,0.2)] bg-[rgba(255,215,0,0.1)] px-[0.55rem] py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.08em] text-gold";
     const titleClass = scrollCard
-      ? 'mb-2 text-xl font-bold leading-snug tracking-tight text-white'
-      : 'mb-1.5 text-base font-bold leading-snug tracking-tight text-white';
+      ? "mb-2 text-xl font-bold leading-snug tracking-tight text-white"
+      : "mb-1.5 text-base font-bold leading-snug tracking-tight text-white";
     const excerptClass = scrollCard
-      ? 'mb-3 flex-1 text-sm leading-relaxed text-[#b4b4b4] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] [overflow:hidden]'
-      : 'description-box mb-2.5 flex-1 text-xs leading-normal text-[#b4b4b4]';
+      ? "mb-3 flex-1 text-sm leading-relaxed text-[#b4b4b4] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] [overflow:hidden]"
+      : "description-box mb-2.5 flex-1 text-xs leading-normal text-[#b4b4b4]";
 
     return (
       <article
@@ -97,10 +96,12 @@ const Article: React.FC<ArticleProps> = ({
           className="pointer-events-none absolute inset-0 z-3 overflow-hidden rounded-[inherit]"
           aria-hidden
         >
-          <span className="
+          <span
+            className="
             absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15
             to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full
-          "/>
+          "
+          />
         </span>
         <img
           src={imageUrl}
@@ -113,11 +114,13 @@ const Article: React.FC<ArticleProps> = ({
           </div>
           <h1 className={titleClass}>{title}</h1>
           <p className={excerptClass}>{excerpt}</p>
-          <span className="
+          <span
+            className="
             mt-auto inline-flex items-center gap-2 text-sm font-semibold
             uppercase tracking-wide text-gold transition-all duration-300 hover:gap-3
           hover:text-[#ffe94d] hover:[text-shadow:0_0_20px_rgba(255,215,0,0.5)]
-          ">
+          "
+          >
             Read More →
           </span>
         </div>
@@ -125,7 +128,7 @@ const Article: React.FC<ArticleProps> = ({
     );
   }
 
-  if (variant === 'featured') {
+  if (variant === "featured") {
     return (
       <article
         className="
@@ -142,25 +145,28 @@ const Article: React.FC<ArticleProps> = ({
           className="
             absolute inset-0 h-full w-full object-cover brightness-[0.7] transition-all
             duration-500 group-hover:scale-105 group-hover:brightness-50
-          "/>
+          "
+        />
         <div className="absolute inset-x-0 bottom-0 z-2 bg-linear-to-t from-black/95 via-black/70 to-transparent p-10">
           <div className="mb-0.5 flex items-center gap-2.5 text-xs">
-            <span className="
+            <span
+              className="
               rounded border border-[rgba(255,215,0,0.2)] bg-[rgba(255,215,0,0.1)]
               px-[0.55rem] py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.08em] text-gold
-            ">
+            "
+            >
               {category}
             </span>
           </div>
-          <h1 className="
+          <h1
+            className="
             mb-3 text-[2rem] font-bold leading-snug tracking-tight text-white
             [text-shadow:0_2px_12px_rgba(0,0,0,0.6)] max-md:mb-3 max-md:text-2xl
-          ">
+          "
+          >
             {title}
           </h1>
-          <p className="max-w-150 text-[0.95rem] leading-normal text-[#b4b4b4]">
-            {excerpt}
-          </p>
+          <p className="max-w-150 text-[0.95rem] leading-normal text-[#b4b4b4]">{excerpt}</p>
         </div>
       </article>
     );
@@ -181,9 +187,9 @@ const Article: React.FC<ArticleProps> = ({
               {title}
             </h1>
             <div className="flex items-center gap-4 text-lg text-[#b4b4b4] [text-shadow:0_2px_10px_rgba(0,0,0,0.8)] max-md:text-base">
-              <span className="text-[0.7rem] font-medium text-[#6b6b6b]">By {author}</span>
+              <span className="text-md font-medium text-[#6b6b6b]">By {author}</span>
               <span className="text-[#6b6b6b]">•</span>
-              <span className="text-[0.6rem] text-[#6b6b6b]">{date}</span>
+              <span className="text-md text-[#6b6b6b]">{date}</span>
             </div>
           </div>
         </div>
@@ -191,25 +197,25 @@ const Article: React.FC<ArticleProps> = ({
 
       <div className="relative z-10 -mt-[5vh] rounded-t-3xl bg-black shadow-[0_-20px_60px_rgba(0,0,0,0.5)]">
         <div className="mx-auto max-w-200 px-12 py-20 max-md:px-6 max-md:py-12">
-          {content.split('\n\n').map((paragraph, index) => {
-            if (paragraph.startsWith('## ')) {
+          {content.split("\n\n").map((paragraph, index) => {
+            if (paragraph.startsWith("## ")) {
               return (
                 <h1 key={index} className={bodyH2Class}>
-                  {paragraph.replace('## ', '')}
+                  {paragraph.replace("## ", "")}
                 </h1>
               );
             }
-            if (paragraph.startsWith('### ')) {
+            if (paragraph.startsWith("### ")) {
               return (
                 <h1 key={index} className={bodyH3Class}>
-                  {paragraph.replace('### ', '')}
+                  {paragraph.replace("### ", "")}
                 </h1>
               );
             }
-            if (paragraph.startsWith('> ')) {
+            if (paragraph.startsWith("> ")) {
               return (
                 <blockquote key={index} className={bodyBlockquoteClass}>
-                  {paragraph.replace('> ', '')}
+                  {paragraph.replace("> ", "")}
                 </blockquote>
               );
             }
@@ -219,6 +225,20 @@ const Article: React.FC<ArticleProps> = ({
               </p>
             );
           })}
+
+          {sourceUrl && (
+            <div className="mt-14 border-t border-[#2a2a2a] pt-8">
+              <p className="mb-3 text-sm uppercase tracking-wider text-[#777]">Primary source</p>
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-lg font-semibold text-gold transition-colors hover:text-[#ffe94d]"
+              >
+                Read the original announcement at {sourceName ?? "the source"} ↗
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </article>

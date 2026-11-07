@@ -14,7 +14,7 @@ import { ReactNode, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { textAnimation } from "@/lib/text-animation";
-import { FooterEllipseColor, FooterColor } from "@/app/components/BGColor";
+import { FooterColor } from "@/app/components/BGColor";
 import FloatingInfoModal from "@/app/components/blockchain-modal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -74,24 +74,6 @@ export default function HomeClient() {
          },
         });
 
-        // animate effect in footer
-        const footerEl = document.querySelector("#footer-ellipse");
-        if (footerEl) {
-          const footerTl = gsap.timeline({
-            scrollTrigger: {
-              trigger: "#footer-ellipse",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-          footerTl.fromTo(
-            footerEl,
-            { clipPath: "ellipse(70% 0% at 50% -10%)" },
-            { clipPath: "ellipse(70% 110% at 50% -10%)", duration: 0.5, ease: "none" }
-          );
-        }
-
         return () => {
           ScrollTrigger.killAll();
           lenis.destroy();
@@ -135,7 +117,11 @@ export default function HomeClient() {
             <div className="z-10 relative">
               <Mentions />
               <footer id="switch-light-2" style={{backgroundColor: FooterColor}}>
-                <div className="w-full h-[10vh] bg-gBlack" style={{ clipPath: "ellipse(70% 0% at 50% 0%)", backgroundColor: FooterEllipseColor }} id="footer-ellipse"></div>
+                <div
+                  className="-mt-1 h-[calc(10vh+4px)] w-full bg-background desktop:mt-0 desktop:h-[10vh] desktop:bg-[#252525]"
+                  style={{ clipPath: "ellipse(70% 10% at 50% 0%)" }}
+                  id="footer-ellipse"
+                ></div>
                 <FinalMessage/>
                 <Footer />
               </footer> 

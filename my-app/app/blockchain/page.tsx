@@ -80,7 +80,7 @@ export default function BlockchainPage() {
 
   useEffect(() => {
     let active = true;
-
+    
     async function createGenesisBlock() {
       const genesis = {
         index: 0,

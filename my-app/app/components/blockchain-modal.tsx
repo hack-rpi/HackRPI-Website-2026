@@ -63,28 +63,6 @@ export default function FloatingInfoModal() {
 
   return (
     <>
-      <div
-        aria-hidden={!isVisible}
-        className={`fixed right-4 top-1/2 z-70 -translate-y-1/2 transition-opacity duration-300 2xs:right-6 desktop:top-1/4 desktop:right-auto desktop:left-3/4 desktop:-translate-x-1/2 ${isVisible ? "opacity-100" : "pointer-events-none opacity-0"}`}
-      >
-        <div
-          className="transition-transform duration-1500 ease-in-out motion-reduce:transition-none"
-          style={{ transform: `translate3d(${drift.x}px, ${drift.y}px, 0) rotate(${drift.rotation}deg)` }}
-        >
-          <button
-            ref={triggerRef}
-            type="button"
-            tabIndex={isVisible ? 0 : -1}
-            onClick={() => setIsOpen(true)}
-            aria-label="Open modal"
-            aria-haspopup="dialog"
-            aria-expanded={isOpen}
-            className="grid h-14 w-14 place-items-center rounded-full border border-white/40 bg-hackrpi-clouds-dark-blue/90 text-3xl font-bold text-white shadow-[0_12px_40px_rgba(0,21,43,0.45)] backdrop-blur-md transition hover:scale-110 hover:border-hackrpi-clouds-blue hover:bg-[#05284b] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-hackrpi-clouds-blue/60 sm:h-16 sm:w-16 sm:text-4xl"
-          >
-            ?
-          </button>
-        </div>
-      </div>
 
       {isOpen && (
         <div

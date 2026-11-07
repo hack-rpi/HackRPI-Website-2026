@@ -11,8 +11,7 @@ import { Center, OrbitControls, useGLTF } from "@react-three/drei";
 import mentions from "./mentions.json";
 import "./team.css";
 
-// Preload the 3D model immediately on module load
-useGLTF.preload("/3d/trophy.glb");
+
 
 const deptConfig: Record<
   string,
@@ -59,7 +58,7 @@ const deptConfig: Record<
 gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
-  const { scene } = useGLTF("/3d/trophy.glb");
+  const { scene } = useGLTF("/3d/trophyCompressed.glb");
   const clonedScene = useMemo(() => scene.clone(), [scene]);
   return (
     <Center>

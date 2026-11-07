@@ -167,9 +167,6 @@ export default function Sponsors() {
                 ))}
             </div>
 
-            <h2 className="relative -mt-[40px] text-center top-10 left-1/2 -translate-x-1/2 text-2xl font-bold tracking-wider text-white/90 uppercase font-mono z-10">
-                More sponsors flying in soon ✈︎
-            </h2>
             <div className="flex flex-row justify-center flex-wrap gap-10 z-10"></div>
         </div>
     );
