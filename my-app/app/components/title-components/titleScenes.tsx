@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCountDown } from "./countdown";
+import BobaCountdown from "./boba-countdown";
 
 const linkItems = [
     { label: "Event", href: "/event" },
@@ -32,9 +33,10 @@ export function Variation1({ show }: { show: boolean }) {
         >
             {/* TOP HALF (50vh) - Main Hero Title */}
             <div
-                className="w-full h-[52vh] flex justify-end items-end pb-6 border-b border-white/10"
+                className="w-full h-[52vh] flex flex-col justify-end items-end pb-6 border-b border-white/10"
                 style={{ backgroundColor: showLayout }}
             >
+                <BobaCountdown />
                 <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-right leading-none">
                     HackRPI In The Clouds
                 </h1>
