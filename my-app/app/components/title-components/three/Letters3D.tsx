@@ -1,10 +1,10 @@
 import { Text3D, Center, FontData, Billboard } from "@react-three/drei";
 
 export function Letter3D({content, centered, billboard, font, pos, rot}: {
-    content: String,
+    content: string,
     centered: boolean,
     billboard: boolean,
-    font: Number, 
+    font: number, 
     pos: [number, number, number], 
     rot: [number, number, number]
 }) {
