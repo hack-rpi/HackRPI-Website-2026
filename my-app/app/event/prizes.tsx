@@ -314,7 +314,12 @@ export default function Prizes() {
                 </span>
               </div>
               <p className=" text-xs line-clamp-2 leading-relaxed">
-                {prize.description}
+                {prize.description}<br></br>
+
+                {(prize.title == "Best Hardware Hack") ? 
+                <span className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition-colors" >
+                  <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/Hh3PiMX2CyGFwW4e8">https://forms.gle/Hh3PiMX2CyGFwW4e8</a>
+                </span> : <></>}
               </p>
             </div>
 
