@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import Footer from "@/app/components/footer/footer";
 import NavBar from "@/app/components/nav-bar/nav-bar";
-import HackRPILink from '@/app/components/themed-components/hackrpi-link';
+import HackRPILink from "@/app/components/themed-components/hackrpi-link";
 
-import "./event.css"
-import Cover from './cover';
-import Link from 'next/link';
-import Image from 'next/image';
+import "./event.css";
+import Cover from "./cover";
+import Link from "next/link";
+import Image from "next/image";
 
-import Lenis from 'lenis';
+import Lenis from "lenis";
 import { useEffect } from "react";
-import Prizes from './prizes';
-import Giveaway from './giveaway';
-import BackgroundColor from '../components/BGColor';
+import Prizes from "./prizes";
+import Giveaway from "./giveaway";
+import BackgroundColor from "../components/BGColor";
 
 const BACKGROUND = "#00152b";
 const YELLOW_BRIGHT = "#FEF9C2";
@@ -36,39 +36,45 @@ export default function Event() {
     }
 
     requestAnimationFrame(raf);
-  })
+  });
 
   return (
-		<> 
+    <>
       <NavBar showOnScroll={false} variant={2} />
-      <Cover/>
+      <Cover />
 
-      <main style={{ 
-      '--dark-grey': DARK_GREY,
-      '--light-yellow': LIGHT_YELLOW,
-      '--yellow-bright': YELLOW_BRIGHT,
-	  '--pastel-turquoise': PASTEL_TURQUOISE
-    	} as React.CSSProperties} className = "flex flex-col w-full eventPageBG">
-		
-				{/* Mentoring information */}
+      <main
+        style={
+          {
+            "--dark-grey": DARK_GREY,
+            "--light-yellow": LIGHT_YELLOW,
+            "--yellow-bright": YELLOW_BRIGHT,
+            "--pastel-turquoise": PASTEL_TURQUOISE,
+          } as React.CSSProperties
+        }
+        className="flex flex-col w-full eventPageBG"
+      >
+        {/* Mentoring information */}
         <div className="w-full h-auto flex flex-col desktop:flex-row text-white pt-10">
           <div className="w-full desktop:w-[10%] flex flex-col items-center justify-center p-5">
-            <h1 style={{color: YELLOW_BRIGHT}}>Need Help?</h1>
+            <h1 style={{ color: YELLOW_BRIGHT }}>Need Help?</h1>
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2 style={{color: LIGHT_YELLOW}}>MENTORING INFORMATION</h2>
+            <h2 style={{ color: LIGHT_YELLOW }}>MENTORING INFORMATION</h2>
             Mentors will be available throughout HackRPI to provide invaluable guidance and
-            assistance to participants. Whether you need help with coding, debugging, refining
-            your project idea, or navigating the challenges of a hackathon, our experienced
-            mentors are here to support you every step of the way. With their expertise, you'll
-            be able to overcome obstacles, learn new skills, and maximize your hackathon experience.
-            Don't hesitate to seek out their advice and make the most of the mentorship opportunities available at HackRPI.
+            assistance to participants. Whether you need help with coding, debugging, refining your
+            project idea, or navigating the challenges of a hackathon, our experienced mentors are
+            here to support you every step of the way. With their expertise, you'll be able to
+            overcome obstacles, learn new skills, and maximize your hackathon experience. Don't
+            hesitate to seek out their advice and make the most of the mentorship opportunities
+            available at HackRPI.
           </div>
           <div className="w-full desktop:w-[45%] flex flex-col items-center desktop:items-start p-5 px-10">
-            <h2 style={{color: LIGHT_YELLOW}}>EVENT DISCORD</h2>
-            Join the HackRPI 2026 Discord server to stay connected and make the most of your hackathon experience!
-            Have questions for the staff? Want to chat with other participants? Looking for a team?
-            Join the conversation on Discord and get the support you need to succeed at HackRPI.
+            <h2 style={{ color: LIGHT_YELLOW }}>EVENT DISCORD</h2>
+            Join the HackRPI 2026 Discord server to stay connected and make the most of your
+            hackathon experience! Have questions for the staff? Want to chat with other
+            participants? Looking for a team? Join the conversation on Discord and get the support
+            you need to succeed at HackRPI.
             <HackRPILink
               href="https://discord.gg/WnrzEjNdY9"
               className="
@@ -88,285 +94,356 @@ export default function Event() {
           </div>
         </div>
 
-				{/* Project submission and judging */}
+        {/* Project submission and judging */}
         <div className=" w-full h-auto text-white p-5 flex flex-col items-center pb-0">
-          <h1 
-	   className={`text-center`} 
-		  style={{color: YELLOW_BRIGHT, fontSize: "300%"}}>Project Submission and Judging</h1>
+          <h1 className={`text-center`} style={{ color: YELLOW_BRIGHT, fontSize: "300%" }}>
+            Project Submission and Judging
+          </h1>
           <div className="w-full max-w-7xl p-[1em]">
-            <h2 className="text-center" style={{color: LIGHT_YELLOW, fontSize: "250%"}}>JUDGING CRITERIA</h2>
+            <h2 className="text-center" style={{ color: LIGHT_YELLOW, fontSize: "250%" }}>
+              JUDGING CRITERIA
+            </h2>
             <p className="text-md text-center pb-5">
-              After coding ends at 11am on Sunday,
-              present your project to our panel of industry professionals,
-              professors, alumni, and fellow students. They'll evaluate your work based on these criteria:
+              After coding ends at 11am on Sunday, present your project to our panel of industry
+              professionals, professors, alumni, and fellow students. They'll evaluate your work
+              based on these criteria:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-6">
-							{/* Practicality & Utility Card */}
-					<div className={`
+              {/* Practicality & Utility Card */}
+              <div
+                className={`
                 group relative criteriaBG
-                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              `} 
-			  style={{backgroundColor: BACKGROUND}}>
-								<div className="
+                border-2 border-(--yellow-bright)/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-(--yellow-bright)
+              `}
+                style={{ backgroundColor: BACKGROUND }}
+              >
+                <div
+                  className="
         		  absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center text-2xl
                   group-hover:rotate-12 transition-transform duration-300
                 "
-				style={{backgroundColor: YELLOW_BRIGHT}}>
-									🎯
-								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Practicality & Utility</h3>
-								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
-									What problem do you want to solve? What impression do you get from the hack? Does it provide for a smooth user experience? Any future plans?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-pink to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
+                  style={{ backgroundColor: YELLOW_BRIGHT }}
+                >
+                  🎯
+                </div>
+                <h3 className="font-bold text-xl mb-3" style={{ color: DARK_GREY }}>
+                  Practicality & Utility
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: DARK_GREY }}>
+                  What problem do you want to solve? What impression do you get from the hack? Does
+                  it provide for a smooth user experience? Any future plans?
+                </p>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-pink to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              </div>
 
-							{/* Creativity Card */}
-							<div className="
+              {/* Creativity Card */}
+              <div
+                className="
                 group relative criteriaBG
-                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              " 
-			  style={{backgroundColor: BACKGROUND}} >
-								<div className="
-                  absolute -top-3 -right-3 w-12 h-12
-                  rounded-full flex items-center justify-center
-                  text-2xl group-hover:rotate-12 transition-transform duration-300
-                "
-				style={{backgroundColor: YELLOW_BRIGHT}}>
-									💡
-								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Creativity</h3>
-								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
-									How original is your hack? Is this a novel idea or something that many people came across? How difficult is the problem you are solving?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-light-purple to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
-
-							{/* Technical Difficulty Card */}
-              <div className="
-                group relative criteriaBG
-                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
-              " 
-			  style={{backgroundColor: BACKGROUND}}>								
-                <div className="
-                  absolute -top-3 -right-3 w-12 h-12
-                  rounded-full flex items-center justify-center
-                  text-2xl group-hover:rotate-12 transition-transform duration-300
-                "
-				style={{backgroundColor: YELLOW_BRIGHT}}>
-									⚡
-								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Technical Difficulty</h3>
-								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
-									How technically challenging was your project? How complex is your design? What different technologies did you use?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-orange to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
-
-							{/* Effort Card */}
-							<div className="
-                group relative criteriaBG
-                border-2 border-[var(--yellow-bright)]/50 rounded-lg p-6
-                transform transition-all duration-300 hover:scale-105 hover:border-[var(--yellow-bright)]
+                border-2 border-(--yellow-bright)/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-(--yellow-bright)
               "
-			  style={{backgroundColor: BACKGROUND}}>
-								<div className="
+                style={{ backgroundColor: BACKGROUND }}
+              >
+                <div
+                  className="
                   absolute -top-3 -right-3 w-12 h-12
                   rounded-full flex items-center justify-center
                   text-2xl group-hover:rotate-12 transition-transform duration-300
                 "
-				style={{backgroundColor: YELLOW_BRIGHT}}>
-									💪
-								</div>
-								<h3 className="font-bold text-xl mb-3" style={{color: DARK_GREY}}>Effort</h3>
-								<p className="text-sm leading-relaxed" style={{color: DARK_GREY}}>
-									Did you genuinely commit time and effort to this product? Did your team work together and all contribute? Did you learn from the experience?
-								</p>
-								<div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-yellow to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-							</div>
-						</div>
+                  style={{ backgroundColor: YELLOW_BRIGHT }}
+                >
+                  💡
+                </div>
+                <h3 className="font-bold text-xl mb-3" style={{ color: DARK_GREY }}>
+                  Creativity
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: DARK_GREY }}>
+                  How original is your hack? Is this a novel idea or something that many people came
+                  across? How difficult is the problem you are solving?
+                </p>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-light-purple to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              </div>
+
+              {/* Technical Difficulty Card */}
+              <div
+                className="
+                group relative criteriaBG
+                border-2 border-(--yellow-bright)/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-(--yellow-bright)
+              "
+                style={{ backgroundColor: BACKGROUND }}
+              >
+                <div
+                  className="
+                  absolute -top-3 -right-3 w-12 h-12
+                  rounded-full flex items-center justify-center
+                  text-2xl group-hover:rotate-12 transition-transform duration-300
+                "
+                  style={{ backgroundColor: YELLOW_BRIGHT }}
+                >
+                  ⚡
+                </div>
+                <h3 className="font-bold text-xl mb-3" style={{ color: DARK_GREY }}>
+                  Technical Difficulty
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: DARK_GREY }}>
+                  How technically challenging was your project? How complex is your design? What
+                  different technologies did you use?
+                </p>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-orange to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              </div>
+
+              {/* Effort Card */}
+              <div
+                className="
+                group relative criteriaBG
+                border-2 border-(--yellow-bright)/50 rounded-lg p-6
+                transform transition-all duration-300 hover:scale-105 hover:border-(--yellow-bright)
+              "
+                style={{ backgroundColor: BACKGROUND }}
+              >
+                <div
+                  className="
+                  absolute -top-3 -right-3 w-12 h-12
+                  rounded-full flex items-center justify-center
+                  text-2xl group-hover:rotate-12 transition-transform duration-300
+                "
+                  style={{ backgroundColor: YELLOW_BRIGHT }}
+                >
+                  💪
+                </div>
+                <h3 className="font-bold text-xl mb-3" style={{ color: DARK_GREY }}>
+                  Effort
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: DARK_GREY }}>
+                  Did you genuinely commit time and effort to this product? Did your team work
+                  together and all contribute? Did you learn from the experience?
+                </p>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-hackrpi-yellow to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              </div>
+            </div>
           </div>
 
-		  	<div className="w-full h-auto text-white p-5 flex flex-col items-center py-10">
-				<Prizes />
-			</div>
+          <div
+            className="w-full h-auto text-white p-5 flex flex-col items-center py-10"
+            id="prizes"
+          >
+            <Prizes />
+          </div>
 
           {/* Project Submission Section */}
           <div className="w-full max-w-7xl p-[1em]">
-						<div className="text-center mb-12">
-							<h2 style={{color: LIGHT_YELLOW, fontSize:"250%"}}>PROJECT SUBMISSION</h2>
-							<p
-							style={{fontSize: "150%"}}>Submit your project through Devpost and showcase your amazing work!</p>
-						</div>
+            <div className="text-center mb-12">
+              <h2 style={{ color: LIGHT_YELLOW, fontSize: "250%" }}>PROJECT SUBMISSION</h2>
+              <p style={{ fontSize: "150%" }}>
+                Submit your project through Devpost and showcase your amazing work!
+              </p>
+            </div>
 
-						{/* Submission Timeline */}
-						<div className="w-full max-w-400 mx-auto mb-12 desktop:px-5">
-							<div className="relative">
-								{/* Timeline Line */}
-								<div className="absolute left-6 sm:left-8 desktop:left-10 top-0 bottom-0 w-1
-								bg-linear-to-b from-[var(--dark-grey)] via-[var(--light-yellow)] to-[var(--yellow-bright)]"></div>
+            {/* Submission Timeline */}
+            <div className="w-full max-w-400 mx-auto mb-12 desktop:px-5">
+              <div className="relative">
+                {/* Timeline Line */}
+                <div
+                  className="absolute left-6 sm:left-8 desktop:left-10 top-0 bottom-0 w-1
+								bg-linear-to-b from-(--dark-grey) via-(--light-yellow) to-(--yellow-bright)"
+                ></div>
 
-								{/* Timeline Steps */}
-								<div className="space-y-8">
-									{/* Step 1 */}
-									<div className="relative flex items-start">
-										<div className="
+                {/* Timeline Steps */}
+                <div className="space-y-8">
+                  {/* Step 1 */}
+                  <div className="relative flex items-start">
+                    <div
+                      className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
-										style={{backgroundColor: PASTEL_TURQUOISE}}>
-											1
-										</div>
-										<div className="
+                      style={{ backgroundColor: PASTEL_TURQUOISE }}
+                    >
+                      1
+                    </div>
+                    <div
+                      className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-[#27907A] p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										"
-										style={{borderColor: PASTEL_TURQUOISE}}>
-											<h3 className="text-2xl md:text-3xl font-bold mb-2"
-											style={{color: YELLOW_BRIGHT}}>Create Your Account</h3>
-											<p className="text-white md:text-lg">
-												<Link
-													href="https://hackrpi-2026.devpost.com/register?flow%5Bdata%5D%5Bchallenge_id%5D=28217&flow%5Bname%5D=register_for_challenge"
-													target="_blank"
-													rel="noopener noreferrer"
-													className="text-[var(--pastel-turquoise)] hover:bg-[var(--light-yellow)] hover:text-[var(--dark-grey)] underline transition-colors visited:text-[#7E7DA4]"
-												>
-													Sign up for a Devpost account
-												</Link>{" "}
-												to get started with your submission.
-											</p>
+                      style={{ borderColor: PASTEL_TURQUOISE }}
+                    >
+                      <h3
+                        className="text-2xl md:text-3xl font-bold mb-2"
+                        style={{ color: YELLOW_BRIGHT }}
+                      >
+                        Create Your Account
+                      </h3>
+                      <p className="text-white md:text-lg">
+                        <Link
+                          href="https://hackrpi-2026.devpost.com/register?flow%5Bdata%5D%5Bchallenge_id%5D=28217&flow%5Bname%5D=register_for_challenge"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-(--pastel-turquoise) hover:bg-(--light-yellow) hover:text-(--dark-grey) underline transition-colors visited:text-[#7E7DA4]"
+                        >
+                          Sign up for a Devpost account
+                        </Link>{" "}
+                        to get started with your submission.
+                      </p>
 
-											<Link
-												href="https://events.mlh.com/events/14390-hackrpi-2026"
-												className={`inline-block w-fit px-6 py-2.5 border border-yellow-100 font-mono font-bold text-yellow-100 text-xs md:text-sm uppercase tracking-widest hover:bg-yellow-100 hover:text-black transition-colors pointer-events-auto`}
-												style={{
-													boxShadow: "0 0 15px rgba(254,252,232,0.15)",
-												}}
-												target="_blank"
-											>
-												Register ⇾
-											</Link>
-										</div>
-									</div>
+                      <Link
+                        href="https://events.mlh.com/events/14390-hackrpi-2026"
+                        className={`inline-block w-fit px-6 py-2.5 border border-yellow-100 font-mono font-bold text-yellow-100 text-xs md:text-sm uppercase tracking-widest hover:bg-yellow-100 hover:text-black transition-colors pointer-events-auto`}
+                        style={{
+                          boxShadow: "0 0 15px rgba(254,252,232,0.15)",
+                        }}
+                        target="_blank"
+                      >
+                        Register ⇾
+                      </Link>
+                    </div>
+                  </div>
 
-									{/* Step 2 */}
-									<div className="relative flex items-start">
-										<div className="
+                  {/* Step 2 */}
+                  <div className="relative flex items-start">
+                    <div
+                      className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											bg-[#7EB9A4] rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
-										">
-											2
-										</div>
-										<div className="
+										"
+                    >
+                      2
+                    </div>
+                    <div
+                      className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 border-[#7EB9A4] p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
-										">
-											<h3 className="text-2xl md:text-3xl font-bold mb-2"
-											style={{color: YELLOW_BRIGHT}}>Prepare Your Submission</h3>
-											<p className="text-white mb-3 text-sm md:text-lg">Include these essential elements:</p>
-											<ul className="space-y-2 text-sm md:text-base desktop:text-lg text-white">
-												<li className="flex items-center">
-													<span className="mr-2">▸</span>
-													Project title and description
-												</li>
-												<li className="flex items-center">
-													<span className="mr-2">▸</span>
-													Technologies used and challenges faced
-												</li>
-												<li className="flex items-center">
-													<span className="mr-2">▸</span>
-													Team member information
-												</li>
-												<li className="flex items-center">
-													<span className="mr-2">▸</span>
-													Don't forget to opt into your prize tracks!
-												</li>
-											</ul>
-										</div>
-									</div>
+										"
+                    >
+                      <h3
+                        className="text-2xl md:text-3xl font-bold mb-2"
+                        style={{ color: YELLOW_BRIGHT }}
+                      >
+                        Prepare Your Submission
+                      </h3>
+                      <p className="text-white mb-3 text-sm md:text-lg">
+                        Include these essential elements:
+                      </p>
+                      <ul className="space-y-2 text-sm md:text-base desktop:text-lg text-white">
+                        <li className="flex items-center">
+                          <span className="mr-2">▸</span>
+                          Project title and description
+                        </li>
+                        <li className="flex items-center">
+                          <span className="mr-2">▸</span>
+                          Technologies used and challenges faced
+                        </li>
+                        <li className="flex items-center">
+                          <span className="mr-2">▸</span>
+                          Team member information
+                        </li>
+                        <li className="flex items-center">
+                          <span className="mr-2">▸</span>
+                          Don't forget to opt into your prize tracks!
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-									{/* Step 3 */}
-									<div className="relative flex items-start">
-										<div className="
+                  {/* Step 3 */}
+                  <div className="relative flex items-start">
+                    <div
+                      className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
-										style={{backgroundColor: PASTEL_TURQUOISE}}>
-											3
-										</div>
-										<div className="
+                      style={{ backgroundColor: PASTEL_TURQUOISE }}
+                    >
+                      3
+                    </div>
+                    <div
+                      className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										"
-										style={{borderColor: PASTEL_TURQUOISE}}>
-											<h3 className="text-2xl md:text-3xl font-bold mb-2"
-											style={{color: YELLOW_BRIGHT}}>
-												Submit Before Deadline
-											</h3>
-											<div className="space-y-2 text-white md:text-lg">
-												<div className="flex items-center mb-5 text-[1.2rem]">
-													<div className="w-[50%] desktop:w-auto">
-														Submit by
-													</div>
-													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
-													style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>
-														9:00 AM Sunday
-													</div>
-												</div>
-												<div className="flex items-center mb-5 text-[1.2rem]">
-													<div className="w-[50%] desktop:w-auto">
-														Edit until
-													</div>
-													<div className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
-													style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>
-														11:00 AM Sunday
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+                      style={{ borderColor: PASTEL_TURQUOISE }}
+                    >
+                      <h3
+                        className="text-2xl md:text-3xl font-bold mb-2"
+                        style={{ color: YELLOW_BRIGHT }}
+                      >
+                        Submit Before Deadline
+                      </h3>
+                      <div className="space-y-2 text-white md:text-lg">
+                        <div className="flex items-center mb-5 text-[1.2rem]">
+                          <div className="w-[50%] desktop:w-auto">Submit by</div>
+                          <div
+                            className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
+                            style={{ backgroundColor: DARK_GREY, color: BACKGROUND }}
+                          >
+                            9:00 AM Sunday
+                          </div>
+                        </div>
+                        <div className="flex items-center mb-5 text-[1.2rem]">
+                          <div className="w-[50%] desktop:w-auto">Edit until</div>
+                          <div
+                            className="w-[50%] desktop:w-auto font-bold px-1 desktop:ml-2 text-right"
+                            style={{ backgroundColor: DARK_GREY, color: BACKGROUND }}
+                          >
+                            11:00 AM Sunday
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-									{/* Step 4 */}
-									<div className="relative flex items-start">
-										<div className="
+                  {/* Step 4 */}
+                  <div className="relative flex items-start">
+                    <div
+                      className="
 											relative z-10 w-14 h-14 md:w-16 md:h-16 desktop:w-20 desktop:h-20
 											rounded-full flex items-center justify-center
 											text-xl md:text-2xl desktop:text-3xl shadow-lg [--tw-shadow-color:var(--pastel-turquoise)]
 										"
-										style={{backgroundColor: PASTEL_TURQUOISE}}>
-											4
-										</div>
-										<div className="
+                      style={{ backgroundColor: PASTEL_TURQUOISE }}
+                    >
+                      4
+                    </div>
+                    <div
+                      className="
 											ml-6 md:ml-8 desktop:ml-10 bg-linear-to-r from-white/10 to-transparent
 											border-l-4 p-5 md:p-6 desktop:p-8 rounded-r-lg flex-1
 										"
-										style={{borderColor: PASTEL_TURQUOISE}}>
-											<h3 className="text-2xl md:text-3xl font-bold mb-2"
-											style={{color: YELLOW_BRIGHT}}>
-												Present Your Project
-											</h3>
-											<p className="text-white md:text-lg">
-												After <span className="font-bold text-white mx-0.5 px-0.5"
-												style={{backgroundColor: DARK_GREY, color: BACKGROUND}}>11:00 AM Sunday</span>,
-												no changes are allowed. Be ready to give a live demo and explain your project to the
-												judges!
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                      style={{ borderColor: PASTEL_TURQUOISE }}
+                    >
+                      <h3
+                        className="text-2xl md:text-3xl font-bold mb-2"
+                        style={{ color: YELLOW_BRIGHT }}
+                      >
+                        Present Your Project
+                      </h3>
+                      <p className="text-white md:text-lg">
+                        After{" "}
+                        <span
+                          className="font-bold text-white mx-0.5 px-0.5"
+                          style={{ backgroundColor: DARK_GREY, color: BACKGROUND }}
+                        >
+                          11:00 AM Sunday
+                        </span>
+                        , no changes are allowed. Be ready to give a live demo and explain your
+                        project to the judges!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-						{/* CTA Button */}
-						{/*<div className="text-center">
+            {/* CTA Button */}
+            {/*<div className="text-center">
 							<HackRPILink
 								href="https://hackrpi2025.devpost.com/"
 								className="
@@ -386,17 +463,21 @@ export default function Event() {
 								Ready to showcase your amazing project? Click above to start your submission!
 							</p>
 						</div>*/}
-					</div>
+          </div>
         </div>
-		{/* giveaway stuff */}
-		<div className="w-full h-auto text-white p-5 flex flex-col items-center">
-			<Giveaway />
-		</div>
+        {/* giveaway stuff */}
+        <div className="w-full h-auto text-white p-5 flex flex-col items-center">
+          <Giveaway />
+        </div>
       </main>
       <footer className="bg-white">
-				<div className="w-full h-[10vh] eventPageEnd" style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }} id="footer-ellipse"></div>
+        <div
+          className="w-full h-[10vh] eventPageEnd"
+          style={{ clipPath: "ellipse(70% 0% at 50% 0%)" }}
+          id="footer-ellipse"
+        ></div>
         <Footer />
       </footer>
-		</>
-	);
+    </>
+  );
 }
